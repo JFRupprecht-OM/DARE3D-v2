@@ -1,0 +1,39 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /data: tap
+  - override /data/augmentation: none
+  - override /model: tap
+  - override /callbacks: tap
+  - override /trainer: default
+  - override /logger: many_loggers
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["tap", "unet"]
+task_name: "tap"
+
+seed: 12345
+
+trainer:
+  min_epochs: 10
+  max_epochs: 100
+
+data:
+  batch_size: 8
+
+input_channels: [-1, 0, 1, 2]
+scale_file: ${paths.data_dir}/3d/scales.json
+default_scale: [1.0, 1.0, 2.8]
+target_scale: 1.0
+renorm: "min-max"
+order_dim_img: "zyx"
+crop_size: 64
+type_mask: "center"
+mask_geom: "sphere"
+cell_radius: 8
+steps_per_epoch: 1000

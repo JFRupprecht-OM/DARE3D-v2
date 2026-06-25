@@ -1,0 +1,7 @@
+_target_: dare3d.metrics.infer_measure.infer_eval_wrapper
+device: "gpu"
+batch_size: 8
+threshold: 0.5
+distance_mode: "iou"
+distance_threshold: 0.1
+min_size_object: 50

@@ -1,0 +1,7 @@
+_target_: dare3d.losses.angle3d.angle_len_loss
+len_loss:
+  _target_: dare3d.losses.angle3d.length_loss_wrapper
+  crop_size: ${crop_size}
+angle_loss:
+  _target_: dare3d.losses.angle3d.svd_loss
+  alpha: 100

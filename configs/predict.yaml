@@ -1,0 +1,28 @@
+# @package _global_
+
+inference_dir: ???
+device: gpu
+
+segmentation:
+  model_dir: ???
+  hydra_dir: .hydra
+  ckpt_dir: checkpoints
+  ckpt_name: last.ckpt
+
+  inference_dir: ""
+  inference_batch_size: 4
+  inference_mode: segmentation
+  inference_overlap: 0.25
+  threshold: 0.5
+  min_weighted_prob: 0.1
+  device: ""
+
+regression:
+  model_dir: ""
+  hydra_dir: .hydra
+  ckpt_dir: checkpoints
+  ckpt_name: last.ckpt
+
+  inference_dir: ""
+  inference_batch_size: 4
+  device: ""

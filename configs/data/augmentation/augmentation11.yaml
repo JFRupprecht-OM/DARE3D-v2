@@ -1,0 +1,6 @@
+_target_: dare3d.data.augmend_wrapper.AugmendWrapper
+
+defaults:
+  - components/isotropic_scale.yaml
+  - components/rotation3dim.yaml
+  - components/intensity_shift_4D.yaml

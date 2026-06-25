@@ -1,0 +1,6 @@
+histogram_normalized:
+  _target_: dare3d.data.gpu_augmentations.MonaiAugmentationComponent
+  transform:
+    _target_: monai.transforms.HistogramNormalized
+    keys: ["image"]
+    num_bins: 20

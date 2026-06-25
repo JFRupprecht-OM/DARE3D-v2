@@ -1,0 +1,24 @@
+# @package _global_
+
+segmentation:
+  # Location parameters
+  model_dir: ???
+  hydra_dir: .hydra
+  ckpt_dir: checkpoints
+  ckpt_name: last.ckpt
+
+  multithread: false
+  threshold: 0.5
+  iteration_method: "movie"
+  distance_mode: "iou"
+  distance_threshold: 0.000001
+  min_weighted_prob: 0.1
+  device: cuda
+  lightning_test: false
+
+regression:
+  model_dir: ""
+  hydra_dir: .hydra
+  ckpt_dir: checkpoints
+  ckpt_name: last.ckpt
+  device: cuda

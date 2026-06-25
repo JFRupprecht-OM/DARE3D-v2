@@ -1,0 +1,4 @@
+_target_: dare3d.models.components.regression_net.Regression3dCNN
+im_size: ${crop_size}
+input_channels: ${input_channels}
+angle_vec_size: 9

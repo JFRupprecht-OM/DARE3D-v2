@@ -1,0 +1,13 @@
+_target_: dare3d.data.gpu_augmentations.MonaiAugmentationWrapper
+
+defaults:
+  - components:
+      - monai_flip
+      - monai_rotation
+      - monai_scale
+      # - monai_simulate_low_res
+      # - monai_gaussian_noise
+      # - monai_gaussian_smooth
+      # - monai_elastic
+      # - monai_adjust_contrast
+      # - monai_histogram_shift

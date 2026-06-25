@@ -1,0 +1,2 @@
+_target_: dare3d.utils.DisabledSLURMEnvironment
+auto_requeue: false

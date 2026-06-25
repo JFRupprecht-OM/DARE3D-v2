@@ -1,0 +1,13 @@
+intensity_scale_shift:
+  _target_: dare3d.data.augmend_wrapper.AugmendComponentWrapper
+
+  input:
+    _target_: augmend.IntensityScaleShift
+    axis: [0, 1, 2, 3]
+    scale: [0.9, 1.1]
+    shift: [-0.1, 0.1]
+
+  target:
+    _target_: augmend.Identity
+
+  probability: 0.5

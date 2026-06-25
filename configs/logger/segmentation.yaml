@@ -1,0 +1,6 @@
+# https://www.tensorflow.org/tensorboard/
+
+segmentation:
+  _target_: dare3d.loggers.segmentation_logger.SegmentationLogger
+  save_dir: ${paths.output_dir}/segmentation/
+  log_freq: 5

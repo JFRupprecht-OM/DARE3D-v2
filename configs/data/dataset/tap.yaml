@@ -1,0 +1,14 @@
+_target_: dare3d.data.components.tap_3dataset.Tap3Dataset
+
+im_folder: null
+label_folder: null
+input_channels: ${input_channels}
+scale_file: ${scale_file}
+default_scale: ${default_scale}
+target_scale: ${target_scale}
+renorm: ${renorm}
+order_dim_img: ${order_dim_img}
+crop_size: ${crop_size}
+training: false
+steps_per_epoch: ${steps_per_epoch}
+load_labels: false

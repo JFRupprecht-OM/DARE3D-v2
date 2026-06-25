@@ -1,0 +1,12 @@
+grid_distortion:
+  _target_: dare3d.data.gpu_augmentations.MonaiAugmentationComponent
+  transform:
+    _target_: monai.transforms.RandGridDistortiond
+    keys: ["image", "label", "weight"]
+    prob: 1.0
+    allow_missing_keys: True
+    num_cells: 5
+    distort_limit: [-0.03, 0.03]
+    mode: ["bilinear", "nearest", "nearest"]
+    padding_mode: ["zeros", "zeros", "zeros"]
+    device: "cuda:0"

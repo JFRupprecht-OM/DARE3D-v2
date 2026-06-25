@@ -1,0 +1,11 @@
+_target_: dare3d.models.regression_module.RegressionLitModule
+
+defaults:
+  - _self_
+  - net: regression_net.yaml
+  - criterion: angle_len.yaml
+  - optimizer: adamw.yaml
+  - scheduler: one_cycle_lr.yaml
+
+# compile model for faster training with pytorch 2.0
+compile: false

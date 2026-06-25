@@ -1,0 +1,6 @@
+_target_: monai.networks.nets.BasicUNet
+spatial_dims: 3
+in_channels: 3
+features: [8, 16, 32, 32, 64, 8]
+out_channels: 1
+norm: "BATCH"

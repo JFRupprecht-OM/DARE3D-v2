@@ -1,0 +1,18 @@
+_target_: dare3d.data.components.segres_3dataset.SegRes3Dataset
+
+im_folder: null
+label_folder: null
+input_channels: ${input_channels}
+scale_file: ${scale_file}
+default_scale: ${default_scale}
+target_scale: ${target_scale}
+renorm: ${renorm}
+order_dim_img: ${order_dim_img}
+crop_size: ${crop_size}
+type_mask: ${type_mask}
+mask_geom: ${mask_geom}
+radius: ${cell_radius}
+training: false
+steps_per_epoch: ${steps_per_epoch}
+load_labels: true
+base_quat_length: 10

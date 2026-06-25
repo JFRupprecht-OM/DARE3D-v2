@@ -1,0 +1,6 @@
+_target_: dare3d.models.components.simple_regression_net.RegressionNet
+im_size: ${crop_size}
+input_channels: ${input_channels}
+angle_vec_size: 9
+start_filters: 8
+n_stages: 3

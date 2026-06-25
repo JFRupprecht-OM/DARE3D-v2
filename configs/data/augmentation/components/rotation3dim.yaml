@@ -1,0 +1,16 @@
+rotation3dim:
+  _target_: dare3d.data.augmend_wrapper.AugmendComponentWrapper
+
+  input:
+    _target_: augmend.Rotate
+    order: 1
+    axis: [0, 1, 2]
+    mode: "constant"
+
+  target:
+    _target_: augmend.Rotate
+    order: 0
+    axis: [0, 1, 2]
+    mode: "constant"
+
+  probability: 0.5

@@ -1,0 +1,9 @@
+gaussian_smooth:
+  _target_: dare3d.data.gpu_augmentations.MonaiAugmentationComponent
+  transform:
+    _target_: monai.transforms.RandGaussianSmoothd
+    keys: ["image"]
+    prob: 1.0
+    sigma_x: [0.25, 1.5]
+    sigma_y: [0.25, 1.5]
+    sigma_z: [0.25, 1.5]

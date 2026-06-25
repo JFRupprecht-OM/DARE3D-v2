@@ -1,0 +1,20 @@
+_target_: dare3d.data.components.seg_3dataset.Segmentation3Dataset
+
+im_folder: null
+label_folder: null
+sparse_folder: null
+input_channels: ${input_channels}
+scale_file: ${scale_file}
+default_scale: ${default_scale}
+target_scale: ${target_scale}
+renorm: ${renorm}
+order_dim_img: ${order_dim_img}
+crop_size: ${crop_size}
+type_mask: ${type_mask}
+mask_geom: ${mask_geom}
+radius: ${cell_radius}
+training: false
+steps_per_epoch: ${steps_per_epoch}
+load_labels: true
+downsample_factors: ${downsample_factors}
+time_axis_padding: ${time_axis_padding}

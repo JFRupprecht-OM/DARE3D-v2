@@ -1,0 +1,9 @@
+adjust_contrast:
+  _target_: dare3d.data.gpu_augmentations.MonaiAugmentationComponent
+  transform:
+    _target_: monai.transforms.RandAdjustContrastd
+    keys: ["image"]
+    allow_missing_keys: True
+    prob: 0.5
+    gamma: [0.5, 2.5]
+    retain_stats: true

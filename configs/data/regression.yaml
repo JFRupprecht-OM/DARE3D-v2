@@ -1,0 +1,22 @@
+_target_: dare3d.data.dare_datamodule.DareDataModule
+
+defaults:
+  - dataset@train_data: regression.yaml
+  - dataset@val_data: regression.yaml
+  - dataset@test_data: regression.yaml
+  - augmentation: monai_augmentation_reg.yaml
+
+batch_size: 1
+num_workers: 0
+pin_memory: false
+
+train_data:
+  im_folder: ${paths.data_dir}/${train_dir}/im
+  label_folder: ${paths.data_dir}/${train_dir}/label
+  training: true
+val_data:
+  im_folder: ${paths.data_dir}/${val_dir}/im
+  label_folder: ${paths.data_dir}/${val_dir}/label
+test_data:
+  im_folder: ${paths.data_dir}/${test_dir}/im
+  label_folder: ${paths.data_dir}/${test_dir}/label

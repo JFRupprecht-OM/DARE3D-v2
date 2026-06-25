@@ -1,0 +1,13 @@
+_target_: dare3d.models.components.seq_unet.SequenceUNet
+crop_size: ${crop_size}
+spatial_dims: 3
+out_channels: 1
+# Always binary classification
+channels: [4, 8, 16, 32, 64, 128]
+# channels: [32, 64, 128, 256, 512, 1024]
+strides: [2, 2, 2, 2, 2]
+norm: "batch"
+num_res_units: 0
+bias: False
+dropout: 0
+tap_mode: False

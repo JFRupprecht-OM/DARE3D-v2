@@ -1,0 +1,7 @@
+_target_: torch.optim.lr_scheduler.OneCycleLR
+_partial_: True
+max_lr: ${model.optimizer.lr}
+steps_per_epoch: ${eval:'exec("import numpy as np") or int(np.ceil(${steps_per_epoch}/(${data.batch_size}*${trainer.accumulate_grad_batches})))'}
+epochs: ${trainer.max_epochs}
+# div_factor: 10000
+pct_start: 0.1

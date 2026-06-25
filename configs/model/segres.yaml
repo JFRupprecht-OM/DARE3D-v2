@@ -1,0 +1,11 @@
+_target_: dare3d.models.segmentation_module.SegmentationLitModule
+
+defaults:
+  - _self_
+  - net: segres_multiscale_unet.yaml
+  - criterion: dice_focal.yaml
+  - optimizer: adam.yaml
+  - scheduler: reduce_lr_on_plateau.yaml
+
+# compile model for faster training with pytorch 2.0
+compile: false

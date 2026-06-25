@@ -1,0 +1,11 @@
+_target_: dare3d.models.tap_module.TapModule
+
+defaults:
+  - net: tap_unet.yaml
+  - criterion: mse.yaml
+  - optimizer: adamw.yaml
+  - scheduler: one_cycle_lr.yaml
+  - _self_
+
+# compile model for faster training with pytorch 2.0
+compile: false

@@ -1,0 +1,42 @@
+dataCells/
+**/__pycache__/**
+*.egg-info
+.vscode
+exp3d*/
+divers_noVCS/
+*mlruns*
+dev_HC
+.idea
+division_3D/main
+data.zip
+dare.sif
+.pytest*
+
+/garbage/*
+*.ipynb_checkpoints*
+/docs/build/*
+Stat_Data
+run.sh
+outputs
+dare3d/output
+__pycache__
+
+# --- Merged project: large data, models & training outputs (kept locally, not in VCS) ---
+# Zenodo dataset bundle (record 17456474) and the top-level training data dir.
+# NB: root-anchored so the dare3d/data/ source package stays tracked.
+/DARE3d_data_160226/
+/data/
+/logs/
+mlruns/
+*.ckpt
+*.h5
+*.npz
+*.onnx
+*.pt
+*.pth
+
+# Build artifacts / OS noise
+build/
+dist/
+.DS_Store
+__MACOSX/

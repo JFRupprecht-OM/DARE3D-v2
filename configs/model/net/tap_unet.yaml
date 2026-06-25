@@ -1,0 +1,15 @@
+_target_: dare3d.models.components.unet.UNet
+spatial_dims: 3
+# Must be specified in code at runtime depending on the selected timesteps
+in_channels: 3
+# Always binary classification
+out_channels: 1
+# channels: [8, 16, 32, 64, 128, 256]
+# channels: [16, 32, 64, 128, 256, 512]
+channels: [32, 64, 128, 256, 512, 1024]
+strides: [2, 2, 2, 2, 2]
+norm: "batch"
+num_res_units: 0
+bias: False
+return_tap: True
+dropout: 0

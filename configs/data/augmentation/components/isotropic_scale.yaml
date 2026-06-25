@@ -1,0 +1,20 @@
+isotropic_scale:
+  _target_: dare3d.data.augmend_wrapper.AugmendComponentWrapper
+
+  input:
+    _target_: augmend.IsotropicScale
+    axis: [0, 1, 2]
+    amount: [0.9, 1.1]
+    mode: "constant"
+    use_gpu: false
+    order: 1
+
+  target:
+    _target_: augmend.IsotropicScale
+    axis: [0, 1, 2]
+    amount: [0.9, 1.1]
+    mode: "constant"
+    use_gpu: false
+    order: 0
+
+  probability: 0.5
