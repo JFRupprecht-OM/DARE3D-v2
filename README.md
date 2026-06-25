@@ -77,10 +77,9 @@ A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/l
 
 ## Inference
 
-**Notebook (recommended):** open `Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
-validates them, runs segmentation + regression, and visualises the result.
+Inference can be run **three ways** — pick whichever fits your workflow:
 
-**Command line:**
+**1. Terminal (CLI).**
 
 ```bash
 python dare3d/predict.py \
@@ -89,32 +88,36 @@ python dare3d/predict.py \
   +inference_dir=<folder_with_one_TZYX_tif>
 ```
 
-**napari plugin:** launch `napari`, load a 3D/4D stack `(T, Z, Y, X)` or `(Z, Y, X)`, then
+**2. Notebook.** Open `Run_dare3d_Prediction.ipynb` — it sets the model/data paths, validates
+them, runs segmentation + regression, and visualises the result.
+
+**3. napari plugin.** Launch `napari`, load a 3D/4D stack `(T, Z, Y, X)` or `(Z, Y, X)`, then
 **Plugins → DARE3D → DARE3D inference**. Set the segmentation / regression model-dir fields and
-**Run**. It overlays the detected division **centers** and **axes** as napari Points layers.
+**Run** — it overlays the detected division **centers** and **axes** as napari Points layers.
 Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window. (Regression needs a
 CUDA device; segmentation runs on CPU or GPU.)
 
 ## Training & retraining
 
-**Notebook (recommended):** open `Run_dare3d_Retraining.ipynb` — it validates your dataset layout
-and drives segmentation → regression → evaluation, streaming the logs inline.
+Retraining can be run **two ways** — from the terminal or the notebook. **Training requires a
+CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
+`(T, Z, Y, X)`; labels encode the daughter pair: first daughter → odd ids, second → even ids).
 
-**Command line:**
+**1. Terminal (CLI).**
 
 ```bash
-# Data layout: data/3d/<dataset>/{train,val}/{im,label}/*.tif   (movies are (T, Z, Y, X);
-# labels encode the daughter pair: first daughter -> odd ids, second -> even ids)
 python dare3d/train_eval.py --set_folder <dataset> --epoch 50
 # or drive the stages directly:
 python dare3d/train.py experiment=segmentation train_dir=3d/<dataset>/train val_dir=3d/<dataset>/val ...
 python dare3d/train.py experiment=regression   train_dir=3d/<dataset>/train val_dir=3d/<dataset>/val ...
 ```
 
-**napari plugin:** **Plugins → DARE3D → DARE3D training** drives the same `train.py`/`eval.py`
-steps as background subprocesses, and auto-fills the inference widget with the resulting model
-directories. Training writes to `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`)
-and logs to a local MLflow store. **Training requires a CUDA GPU.**
+**2. Notebook.** Open `Run_dare3d_Retraining.ipynb` — it validates your dataset layout and drives
+segmentation → regression → evaluation, streaming the logs inline.
+
+Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
+inference step. (The napari plugin also exposes a **DARE3D training** widget that wraps these same
+`train.py` / `eval.py` steps.)
 
 ## Checks
 
