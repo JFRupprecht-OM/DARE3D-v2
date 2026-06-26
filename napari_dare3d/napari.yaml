@@ -1,15 +1,15 @@
-name: napari-dare3d
+name: dare3d
 display_name: DARE3D
 contributions:
   commands:
-    - id: napari-dare3d.make_widget
+    - id: dare3d.make_widget
       title: DARE3D division-axis inference
       python_name: napari_dare3d._widget:dare3d_widget
-    - id: napari-dare3d.make_training_widget
+    - id: dare3d.make_training_widget
       title: DARE3D training
       python_name: napari_dare3d._train_widget:dare3d_training_widget
   widgets:
-    - command: napari-dare3d.make_widget
+    - command: dare3d.make_widget
       display_name: DARE3D inference
-    - command: napari-dare3d.make_training_widget
+    - command: dare3d.make_training_widget
       display_name: DARE3D training

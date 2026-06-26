@@ -21,7 +21,7 @@ setup(
             "eval_command = dare3d.eval:main",
         ],
         "napari.manifest": [
-            "napari-dare3d = napari_dare3d:napari.yaml",
+            "dare3d = napari_dare3d:napari.yaml",
         ],
     },
 )
