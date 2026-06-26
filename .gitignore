@@ -25,6 +25,9 @@ __pycache__
 # Zenodo dataset bundle (record 17456474) and the top-level training data dir.
 # NB: root-anchored so the dare3d/data/ source package stays tracked.
 /DARE3d_data_160226/
+DARE3d_data_*/
+*.zip
+*.part
 /data/
 /logs/
 mlruns/

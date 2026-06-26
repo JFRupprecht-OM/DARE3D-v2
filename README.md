@@ -55,8 +55,13 @@ conda activate dare3d
 # 2) PyTorch first (CUDA build; adapt the CUDA version to your machine)
 python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
-# 3) the rest of the dependencies, then the project itself (core + napari plugin)
+# 3) the rest of the dependencies
 pip install -r requirements.txt
+
+# 4) napari + its Qt backend (install explicitly so the GUI backend is present)
+pip install "napari[all]"
+
+# 5) the project itself (core + napari plugin)
 pip install -e .
 ```
 
@@ -70,8 +75,8 @@ The training/inference dataset (pretrained weights + demo movies) is published o
 ([record 17456474](https://zenodo.org/records/17456474): `DARE3d_data_160226.zip`). Unzip it at
 the repository root so models resolve as
 `DARE3d_data_160226/<case>/weights/{segmentation3d_*,regression3d_*}` (the bundle ships the
-**Gastruloid** and **Neural tube** cases). The napari plugin can also offer to auto-download its
-own model bundle on first run.
+**Gastruloid** and **Neural tube** cases). Or click **DARE3D download data** in the plugin
+(Plugins → DARE3D) to fetch and unzip it automatically into the folder you launch napari from.
 
 A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/last.ckpt`.
 

@@ -292,3 +292,56 @@ def dare3d_widget(
     pbar.visible = True
     worker.start()
     notifications.show_info("DARE3D: inference started…")
+
+
+@magic_factory(
+    call_button="Download DARE3D data (Zenodo)",
+    dest={
+        "widget_type": "FileEdit", "mode": "d", "label": "Download into",
+        "tooltip": "Folder to download DARE3d_data_190326 into (Zenodo record 19113351, "
+                   "~7 GB). Launch napari from here so the model-dir fields auto-fill.",
+    },
+    pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
+)
+def dare3d_download_widget(dest: Path = Path.cwd(), pbar: ProgressBar = None):
+    """Download the DARE3D demo data + pretrained models from Zenodo (~7 GB) and unzip.
+
+    Saves ``DARE3d_data_190326`` into the chosen folder; the inference widget then
+    auto-fills its model-dir fields when napari is launched from there. The download
+    runs in a worker thread (napari stays responsive); percent progress prints to the
+    terminal.
+    """
+    from napari_dare3d import _data
+
+    state = {"pct": -5}
+
+    def _progress(done, total):
+        if total:
+            pct = int(100 * done / total)
+            if pct >= state["pct"] + 5:
+                state["pct"] = pct
+                print(f"[DARE3D] download {pct}%  ({done / 1e9:.2f}/{total / 1e9:.2f} GB)")
+
+    @thread_worker
+    def _run():
+        return _data.download(dest, progress_cb=_progress,
+                              log=lambda m: print(f"[DARE3D] {m}"))
+
+    def _on_done(path):
+        pbar.max, pbar.value = 1, 1
+        pbar.label = f"downloaded → {Path(path).name}"
+        notifications.show_info(f"DARE3D data ready: {path}")
+
+    def _on_error(exc):
+        pbar.max, pbar.value = 1, 1
+        pbar.label = "download failed"
+        notifications.show_error(f"DARE3D download failed: {exc}")
+
+    worker = _run()
+    worker.returned.connect(_on_done)
+    worker.errored.connect(_on_error)
+    pbar.max, pbar.value = 0, 0
+    pbar.label = "downloading… (see terminal for %)"
+    pbar.visible = True
+    worker.start()
+    notifications.show_info("DARE3D: download started — progress in the terminal.")
