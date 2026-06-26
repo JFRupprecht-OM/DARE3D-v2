@@ -55,6 +55,28 @@ def _torch_device(device: str) -> torch.device:
     return torch.device("cuda:0") if device in ("gpu", "cuda") else torch.device("cpu")
 
 
+def _resolve_model_dir(model_dir: str, hydra_dir: str = ".hydra") -> str:
+    """Return the directory that actually holds ``<hydra_dir>/config.yaml``.
+
+    Accepts either a *flat* model dir (``<model>/`` with ``.hydra/`` + ``checkpoints/``
+    directly inside — e.g. the Gastruloid bundle) or one nested under ``runs/<date>/``
+    (e.g. the Neural_tube bundle, which keeps the native ``train.py`` output layout).
+    If the config is not directly present, descend into the most recent ``runs/<date>/``
+    (or single sub-run) that contains it. Falls back to ``model_dir`` unchanged so the
+    caller still raises a clear error.
+    """
+    import glob
+
+    if os.path.exists(os.path.join(model_dir, hydra_dir, "config.yaml")):
+        return model_dir
+    hits = glob.glob(os.path.join(model_dir, "runs", "*", hydra_dir, "config.yaml"))
+    hits += glob.glob(os.path.join(model_dir, "*", hydra_dir, "config.yaml"))
+    runs = [os.path.dirname(os.path.dirname(p)) for p in hits if os.path.isfile(p)]
+    if runs:
+        return max(runs, key=os.path.getmtime)  # most recent training run
+    return model_dir
+
+
 def _history_frames(seg_model_dir: str, hydra_dir: str = ".hydra") -> int:
     """Leading temporal context the segmentation model needs to predict a frame
     (= ``len(input_channels) - 1``; e.g. 2 for input_channels ``[-1, 0, 1]``).
@@ -62,6 +84,7 @@ def _history_frames(seg_model_dir: str, hydra_dir: str = ".hydra") -> int:
     Frames analysed by DARE3D start at this index, so a requested time window must
     include this many frames of history before its first frame.
     """
+    seg_model_dir = _resolve_model_dir(seg_model_dir, hydra_dir)
     cfg = OmegaConf.load(os.path.join(seg_model_dir, hydra_dir, "config.yaml"))
     try:
         return max(0, len(cfg.input_channels) - 1)
@@ -90,6 +113,7 @@ def _load_inference_cfg(
     Hydra run. Everything else (``crop_size``, ``input_channels``, ``renorm``,
     ``cell_radius``, ``representation_mode``, ...) resolves within the saved tree.
     """
+    model_dir = _resolve_model_dir(model_dir, hydra_dir)
     hydra_config_path = os.path.join(model_dir, hydra_dir, "config.yaml")
     ckpt_path = os.path.join(model_dir, ckpt_dir, ckpt_name)
     if not os.path.exists(hydra_config_path):
