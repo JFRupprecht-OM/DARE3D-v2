@@ -43,3 +43,6 @@ build/
 dist/
 .DS_Store
 __MACOSX/
+
+# Internal session/handoff notes — keep local, never commit
+HANDOFF_*.md
