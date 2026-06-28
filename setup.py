@@ -2,6 +2,39 @@
 
 from setuptools import find_packages, setup
 
+# NOTE: torch / torchvision / torchaudio are intentionally NOT declared here — they
+# must be installed separately with the right CUDA build (see the README). Declaring
+# them would risk overwriting a user's CUDA wheel with a default PyPI build.
+INSTALL_REQUIRES = [
+    # numeric / image
+    "numpy>=1.23,<1.27",
+    "scipy",
+    "numba>=0.59,<0.61",
+    "scikit-image",
+    "tifffile",
+    "matplotlib",
+    "tqdm",
+    # config / CLI / utils
+    "hydra-core>=1.3,<1.4",
+    "hydra-colorlog>=1.2",
+    "hydra-optuna-sweeper>=1.2",
+    "omegaconf",
+    "rootutils",
+    "rich",
+    "click",
+    # training / models / metrics
+    "lightning>=2.0",
+    "torchmetrics>=0.11.4",
+    "monai>=1.3,<1.4",
+    "augmend",
+    # loggers
+    "mlflow",
+    "tensorboard",
+    # napari plugin (GUI)
+    "napari",
+    "magicgui",
+]
+
 setup(
     name="dare3d",
     version="0.0.1",
@@ -10,10 +43,17 @@ setup(
     "Jules Vanaret, Mehdi Saadaoui, Sham Tlili, Jean-Francois Rupprecht",
     author_email="rupprecht.jf@gmail.com",
     url="https://github.com/qazi05/DARE3d",
-    packages=find_packages(),
+    python_requires=">=3.10",
+    # exclude the test suite from the built distribution
+    packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
-    # ship the napari manifest with the plugin package
-    package_data={"napari_dare3d": ["napari.yaml"]},
+    # ship the napari manifest with the plugin package, and the Hydra config tree
+    # (needed by the train/eval/predict CLIs) which is otherwise dropped from wheels.
+    package_data={
+        "napari_dare3d": ["napari.yaml"],
+        "configs": ["**/*.yaml", "**/*.yml"],
+    },
+    install_requires=INSTALL_REQUIRES,
     # console commands (core) + the napari plugin manifest (so napari discovers the plugin)
     entry_points={
         "console_scripts": [

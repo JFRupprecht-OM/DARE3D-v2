@@ -1,0 +1,9 @@
+# Ship the Hydra config tree and the napari manifest in source/wheel distributions.
+recursive-include configs *.yaml *.yml
+include napari_dare3d/napari.yaml
+
+# Keep tests and dev/CI noise out of the distribution.
+prune tests
+prune notebooks
+exclude .env.example .pre-commit-config.yaml Makefile dare3d.def
+global-exclude __pycache__ *.py[cod] *.ipynb_checkpoints
