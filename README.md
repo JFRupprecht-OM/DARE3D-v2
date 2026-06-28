@@ -51,6 +51,9 @@ Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (
 
 ## Installation
 
+**Prerequisites:** Python 3.10 and Conda (recommended). An NVIDIA GPU with **CUDA 11.8+** is needed
+for regression and training; CPU-only is fine for **segmentation-only inference**.
+
 ```bash
 git clone https://github.com/qazi05/DARE3d
 cd DARE3d
@@ -59,8 +62,13 @@ cd DARE3d
 conda create -n dare3d-v2 python=3.10 -y
 conda activate dare3d-v2
 
-# 2) PyTorch first (CUDA build; adapt the CUDA version to your machine)
+# 2) PyTorch first — pick the build that matches your machine:
+#    CUDA 12.1:
 python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#    CUDA 11.8:
+#    python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#    CPU-only (segmentation inference only — no regression/training):
+#    python -m pip install torch torchvision torchaudio
 
 # 3) the rest of the dependencies
 pip install -r requirements.txt
@@ -75,6 +83,9 @@ pip install -e .
 The editable install registers the napari plugin via its `napari.manifest` entry point, so
 **napari lists "DARE3D" under Plugins** with no extra step. (CPU-only PyTorch works for
 segmentation inference; **regression and training require a CUDA GPU**.)
+
+> **Import errors after a layout change?** Re-run `pip install -e .` to refresh the editable
+> install. For full Hydra tracebacks, set `HYDRA_FULL_ERROR=1` (PowerShell: `$env:HYDRA_FULL_ERROR=1`).
 
 ## Models & data
 
@@ -100,6 +111,25 @@ A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/l
   the experiment's `default_scale` (e.g. `0.621, 0.621, 2`) is used. The inference widget's
   *default_scale x,y,z* field overrides it.
 
+## Configuration (Hydra)
+
+The CLI (`train.py`, `eval.py`, `predict.py`) is driven by a composable **Hydra** config tree under
+[`configs/`](configs) — `experiment/`, `model/` (`net/`, `criterion/`, `optimizer/`, `scheduler/`),
+`data/`, `trainer/`, `logger/`, `paths/`, … Any field can be overridden on the command line without
+editing files:
+
+```bash
+# choose an experiment preset, then override individual fields
+python dare3d/train.py experiment=segmentation data.batch_size=8 trainer.max_epochs=100
+python dare3d/train.py experiment=regression   model.optimizer.lr=0.001
+```
+
+- Prefix a key with `+` to **add** one that isn't in the chosen config (e.g. `+segmentation.model_dir=…`).
+- Every run writes its **resolved config** to `<output>/.hydra/config.yaml`; that is exactly what a
+  *model directory* carries (`.hydra/config.yaml` + `checkpoints/`), so inference can reload the
+  training settings.
+- Hydra **multirun** (`-m`) sweeps parameters, e.g. `python dare3d/train.py -m data.batch_size=4,8`.
+
 ## Inference
 
 Inference can be run **three ways** — pick whichever fits your workflow:
@@ -110,8 +140,18 @@ Inference can be run **three ways** — pick whichever fits your workflow:
 python dare3d/predict.py \
   +segmentation.model_dir=<seg_model_dir> \
   +regression.model_dir=<reg_model_dir> \
-  +inference_dir=<folder_with_one_TZYX_tif>
+  +inference_dir=<folder_with_one_TZYX_tif> \
+  device=gpu
 ```
+
+Results (probability map, division-axis render, and a `raw_predictions.npz` of centers + rotation
+matrices + lengths) are written under the Hydra run directory. Useful overrides:
+
+- **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3d/scales.json`.
+- **Detection tuning:** `segmentation.threshold=0.5`, `segmentation.min_weighted_prob=0.1`,
+  `segmentation.inference_overlap=0.25`, `segmentation.inference_batch_size=4`.
+- **Device:** `device=gpu` (regression needs CUDA) or `device=cpu` (segmentation only).
+- Omit `+regression.model_dir` to get **centers only** (no axes).
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
 validates them, runs segmentation + regression, and visualises the result.
@@ -152,28 +192,69 @@ Retraining can be run **two ways** — from the terminal or the notebook. **Trai
 CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
 `(T, Z, Y, X)`; labels encode the daughter pair: first daughter → odd ids, second → even ids).
 
-**1. Terminal (CLI).**
+**1. Terminal (CLI).** The `train_eval.py` wrapper runs segmentation → regression → evaluation:
 
 ```bash
 python dare3d/train_eval.py --set_folder <dataset> --epoch 50
-# or drive the stages directly:
+python dare3d/train_eval.py --set_folder <dataset> --epoch 50 --train_regression False   # seg only
+python dare3d/train_eval.py --set_folder <dataset> --batch_size 4 --cell_radius 10
+python dare3d/train_eval.py --set_folder <dataset> --eval_only True                       # just evaluate
+
+# …or drive the stages directly through Hydra:
 python dare3d/train.py experiment=segmentation train_dir=3d/<dataset>/train val_dir=3d/<dataset>/val ...
 python dare3d/train.py experiment=regression   train_dir=3d/<dataset>/train val_dir=3d/<dataset>/val ...
 ```
+
+`train_eval.py` flags:
+
+| Flag | Default | Meaning |
+|---|---|---|
+| `--set_folder` | *(required)* | Dataset folder name under `data/3d/`. |
+| `--epoch` | *(required)* | Max epochs per stage. |
+| `--batch_size` | `32` | 3D patches per step (lower on GPU OOM). |
+| `--cell_radius` | `8` | Radius (voxels) of the segmentation target spheres. |
+| `--seg_crop_size` | `128` | Segmentation training patch size. |
+| `--date` | `01-01` | Run id → `runs/<date>/`. |
+| `--threshold` | `None` | Eval segmentation threshold (`None` = auto-search). |
+| `--train_segmentation` / `--train_regression` | `True` | Toggle each stage. |
+| `--eval_only` | `False` | Skip training, only evaluate existing models. |
+| `--overwrite` | `True` | Re-run even if the run directory already exists. |
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Retraining.ipynb` — it validates your dataset layout and
 drives segmentation → regression → evaluation, streaming the logs inline.
 
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
-inference step. (The napari plugin also exposes a **DARE3D training** widget that wraps these same
-`train.py` / `eval.py` steps.)
+inference step. Runs are logged to a local **MLflow** SQLite store under `logs/` — browse it with
+`mlflow ui --backend-store-uri sqlite:///logs/mlflow.db`. (The napari plugin also exposes a
+**DARE3D training** widget that wraps these same `train.py` / `eval.py` steps.)
 
-## Checks
+## Data preparation & helper scripts
+
+Optional helpers for building the `data/3d/<dataset>/{train,val}/{im,label}` layout:
+
+```bash
+# Split each raw movie into left/right halves (data augmentation; expects movie1..movie3 under <dir>)
+python scripts/generate_split_movies.py --data_dir data/3d
+
+# Build a cylindrical per-voxel weight mask between paired daughter centroids -> weights.tif
+python dare3d/tools/generate_sparse_weights.py --annotated_movie <label.tif> --radius 4
+
+# Generate cross-validation splits from a per-movie dataset
+python dare3d/tools/generate_cv_split.py --help
+```
+
+The `scripts/generate_exp*.py` files are experiment-specific dataset generators kept for
+reproducibility; adapt one to your own movies rather than running it verbatim.
+
+## Testing & development
 
 ```bash
 python verify_geometry.py   # quaternion -> axis + coordinate mapping (no napari/models/GPU)
 python verify_train.py      # training-command construction + paths (no GPU)
 make test                   # unit tests (excludes slow ones)
+make test-full              # all tests, including slow ones
+make format                 # run pre-commit hooks (formatting/linting)
+make clean                  # remove build artefacts and caches
 ```
 
 ## Troubleshooting
@@ -181,6 +262,10 @@ make test                   # unit tests (excludes slow ones)
 - **Qt / napari GUI issues:** `conda install -c conda-forge pyqt`.
 - **Full Hydra tracebacks:** set `HYDRA_FULL_ERROR=1`.
 - **CUDA out of memory:** lower `data.batch_size`, or `trainer=cpu` for segmentation-only.
+- **`ImportError` / plugin not listed in napari:** re-run `pip install -e .` (refreshes the editable
+  install and its `napari.manifest` entry point).
+- **Demo data won't download:** check your internet connection, or grab the Zenodo bundle manually
+  ([record 19113351](https://zenodo.org/records/19113351)) and unzip it at the repo root.
 - DARE3D training was developed on Linux/HPC; on some Windows setups the Lightning backward pass
   can crash natively even when inference is fine — train on Linux/HPC and reuse the resulting
   model directory.
@@ -191,6 +276,13 @@ make test                   # unit tests (excludes slow ones)
   region estimation in 2D time-lapse images, also shipped with a napari plugin. DARE3D extends the
   idea to 3D volumes, where the division axis is a full 3D orientation (a quaternion) rather than a
   scalar angle.
+
+## Additional resources
+
+- [Hydra](https://hydra.cc/) — configuration management.
+- [PyTorch Lightning](https://lightning.ai/) — training framework.
+- [MONAI](https://monai.io/) — medical-imaging building blocks (3D U-Net, sliding-window inference).
+- [napari](https://napari.org/) — the n-dimensional image viewer the plugin builds on.
 
 ## License & attribution
 
