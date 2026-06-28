@@ -20,9 +20,10 @@ from napari_dare3d._io import iter_tifs
 #: Name of the Zenodo download holding the demo models / data.
 DATA_ROOT_NAME = "DARE3d_data_190326"
 
-#: Shared stop flag (single widget instance in practice); set by the Stop button
-#: and polled by ``infer_stack`` between frames to abort a long run.
-_INFER_STATE = {"stop": False}
+#: Shared run state (single widget instance in practice): ``stop`` is the abort flag
+#: (set by the Stop button, polled by ``infer_stack`` between frames); ``call_button``
+#: / ``stop_button`` are kept so a running inference can swap Run -> Stop.
+_INFER_STATE = {"stop": False, "call_button": None, "stop_button": None}
 
 #: Fine-tuning controls hidden behind the "Advanced parameters" toggle (collapsed
 #: by default). These are DARE3D's real knobs — note there is NO patch/crop-size
@@ -93,6 +94,17 @@ def _set_advanced_visible(widget, visible: bool) -> None:
         )
 
 
+def _set_running(running: bool) -> None:
+    """While a run is active, hide the "Run DARE3D" call button and show Stop in its
+    place; restore on completion/abort."""
+    cb = _INFER_STATE.get("call_button")
+    sb = _INFER_STATE.get("stop_button")
+    if cb is not None:
+        cb.visible = not running
+    if sb is not None:
+        sb.visible = running
+
+
 def _init_widget(widget):
     """magic_factory hook: preload the Gastruloid test_input movie into the viewer
     and select it as the input image. Runs once when the widget is created."""
@@ -110,8 +122,13 @@ def _init_widget(widget):
             lambda *_: _set_advanced_visible(widget, not widget.overlap.visible)
         )
 
-    # Stop button: set the shared abort flag, polled by infer_stack between frames.
+    # Run/Stop: the Stop button is hidden until a run starts, then it replaces the
+    # "Run DARE3D" call button (restored when the run finishes/aborts). Clicking it
+    # sets the shared abort flag, polled by infer_stack between frames.
+    _INFER_STATE["call_button"] = getattr(widget, "call_button", None)
+    _INFER_STATE["stop_button"] = getattr(widget, "stop", None)
     if getattr(widget, "stop", None) is not None:
+        widget.stop.visible = False  # shown only while a run is active
         widget.stop.tooltip = "Abort the running inference at the next frame boundary."
 
         def _request_stop(*_):
@@ -239,12 +256,14 @@ def _parse_scale(text: str):
         "tooltip": "Voxel size x,y,z in microns (e.g. 0.621,0.621,2). "
                    "Blank = use the value saved in the model config.",
     },
+    legend={"widget_type": "Label", "label": "", "visible": False},  # shown after a run (see _init_widget)
+    pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
+    # Rendered just above the call button so it visually replaces "Run DARE3D" while
+    # a run is active (hidden until then; see _init_widget / _set_running).
     stop={
         "widget_type": "PushButton", "text": "Stop",
         "tooltip": "Abort the running inference at the next frame boundary.",
     },
-    legend={"widget_type": "Label", "label": "", "visible": False},  # shown after a run (see _init_widget)
-    pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
 )
 def dare3d_widget(
     image: "napari.layers.Image",
@@ -260,9 +279,9 @@ def dare3d_widget(
     threshold: float = 0.5,
     min_weighted_prob: float = 0.1,
     default_scale: str = "",
-    stop: bool = False,
     legend: str = LEGEND_HTML,
     pbar: ProgressBar = None,
+    stop: bool = False,
 ):
     """Run DARE3D segmentation (+ optional regression) on an Image layer and
     overlay detected division centers and axes (napari Points layers)."""
@@ -321,6 +340,7 @@ def dare3d_widget(
 
         from napari_dare3d._api import to_layer_data
 
+        _set_running(False)  # restore the "Run DARE3D" button
         # Aborted via Stop: infer_stack returns [] and we add no layers.
         if _INFER_STATE["stop"]:
             pbar.max, pbar.value = 1, 1
@@ -346,6 +366,7 @@ def dare3d_widget(
                 pass
 
     def _on_error(exc):
+        _set_running(False)  # restore the "Run DARE3D" button
         notifications.show_error(f"DARE3D failed: {exc}")
         pbar.max, pbar.value = 1, 1
         pbar.label = "DARE3D: failed"
@@ -359,6 +380,7 @@ def dare3d_widget(
     pbar.max, pbar.value = 0, 0
     pbar.label = "DARE3D: running…"
     pbar.visible = True
+    _set_running(True)  # swap "Run DARE3D" -> "Stop" for the duration of the run
     worker.start()
     notifications.show_info("DARE3D: inference started…")
 
