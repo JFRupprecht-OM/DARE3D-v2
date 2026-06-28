@@ -216,7 +216,7 @@ def _resolve_split(dataset_dir, output_dir, train_movies, val_movies) -> Path:
                         os.symlink(tif, dst)
                     except (OSError, NotImplementedError):
                         shutil.copy2(tif, dst)
-                        return split
+    return split
 
 
 def _stream(cmd: List[str], should_stop: Optional[Callable[[], bool]]) -> Iterator[str]:
