@@ -14,9 +14,21 @@ from magicgui.widgets import ProgressBar
 from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
+from napari_dare3d._io import iter_tifs
+
 
 #: Name of the Zenodo download holding the demo models / data.
 DATA_ROOT_NAME = "DARE3d_data_190326"
+
+#: Shared stop flag (single widget instance in practice); set by the Stop button
+#: and polled by ``infer_stack`` between frames to abort a long run.
+_INFER_STATE = {"stop": False}
+
+#: Fine-tuning controls hidden behind the "Advanced parameters" toggle (collapsed
+#: by default). These are DARE3D's real knobs — note there is NO patch/crop-size
+#: knob: the seg model is fixed at 128^3 and reg at 32^3 (U-Net stride-32
+#: divisibility), so exposing a size would crash inference (the DARE2d lesson).
+_ADVANCED_FIELDS = ("overlap", "batch_size", "threshold", "min_weighted_prob", "default_scale")
 
 #: Short overlay legend shown in the widget (QLabel rich text).
 LEGEND_HTML = (
@@ -65,8 +77,20 @@ def _default_image_path():
     if root is None:
         return None
     test_input = root / "Gastruloid_241025" / "test_input"
-    tifs = sorted(test_input.glob("*.tif")) + sorted(test_input.glob("*.tiff"))
-    return tifs[0] if tifs else None
+    tifs = iter_tifs(test_input)  # case-insensitive .tif/.tiff
+    return Path(tifs[0]) if tifs else None
+
+
+def _set_advanced_visible(widget, visible: bool) -> None:
+    """Show/hide the advanced fine-tuning controls and update the toggle label."""
+    for field in _ADVANCED_FIELDS:
+        ctrl = getattr(widget, field, None)
+        if ctrl is not None:
+            ctrl.visible = visible
+    if getattr(widget, "advanced", None) is not None:
+        widget.advanced.text = (
+            "Hide advanced parameters" if visible else "Show advanced parameters"
+        )
 
 
 def _init_widget(widget):
@@ -77,6 +101,25 @@ def _init_widget(widget):
         widget.call_button.tooltip = (
             "Run DARE3D inference on the selected image with the settings above."
         )
+
+    # Collapsible "Advanced parameters": hidden by default; the PushButton toggles
+    # them. (magicgui has no native collapsible — flip each control's .visible.)
+    _set_advanced_visible(widget, False)
+    if getattr(widget, "advanced", None) is not None:
+        widget.advanced.changed.connect(
+            lambda *_: _set_advanced_visible(widget, not widget.overlap.visible)
+        )
+
+    # Stop button: set the shared abort flag, polled by infer_stack between frames.
+    if getattr(widget, "stop", None) is not None:
+        widget.stop.tooltip = "Abort the running inference at the next frame boundary."
+
+        def _request_stop(*_):
+            _INFER_STATE["stop"] = True
+            if getattr(widget, "pbar", None) is not None:
+                widget.pbar.label = "DARE3D: stopping…"
+
+        widget.stop.changed.connect(_request_stop)
 
     viewer = napari.current_viewer()
     if viewer is None:
@@ -150,19 +193,27 @@ def _parse_scale(text: str):
     },
     device={
         "choices": ["gpu", "cpu"], "label": "Device",
-        "tooltip": "gpu = CUDA (required for the regression axes); cpu = segmentation centers only.",
+        "tooltip": "gpu = CUDA (required for the regression axes); cpu = segmentation centers "
+                   "only. Default: gpu.",
     },
     whole_movie={
         "label": "Analyse whole movie",
-        "tooltip": "Analyze every time frame. Uncheck to restrict to [Start frame, End frame].",
+        "tooltip": "Analyze every time frame. Uncheck to restrict to [Start frame, End frame]. "
+                   "Default: on.",
     },
     t_start={
         "min": 0, "label": "Start frame",
-        "tooltip": "First frame to analyze (used only when 'Analyse whole movie' is off).",
+        "tooltip": "First frame to analyze (used only when 'Analyse whole movie' is off). "
+                   "Default: 0.",
     },
     t_end={
         "min": 0, "label": "End frame (inclusive)",
-        "tooltip": "Last frame to analyze, inclusive (used only when 'Analyse whole movie' is off).",
+        "tooltip": "Last frame to analyze, inclusive (used only when 'Analyse whole movie' is "
+                   "off). Default: 0.",
+    },
+    advanced={
+        "widget_type": "PushButton", "text": "Show advanced parameters",
+        "tooltip": "Show/hide the fine-tuning parameters below (collapsed by default).",
     },
     overlap={
         "min": 0.0, "max": 0.9, "step": 0.05,
@@ -170,7 +221,8 @@ def _parse_scale(text: str):
                    "Higher = more accurate, slower.",
     },
     batch_size={
-        "tooltip": "Number of 3D patches inferred at once. Lower this if you hit GPU out-of-memory.",
+        "tooltip": "Number of 3D patches inferred at once. Lower this if you hit GPU "
+                   "out-of-memory. Default: 4.",
     },
     threshold={
         "min": 0.0, "max": 1.0, "step": 0.05,
@@ -187,6 +239,10 @@ def _parse_scale(text: str):
         "tooltip": "Voxel size x,y,z in microns (e.g. 0.621,0.621,2). "
                    "Blank = use the value saved in the model config.",
     },
+    stop={
+        "widget_type": "PushButton", "text": "Stop",
+        "tooltip": "Abort the running inference at the next frame boundary.",
+    },
     legend={"widget_type": "Label", "label": "", "visible": False},  # shown after a run (see _init_widget)
     pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
 )
@@ -198,11 +254,13 @@ def dare3d_widget(
     whole_movie: bool = True,
     t_start: int = 0,
     t_end: int = 0,
+    advanced: bool = False,
     overlap: float = 0.25,
     batch_size: int = 4,
     threshold: float = 0.5,
     min_weighted_prob: float = 0.1,
     default_scale: str = "",
+    stop: bool = False,
     legend: str = LEGEND_HTML,
     pbar: ProgressBar = None,
 ):
@@ -238,6 +296,9 @@ def dare3d_widget(
         frames = (t_start, t_end)
     viewer = napari.current_viewer()
 
+    # Arm the Stop button for this run (cleared in case a previous run set it).
+    _INFER_STATE["stop"] = False
+
     @thread_worker
     def _run():
         from napari_dare3d._api import infer_stack  # defer torch/dare3d import
@@ -252,12 +313,20 @@ def dare3d_widget(
             default_scale=ds,
             frames=frames,
             progress_cb=lambda stage: print(f"[DARE3D] {stage}"),
+            should_stop=lambda: _INFER_STATE["stop"],
         )
 
     def _on_done(detections):
         from collections import Counter
 
         from napari_dare3d._api import to_layer_data
+
+        # Aborted via Stop: infer_stack returns [] and we add no layers.
+        if _INFER_STATE["stop"]:
+            pbar.max, pbar.value = 1, 1
+            pbar.label = "DARE3D: stopped"
+            notifications.show_info("DARE3D: inference stopped.")
+            return
 
         for data, kwargs, ltype in to_layer_data(detections):
             getattr(viewer, f"add_{ltype}")(data, **kwargs)

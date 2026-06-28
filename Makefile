@@ -26,5 +26,5 @@ test: ## Run not slow tests
 test-full: ## Run all tests
 	pytest
 
-train: ## Train the model
-	python src/train.py
+train: ## Train the model (pass Hydra overrides, e.g. experiment=segmentation)
+	python dare3d/train.py

@@ -1,10 +1,10 @@
 import shutil
 import os
-from glob import glob
 from skimage import io
 from pathlib import Path
 
 from dare3d.tools.generate_sparse_weights import compute_sparse_weights
+from dare3d.utils.io import iter_tifs
 
 def copy_to(folders_in, folder_out):
     for folder_in in folders_in:
@@ -19,7 +19,7 @@ def create_sparse_exp(trains, vals, sparse_trains, radius, output):
     for sparse_train in sparse_trains:
         # Look for label
         label_folder = os.path.join(sparse_train, "label")
-        labels_paths = glob(os.path.join(label_folder, "*.tif"))
+        labels_paths = iter_tifs(label_folder)  # case-insensitive .tif/.tiff
         for label_path in labels_paths:
             label_name = Path(label_path).stem
             weight = compute_sparse_weights(label_path, radius)

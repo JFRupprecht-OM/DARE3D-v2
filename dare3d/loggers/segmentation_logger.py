@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from glob import glob
 import numpy as np
 from skimage import io
 from skimage.transform import rescale
@@ -41,7 +40,8 @@ class SegmentationLogger(Logger):
             os.makedirs(cdir)
             return -1
         
-        files = glob(os.path.join(cdir, "im*.tif"))
+        from dare3d.utils.io import iter_tifs  # local import: avoid import-time cycles
+        files = iter_tifs(cdir, prefix="im")  # case-insensitive .tif/.tiff
         # im1.tif -> im1 -> ["im", "1"] -> "1" -> 1
         indices = [int(Path(file).stem.split("_scale")[0].split("im")[-1]) for file in files]
         if len(indices) == 0:

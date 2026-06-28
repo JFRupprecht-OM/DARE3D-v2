@@ -1,10 +1,23 @@
 #!/bin/python
 import click
 import subprocess
+import sys
 from glob import glob
 import os
 from pathlib import Path
 
+
+def _mlflow_tracking_uri():
+    """Local SQLite MLflow store under the repo's ``logs/`` dir.
+
+    Replaces the upstream hardcoded ``file:///C:/Users/<user>/...`` tracking_uri so
+    this runs on any machine; SQLite is also the local store mlflow>=3 supports
+    (mirrors ``napari_dare3d/_train.py``). ``eval.py`` re-reads it from the config.
+    """
+    root = Path(__file__).resolve().parents[1]  # repo root (holds dare3d/, logs/)
+    db = root / "logs" / "mlflow.db"
+    db.parent.mkdir(parents=True, exist_ok=True)
+    return "sqlite:///" + db.as_posix()
 
 
 def segmentation(set, epoch, date, name, batch_size, cell_radius, eval_only, seg_crop_size, overwrite):
@@ -17,7 +30,7 @@ def segmentation(set, epoch, date, name, batch_size, cell_radius, eval_only, seg
     
     if not eval_only and run:
         args = [
-                'python',
+                sys.executable,
                 "dare3d/train.py",
                 "experiment=segmentation",
                 f"task_name=segmentation3d_{name}",
@@ -38,7 +51,7 @@ def segmentation(set, epoch, date, name, batch_size, cell_radius, eval_only, seg
                 f"cell_radius={cell_radius}",
                 f"date={date}",
                 f"crop_size={seg_crop_size}",
-                "logger.mlflow.tracking_uri=file:///C:/Users/tlili/Documents/DARE3d/logs/mlflow/mlruns",
+                f"logger.mlflow.tracking_uri={_mlflow_tracking_uri()}",
                 ]
         print(args)
         ret_code = subprocess.call(args)
@@ -56,7 +69,7 @@ def regression(set, epoch, date, name, batch_size, eval_only, overwrite):
 
     if not eval_only and run:
         args = [
-            "python",
+            sys.executable,
             "dare3d/train.py",
             f"experiment=regression",
             f"task_name=regression3d_{name}",
@@ -70,7 +83,7 @@ def regression(set, epoch, date, name, batch_size, eval_only, overwrite):
             "model/net=simple_regression_net",
             "model.net.n_stages=3",
             "model.net.start_filters=32",
-            "logger.mlflow.tracking_uri=file:///C:/Users/tlili/Documents/DARE3d/logs/mlflow/mlruns",
+            f"logger.mlflow.tracking_uri={_mlflow_tracking_uri()}",
         ]
         
         print(args)
@@ -89,7 +102,7 @@ def find_best_model(folder, checkpoint_dir="checkpoints"):
 
 def evaluate(seg_path, reg_path, threshold=None):
     args = [
-        "python",
+        sys.executable,
         "dare3d/eval.py",
         f"segmentation.model_dir={seg_path}",
         f"regression.model_dir={reg_path}",

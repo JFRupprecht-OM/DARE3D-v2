@@ -1,10 +1,10 @@
 import os
 import click
-from glob import glob
 from pathlib import Path
 from skimage import io
 
 from generation_utils import create_exp
+from dare3d.utils.io import iter_tifs
 
 def split_movie_label(movie, label):
     half = movie.shape[-1] // 2
@@ -28,7 +28,7 @@ def split_movies(folder_in, folder_out, name):
     os.makedirs(folder_out_b_label, exist_ok=True)
 
     # Read each movie
-    movies = glob(os.path.join(folder_in, "im", "*.tif"))
+    movies = iter_tifs(os.path.join(folder_in, "im"))  # case-insensitive .tif/.tiff
     for movie_path in movies:
         movie_name = Path(movie_path).stem
         label_path = os.path.join(folder_in, "label", f"{movie_name}.tif")

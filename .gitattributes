@@ -1,0 +1,7 @@
+# Keep shell scripts LF on every checkout (incl. Windows) so they stay runnable
+# on Linux/HPC and inside the Apptainer/Singularity container (dare3d.def).
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Jupyter notebooks are JSON; treat as text but never normalize EOLs.
+*.ipynb text eol=lf

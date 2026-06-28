@@ -21,6 +21,12 @@ This repository contains **both** the core deep-learning framework (PyTorch Ligh
 **and** the **napari plugin** (`napari_dare3d`) that runs it interactively — installed together
 by a single `pip install -e .`.
 
+> **What's new in this version.** The headline addition is the **napari plugin** — interactive 3D
+> inference and retraining straight from the napari GUI (DARE3D's core was already PyTorch). Input
+> stacks are `(T, Z, Y, X)`; each detected division is returned as a **center** plus a **division
+> axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
+> quaternion) and an **axis length** in voxels.
+
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
 >
@@ -33,14 +39,15 @@ by a single `pip install -e .`.
 dare3d/                       # core package: data, models, losses, metrics, train/eval/predict
 configs/                      # Hydra configuration tree
 napari_dare3d/                # the napari plugin (in-process inference + training widgets)
-Run_dare3d_Prediction.ipynb   # inference notebook
-Run_dare3d_Retraining.ipynb   # retraining notebook (segmentation -> regression -> eval)
+notebooks/                    # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
 scripts/                      # dataset/experiment helpers
-notebooks/                    # data visualisation / normalisation
 tests/                        # unit + integration tests
 verify_geometry.py            # plugin geometry self-check (no models/GPU)
 verify_train.py               # plugin training-command self-check (no GPU)
 ```
+
+Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (core framework) and
+[`napari_dare3d/README.md`](napari_dare3d/README.md) (plugin).
 
 ## Installation
 
@@ -49,8 +56,8 @@ git clone https://github.com/qazi05/DARE3d
 cd DARE3d
 
 # 1) conda environment
-conda create -n dare3d python=3.10 -y
-conda activate dare3d
+conda create -n dare3d-v2 python=3.10 -y
+conda activate dare3d-v2
 
 # 2) PyTorch first (CUDA build; adapt the CUDA version to your machine)
 python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
@@ -72,13 +79,26 @@ segmentation inference; **regression and training require a CUDA GPU**.)
 ## Models & data
 
 The training/inference dataset (pretrained weights + demo movies) is published on **Zenodo**
-([record 17456474](https://zenodo.org/records/17456474): `DARE3d_data_160226.zip`). Unzip it at
+([record 19113351](https://zenodo.org/records/19113351): `DARE3d_data_190326.zip`). Unzip it at
 the repository root so models resolve as
-`DARE3d_data_160226/<case>/weights/{segmentation3d_*,regression3d_*}` (the bundle ships the
-**Gastruloid** and **Neural tube** cases). Or click **DARE3D download data** in the plugin
+`DARE3d_data_190326/<case>/weights/{segmentation3d_*,regression3d_*}` (the bundle ships the
+**Gastruloid** and **Neural tube** cases). Or click **Download DARE3D data (Zenodo)** in the plugin
 (Plugins → DARE3D) to fetch and unzip it automatically into the folder you launch napari from.
 
 A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/last.ckpt`.
+
+## Data format
+
+- **Input movies** are TIFF stacks in disk/napari order `(T, Z, Y, X)` (a bare `(Z, Y, X)` volume is
+  treated as a single time frame). Internally DARE3D swaps to `(T, X, Y, Z)`; the napari plugin hides
+  this and maps results back to `(t, z, y, x)` for you. `.tif` and `.tiff` are both accepted,
+  case-insensitively.
+- **Training data** lives under `data/3d/<dataset>/{train,val}/{im,label}/*.tif`, one 4-D movie per
+  file. **Labels** encode the daughter-cell pair: first daughter → **odd** instance ids, second →
+  **even** ids. An optional `train/weights/` folder supplies per-voxel sparse weighting.
+- **Voxel scale** (anisotropy) is read per movie from `data/3d/scales.json` in µm/voxel; if absent,
+  the experiment's `default_scale` (e.g. `0.621, 0.621, 2`) is used. The inference widget's
+  *default_scale x,y,z* field overrides it.
 
 ## Inference
 
@@ -93,14 +113,38 @@ python dare3d/predict.py \
   +inference_dir=<folder_with_one_TZYX_tif>
 ```
 
-**2. Notebook.** Open `Run_dare3d_Prediction.ipynb` — it sets the model/data paths, validates
-them, runs segmentation + regression, and visualises the result.
+**2. Notebook.** Open `notebooks/Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
+validates them, runs segmentation + regression, and visualises the result.
 
 **3. napari plugin.** Launch `napari`, load a 3D/4D stack `(T, Z, Y, X)` or `(Z, Y, X)`, then
 **Plugins → DARE3D → DARE3D inference**. Set the segmentation / regression model-dir fields and
 **Run** — it overlays the detected division **centers** and **axes** as napari Points layers.
-Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window. (Regression needs a
+Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window, expand **Show advanced
+parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Regression needs a
 CUDA device; segmentation runs on CPU or GPU.)
+
+## Postprocessing
+
+DARE3D is **single-model** — there is no ensemble or consensus step. Division **centers** are
+extracted from the segmentation head:
+
+1. The 3D U-Net produces a per-voxel division-probability heatmap.
+2. The heatmap is thresholded (`threshold`, default `0.5`) into a binary mask.
+3. Connected components are labelled and reduced to their centroids.
+4. Each candidate is filtered by **size × probability** (`min_weighted_prob`, default `0.1`) to drop
+   weak/small blobs.
+
+If a **regression** model is supplied, each surviving center is cropped and passed through the
+regression CNN, which outputs the **division-axis orientation** (a unit quaternion; the axis is its
+normalised imaginary part) and the **axis length** in voxels. The plugin draws centers (red) and
+axes (cyan) as Points layers.
+
+| Parameter | Default | Effect |
+|---|---|---|
+| `overlap` | `0.25` | Sliding-window overlap for 3D segmentation (higher = more accurate, slower). |
+| `threshold` | `0.5` | Probability cut turning the heatmap into candidate centers. |
+| `min_weighted_prob` | `0.1` | Minimum size × probability to keep a center. |
+| `batch_size` | `4` | 3D patches inferred at once (lower on GPU OOM). |
 
 ## Training & retraining
 
@@ -117,8 +161,8 @@ python dare3d/train.py experiment=segmentation train_dir=3d/<dataset>/train val_
 python dare3d/train.py experiment=regression   train_dir=3d/<dataset>/train val_dir=3d/<dataset>/val ...
 ```
 
-**2. Notebook.** Open `Run_dare3d_Retraining.ipynb` — it validates your dataset layout and drives
-segmentation → regression → evaluation, streaming the logs inline.
+**2. Notebook.** Open `notebooks/Run_dare3d_Retraining.ipynb` — it validates your dataset layout and
+drives segmentation → regression → evaluation, streaming the logs inline.
 
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
 inference step. (The napari plugin also exposes a **DARE3D training** widget that wraps these same
@@ -140,6 +184,13 @@ make test                   # unit tests (excludes slow ones)
 - DARE3D training was developed on Linux/HPC; on some Windows setups the Lightning backward pass
   can crash natively even when inference is fine — train on Linux/HPC and reuse the resulting
   model directory.
+
+## Related projects
+
+- **[DARE2d](https://github.com/JFRupprecht-OM/DARE2d)** — the 2D counterpart: division-axis and
+  region estimation in 2D time-lapse images, also shipped with a napari plugin. DARE3D extends the
+  idea to 3D volumes, where the division axis is a full 3D orientation (a quaternion) rather than a
+  scalar angle.
 
 ## License & attribution
 

@@ -7,7 +7,6 @@ import json
 import logging
 import os
 import re
-from glob import glob
 from pathlib import Path
 from typing import List, Tuple, Union
 
@@ -363,10 +362,10 @@ class AbstractCellDataset(DataLoader):
         """List all the image data in the image folder.
         Throws assertion error when there is no images.
         """
-        path = os.path.join(self.im_folder, "*.tif")
-        img_file_list = glob(path)
+        from dare3d.utils.io import iter_tifs  # local import: avoid import-time cycles
+        img_file_list = iter_tifs(self.im_folder)  # case-insensitive .tif/.tiff
         self.movie_names = sorted([Path(x).stem for x in img_file_list], key=natural_keys)
-        assert len(self.movie_names) > 0, f"Found no images in {path}"
+        assert len(self.movie_names) > 0, f"Found no images in {self.im_folder}"
 
     def _load_bipoints_from_array(self, folder: str, name: str):
         """Try to load an array {folder}/{name}.npy if it exists

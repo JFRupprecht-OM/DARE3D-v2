@@ -21,6 +21,8 @@ from glob import glob
 from pathlib import Path
 from typing import Callable, Dict, Iterator, List, Optional
 
+from napari_dare3d._io import iter_tifs
+
 
 def repo_root() -> Path:
     """Root of the editable ``dare3d`` repo (holds ``dare3d/``, ``configs/``)."""
@@ -206,7 +208,8 @@ def _resolve_split(dataset_dir, output_dir, train_movies, val_movies) -> Path:
             (split / sub / kind).mkdir(parents=True, exist_ok=True)
         for m in mvs:
             for kind in ("im", "label"):
-                for tif in sorted((ds / m / kind).glob("*.tif")):
+                for tif_path in iter_tifs(ds / m / kind):  # case-insensitive .tif/.tiff
+                    tif = Path(tif_path)
                     #os.symlink(tif, split / sub / kind / f"{m}_{tif.name}")
                     dst = split / sub / kind / f"{m}_{tif.name}"
                     try:

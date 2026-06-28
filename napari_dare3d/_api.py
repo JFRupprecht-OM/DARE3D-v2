@@ -33,7 +33,11 @@ import tifffile
 import torch
 from omegaconf import OmegaConf
 
-from dare3d.metrics.inference import regression_inference, segmentation_inference
+from dare3d.metrics.inference import (
+    InferenceAborted,
+    regression_inference,
+    segmentation_inference,
+)
 from dare3d.metrics.object_level import (
     connected_components,
     filter_by_object_weighted_prob,
@@ -163,11 +167,12 @@ def _build_dataset(cfg):
 # --------------------------------------------------------------------------- #
 # Inference stages (mirror dare3d.predict.do_segmentation / do_regression)     #
 # --------------------------------------------------------------------------- #
-def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_prob):
+def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_prob, should_stop=None):
     model = _build_model(cfg, torch_device)
     dataset = _build_dataset(cfg)
     predictions = segmentation_inference(
-        dataset, model, torch_device, cfg.crop_size, batch_size, overlap, output_dir=None
+        dataset, model, torch_device, cfg.crop_size, batch_size, overlap,
+        output_dir=None, should_stop=should_stop,
     )
 
     centers = []
@@ -193,12 +198,14 @@ def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_
     return centers
 
 
-def _regress(cfg, torch_device, centers):
+def _regress(cfg, torch_device, centers, should_stop=None):
     model = _build_model(cfg, torch_device)
     dataset = _build_dataset(cfg)
     dataset.pad_images()
     dataset._normalize(dataset.renorm)
-    return regression_inference(dataset, model, centers, torch_device, output_dir=None)
+    return regression_inference(
+        dataset, model, centers, torch_device, output_dir=None, should_stop=should_stop
+    )
 
 
 # --------------------------------------------------------------------------- #
@@ -262,6 +269,7 @@ def infer_stack(
     target_scale=None,
     frames: Optional[Tuple[int, int]] = None,
     progress_cb: ProgressCb = None,
+    should_stop: Optional[Callable[[], bool]] = None,
 ) -> List[Dict]:
     """Run DARE3D inference on an in-memory stack.
 
@@ -281,10 +289,15 @@ def infer_stack(
             needed context frames before ``t_start`` are included automatically and
             detection times are returned in original-movie indices.
         progress_cb: optional callback receiving stage strings
-            ("segmentation", "regression", "done").
+            ("segmentation", "regression", "done", "aborted").
+        should_stop: optional predicate polled between time frames (segmentation)
+            and between detections (regression). When it returns True the run is
+            aborted at the next boundary and an EMPTY list is returned (no partial
+            results), so the caller adds no layers.
 
     Returns:
         A list of detection dicts (one per detected division), in napari order.
+        Empty if nothing was detected or if ``should_stop`` aborted the run.
     """
     stack = np.asarray(stack)
     if stack.ndim == 3:
@@ -317,26 +330,31 @@ def infer_stack(
 
     scale_kw = dict(scale_file=scale_file, default_scale=default_scale, target_scale=target_scale)
 
-    with tempfile.TemporaryDirectory(prefix="dare3d_napari_") as tmp:
-        # On-disk order must be (T, Z, Y, X) — read_tif_and_order_xyz swaps it to
-        # internal (T, X, Y, Z).
-        tifffile.imwrite(os.path.join(tmp, "movie.tif"), stack)
+    try:
+        with tempfile.TemporaryDirectory(prefix="dare3d_napari_") as tmp:
+            # On-disk order must be (T, Z, Y, X) — read_tif_and_order_xyz swaps it to
+            # internal (T, X, Y, Z).
+            tifffile.imwrite(os.path.join(tmp, "movie.tif"), stack)
 
-        report("segmentation")
-        seg_cfg = _load_inference_cfg(seg_model_dir, tmp, device, **scale_kw)
-        centers = _segment(
-            seg_cfg, torch_device,
-            overlap=overlap, batch_size=batch_size,
-            threshold=threshold, min_weighted_prob=min_weighted_prob,
-        )
+            report("segmentation")
+            seg_cfg = _load_inference_cfg(seg_model_dir, tmp, device, **scale_kw)
+            centers = _segment(
+                seg_cfg, torch_device,
+                overlap=overlap, batch_size=batch_size,
+                threshold=threshold, min_weighted_prob=min_weighted_prob,
+                should_stop=should_stop,
+            )
 
-        detections = [_center_to_detection(c) for c in centers]
+            detections = [_center_to_detection(c) for c in centers]
 
-        if reg_model_dir is not None and len(centers) > 0:
-            report("regression")
-            reg_cfg = _load_inference_cfg(reg_model_dir, tmp, device, **scale_kw)
-            preds = _regress(reg_cfg, torch_device, centers)
-            detections = [_prediction_to_detection(p) for p in preds if p is not None]
+            if reg_model_dir is not None and len(centers) > 0:
+                report("regression")
+                reg_cfg = _load_inference_cfg(reg_model_dir, tmp, device, **scale_kw)
+                preds = _regress(reg_cfg, torch_device, centers, should_stop=should_stop)
+                detections = [_prediction_to_detection(p) for p in preds if p is not None]
+    except InferenceAborted:
+        report("aborted")
+        return []
 
     # Map detection times from sub-stack indices back to original-movie indices.
     if offset:

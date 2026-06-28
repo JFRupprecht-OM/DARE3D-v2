@@ -5,7 +5,6 @@ from skimage import io
 from lightning.pytorch.loggers.logger import Logger
 from lightning.pytorch.utilities import rank_zero_only
 import torch
-from glob import glob
 from pathlib import Path
 
 from dare3d.data.components.angles3d import (
@@ -50,7 +49,8 @@ class RegressionLogger(Logger):
             os.makedirs(cdir)
             return -1
         
-        files = glob(os.path.join(cdir, "im*.tif"))
+        from dare3d.utils.io import iter_tifs  # local import: avoid import-time cycles
+        files = iter_tifs(cdir, prefix="im")  # case-insensitive .tif/.tiff
         # im1.tif -> im1 -> ["im", "1"] -> "1" -> 1
         indices = [int(Path(file).stem.split("_scale")[0].split("im")[-1]) for file in files]
         if len(indices) == 0:

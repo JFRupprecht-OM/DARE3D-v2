@@ -26,7 +26,6 @@ folder/
 """
 
 import random
-from glob import glob
 from pathlib import Path
 import click
 import os
@@ -35,7 +34,8 @@ from skimage import io
 from skimage.measure import regionprops
 
 def get_data_pairs(im_folder, label_folder):
-    movies_path = glob(os.path.join(im_folder, "*.tif"))
+    from dare3d.utils.io import iter_tifs  # local import: avoid import-time cycles
+    movies_path = iter_tifs(im_folder)  # case-insensitive .tif/.tiff
 
     # First load all movies paired with labels
     data_pairs = []

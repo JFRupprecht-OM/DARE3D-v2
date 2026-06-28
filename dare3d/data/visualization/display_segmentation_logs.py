@@ -1,4 +1,3 @@
-from glob import glob
 from pathlib import Path
 import napari
 import click
@@ -29,8 +28,9 @@ def display_item(viewer, x, pred, label, common):
     help="Maximum number of segmentation results to display",
 )
 def main(log_dir, max_display):
-    # list im files
-    im_files = glob(os.path.join(log_dir, "im*.tif"))
+    # list im files (case-insensitive .tif/.tiff)
+    from dare3d.utils.io import iter_tifs  # local import: avoid import-time cycles
+    im_files = iter_tifs(log_dir, prefix="im")
 
     threshold = 0.2
 

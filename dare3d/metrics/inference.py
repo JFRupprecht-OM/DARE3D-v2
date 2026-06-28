@@ -11,13 +11,22 @@ from tqdm import tqdm
 from dare3d.data.components.angles3d import representation_to_quaternion
 from dare3d.utils.regression_display import display_regression
 
+
+class InferenceAborted(Exception):
+    """Raised by the inference loops when a ``should_stop`` callback asks to abort.
+
+    Used by the napari plugin's Stop button to interrupt a long run cleanly; the
+    caller catches it and discards any partial result.
+    """
+
+
 def monai_model_wrapper(model):
     def f(x):
         o = model(x)
         return {f"heatmap_{i}": o["heatmaps"][i] for i in range(len(o["heatmaps"]))}
     return f
 
-def segmentation_inference(dataset, model, device, crop_size, batch_size, overlap=0.5, output_dir=None):
+def segmentation_inference(dataset, model, device, crop_size, batch_size, overlap=0.5, output_dir=None, should_stop=None):
     if output_dir is not None:
         os.makedirs(output_dir, exist_ok=True)
 
@@ -41,7 +50,10 @@ def segmentation_inference(dataset, model, device, crop_size, batch_size, overla
         y_pred_full = None
 
         # Get all possible sequences for the movie
-        for t in tqdm(range(movie_start, current_movie.shape[0]), leave=False, desc=f"Processing movie: {movie_name}"): 
+        for t in tqdm(range(movie_start, current_movie.shape[0]), leave=False, desc=f"Processing movie: {movie_name}"):
+
+            if should_stop is not None and should_stop():
+                raise InferenceAborted()
 
             if use_cuda:
                 X = dataset.preprocess_sample_gpu(i, t-movie_start, t+1, device)
@@ -95,7 +107,7 @@ def segmentation_inference(dataset, model, device, crop_size, batch_size, overla
         predictions.append(y_pred_full[0])
     return predictions
 
-def regression_inference(dataset, model, centers, device, output_dir=None):
+def regression_inference(dataset, model, centers, device, output_dir=None, should_stop=None):
     if output_dir is not None:
         os.makedirs(output_dir, exist_ok=True)
 
@@ -110,6 +122,8 @@ def regression_inference(dataset, model, centers, device, output_dir=None):
     
     # Loop over centers
     for i in tqdm(range(len(centers)), desc="Running regression inference..."):
+        if should_stop is not None and should_stop():
+            raise InferenceAborted()
         # Center = (M,T,X,Y,Z) with M the movie index
         center = centers[i]
         
