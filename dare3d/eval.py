@@ -110,7 +110,10 @@ def evaluate_segmentation(cfg: DictConfig):
                                     output_dir=output_dir)
     
     metric_dict = trainer.callback_metrics
-    mlflow_logger.log_metrics(stats)
+    if mlflow_logger is not None:
+        mlflow_logger.log_metrics(stats)
+    else:
+        log.warning("No MLFlow logger configured; skipping segmentation metric logging.")
     return stats, info, output_dir, metric_dict
 
 def evaluate_regression(cfg: DictConfig, info):
@@ -126,7 +129,7 @@ def evaluate_regression(cfg: DictConfig, info):
             mlflow_logger = logg
 
     log.info(f"Loading checkpoint: {cfg.ckpt_path}")
-    state_dict = torch.load(cfg.ckpt_path, map_location="cpu")["state_dict"]
+    state_dict = torch.load(cfg.ckpt_path, map_location="cpu", weights_only=False)["state_dict"]
     model.load_state_dict(state_dict)
     model.net.eval()
     
@@ -151,7 +154,10 @@ def evaluate_regression(cfg: DictConfig, info):
                 flatten_metrics[f"{key}/{metric_key}"] = metric_value
         return flatten_metrics
         
-    mlflow_logger.log_metrics(format_stats(stats))
+    if mlflow_logger is not None:
+        mlflow_logger.log_metrics(format_stats(stats))
+    else:
+        log.warning("No MLFlow logger configured; skipping regression metric logging.")
     return stats
 
 def evaluate(cfg, reg_cfg) -> Tuple[Dict[str, Any], Dict[str, Any]]:
@@ -181,6 +187,37 @@ def evaluate(cfg, reg_cfg) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     with open(output_csv, "w") as file:
         json.dump(stats, file, cls=NumpyFloatValuesEncoder)
 
+# `_target_` paths that older saved train configs may reference, mapped to the
+# class's current location, so eval can re-instantiate a model trained on an
+# earlier revision of the codebase (the datamodule was renamed).
+_LEGACY_TARGETS = {
+    "dare3d.data.deletme_datamodule.DeletmeDataModule": "dare3d.data.dare_datamodule.DareDataModule",
+}
+
+
+def _remap_legacy_targets(cfg: DictConfig) -> DictConfig:
+    """Rewrite renamed ``_target_`` paths in a loaded train config (in any nested
+    node) to their current location, so a model trained on an older revision still
+    instantiates. Interpolations are preserved — nothing is resolved here."""
+    container = OmegaConf.to_container(cfg, resolve=False)
+
+    def _walk(node):
+        if isinstance(node, dict):
+            target = node.get("_target_")
+            if isinstance(target, str) and target in _LEGACY_TARGETS:
+                node["_target_"] = _LEGACY_TARGETS[target]
+            for value in node.values():
+                _walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                _walk(value)
+
+    _walk(container)
+    remapped = OmegaConf.create(container)
+    OmegaConf.set_struct(remapped, False)
+    return remapped
+
+
 def load_config(cfg, allow_missing=False):
     hydra_config_path = os.path.join(cfg.model_dir, cfg.hydra_dir, "config.yaml")
     checkpoint_config_path = os.path.join(cfg.model_dir, cfg.ckpt_dir, cfg.ckpt_name)
@@ -196,6 +233,7 @@ def load_config(cfg, allow_missing=False):
     
     train_cfg = OmegaConf.load(hydra_config_path)
     OmegaConf.set_struct(train_cfg, None)
+    train_cfg = _remap_legacy_targets(train_cfg)  # tolerate renamed _target_ paths from older runs
     train_cfg.merge_with(cfg)
     
     cfg = train_cfg
