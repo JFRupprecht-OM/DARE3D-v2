@@ -26,6 +26,10 @@ by a single `pip install -e .`.
 > stacks are `(T, Z, Y, X)`; each detected division is returned as a **center** plus a **division
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
+>
+> **Beta features.** Interactive **retraining** — and the upcoming **transfer-learning / fine-tuning**
+> mode — ship as **beta** in this version: experimental, with results, defaults, and the API subject
+> to change. See *Training & retraining* below.
 
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
@@ -187,6 +191,11 @@ axes (cyan) as Points layers.
 | `batch_size` | `4` | 3D patches inferred at once (lower on GPU OOM). |
 
 ## Training & retraining
+
+> **⚠️ Beta feature.** Retraining — and the planned transfer-learning / fine-tuning mode — is
+> **experimental**: results, defaults, and the API may change in a future release, and the training
+> defaults currently assume a large-memory GPU. For routine use, run **inference** with the released
+> models above.
 
 Retraining can be run **two ways** — from the terminal or the notebook. **Training requires a
 CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
