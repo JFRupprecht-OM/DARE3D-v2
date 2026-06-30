@@ -66,13 +66,12 @@ cd DARE3d
 conda create -n dare3d-v2 python=3.10 -y
 conda activate dare3d-v2
 
-# 2) PyTorch first — pick the build that matches your machine:
-#    CUDA 12.1:
-python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-#    CUDA 11.8:
-#    python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-#    CPU-only (segmentation inference only — no regression/training):
-#    python -m pip install torch torchvision torchaudio
+# 2) PyTorch first — install a CUDA build matching your GPU. Training needs torch >= 2.5
+#    (cuDNN >= 9); older cuDNN 8.x segfaults on 3D convolutions (see "Training & retraining").
+#    Default — CUDA 12.8 wheels (torch >= 2.7; includes RTX 50-series / Blackwell sm_120 kernels):
+python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+#    Other/older GPUs, a different CUDA, or CPU-only: use the official selector at
+#    https://pytorch.org/get-started/locally/  (CPU-only torch covers segmentation inference only).
 
 # 3) the rest of the dependencies
 pip install -r requirements.txt
@@ -193,9 +192,15 @@ axes (cyan) as Points layers.
 ## Training & retraining
 
 > **⚠️ Beta feature.** Retraining — and the planned transfer-learning / fine-tuning mode — is
-> **experimental**: results, defaults, and the API may change in a future release, and the training
-> defaults currently assume a large-memory GPU. For routine use, run **inference** with the released
-> models above.
+> **experimental**: results, defaults, and the API may change in a future release. For routine use,
+> run **inference** with the released models above.
+>
+> **Supported training stack: torch >= 2.5 (cuDNN >= 9).** Older cuDNN (8.x, e.g. torch 2.2)
+> intermittently **segfaults** during 3D-convolution training (native `0xC0000005`, no Python
+> traceback). `dare3d/train.py` guards against this and **fails fast** with install instructions
+> (see `check_cudnn_for_3d`). Manual override via the `DARE3D_CUDNN` env var: `DARE3D_CUDNN=0`
+> disables cuDNN (stable but slower, to train on an old stack); `DARE3D_CUDNN=1` forces cuDNN on
+> (only safe on cuDNN >= 9).
 
 Retraining can be run **two ways** — from the terminal or the notebook. **Training requires a
 CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
