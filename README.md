@@ -37,17 +37,37 @@ by a single `pip install -e .`.
 > **Authors:** Romain Karpinski, Marc Karnat, Alice Gros, Qazi Saaheelur Rahaman, Jules Vanaret,
 > Mehdi Saadaoui, Sham Tlili, and Jean-François Rupprecht.
 
-## Repository contents
+## Project structure
 
 ```
-dare3d/                       # core package: data, models, losses, metrics, train/eval/predict
-configs/                      # Hydra configuration tree
-napari_dare3d/                # the napari plugin (in-process inference + training widgets)
-notebooks/                    # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
-scripts/                      # dataset/experiment helpers
-tests/                        # unit + integration tests
-verify_geometry.py            # plugin geometry self-check (no models/GPU)
-verify_train.py               # plugin training-command self-check (no GPU)
+DARE3d/
+├── dare3d/                     # core framework (PyTorch Lightning + Hydra)
+│   ├── data/                   # datamodule + dataset components (seg / regression / tap / segres)
+│   ├── models/                 # LightningModules + nets (multiscale U-Net, SwinUNETR)
+│   ├── losses/                 # segmentation / angle / quaternion losses
+│   ├── metrics/                # inference + object-level matching (centers, axes, lengths)
+│   ├── loggers/                # training-time image-panel loggers (seg / regression)
+│   ├── tools/                  # CV-split + sparse-weight generators
+│   ├── utils/                  # logging, instantiation, helpers
+│   ├── train.py                # training entry point (Hydra)
+│   ├── eval.py                 # evaluation entry point
+│   ├── predict.py              # inference entry point
+│   └── train_eval.py           # seg → regression → eval orchestrator
+├── napari_dare3d/              # napari plugin (in-process inference + training)
+│   ├── _api.py                 # napari-free inference API (reuses dare3d.metrics)
+│   ├── _widget.py              # inference widget
+│   ├── _train_widget.py        # training / retraining widget (beta)
+│   ├── _train.py               # builds + streams the Hydra training subprocess
+│   ├── _data.py, _io.py        # TIFF (T,Z,Y,X) loading + coordinate mapping
+│   └── napari.yaml             # npe2 plugin manifest
+├── configs/                    # Hydra config tree (experiment/ model/ data/ trainer/ logger/ …)
+├── notebooks/                  # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
+├── scripts/                    # dataset/experiment generators
+├── tests/                      # pytest suite (unit + integration)
+├── verify_geometry.py          # plugin geometry self-check (no models/GPU)
+├── verify_train.py             # plugin training-command self-check (no GPU)
+├── requirements.txt, setup.py, pyproject.toml   # dependencies + packaging
+└── README.md
 ```
 
 Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (core framework) and
@@ -55,8 +75,9 @@ Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (
 
 ## Installation
 
-**Prerequisites:** Python 3.10 and Conda (recommended). An NVIDIA GPU with **CUDA 11.8+** is needed
-for regression and training; CPU-only is fine for **segmentation-only inference**.
+**Prerequisites:** Python 3.10 and Conda (recommended). An NVIDIA GPU with **CUDA 11.8+** is
+**required for training** and strongly recommended for inference; **inference also runs CPU-only**
+(both segmentation and regression), just slower — fine for small movies.
 
 ```bash
 git clone https://github.com/qazi05/DARE3d
@@ -71,7 +92,8 @@ conda activate dare3d-v2
 #    Default — CUDA 12.8 wheels (torch >= 2.7; includes RTX 50-series / Blackwell sm_120 kernels):
 python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 #    Other/older GPUs, a different CUDA, or CPU-only: use the official selector at
-#    https://pytorch.org/get-started/locally/  (CPU-only torch covers segmentation inference only).
+#    https://pytorch.org/get-started/locally/  (CPU-only torch runs the full inference
+#    pipeline — segmentation + regression — but training needs a CUDA GPU).
 
 # 3) the rest of the dependencies
 pip install -r requirements.txt
@@ -84,8 +106,8 @@ pip install -e .
 ```
 
 The editable install registers the napari plugin via its `napari.manifest` entry point, so
-**napari lists "DARE3D" under Plugins** with no extra step. (CPU-only PyTorch works for
-segmentation inference; **regression and training require a CUDA GPU**.)
+**napari lists "DARE3D" under Plugins** with no extra step. (CPU-only PyTorch runs the full
+inference pipeline — segmentation + regression; **only training requires a CUDA GPU**.)
 
 > **Import errors after a layout change?** Re-run `pip install -e .` to refresh the editable
 > install. For full Hydra tracebacks, set `HYDRA_FULL_ERROR=1` (PowerShell: `$env:HYDRA_FULL_ERROR=1`).
@@ -153,7 +175,8 @@ matrices + lengths) are written under the Hydra run directory. Useful overrides:
 - **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3d/scales.json`.
 - **Detection tuning:** `segmentation.threshold=0.5`, `segmentation.min_weighted_prob=0.1`,
   `segmentation.inference_overlap=0.25`, `segmentation.inference_batch_size=4`.
-- **Device:** `device=gpu` (regression needs CUDA) or `device=cpu` (segmentation only).
+- **Device:** `device=gpu` (recommended) or `device=cpu` — both run the full pipeline
+  (segmentation + regression); CPU is slower.
 - Omit `+regression.model_dir` to get **centers only** (no axes).
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
@@ -163,8 +186,8 @@ validates them, runs segmentation + regression, and visualises the result.
 **Plugins → DARE3D → DARE3D inference**. Set the segmentation / regression model-dir fields and
 **Run** — it overlays the detected division **centers** and **axes** as napari Points layers.
 Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window, expand **Show advanced
-parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Regression needs a
-CUDA device; segmentation runs on CPU or GPU.)
+parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Both segmentation
+and regression run on CPU or GPU; pick GPU for speed on large movies.)
 
 ## Postprocessing
 

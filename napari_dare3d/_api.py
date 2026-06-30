@@ -278,8 +278,8 @@ def infer_stack(
         seg_model_dir: model dir holding ``.hydra/config.yaml`` + ``checkpoints/``.
         reg_model_dir: optional regression model dir; if given, each detection
             also carries orientation (``length``, ``axis_napari``, ``quaternion``).
-        device: ``"gpu"``/``"cuda"`` or ``"cpu"``. Regression requires CUDA
-            (the upstream ``regression_inference`` has no CPU path).
+        device: ``"gpu"``/``"cuda"`` or ``"cpu"``. Both segmentation and regression
+            run on either device; CPU is correct but slower (use GPU for large movies).
         overlap, batch_size, threshold, min_weighted_prob: segmentation knobs
             (defaults match ``configs/predict.yaml``).
         scale_file / default_scale / target_scale: optional scale overrides;
@@ -318,11 +318,6 @@ def infer_stack(
         stack = stack[offset : t1 + 1]
 
     torch_device = _torch_device(device)
-    if reg_model_dir is not None and torch_device.type == "cpu":
-        raise RuntimeError(
-            "DARE3D regression inference requires a CUDA device "
-            "(dare3d.metrics.inference.regression_inference has no CPU path)."
-        )
 
     def report(stage: str) -> None:
         if progress_cb is not None:

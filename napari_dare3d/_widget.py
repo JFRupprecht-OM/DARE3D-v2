@@ -206,12 +206,12 @@ def _parse_scale(text: str):
     reg_model_dir={
         "widget_type": "FileEdit", "mode": "d", "label": "Regression model dir (optional)",
         "tooltip": "Optional regression model folder. If set, each detection also gets a 3D "
-                   "division axis. Requires a CUDA (gpu) device.",
+                   "division axis. Runs on gpu or cpu (cpu is correct but slower).",
     },
     device={
         "choices": ["gpu", "cpu"], "label": "Device",
-        "tooltip": "gpu = CUDA (required for the regression axes); cpu = segmentation centers "
-                   "only. Default: gpu.",
+        "tooltip": "gpu = CUDA (recommended, much faster); cpu runs the full pipeline "
+                   "(segmentation centers + regression axes) too, just slower. Default: gpu.",
     },
     whole_movie={
         "label": "Analyse whole movie",

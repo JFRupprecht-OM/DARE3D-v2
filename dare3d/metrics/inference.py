@@ -127,11 +127,11 @@ def regression_inference(dataset, model, centers, device, output_dir=None, shoul
         # Center = (M,T,X,Y,Z) with M the movie index
         center = centers[i]
         
-        # Get the crop for the corresponding center
+        # Get the crop for the corresponding center (same logic on CPU or GPU)
         if use_cuda:
             X = dataset.get_crop_from_center_gpu(center, device)
         else:
-            raise NotImplementedError
+            X = dataset.get_crop_from_center(center, device)
         X = torch.unsqueeze(X, axis=0)
             
         # Perform inference on current item
