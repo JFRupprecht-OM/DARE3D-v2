@@ -8,8 +8,9 @@ from torchmetrics.classification import BinaryJaccardIndex
 
 from dare3d.loggers.segmentation_logger import SegmentationLogger
 from dare3d.metrics.object_level import evaluate_at_object_level, compute_recall, compute_precision, compute_fmeasure
+from dare3d.models.finetune import FineTuneMixin
 
-class SegmentationLitModule(LightningModule):
+class SegmentationLitModule(FineTuneMixin, LightningModule):
     def __init__(
         self,
         net: torch.nn.Module,
@@ -18,6 +19,7 @@ class SegmentationLitModule(LightningModule):
         criterion=None,
         compile=False,
         scheduler_interval: str = "epoch",
+        finetune: dict = None,
     ) -> None:
         super().__init__()
 
@@ -26,6 +28,7 @@ class SegmentationLitModule(LightningModule):
         self.save_hyperparameters(logger=False, ignore=["net", "criterion"])
 
         self.net = net
+        self.init_finetune(finetune)
 
         # loss function
         self.criterion = criterion
@@ -297,6 +300,8 @@ class SegmentationLitModule(LightningModule):
 
         :param stage: Either `"fit"`, `"validate"`, `"test"`, or `"predict"`.
         """
+        if stage == "fit" and getattr(self, "_finetune_active", False):
+            self.apply_finetune_setup()
         if self.hparams.compile and stage == "fit":
             self.net = torch.compile(self.net)
 
@@ -309,6 +314,8 @@ class SegmentationLitModule(LightningModule):
 
         :return: A dict containing the configured optimizers and learning-rate schedulers to be used for training.
         """
+        if getattr(self, "_finetune_active", False):
+            return self.finetune_optimizers()
         optimizer = self.hparams.optimizer(params=self.trainer.model.parameters())
         if self.hparams.scheduler is not None:
             self.scheduler = self.hparams.scheduler(optimizer=optimizer)

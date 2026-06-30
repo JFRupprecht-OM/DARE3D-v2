@@ -1,0 +1,79 @@
+# @package _global_
+
+# Fine-tune (transfer-learning) the REGRESSION model from a pretrained base checkpoint.
+# Run:
+#   python dare3d/train.py experiment=finetune_regression \
+#       model.finetune.base_ckpt=<path/to/regression .../checkpoints/last.ckpt>
+# The base MUST be a regression checkpoint; a wrong stage fails fast with a clear message.
+
+defaults:
+  - override /data: regression
+  - override /data/augmentation: monai_augmentation_reg
+  - override /model: regression
+  # the published regression models + the napari widget use simple_regression_net
+  # (RegressionNet); target it so a fine-tune of those bases matches by default.
+  - override /model/net: simple_regression_net
+  - override /callbacks: default
+  - override /trainer: default
+  - override /logger: regression_many_loggers
+
+tags: ["finetune", "regression"]
+task_name: "regression3D_finetune"
+
+seed: 12345
+
+trainer:
+  min_epochs: 1
+  max_epochs: 50
+  # cuDNN-on 3D convs have no deterministic impl -> "warn" degrades gracefully (see HANDOFF §0.5).
+  deterministic: warn
+  gradient_clip_val: ${model.finetune.grad_clip}
+
+data:
+  batch_size: 8
+
+input_channels: [-1, 0, 1]
+scale_file: ${paths.data_dir}/3d/scales.json
+default_scale: [0.621, 0.621, 2]
+target_scale: 1.0
+
+renorm: "min-max"
+order_dim_img: "zyx"
+crop_size: 32
+time_axis_padding: 1
+
+representation_mode: "rotation_matrix_SVD"
+vec_size: 9
+angle_activation: "linear"
+
+monitor_val: "val/loss"
+monitor_direction: "min"
+
+callbacks:
+  early_stopping:
+    _target_: lightning.pytorch.callbacks.EarlyStopping
+    monitor: ${monitor_val}
+    mode: ${monitor_direction}
+    patience: ${model.finetune.patience}
+    min_delta: 0.0
+    check_finite: True
+
+# Fine-tune hyperparameters. Passed to RegressionLitModule(finetune=...) which builds the
+# discriminative AdamW + warmup->cosine schedule and applies the freeze / BN policy.
+model:
+  finetune:
+    base_ckpt: ???            # REQUIRED: path to the base regression last.ckpt
+    stage: regression
+    freeze_preset: encoder    # encoder | encoder_partial | none
+    unfreeze_last_stages: 0   # >0 with encoder_partial: unfreeze the K deepest blocks
+    bn_mode: frozen           # frozen (true freeze) | adapt (re-estimate running stats)
+    ft_lr: 1e-4
+    backbone_lr_mult: 0.1     # unfrozen-backbone LR = ft_lr * this
+    weight_decay: 1e-4
+    warmup_epochs: 2
+    lr_schedule: warmup_cosine
+    grad_clip: 1.0
+    augment: true
+    augment_strength: 1.0
+    patience: 10
+    seed: 12345

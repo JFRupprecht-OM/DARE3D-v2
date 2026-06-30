@@ -110,6 +110,12 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     log.info(f"Instantiating model <{cfg.model._target_}>")
     model: LightningModule = hydra.utils.instantiate(cfg.model)
 
+    # Fine-tuning: load the base checkpoint into model.net BEFORE the (slow) data/Trainer setup,
+    # so a wrong-stage or missing base fails in seconds (stage-aware error).
+    if getattr(model, "_finetune_active", False):
+        log.info(f"Fine-tuning: loading base weights from {model._ft.get('base_ckpt')}")
+        model.load_base()
+
     log.info("Instantiating callbacks...")
     callbacks: List[Callback] = instantiate_callbacks(cfg.get("callbacks"))
 
@@ -166,6 +172,13 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
 
     # merge train and test metrics
     metric_dict = {**train_metrics, **test_metrics}
+
+    # Fine-tuning: write the provenance sidecar next to the saved checkpoints.
+    if getattr(model, "_finetune_active", False):
+        ckpt_cb = getattr(trainer, "checkpoint_callback", None)
+        ckpt_dir = getattr(ckpt_cb, "dirpath", None)
+        if ckpt_dir:
+            log.info(f"Fine-tuning: wrote provenance sidecar {model.write_sidecar(ckpt_dir)}")
 
     return metric_dict, object_dict
 
