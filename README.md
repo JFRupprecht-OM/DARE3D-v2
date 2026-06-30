@@ -63,9 +63,8 @@ DARE3d/
 ├── configs/                    # Hydra config tree (experiment/ model/ data/ trainer/ logger/ …)
 ├── notebooks/                  # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
 ├── scripts/                    # dataset/experiment generators
-├── tests/                      # pytest suite (unit + integration)
-├── verify_geometry.py          # plugin geometry self-check (no models/GPU)
-├── verify_train.py             # plugin training-command self-check (no GPU)
+├── tests/                      # pytest suite — unit + integration, plus geometry &
+│                               #   training-command self-checks (no GPU/models/napari)
 ├── requirements.txt, setup.py, pyproject.toml   # dependencies + packaging
 └── README.md
 ```
@@ -286,9 +285,9 @@ reproducibility; adapt one to your own movies rather than running it verbatim.
 ## Testing & development
 
 ```bash
-python verify_geometry.py   # quaternion -> axis + coordinate mapping (no napari/models/GPU)
-python verify_train.py      # training-command construction + paths (no GPU)
-make test                   # unit tests (excludes slow ones)
+python tests/test_geometry.py        # quaternion -> axis + coordinate mapping (no napari/models/GPU)
+python tests/test_train_commands.py  # training-command construction + paths (no GPU)
+make test                            # unit tests, incl. the two self-checks above (excludes slow ones)
 make test-full              # all tests, including slow ones
 make format                 # run pre-commit hooks (formatting/linting)
 make clean                  # remove build artefacts and caches

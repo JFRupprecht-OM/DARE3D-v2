@@ -47,5 +47,7 @@ deliberately expose **no patch/crop-size knob** (the seg model is fixed at 128³
 
 ## Self-checks (no GPU)
 
-- `python verify_geometry.py` — quaternion→axis + coordinate mapping.
-- `python verify_train.py` — training-command construction + path resolution.
+- `python tests/test_geometry.py` — quaternion→axis + coordinate mapping.
+- `python tests/test_train_commands.py` — training-command construction + path resolution.
+
+  (Both live in `tests/`, so `pytest` / `make test` also run them.)

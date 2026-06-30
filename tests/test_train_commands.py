@@ -1,6 +1,7 @@
 """Self-check for napari_dare3d._train — command construction + paths (no GPU, no run).
 
-Run:  python verify_train.py
+Run:  python tests/test_train_commands.py     # standalone
+      pytest tests/test_train_commands.py     # collected with the suite
 """
 import sys
 from pathlib import Path
@@ -104,4 +105,4 @@ if __name__ == "__main__":
     test_reg_command()
     test_eval_command_and_model_dirs()
     test_split_resolution()
-    print("verify_train: ALL OK")
+    print("test_train_commands: ALL OK")
