@@ -1,3 +1,4 @@
+import os
 from typing import Any, Dict, List, Optional, Tuple
 
 import hydra
@@ -11,6 +12,15 @@ from monai.optimizers import LearningRateFinder
 
 from lightning.pytorch.plugins.environments import SLURMEnvironment
 SLURMEnvironment.detect = lambda: False
+
+# cuDNN's algorithm selection intermittently segfaults (native 0xC0000005, no CUDA error) during
+# 3D-conv training on some stacks — observed on Turing (RTX 5000) + torch 2.2.2 / cuDNN 8.8.
+# cudnn.benchmark/deterministic only REDUCE the crash rate; only disabling cuDNN was reliable
+# (verified 6/6 runs vs intermittent crashes otherwise). So cuDNN is off by default here for
+# dependable training; on a healthy stack (e.g. a newer cuDNN) set env DARE3D_CUDNN=1 to re-enable
+# it for speed. (Proper long-term fix: upgrade the CUDA/cuDNN/torch stack.)
+if os.environ.get("DARE3D_CUDNN") != "1":
+    torch.backends.cudnn.enabled = False
 
 OmegaConf.register_new_resolver("eval", eval)
 
