@@ -18,8 +18,20 @@ from napari.utils import notifications
 from napari_dare3d import _train
 from napari_dare3d._widget import _data_root, _maybe_dir
 
-#: Shared stop flag (single widget instance in practice); set by the Stop button.
-_TRAIN_STATE = {"stop": False}
+#: Shared state (single widget instance in practice): the Stop flag plus references
+#: to the call/stop buttons so Stop can replace "Run training" while a run is active.
+_TRAIN_STATE = {"stop": False, "call_button": None, "stop_button": None}
+
+
+def _set_running(running: bool) -> None:
+    """While training runs, hide the "Run training" call button and show Stop in its
+    place; restore on completion/abort."""
+    cb = _TRAIN_STATE.get("call_button")
+    sb = _TRAIN_STATE.get("stop_button")
+    if cb is not None:
+        cb.visible = not running
+    if sb is not None:
+        sb.visible = running
 
 
 def _default_trainingset() -> Path:
@@ -33,10 +45,16 @@ def _default_trainingset() -> Path:
 
 
 def _init_training_widget(widget) -> None:
-    """magic_factory hook: tooltip the Run button and wire the Stop button."""
+    """magic_factory hook: tooltip the Run button and wire the Stop button.
+
+    The Stop button is hidden until a run starts, then it replaces the "Run training"
+    call button (both restored when training finishes or is aborted)."""
     if getattr(widget, "call_button", None) is not None:
         widget.call_button.tooltip = "Start DARE3D training with the settings above."
+    _TRAIN_STATE["call_button"] = getattr(widget, "call_button", None)
+    _TRAIN_STATE["stop_button"] = getattr(widget, "stop", None)
     try:
+        widget.stop.visible = False  # shown only while training is active
         widget.stop.tooltip = "Terminate the running training process."
         widget.stop.changed.connect(lambda *_: _TRAIN_STATE.__setitem__("stop", True))
     except Exception:
@@ -157,6 +175,7 @@ def dare3d_training_widget(
         pbar.label = str(line)[:90]
 
     def _on_done(result):
+        _set_running(False)
         pbar.max, pbar.value = 1, 1
         pbar.label = "DARE3D: training done"
         made = ", ".join(f"{k} -> {v}" for k, v in (result or {}).items() if v)
@@ -164,6 +183,7 @@ def dare3d_training_widget(
         _autofill_inference(viewer, result or {})
 
     def _on_error(exc):
+        _set_running(False)
         pbar.max, pbar.value = 1, 1
         pbar.label = "DARE3D: training failed"
         notifications.show_error(f"DARE3D training failed: {exc}")
@@ -175,5 +195,6 @@ def dare3d_training_widget(
     pbar.max, pbar.value = 0, 0
     pbar.label = "DARE3D: training…"
     pbar.visible = True
+    _set_running(True)  # hide "Run training", show Stop in its place
     worker.start()
     notifications.show_info("DARE3D: training started…")
