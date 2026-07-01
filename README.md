@@ -7,6 +7,10 @@
 <a href="https://hydra.cc/"><img alt="Config: Hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a>
 <a href="https://napari.org"><img alt="napari" src="https://img.shields.io/badge/napari-plugin-blueviolet"></a>
 
+<br>
+
+<img src="napari_dare3d/DARE3Dnapari.png" width="900" alt="DARE3D inference in napari: detected division centers (red) and axes (cyan) overlaid on a 3D movie">
+
 </div>
 
 ---
@@ -26,7 +30,7 @@ by a single `pip install -e .`.
 > stacks are `(T, Z, Y, X)`; each detected division is returned as a **center** plus a **division
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
-> 
+>
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
 >
