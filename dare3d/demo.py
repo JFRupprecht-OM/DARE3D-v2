@@ -27,7 +27,7 @@ def get_path_to_demo_folder() -> Path:
     """
     package = "dare3d"
     subfolder = "demo_files"
-    url = "https://zenodo.org/records/19111753/files/DARE3d_data_190326.zip?download=1"
+    url = "https://zenodo.org/records/19113351/files/DARE3d_data_190326.zip?download=1"
     sentinels = _SENTINELS
     # ── locate a *writable* directory ────────────────────────────────
     try:
