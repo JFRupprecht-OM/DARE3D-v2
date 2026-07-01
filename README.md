@@ -216,12 +216,6 @@ axes (cyan) as Points layers.
 
 ## Training & retraining
 
-> **⚠️ Beta — napari GUI only.** The retraining / fine-tuning **capability is supported**; it is the
-> **napari widget** that wraps it that is **experimental** — its defaults and GUI/API may change. The
-> **preferred, supported workflow is the notebooks** below (`Run_dare3d_Retraining.ipynb` /
-> `Run_dare3d_Finetune.ipynb`), not the widget. For routine use, run **inference** with the released
-> models above.
->
 > **Supported training stack: torch >= 2.5 (cuDNN >= 9).** Older cuDNN (8.x, e.g. torch 2.2)
 > intermittently **segfaults** during 3D-convolution training (native `0xC0000005`, no Python
 > traceback). `dare3d/train.py` guards against this and **fails fast** with install instructions
@@ -281,6 +275,12 @@ latter reveals per-stage base-checkpoint pickers and an **Advanced** section —
 `bn_mode` (frozen/adapt), `ft_lr`, discriminative LR, warmup→cosine, early stopping — driving the
 same `experiment=finetune_{segmentation,regression}` flow.)
 
+> **3. ⚠️ Beta — napari GUI.** The retraining / fine-tuning **capability is supported**, but the
+> **napari widget** that wraps is **experimental** — its defaults and GUI/API may change. The
+> **preferred, supported workflow are the notebooks or CLI options** above (`Run_dare3d_Retraining.ipynb` /
+> `Run_dare3d_Finetune.ipynb`), not the widget. For routine use, run **inference** with the released
+> models above.
+> 
 ## Data preparation & helper scripts
 
 Optional helpers for building the `data/3d/<dataset>/{train,val}/{im,label}` layout:
