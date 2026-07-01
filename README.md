@@ -61,7 +61,7 @@ DARE3d/
 │   ├── _data.py, _io.py        # TIFF (T,Z,Y,X) loading + coordinate mapping
 │   └── napari.yaml             # npe2 plugin manifest
 ├── configs/                    # Hydra config tree (experiment/ model/ data/ trainer/ logger/ …)
-├── notebooks/                  # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
+├── notebooks/                  # Run_dare3d_Prediction / Run_dare3d_Retraining / Run_dare3d_Finetune + data viz
 ├── scripts/                    # dataset/experiment generators
 ├── tests/                      # pytest suite — unit + integration, plus geometry &
 │                               #   training-command self-checks (no GPU/models/napari)
@@ -257,7 +257,11 @@ python dare3d/train.py experiment=regression   train_dir=3d/<dataset>/train val_
 | `--overwrite` | `True` | Re-run even if the run directory already exists. |
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Retraining.ipynb` — it validates your dataset layout and
-drives segmentation → regression → evaluation, streaming the logs inline.
+drives segmentation → regression → evaluation, streaming the logs inline. To **fine-tune** a
+pretrained checkpoint instead of retraining from scratch, use `notebooks/Run_dare3d_Finetune.ipynb`
+(the command-line twin of the widget's *Transfer learning — fine-tune* mode: it derives the imposed
+architecture from the base, drives the same `experiment=finetune_{segmentation,regression}` flow, and
+verifies the run in-process and via subprocess).
 
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
 inference step. Runs are logged to a local **MLflow** SQLite store under `logs/` — browse it with
