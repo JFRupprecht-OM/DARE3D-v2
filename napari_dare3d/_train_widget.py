@@ -24,10 +24,13 @@ from napari_dare3d._widget import _data_root, _maybe_dir
 #: Shared state (single widget instance in practice): Stop flag + call/stop button refs.
 _TRAIN_STATE = {"stop": False, "call_button": None, "stop_button": None}
 
-#: Advanced (fine-tune) controls — collapsed by default, shown only in fine-tune mode.
-_ADVANCED = ("freeze_preset", "unfreeze_last_stages", "bn_mode", "ft_lr", "discriminative",
-             "backbone_lr_mult", "weight_decay", "lr_schedule", "warmup_epochs", "grad_clip",
-             "augment", "augment_strength", "patience", "seed")
+#: Advanced controls (collapsed by default). The COMMON ones apply to both modes; the
+#: fine-tune ones show only in fine-tune mode.
+_ADVANCED_COMMON = ("batch_size", "cell_radius", "seg_crop_size")
+_ADVANCED_FT = ("freeze_preset", "unfreeze_last_stages", "bn_mode", "ft_lr", "discriminative",
+                "backbone_lr_mult", "weight_decay", "lr_schedule", "warmup_epochs", "grad_clip",
+                "augment", "augment_strength", "patience", "seed")
+_ADVANCED = _ADVANCED_COMMON + _ADVANCED_FT
 
 _STAGES = {"both": ["segmentation", "regression"],
            "segmentation": ["segmentation"], "regression": ["regression"]}
@@ -53,28 +56,42 @@ def _default_trainingset() -> Path:
     return Path()
 
 
+def _advanced_expanded(widget) -> bool:
+    """Whether the Advanced section is open. batch_size is in the common group so it reflects the
+    open/closed state in BOTH modes (freeze_preset would not — it is fine-tune-only)."""
+    w = getattr(widget, "batch_size", None)
+    return bool(w is not None and w.visible)
+
+
 def _set_advanced_visible(widget, show: bool) -> None:
-    for name in _ADVANCED:
+    """Open/close the Advanced section. Common controls (batch size / cell radius / seg crop) show
+    whenever it is open; fine-tune controls show only when it is open AND in fine-tune mode."""
+    finetune = str(widget.mode.value).startswith("Transfer")
+    for name in _ADVANCED_COMMON:
         w = getattr(widget, name, None)
         if w is not None:
             w.visible = show
+    for name in _ADVANCED_FT:
+        w = getattr(widget, name, None)
+        if w is not None:
+            w.visible = show and finetune
     if getattr(widget, "advanced", None) is not None:
         widget.advanced.text = "Hide advanced parameters" if show else "Show advanced parameters"
 
 
 def _apply_mode(widget) -> None:
-    """Show/hide the fine-tune UI. Base pickers appear ONLY in fine-tune mode, by stage;
-    the Advanced toggle appears only in fine-tune (collapsed); eval controls are scratch-only."""
+    """Show/hide the mode-dependent UI. Base pickers appear ONLY in fine-tune mode, by stage;
+    eval controls are scratch-only; the Advanced toggle stays in both modes (it holds the common
+    batch size / cell radius / seg crop plus the fine-tune options)."""
     finetune = str(widget.mode.value).startswith("Transfer")
     stage = str(widget.stage.value)
     widget.base_reg.visible = finetune and stage in ("both", "regression")
     widget.base_seg.visible = finetune and stage in ("both", "segmentation")
-    if getattr(widget, "advanced", None) is not None:
-        widget.advanced.visible = finetune
     widget.run_eval.visible = not finetune       # eval is a scratch-flow step
     widget.threshold.visible = not finetune
-    if not finetune:                             # collapse + hide all fine-tune controls
-        _set_advanced_visible(widget, False)
+    # The Advanced toggle stays visible in both modes (batch size / cell radius / seg crop live
+    # there now); re-apply its contents for the current open state + mode.
+    _set_advanced_visible(widget, _advanced_expanded(widget))
 
 
 def _init_training_widget(widget) -> None:
@@ -95,7 +112,7 @@ def _init_training_widget(widget) -> None:
     _set_advanced_visible(widget, False)
     if getattr(widget, "advanced", None) is not None:
         widget.advanced.changed.connect(
-            lambda *_: _set_advanced_visible(widget, not widget.freeze_preset.visible)
+            lambda *_: _set_advanced_visible(widget, not _advanced_expanded(widget))
         )
 
     widget.mode.changed.connect(lambda *_: _apply_mode(widget))
@@ -211,12 +228,12 @@ def dare3d_training_widget(
     run_name: str = "",
     date: str = datetime.date.today().isoformat(),
     epochs: int = 50,
-    batch_size: int = 4,
-    cell_radius: int = 8,
-    seg_crop_size: int = 128,
     run_eval: bool = True,
     threshold: float = 0.5,
     advanced: bool = False,
+    batch_size: int = 4,
+    cell_radius: int = 8,
+    seg_crop_size: int = 128,
     freeze_preset: str = "encoder",
     unfreeze_last_stages: int = 0,
     bn_mode: str = "frozen",
