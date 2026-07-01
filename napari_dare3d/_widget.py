@@ -29,7 +29,9 @@ _INFER_STATE = {"stop": False, "call_button": None, "stop_button": None}
 #: by default). These are DARE3D's real knobs — note there is NO patch/crop-size
 #: knob: the seg model is fixed at 128^3 and reg at 32^3 (U-Net stride-32
 #: divisibility), so exposing a size would crash inference (the DARE2d lesson).
-_ADVANCED_FIELDS = ("overlap", "batch_size", "threshold", "min_weighted_prob", "default_scale")
+#: ``device`` lives here too (moved out of the main panel to match the DARE2D UX).
+_ADVANCED_FIELDS = ("device", "overlap", "batch_size", "threshold", "min_weighted_prob",
+                    "default_scale")
 
 #: Short overlay legend shown in the widget (QLabel rich text).
 LEGEND_HTML = (
@@ -142,6 +144,34 @@ def _init_widget(widget):
     if viewer is None:
         return
 
+    # "…or load a movie (.tif)": picking a file loads it into the viewer and selects
+    # it as the Run input, so the movie shows immediately (mirrors the DARE2D widget).
+    # Extension is matched case-insensitively on the suffix (.tif/.tiff/.TIF/.TIFF),
+    # the same test _io.iter_tifs uses; an already-loaded layer of the same name is
+    # reused (no duplicates).
+    def _show_movie(path):
+        if not path:
+            return
+        p = Path(path)
+        if not p.is_file() or p.suffix.lower() not in (".tif", ".tiff"):
+            return
+        name = p.stem
+        if name not in viewer.layers:
+            try:
+                import tifffile
+
+                viewer.add_image(tifffile.imread(str(p)), name=name)
+            except Exception as exc:  # never block on a load hiccup
+                notifications.show_warning(f"DARE3D: could not load {p.name}: {exc}")
+                return
+        try:
+            widget.image.value = viewer.layers[name]  # becomes the Run input
+        except Exception:
+            pass
+
+    if getattr(widget, "movie", None) is not None:
+        widget.movie.changed.connect(lambda *_: _show_movie(widget.movie.value))
+
     # Show the overlay legend only while DARE3D result layers exist (i.e. after a
     # run has added them); hidden before/during a run and if results are cleared.
     widget.legend.visible = False
@@ -197,7 +227,13 @@ def _parse_scale(text: str):
     call_button="Run DARE3D",
     widget_init=_init_widget,
     tooltips=False,  # use the explicit per-control "tooltip" options below, not the docstring
-    image={"tooltip": "Input stack to analyze (a napari Image layer). 4D (T,Z,Y,X) or 3D (Z,Y,X)."},
+    image={"label": "Image layer (already open)",
+           "tooltip": "Run on an Image layer already open in napari. 4D (T,Z,Y,X) or 3D "
+                      "(Z,Y,X). Leave empty if you load a movie file below instead."},
+    movie={"widget_type": "FileEdit", "mode": "r", "label": "…or load a movie (.tif)",
+           "tooltip": "Browse for a (T,Z,Y,X) or (Z,Y,X) .tif/.tiff stack; it loads and "
+                      "displays immediately and becomes the Run input. Leave blank to use "
+                      "the open Image layer above."},
     seg_model_dir={
         "widget_type": "FileEdit", "mode": "d", "label": "Segmentation model dir",
         "tooltip": "Segmentation model folder: must contain .hydra/config.yaml + "
@@ -208,29 +244,24 @@ def _parse_scale(text: str):
         "tooltip": "Optional regression model folder. If set, each detection also gets a 3D "
                    "division axis. Runs on gpu or cpu (cpu is correct but slower).",
     },
-    device={
-        "choices": ["gpu", "cpu"], "label": "Device",
-        "tooltip": "gpu = CUDA (recommended, much faster); cpu runs the full pipeline "
-                   "(segmentation centers + regression axes) too, just slower. Default: gpu.",
-    },
-    whole_movie={
-        "label": "Analyse whole movie",
-        "tooltip": "Analyze every time frame. Uncheck to restrict to [Start frame, End frame]. "
-                   "Default: on.",
-    },
     t_start={
         "min": 0, "label": "Start frame",
-        "tooltip": "First frame to analyze (used only when 'Analyse whole movie' is off). "
-                   "Default: 0.",
+        "tooltip": "First frame to analyze (0-based). Default: 0 (with End frame -1 = whole "
+                   "movie).",
     },
     t_end={
-        "min": 0, "label": "End frame (inclusive)",
-        "tooltip": "Last frame to analyze, inclusive (used only when 'Analyse whole movie' is "
-                   "off). Default: 0.",
+        "min": -1, "label": "End frame (-1 = end)",
+        "tooltip": "Last frame to analyze, inclusive; -1 means the final frame. "
+                   "Default: -1.",
     },
     advanced={
         "widget_type": "PushButton", "text": "Show advanced parameters",
         "tooltip": "Show/hide the fine-tuning parameters below (collapsed by default).",
+    },
+    device={
+        "choices": ["gpu", "cpu"], "label": "Device",
+        "tooltip": "gpu = CUDA (recommended, much faster); cpu runs the full pipeline "
+                   "(segmentation centers + regression axes) too, just slower. Default: gpu.",
     },
     overlap={
         "min": 0.0, "max": 0.9, "step": 0.05,
@@ -267,13 +298,13 @@ def _parse_scale(text: str):
 )
 def dare3d_widget(
     image: "napari.layers.Image",
+    movie: Path = Path(""),
     seg_model_dir: Path = _default_model_dir("segmentation3d_exp10-b"),
     reg_model_dir: Path = _default_model_dir("regression3d_exp10-b"),
-    device: str = "gpu",
-    whole_movie: bool = True,
     t_start: int = 0,
-    t_end: int = 0,
+    t_end: int = -1,
     advanced: bool = False,
+    device: str = "gpu",
     overlap: float = 0.25,
     batch_size: int = 4,
     threshold: float = 0.5,
@@ -285,8 +316,22 @@ def dare3d_widget(
 ):
     """Run DARE3D segmentation (+ optional regression) on an Image layer and
     overlay detected division centers and axes (napari Points layers)."""
+    viewer = napari.current_viewer()
+    # Input precedence: the selected Image layer; else the movie file — reusing an
+    # already-loaded layer of the same name so picking a movie never double-adds it
+    # (the movie picker also loads it on selection; see _init_widget).
+    if image is None and str(movie) not in ("", "."):
+        p = Path(movie)
+        if p.is_file() and p.suffix.lower() in (".tif", ".tiff"):
+            name = p.stem
+            if viewer is not None and name in viewer.layers:
+                image = viewer.layers[name]
+            elif viewer is not None:
+                import tifffile
+
+                image = viewer.add_image(tifffile.imread(str(p)), name=name)
     if image is None:
-        notifications.show_warning("DARE3D: select an Image layer first.")
+        notifications.show_warning("DARE3D: select an Image layer or load a movie (.tif) first.")
         return
     seg = _maybe_dir(seg_model_dir)
     if seg is None:
@@ -304,16 +349,19 @@ def dare3d_widget(
 
     stack = np.asarray(image.data)
     n_t = stack.shape[0] if stack.ndim == 4 else 1
-    if whole_movie:
+    # DARE2D end-frame convention: t_end == -1 means "to the final frame". The whole
+    # movie (start 0, end -1) is passed as frames=None; any other window is resolved
+    # to inclusive (t0, t1) indices for _api.infer_stack.
+    if t_start == 0 and t_end == -1:
         frames = None
     else:
-        if not (0 <= t_start <= t_end < n_t):
+        t_end_res = (n_t - 1) if t_end == -1 else t_end
+        if not (0 <= t_start <= t_end_res < n_t):
             notifications.show_warning(
                 f"DARE3D: invalid time range [{t_start}, {t_end}] for a movie of {n_t} frame(s)."
             )
             return
-        frames = (t_start, t_end)
-    viewer = napari.current_viewer()
+        frames = (t_start, t_end_res)
 
     # Arm the Stop button for this run (cleared in case a previous run set it).
     _INFER_STATE["stop"] = False
