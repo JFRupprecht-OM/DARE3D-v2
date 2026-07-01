@@ -14,7 +14,7 @@ from pathlib import Path
 
 import napari
 from magicgui import magic_factory
-from magicgui.widgets import ProgressBar
+from magicgui.widgets import Label, ProgressBar
 from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
@@ -97,6 +97,13 @@ def _apply_mode(widget) -> None:
 def _init_training_widget(widget) -> None:
     """magic_factory hook: wire Stop (replaces Run while active), the Advanced collapse, and
     the Mode/stage-driven visibility of the base pickers."""
+    # Steer users toward the notebooks, which are the recommended path for both regimes.
+    note = Label(value="The preferred options for retraining and fine-tuning are the "
+                       "corresponding notebooks available in the notebooks folder.")
+    note.tooltip = ("See notebooks/Run_dare3d_Retraining.ipynb and "
+                    "notebooks/Run_dare3d_Finetune.ipynb.")
+    widget.insert(0, note)
+
     if getattr(widget, "call_button", None) is not None:
         widget.call_button.tooltip = "Start DARE3D training / fine-tuning with the settings above."
     _TRAIN_STATE["call_button"] = getattr(widget, "call_button", None)
