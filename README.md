@@ -273,7 +273,7 @@ make clean                  # remove build artefacts and caches
 - **CUDA out of memory:** lower `data.batch_size`, or `trainer=cpu` for segmentation-only.
 - **`ImportError` / plugin not listed in napari:** re-run `pip install -e .` (refreshes the editable
   install and its `napari.manifest` entry point).
-- **Demo data won't download:** check your internet connection, or grab the Zenodo bundle manually
+- **Demo data won't download:** grab the Zenodo bundle manually
   ([record 19113351](https://zenodo.org/records/19113351)) and unzip it at the repo root.
 - DARE3D training was developed on Linux/HPC; on some Windows setups the Lightning backward pass
   can crash natively even when inference is fine — train on Linux/HPC and reuse the resulting
