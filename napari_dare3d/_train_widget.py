@@ -228,7 +228,9 @@ def _autofill_inference(viewer, result: dict) -> None:
                "tooltip": "Gradient max-norm clipping; 0 = off. Default: 1.0."},
     augment={"label": "Augmentation", "tooltip": "Apply training-data augmentations. Default: on."},
     augment_strength={"widget_type": "LineEdit", "label": "Augment strength",
-                      "tooltip": "Recorded in the sidecar (provenance). Default: 1.0."},
+                      "tooltip": "Per-sample probability of applying the augmentation pipeline "
+                                 "(0-1). Default 0.5 (the training default); 0 = none. Ignored "
+                                 "when Augmentation is off."},
     patience={"min": 0, "label": "Early-stop patience",
               "tooltip": "Stop if val metric doesn't improve for N epochs. Default: 10."},
     seed={"label": "Seed", "tooltip": "Random seed (python/numpy/torch/workers). Default: 12345."},
@@ -264,7 +266,7 @@ def dare3d_training_widget(
     warmup_epochs: int = 2,
     grad_clip: str = "1.0",
     augment: bool = True,
-    augment_strength: str = "1.0",
+    augment_strength: str = "0.5",
     patience: int = 10,
     seed: int = 12345,
     stop: bool = False,

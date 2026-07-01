@@ -214,8 +214,17 @@ def finetune_command(stage: str, dataset_dir, output_dir, name, date, base_ckpt,
         *_data_overrides(dataset_dir),
         *_net_overrides_from_base(base_ckpt, stage),
     ]
-    if not ft.get("augment", True):
-        cmd.append("data/augmentation=none")   # actually disable augmentation (not just record it)
+    if ft.get("augment", True):
+        # augment_strength = per-sample probability of applying the augmentation pipeline
+        # (MonaiAugmentationWrapper.prob). ++ overrides it whether or not the config declares it
+        # (monai_augmentation_best sets prob; monai_augmentation_reg relies on the default).
+        try:
+            aprob = min(1.0, max(0.0, float(ft.get("augment_strength", 0.5))))
+        except (TypeError, ValueError):
+            aprob = 0.5
+        cmd.append(f"++data.augmentation.prob={aprob}")
+    else:
+        cmd.append("data/augmentation=none")   # disable augmentation entirely
     if stage == "segmentation":
         cmd.append(f"cell_radius={int(ft.get('cell_radius', 8))}")
         cmd.append(f"crop_size={int(ft.get('seg_crop_size', 128))}")
@@ -321,11 +330,18 @@ def finetune_preflight(stages: List[str], base_ckpts: Dict[str, str], ft: Dict) 
         warnings.append(f"unfreeze_last_stages={uls} has no effect with freeze_preset='none' (nothing "
                         f"is frozen); use freeze_preset=encoder/encoder_partial to unfreeze only the "
                         f"last stages.")
-    # NOTE on augment/augment_strength: augmentation on a frozen backbone is a real but MILD concern
-    # only for HEAVY augmentation. The default (experiment) augmentation is standard for fine-tuning,
-    # and augment_strength is currently provenance-only (recorded in the sidecar, not wired to scale
-    # the transforms), so there is no reliable "heavy" signal to gate on -> not flagged (would fire on
-    # the recommended default). augment=off still emits data/augmentation=none in finetune_command.
+    # augment_strength is wired to the per-sample augmentation probability (data.augmentation.prob).
+    # Heavy augmentation while the backbone is fully frozen shifts the frozen features (which can't
+    # adapt) and can hurt transfer -> soft-warn only when it is genuinely heavy (the 0.5 default is
+    # fine, so this does not fire on the recommended setup).
+    try:
+        aprob = float(ft.get("augment_strength", 0.5))
+    except (TypeError, ValueError):
+        aprob = 0.5
+    if bool(ft.get("augment", True)) and aprob > 0.75 and preset == "encoder" and uls == 0:
+        warnings.append(f"augment_strength={aprob} (heavy) with a fully-frozen backbone: only the head "
+                        f"trains, so frequent augmentation shifts the frozen features and can hurt "
+                        f"transfer. Consider a lower strength (~0.5) when training the head only.")
     return {"errors": errors, "warnings": warnings, "notes": notes}
 
 
