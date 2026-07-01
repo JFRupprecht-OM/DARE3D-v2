@@ -27,9 +27,9 @@ by a single `pip install -e .`.
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
 >
-> **Beta features.** Interactive **retraining** — and the upcoming **transfer-learning / fine-tuning**
-> mode — ship as **beta** in this version: experimental, with results, defaults, and the API subject
-> to change. See *Training & retraining* below.
+> **Beta features.** Interactive **retraining** and **transfer-learning / fine-tuning** (load a
+> pretrained checkpoint, freeze the backbone, continue at a low LR) ship as **beta** in this version:
+> experimental, with results, defaults, and the API subject to change. See *Training & retraining* below.
 
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
@@ -56,7 +56,7 @@ DARE3d/
 ├── napari_dare3d/              # napari plugin (in-process inference + training)
 │   ├── _api.py                 # napari-free inference API (reuses dare3d.metrics)
 │   ├── _widget.py              # inference widget
-│   ├── _train_widget.py        # training / retraining widget (beta)
+│   ├── _train_widget.py        # retraining + fine-tuning widget (beta)
 │   ├── _train.py               # builds + streams the Hydra training subprocess
 │   ├── _data.py, _io.py        # TIFF (T,Z,Y,X) loading + coordinate mapping
 │   └── napari.yaml             # npe2 plugin manifest
@@ -213,7 +213,7 @@ axes (cyan) as Points layers.
 
 ## Training & retraining
 
-> **⚠️ Beta feature.** Retraining — and the planned transfer-learning / fine-tuning mode — is
+> **⚠️ Beta feature.** Retraining and transfer-learning / fine-tuning are
 > **experimental**: results, defaults, and the API may change in a future release. For routine use,
 > run **inference** with the released models above.
 >
@@ -262,7 +262,11 @@ drives segmentation → regression → evaluation, streaming the logs inline.
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
 inference step. Runs are logged to a local **MLflow** SQLite store under `logs/` — browse it with
 `mlflow ui --backend-store-uri sqlite:///logs/mlflow.db`. (The napari plugin also exposes a
-**DARE3D training** widget that wraps these same `train.py` / `eval.py` steps.)
+**DARE3D retraining & fine-tuning** widget that wraps these same `train.py` / `eval.py` steps: a
+**Mode** selector switches between *Retrain from scratch* and *Transfer learning — fine-tune*; the
+latter reveals per-stage base-checkpoint pickers and an **Advanced** section — `freeze_preset`,
+`bn_mode` (frozen/adapt), `ft_lr`, discriminative LR, warmup→cosine, early stopping — driving the
+same `experiment=finetune_{segmentation,regression}` flow.)
 
 ## Data preparation & helper scripts
 

@@ -122,6 +122,107 @@ def reg_command(dataset_dir, output_dir, name, date, epochs, batch_size) -> List
     ]
 
 
+# --------------------------------------------------------------------------- #
+# Fine-tuning (transfer learning) — drives the engine in dare3d/models/finetune.py #
+# via experiment=finetune_<stage> + model.finetune.* Hydra overrides.          #
+# --------------------------------------------------------------------------- #
+def _net_overrides_from_base(base_ckpt, stage: str) -> List[str]:
+    """Reproduce the base checkpoint's net architecture as Hydra overrides.
+
+    The engine loads base weights with ``strict=True``, so the fine-tune net must match the
+    base exactly. A checkpoint written by ``train.py`` sits in a model_dir with a saved
+    ``.hydra/config.yaml``; we read its ``model.net`` and emit ``model/net=<group>`` plus each
+    concrete (non-interpolation) net param, so ANY train.py-produced base (widget-trained or a
+    published model with a different n_stages/channels) matches. Returns ``[]`` if the sibling
+    config is absent (then the experiment's default net is used and a mismatch surfaces as the
+    engine's clear stage-aware error).
+    """
+    try:
+        cfg_path = Path(base_ckpt).resolve().parent.parent / ".hydra" / "config.yaml"
+        if not cfg_path.is_file():
+            return []
+        from omegaconf import OmegaConf  # deferred: hydra dep, no torch
+        net = OmegaConf.to_container(OmegaConf.load(cfg_path).model.net, resolve=False)
+    except Exception:
+        return []
+    if not isinstance(net, dict):
+        return []
+    group = {
+        "RegressionNet": "simple_regression_net",
+        "Regression3dCNN": "regression_net",
+        "MultiScaleUNet": "multiscale_unet",
+        "SegResMultiScaleUNet": "segres_multiscale_unet",
+        "SwinUNETRWrapper": "swinunetr",
+    }.get(str(net.get("_target_", "")).split(".")[-1])
+    ov: List[str] = [f"model/net={group}"] if group else []
+    for k, v in net.items():
+        if k == "_target_":
+            continue
+        if isinstance(v, str) and v.strip().startswith("${"):
+            continue  # interpolation (im_size/input_channels/…) -> resolved by the experiment
+        if isinstance(v, bool):
+            ov.append(f"model.net.{k}={str(v).lower()}")
+        elif isinstance(v, (list, tuple)):
+            if any(isinstance(x, str) for x in v):
+                continue  # structural string lists (e.g. output_names) are CLI-hostile and are
+                          # ignored by MultiScaleUNet at downsample_factors=[1] anyway
+            ov.append(f"model.net.{k}=[{','.join(str(x) for x in v)}]")
+        else:
+            ov.append(f"model.net.{k}={v}")
+    return ov
+
+
+def finetune_command(stage: str, dataset_dir, output_dir, name, date, base_ckpt, ft: Dict,
+                     epochs: int, batch_size: int, num_workers: int = 2) -> List[str]:
+    """``dare3d/train.py experiment=finetune_<stage> ...`` — one fine-tune stage.
+
+    Override names match ``configs/experiment/finetune_<stage>.yaml`` (``model.finetune.*``)
+    verbatim. ``stage`` is ``"segmentation"`` or ``"regression"``; ``ft`` carries the Advanced
+    GUI params. ``discriminative`` is a GUI convenience: OFF -> ``backbone_lr_mult=1.0`` (uniform
+    LR); ON -> the given multiplier. No backend flag (PyTorch-only).
+    """
+    train_py = _posix(repo_root() / "dare3d" / "train.py")
+    disc_mult = ft["backbone_lr_mult"] if ft.get("discriminative", True) else "1.0"
+    cmd = [
+        sys.executable, train_py,
+        f"experiment=finetune_{stage}",
+        f"model.finetune.base_ckpt={_posix(base_ckpt)}",
+        f"task_name={stage}3d_{name}",
+        "trainer.accelerator=gpu",
+        f"data.batch_size={int(batch_size)}",
+        f"data.num_workers={int(num_workers)}",   # modest (spawn); do not jump to 11
+        "data.pin_memory=true",
+        f"trainer.max_epochs={int(epochs)}",
+        f"date={date}",
+        f"paths.log_dir={_posix(output_dir)}",
+        f"logger.mlflow.tracking_uri={_mlflow_uri(output_dir)}",
+        # --- engine hyperparameters (verbatim model.finetune.* names) ---
+        f"model.finetune.freeze_preset={ft['freeze_preset']}",
+        f"model.finetune.unfreeze_last_stages={int(ft['unfreeze_last_stages'])}",
+        f"model.finetune.bn_mode={ft['bn_mode']}",
+        f"model.finetune.ft_lr={ft['ft_lr']}",
+        f"model.finetune.backbone_lr_mult={disc_mult}",
+        f"model.finetune.weight_decay={ft['weight_decay']}",
+        f"model.finetune.lr_schedule={ft['lr_schedule']}",
+        f"model.finetune.warmup_epochs={int(ft['warmup_epochs'])}",
+        f"model.finetune.grad_clip={ft['grad_clip']}",   # -> trainer.gradient_clip_val (interp)
+        f"model.finetune.augment={str(bool(ft.get('augment', True))).lower()}",
+        f"model.finetune.augment_strength={ft['augment_strength']}",
+        f"model.finetune.patience={int(ft['patience'])}",
+        f"model.finetune.seed={int(ft['seed'])}",
+        f"seed={int(ft['seed'])}",   # top-level seed drives L.seed_everything
+        *_data_overrides(dataset_dir),
+        *_net_overrides_from_base(base_ckpt, stage),
+    ]
+    if not ft.get("augment", True):
+        cmd.append("data/augmentation=none")   # actually disable augmentation (not just record it)
+    if stage == "segmentation":
+        cmd.append(f"cell_radius={int(ft.get('cell_radius', 8))}")
+        cmd.append(f"crop_size={int(ft.get('seg_crop_size', 128))}")
+        cmd.append(f"data.train_data.sparse_folder={_posix(Path(dataset_dir) / 'train' / 'weights')}")
+    return cmd
+
+
 def _best_ckpt(model_dir) -> Optional[str]:
     """Filename of the ``epoch_*.ckpt`` if present (like train_eval.find_best_model)."""
     for path in glob(_posix(Path(model_dir) / "checkpoints" / "*.ckpt")):
@@ -224,7 +325,10 @@ def _stream(cmd: List[str], should_stop: Optional[Callable[[], bool]]) -> Iterat
     yield f"[DARE3D] $ {' '.join(str(c) for c in cmd[1:4])} ..."
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, bufsize=1, cwd=str(repo_root()),
+        encoding="utf-8", errors="replace", bufsize=1, cwd=str(repo_root()),
+        # PYTHONUNBUFFERED/IOENCODING: live, clean UTF-8 stream on Windows (cp1252 would mojibake
+        # the progress glyphs / non-ASCII in Lightning's output and stall line buffering).
+        env={**os.environ, "PYTHONUNBUFFERED": "1", "PYTHONIOENCODING": "utf-8"},
     )
     stopped = False
     try:
@@ -296,4 +400,44 @@ def run_training(
     yield {
         "segmentation": str(dirs["segmentation"]) if train_segmentation else None,
         "regression": str(dirs["regression"]) if train_regression else None,
+    }
+
+
+def run_finetuning(
+    dataset_dir,
+    output_dir,
+    name: str,
+    date: str,
+    epochs: int,
+    batch_size: int,
+    *,
+    stages: List[str],
+    base_ckpts: Dict[str, str],
+    ft: Dict,
+    train_movies=None,
+    val_movies=None,
+    num_workers: int = 2,
+    should_stop: Optional[Callable[[], bool]] = None,
+) -> Iterator:
+    """Generator: fine-tune ``stages`` (segmentation before regression), each from its OWN base
+    checkpoint, as subprocesses, yielding stdout lines. Mirrors :func:`run_training` but drives
+    the fine-tune engine. ``base_ckpts`` maps ``"segmentation"``/``"regression"`` -> base
+    ``.ckpt``; ``ft`` carries the Advanced params. Final yielded value is the model_dirs dict.
+    """
+    os.makedirs(output_dir, exist_ok=True)  # so the SQLite mlflow db can be created
+    split_dir = _resolve_split(dataset_dir, output_dir, train_movies, val_movies)
+    dirs = model_dirs(output_dir, name, date)
+
+    for stage in [s for s in ("segmentation", "regression") if s in stages]:  # seg -> reg order
+        base = base_ckpts.get(stage)
+        yield f"[DARE3D] === Fine-tune {stage} (base: {Path(base).name if base else '?'}) ==="
+        yield from _stream(
+            finetune_command(stage, split_dir, output_dir, name, date, base, ft,
+                             epochs, batch_size, num_workers),
+            should_stop,
+        )
+
+    yield {
+        "segmentation": str(dirs["segmentation"]) if "segmentation" in stages else None,
+        "regression": str(dirs["regression"]) if "regression" in stages else None,
     }
