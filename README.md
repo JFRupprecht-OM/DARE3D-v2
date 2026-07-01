@@ -27,9 +27,12 @@ by a single `pip install -e .`.
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
 >
-> **Beta features.** Interactive **retraining** and **transfer-learning / fine-tuning** (load a
-> pretrained checkpoint, freeze the backbone, continue at a low LR) ship as **beta** in this version:
-> experimental, with results, defaults, and the API subject to change. See *Training & retraining* below.
+> **Beta — the napari retraining/fine-tuning GUI.** Retraining and transfer-learning / fine-tuning
+> (load a pretrained checkpoint, freeze the backbone, continue at a low LR) are fully supported; what
+> is **beta** in this version is the **napari widget** that drives them from the GUI — its defaults and
+> GUI/API may change. The **recommended, supported way to run retraining and fine-tuning is the
+> notebooks** (`Run_dare3d_Retraining` / `Run_dare3d_Finetune`); the widget is a convenience GUI twin.
+> For routine use, run **inference** with the released models. See *Training & retraining* below.
 
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
@@ -213,9 +216,11 @@ axes (cyan) as Points layers.
 
 ## Training & retraining
 
-> **⚠️ Beta feature.** Retraining and transfer-learning / fine-tuning are
-> **experimental**: results, defaults, and the API may change in a future release. For routine use,
-> run **inference** with the released models above.
+> **⚠️ Beta — napari GUI only.** The retraining / fine-tuning **capability is supported**; it is the
+> **napari widget** that wraps it that is **experimental** — its defaults and GUI/API may change. The
+> **preferred, supported workflow is the notebooks** below (`Run_dare3d_Retraining.ipynb` /
+> `Run_dare3d_Finetune.ipynb`), not the widget. For routine use, run **inference** with the released
+> models above.
 >
 > **Supported training stack: torch >= 2.5 (cuDNN >= 9).** Older cuDNN (8.x, e.g. torch 2.2)
 > intermittently **segfaults** during 3D-convolution training (native `0xC0000005`, no Python
@@ -224,7 +229,9 @@ axes (cyan) as Points layers.
 > disables cuDNN (stable but slower, to train on an old stack); `DARE3D_CUDNN=1` forces cuDNN on
 > (only safe on cuDNN >= 9).
 
-Retraining can be run **two ways** — from the terminal or the notebook. **Training requires a
+Retraining and fine-tuning can be run from the terminal, the **notebooks**, or the napari widget.
+**The notebooks (`Run_dare3d_Retraining.ipynb` / `Run_dare3d_Finetune.ipynb`) are the recommended,
+supported workflow; the napari widget is an experimental GUI twin (beta).** **Training requires a
 CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
 `(T, Z, Y, X)`; labels encode the daughter pair: first daughter → odd ids, second → even ids).
 
@@ -266,7 +273,9 @@ verifies the run in-process and via subprocess).
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
 inference step. Runs are logged to a local **MLflow** SQLite store under `logs/` — browse it with
 `mlflow ui --backend-store-uri sqlite:///logs/mlflow.db`. (The napari plugin also exposes a
-**DARE3D retraining & fine-tuning** widget that wraps these same `train.py` / `eval.py` steps: a
+**DARE3D retraining & fine-tuning** widget — the **beta** GUI twin of the notebooks above, offered
+for convenience; prefer the notebooks for supported runs — that wraps these same `train.py` /
+`eval.py` steps: a
 **Mode** selector switches between *Retrain from scratch* and *Transfer learning — fine-tune*; the
 latter reveals per-stage base-checkpoint pickers and an **Advanced** section — `freeze_preset`,
 `bn_mode` (frozen/adapt), `ft_lr`, discriminative LR, warmup→cosine, early stopping — driving the
