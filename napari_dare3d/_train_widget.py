@@ -120,6 +120,25 @@ def _init_training_widget(widget) -> None:
     _apply_mode(widget)   # initial state = scratch (base pickers + Advanced hidden)
 
 
+def _confirm_finetune_warnings(warnings) -> bool:
+    """Ask the user to confirm SOFT fine-tune warnings (loads/runs but may degrade transfer).
+    Returns True to proceed. If no Qt dialog is available (headless), it surfaces the warnings as
+    notifications and proceeds — the real napari GUI always has an event loop, and tests call
+    ``_train.finetune_preflight`` directly."""
+    text = ("Potential transfer-learning issues were detected:\n\n- "
+            + "\n\n- ".join(warnings) + "\n\nProceed with fine-tuning anyway?")
+    try:
+        from qtpy.QtWidgets import QMessageBox
+        yes = getattr(QMessageBox, "Yes", None)
+        if yes is None:  # PyQt6-style enum
+            yes = QMessageBox.StandardButton.Yes
+        return QMessageBox.question(None, "DARE3D fine-tune — review", text) == yes
+    except Exception:
+        for w_ in warnings:
+            notifications.show_warning("DARE3D: " + w_)
+        return True
+
+
 def _autofill_inference(viewer, result: dict) -> None:
     """Best-effort: push the produced model dirs into an open inference widget."""
     if viewer is None:
@@ -282,6 +301,17 @@ def dare3d_training_widget(
                   lr_schedule=lr_schedule, warmup_epochs=int(warmup_epochs), grad_clip=grad_clip,
                   augment=bool(augment), augment_strength=augment_strength, patience=int(patience),
                   seed=int(seed), cell_radius=int(cell_radius), seg_crop_size=int(seg_crop_size))
+        # Pre-flight: block hard conflicts (crash / wrong-shaped load), confirm soft ones
+        # (loads/runs but may degrade transfer). Never silently proceed on a real conflict.
+        pf = _train.finetune_preflight(stages, base_ckpts, ft)
+        for _n in pf.get("notes", []):
+            notifications.show_info("DARE3D: " + _n)
+        if pf["errors"]:
+            notifications.show_error("DARE3D fine-tune blocked:\n- " + "\n- ".join(pf["errors"]))
+            return
+        if pf["warnings"] and not _confirm_finetune_warnings(pf["warnings"]):
+            notifications.show_info("DARE3D fine-tune cancelled — review the warnings.")
+            return
 
     _TRAIN_STATE["stop"] = False
     viewer = napari.current_viewer()

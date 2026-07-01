@@ -223,6 +223,112 @@ def finetune_command(stage: str, dataset_dir, output_dir, name, date, base_ckpt,
     return cmd
 
 
+def _read_base_geometry(base_ckpt) -> Dict:
+    """Geometry the base was trained with, read from its saved ``.hydra/config.yaml`` (preferred
+    over hardcoding). Returns ``{}`` if the base has no sibling config (e.g. a bare ``.ckpt``) — the
+    caller then skips the soft geometry warnings and leans on the engine's strict-load + a runtime
+    shape error. NOTE: a base carries a ``finetune_config.json`` sidecar only if it was ITSELF
+    fine-tuned; the *training* geometry always lives in ``.hydra/config.yaml``, so that is the source.
+    """
+    out: Dict = {}
+    try:
+        cfg_path = Path(base_ckpt).resolve().parent.parent / ".hydra" / "config.yaml"
+        if not cfg_path.is_file():
+            return out
+        from omegaconf import OmegaConf
+        cfg = OmegaConf.load(cfg_path)
+        out["crop_size"] = OmegaConf.select(cfg, "crop_size")
+        out["cell_radius"] = OmegaConf.select(cfg, "cell_radius")
+        strides = OmegaConf.select(cfg, "model.net.strides")
+        if strides is not None:
+            prod = 1
+            for s in OmegaConf.to_container(strides, resolve=False):
+                prod *= int(s[0] if isinstance(s, (list, tuple)) else s)
+            out["stride_product"] = prod
+    except Exception:
+        return {}
+    return out
+
+
+def finetune_preflight(stages: List[str], base_ckpts: Dict[str, str], ft: Dict) -> Dict[str, List[str]]:
+    """Pre-dispatch check for fine-tune conflicts (see the Advanced-parameter audit). Pure, no side
+    effects. Returns ``{"errors", "warnings", "notes"}``:
+      - errors   = HARD (crash / wrong-shaped load)  -> caller BLOCKS dispatch;
+      - warnings = SOFT (loads/runs but degrades transfer) -> caller asks for confirmation;
+      - notes    = information (e.g. base geometry couldn't be read).
+    Architecture params (channels/strides/start_filters/n_stages/…) are IMPOSED by the base and are
+    inherited automatically by ``_net_overrides_from_base``; a real mismatch there surfaces as the
+    engine's strict-load stage-aware error, which is the backstop for this check.
+    """
+    errors: List[str] = []
+    warnings: List[str] = []
+    notes: List[str] = []
+
+    # small-float text fields must parse as numbers (Hydra would otherwise fail mid-run)
+    for fld in ("ft_lr", "backbone_lr_mult", "weight_decay", "grad_clip", "augment_strength"):
+        v = ft.get(fld)
+        if v is not None:
+            try:
+                float(v)
+            except (TypeError, ValueError):
+                errors.append(f"{fld}={v!r} is not a number.")
+
+    # --- segmentation geometry: the seg net is fully-convolutional, so crop is RUNTIME, not a
+    #     weight-shape. It only has a HARD divisibility constraint + SOFT transfer degradation. ---
+    if "segmentation" in stages:
+        geo = _read_base_geometry(base_ckpts.get("segmentation"))
+        crop = int(ft.get("seg_crop_size", 128))
+        prod = geo.get("stride_product")
+        if prod and crop % prod != 0:
+            errors.append(f"seg_crop_size={crop} is not divisible by {prod} (product of the U-Net "
+                          f"strides); the down/up path would give mismatched skip-connection shapes "
+                          f"and crash. Use a multiple of {prod}.")
+        bc = geo.get("crop_size")
+        if bc is not None and crop != int(bc):
+            warnings.append(f"seg_crop_size={crop} differs from the base's training crop ({bc}). The "
+                            f"seg net is fully-convolutional so weights load fine, but the receptive-"
+                            f"field/patch mismatch can degrade transfer.")
+        if not geo:
+            notes.append("segmentation base has no .hydra/config.yaml — cannot verify crop divisibility "
+                         "or the base crop/radius; relying on the engine's strict-load + runtime shape check.")
+        br = geo.get("cell_radius")
+        cr = int(ft.get("cell_radius", 8))
+        if br is not None and cr != int(br):
+            warnings.append(f"cell_radius={cr} differs from the base's training radius ({br}); this "
+                            f"resizes the target spheres vs what the base learned (soft transfer shift).")
+
+    # --- optimization interactions with a frozen pretrained backbone ---
+    try:
+        bs = int(ft.get("batch_size", 4))
+    except (TypeError, ValueError):
+        bs = 4
+    if str(ft.get("bn_mode")) == "adapt" and bs < 8:
+        warnings.append(f"bn_mode='adapt' with batch_size={bs} (<8): frozen BatchNorm3d re-estimates "
+                        f"running stats from tiny batches -> noisy/biased normalisation. Prefer "
+                        f"bn_mode='frozen', or use a larger batch.")
+    try:
+        if float(ft.get("ft_lr", 1e-4)) > 1e-3:
+            warnings.append(f"ft_lr={ft.get('ft_lr')} is scratch-hot for pretrained weights; fine-tuning "
+                            f"usually needs <= 1e-3 so the transferred features are not destroyed.")
+    except (TypeError, ValueError):
+        pass  # already reported as a parse error above
+    preset = str(ft.get("freeze_preset"))
+    try:
+        uls = int(ft.get("unfreeze_last_stages", 0))
+    except (TypeError, ValueError):
+        uls = 0
+    if uls > 0 and preset == "none":
+        warnings.append(f"unfreeze_last_stages={uls} has no effect with freeze_preset='none' (nothing "
+                        f"is frozen); use freeze_preset=encoder/encoder_partial to unfreeze only the "
+                        f"last stages.")
+    # NOTE on augment/augment_strength: augmentation on a frozen backbone is a real but MILD concern
+    # only for HEAVY augmentation. The default (experiment) augmentation is standard for fine-tuning,
+    # and augment_strength is currently provenance-only (recorded in the sidecar, not wired to scale
+    # the transforms), so there is no reliable "heavy" signal to gate on -> not flagged (would fire on
+    # the recommended default). augment=off still emits data/augmentation=none in finetune_command.
+    return {"errors": errors, "warnings": warnings, "notes": notes}
+
+
 def _best_ckpt(model_dir) -> Optional[str]:
     """Filename of the ``epoch_*.ckpt`` if present (like train_eval.find_best_model)."""
     for path in glob(_posix(Path(model_dir) / "checkpoints" / "*.ckpt")):
