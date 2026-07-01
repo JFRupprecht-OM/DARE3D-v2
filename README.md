@@ -278,8 +278,7 @@ same `experiment=finetune_{segmentation,regression}` flow.)
 > **3. ⚠️ Beta — napari GUI.** The retraining / fine-tuning **capability is supported**, but the
 > **napari widget** that wraps is **experimental** — its defaults and GUI/API may change. The
 > **preferred, supported workflow are the notebooks or CLI options** above (`Run_dare3d_Retraining.ipynb` /
-> `Run_dare3d_Finetune.ipynb`), not the widget. For routine use, run **inference** with the released
-> models above.
+> `Run_dare3d_Finetune.ipynb`), not the widget. 
 > 
 ## Data preparation & helper scripts
 
