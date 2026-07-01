@@ -26,14 +26,7 @@ by a single `pip install -e .`.
 > stacks are `(T, Z, Y, X)`; each detected division is returned as a **center** plus a **division
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
->
-> **Beta — the napari retraining/fine-tuning GUI.** Retraining and transfer-learning / fine-tuning
-> (load a pretrained checkpoint, freeze the backbone, continue at a low LR) are fully supported; what
-> is **beta** in this version is the **napari widget** that drives them from the GUI — its defaults and
-> GUI/API may change. The **recommended, supported way to run retraining and fine-tuning is the
-> notebooks** (`Run_dare3d_Retraining` / `Run_dare3d_Finetune`); the widget is a convenience GUI twin.
-> For routine use, run **inference** with the released models. See *Training & retraining* below.
-
+> 
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
 >
