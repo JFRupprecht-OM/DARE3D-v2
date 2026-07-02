@@ -5,6 +5,7 @@ HANDOFF §0 invariants: stage-aware base load into ``net``, per-net freeze prese
 discriminative LR groups, and the frozen-BatchNorm3d ``train()`` re-arm (frozen vs adapt).
 """
 import tempfile
+from types import SimpleNamespace
 
 import pytest
 import torch
@@ -134,6 +135,29 @@ def test_bn_policy_frozen_survives_midepoch_rearm():
         for _ in range(3):
             m.net(torch.randn(2, 3, 16, 16, 16))
     assert torch.equal(rm, fbn.running_mean)      # running stats frozen
+
+
+def _optim_module(lr_schedule, warmup_epochs=2, max_epochs=10):
+    m = _FTModule(small_regnet(), {**_ft(), "lr_schedule": lr_schedule,
+                                   "warmup_epochs": warmup_epochs})
+    m.apply_finetune_setup()
+    m._trainer = SimpleNamespace(max_epochs=max_epochs)  # finetune_optimizers reads max_epochs
+    return m
+
+
+def test_lr_schedule_selects_scheduler_shape():
+    from torch.optim.lr_scheduler import CosineAnnealingLR, SequentialLR
+    sch = _optim_module("warmup_cosine").finetune_optimizers()["lr_scheduler"]["scheduler"]
+    assert isinstance(sch, SequentialLR)                  # warmup -> cosine
+    # "cosine" must win over a nonzero warmup_epochs: pure cosine, no warmup phase,
+    # so the sidecar's recorded lr_schedule always matches what actually ran.
+    sch = _optim_module("cosine").finetune_optimizers()["lr_scheduler"]["scheduler"]
+    assert isinstance(sch, CosineAnnealingLR)
+
+
+def test_lr_schedule_invalid_raises():
+    with pytest.raises(FineTuneError):
+        _optim_module("constant").finetune_optimizers()
 
 
 def test_bn_policy_adapt_reestimates_stats():

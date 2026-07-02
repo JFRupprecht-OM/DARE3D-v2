@@ -389,9 +389,15 @@ class FineTuneMixin:
         optimizer = torch.optim.AdamW(groups, betas=(0.9, 0.999))
         self.optimizer = optimizer  # keep training_step's lr logging consistent
         max_epochs = int(getattr(self.trainer, "max_epochs", None) or 1)
-        self.scheduler = finetune_scheduler(
-            optimizer, int(ft.get("warmup_epochs", 0) or 0), max_epochs
-        )
+        # lr_schedule selects the shape; "cosine" means no warmup regardless of warmup_epochs,
+        # so the sidecar's recorded schedule always matches what actually ran.
+        lr_schedule = ft.get("lr_schedule", "warmup_cosine")
+        if lr_schedule not in ("warmup_cosine", "cosine"):
+            raise FineTuneError(
+                f"Unknown lr_schedule {lr_schedule!r}: expected 'warmup_cosine' or 'cosine'."
+            )
+        warmup = int(ft.get("warmup_epochs", 0) or 0) if lr_schedule == "warmup_cosine" else 0
+        self.scheduler = finetune_scheduler(optimizer, warmup, max_epochs)
         return {
             "optimizer": optimizer,
             "lr_scheduler": {"scheduler": self.scheduler, "interval": "epoch", "frequency": 1},
