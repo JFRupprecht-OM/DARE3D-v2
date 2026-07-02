@@ -15,6 +15,7 @@ Training requires a CUDA device. ``dare3d`` must be importable (``pip install -e
 """
 import os
 import shutil
+import signal
 import subprocess
 import sys
 from glob import glob
@@ -232,8 +233,39 @@ def finetune_command(stage: str, dataset_dir, output_dir, name, date, base_ckpt,
     return cmd
 
 
+#: Preprocessing fields that must match between the base's training and the fine-tune run.
+#: They are hardcoded in configs/experiment/finetune_*.yaml (NOT inherited from the base) and
+#: never change a weight shape, so a mismatch is the one path to silent transfer degradation.
+_PREPROC_KEYS = ("renorm", "default_scale", "target_scale", "input_channels", "order_dim_img")
+
+
+def _finetune_preprocessing(stage: str) -> Dict:
+    """Preprocessing the ``finetune_<stage>`` experiment will apply, read from the experiment
+    yaml itself (single source of truth — no duplicated literals here). ``{}`` if unreadable."""
+    out: Dict = {}
+    try:
+        from omegaconf import OmegaConf
+        cfg = OmegaConf.load(repo_root() / "configs" / "experiment" / f"finetune_{stage}.yaml")
+        for key in _PREPROC_KEYS:
+            val = cfg.get(key)
+            if val is not None:
+                out[key] = OmegaConf.to_container(val) if OmegaConf.is_config(val) else val
+    except Exception:
+        return {}
+    return out
+
+
+def _preproc_norm(v):
+    """Normalise for comparison: numbers -> float (2 == 2.0), sequences recursively."""
+    if isinstance(v, (list, tuple)):
+        return [_preproc_norm(x) for x in v]
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    return v
+
+
 def _read_base_geometry(base_ckpt) -> Dict:
-    """Geometry the base was trained with, read from its saved ``.hydra/config.yaml`` (preferred
+    """Geometry and preprocessing the base was trained with, read from its saved ``.hydra/config.yaml`` (preferred
     over hardcoding). Returns ``{}`` if the base has no sibling config (e.g. a bare ``.ckpt``) — the
     caller then skips the soft geometry warnings and leans on the engine's strict-load + a runtime
     shape error. NOTE: a base carries a ``finetune_config.json`` sidecar only if it was ITSELF
@@ -254,6 +286,16 @@ def _read_base_geometry(base_ckpt) -> Dict:
             for s in OmegaConf.to_container(strides, resolve=False):
                 prod *= int(s[0] if isinstance(s, (list, tuple)) else s)
             out["stride_product"] = prod
+        # Preprocessing parity: none of these changes a weight shape, so a divergence from
+        # the base passes the engine's strict-load silently -> read them for the preflight's
+        # soft warnings. Per-key try: one unreadable key must not discard the whole geometry.
+        for key in _PREPROC_KEYS:
+            try:
+                val = OmegaConf.select(cfg, key)
+                if val is not None:
+                    out[key] = OmegaConf.to_container(val) if OmegaConf.is_config(val) else val
+            except Exception:
+                pass
     except Exception:
         return {}
     return out
@@ -305,6 +347,25 @@ def finetune_preflight(stages: List[str], base_ckpts: Dict[str, str], ft: Dict) 
         if br is not None and cr != int(br):
             warnings.append(f"cell_radius={cr} differs from the base's training radius ({br}); this "
                             f"resizes the target spheres vs what the base learned (soft transfer shift).")
+
+    # --- preprocessing parity with the base (per stage): renorm/scales/channels/axis-order are
+    #     hardcoded in the finetune experiment configs, NOT inherited from the base, and none of
+    #     them changes a weight shape — a divergence passes the strict-load silently and feeds the
+    #     pretrained features differently-preprocessed inputs. SOFT-warn on any mismatch. ---
+    for stage in stages:
+        base_pre = _read_base_geometry(base_ckpts.get(stage))
+        ft_pre = _finetune_preprocessing(stage)
+        for key in _PREPROC_KEYS:
+            b, e = base_pre.get(key), ft_pre.get(key)
+            if b is not None and e is not None and _preproc_norm(b) != _preproc_norm(e):
+                warnings.append(
+                    f"{stage}: {key}={e!r} (fine-tune config) differs from the base's training "
+                    f"value {b!r}. Weights load fine, but the pretrained features would see "
+                    f"differently preprocessed inputs — silent transfer degradation."
+                )
+        if not base_pre and stage == "regression":
+            notes.append("regression base has no .hydra/config.yaml — cannot verify preprocessing "
+                         "parity; relying on the engine's strict-load + runtime shape check.")
 
     # --- optimization interactions with a frozen pretrained backbone ---
     try:
@@ -442,6 +503,28 @@ def _resolve_split(dataset_dir, output_dir, train_movies, val_movies) -> Path:
     return split
 
 
+def _kill_tree(proc: subprocess.Popen) -> None:
+    """Terminate the training subprocess AND its children, then escalate to kill.
+
+    A bare ``proc.terminate()`` only hits the top-level python: its spawned DataLoader
+    workers (``num_workers>0``) and the CUDA context can survive, and repeated
+    Stop/restart cycles then accumulate orphaned processes / GPU memory until an OOM.
+    """
+    try:
+        if os.name == "nt":
+            # /T = whole process tree, /F = force (no graceful path for a console child here)
+            subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        else:
+            os.killpg(os.getpgid(proc.pid), signal.SIGTERM)  # needs start_new_session=True
+    except (OSError, subprocess.SubprocessError):
+        pass  # already dead / no such group -> fall through to the wait+kill escalation
+    try:
+        proc.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+
+
 def _stream(cmd: List[str], should_stop: Optional[Callable[[], bool]]) -> Iterator[str]:
     """Run ``cmd``, yield stdout lines live, honour a stop flag, raise on failure."""
     yield f"[DARE3D] $ {' '.join(str(c) for c in cmd[1:4])} ..."
@@ -451,13 +534,16 @@ def _stream(cmd: List[str], should_stop: Optional[Callable[[], bool]]) -> Iterat
         # PYTHONUNBUFFERED/IOENCODING: live, clean UTF-8 stream on Windows (cp1252 would mojibake
         # the progress glyphs / non-ASCII in Lightning's output and stall line buffering).
         env={**os.environ, "PYTHONUNBUFFERED": "1", "PYTHONIOENCODING": "utf-8"},
+        # POSIX: own process group so _kill_tree's killpg reaches the DataLoader workers.
+        # (Windows uses taskkill /T instead; start_new_session raises there.)
+        start_new_session=(os.name != "nt"),
     )
     stopped = False
     try:
         for line in proc.stdout:
             yield line.rstrip("\n")
             if should_stop is not None and should_stop():
-                proc.terminate()
+                _kill_tree(proc)  # whole tree: workers + CUDA context, not just the leader
                 stopped = True
                 yield "[DARE3D] stop requested — terminating…"
                 break

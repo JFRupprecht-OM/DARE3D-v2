@@ -173,3 +173,83 @@ def test_bn_policy_adapt_reestimates_stats():
         for _ in range(3):
             m.net(torch.randn(2, 3, 16, 16, 16))
     assert not torch.equal(rm, fbn.running_mean)   # running stats re-estimated
+
+
+# --------------------------------------------------------------------------- #
+# Integration: the invariants above, but under a REAL Trainer.fit rather than a
+# hand-simulated eval()->train() flip. This is the test that would catch an
+# ordering regression (freeze after configure_optimizers, param groups over
+# net.parameters() instead of requires_grad, etc.).
+# --------------------------------------------------------------------------- #
+class _FitModule(FineTuneMixin, LightningModule):
+    """Faithful mirror of the real modules' fit wiring: setup('fit') applies the freeze,
+    configure_optimizers delegates to the mixin, training_step drives one backward pass."""
+    def __init__(self, net, ft):
+        super().__init__()
+        self.net = net
+        self.init_finetune(ft)
+
+    def setup(self, stage):
+        if stage == "fit" and self._finetune_active:
+            self.apply_finetune_setup()
+
+    def configure_optimizers(self):
+        return self.finetune_optimizers()
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+        out = self.net(x)["heatmaps"][0]
+        return torch.nn.functional.mse_loss(out, y)
+
+
+class _TinyVolumes(torch.utils.data.Dataset):
+    def __init__(self, n=2):
+        self.x = torch.randn(n, 3, 16, 16, 16)
+        self.y = torch.zeros(n, 1, 16, 16, 16)
+
+    def __len__(self):
+        return len(self.x)
+
+    def __getitem__(self, i):
+        return self.x[i], self.y[i]
+
+
+def _run_one_fit(bn_mode):
+    import lightning as L
+    net = small_unet()
+    m = _FitModule(net, _ft(bn_mode=bn_mode))
+    m.load_base = lambda: None  # no base ckpt in this synthetic test
+    dl = torch.utils.data.DataLoader(_TinyVolumes(2), batch_size=2)
+    trainer = L.Trainer(accelerator="cpu", max_epochs=1, limit_train_batches=1,
+                        num_sanity_val_steps=0, enable_checkpointing=False,
+                        logger=False, enable_progress_bar=False, enable_model_summary=False)
+    trainer.fit(m, dl)
+    return m, net
+
+
+def test_fit_frozen_bn_stays_eval_and_stats_unchanged():
+    """After a real Trainer.fit, frozen BatchNorm3d is in eval AND its running stats are
+    untouched — the mid-epoch train() re-arm did not clobber the freeze."""
+    m, net = _run_one_fit("frozen")
+    fbns = m._frozen_bn3d
+    assert fbns, "test needs BatchNorm3d present"
+    # Decisive signal: frozen BN is in eval AFTER a real fit (the mid-epoch train() re-arm
+    # did not flip it back). Running stats can only drift in train mode, so a frozen BN that
+    # never entered train keeps its init defaults (running_mean==0, running_var==1) —
+    # asserting that directly proves no stat update happened across the whole fit.
+    assert all(not bn.training for bn in fbns)
+    assert all(not bn.weight.requires_grad and not bn.bias.requires_grad for bn in fbns)
+    for bn in fbns:
+        assert torch.count_nonzero(bn.running_mean) == 0        # never updated from init 0
+        assert torch.equal(bn.running_var, torch.ones_like(bn.running_var))  # still init 1
+
+
+def test_fit_optimizer_groups_match_requires_grad_exactly():
+    """The optimizer sees EXACTLY the trainable params — no frozen param handed in, no
+    trainable param silently omitted."""
+    m, net = _run_one_fit("frozen")
+    opt = m.optimizers().optimizer if hasattr(m.optimizers(), "optimizer") else m.optimizers()
+    in_opt = {id(p) for g in opt.param_groups for p in g["params"]}
+    trainable = {id(p) for p in net.parameters() if p.requires_grad}
+    assert in_opt == trainable
+    assert all(not p.requires_grad for p in net.parameters() if id(p) not in in_opt)
