@@ -1,0 +1,79 @@
+# @package _global_
+
+# Fine-tune (transfer-learning) the SEGMENTATION model from a pretrained base checkpoint.
+# Run:
+#   python dare3d/train.py experiment=finetune_segmentation \
+#       model.finetune.base_ckpt=<path/to/segmentation .../checkpoints/last.ckpt>
+# The base MUST be a segmentation checkpoint; a wrong stage fails fast with a clear message.
+
+defaults:
+  - override /data: segmentation
+  - override /data/augmentation: monai_augmentation_best
+  - override /model: segmentation
+  - override /callbacks: default
+  - override /trainer: default
+  - override /logger: many_loggers
+
+tags: ["finetune", "segmentation"]
+task_name: "segmentation3D_finetune"
+
+seed: 12345
+
+trainer:
+  min_epochs: 1
+  max_epochs: 50
+  # cuDNN-on 3D convs have no deterministic impl -> "warn" degrades gracefully (see HANDOFF §0.5).
+  deterministic: warn
+  gradient_clip_val: ${model.finetune.grad_clip}
+
+data:
+  batch_size: 8
+
+input_channels: [-1, 0, 1]
+scale_file: ${paths.data_dir}/3d/scales.json
+default_scale: [0.621, 0.621, 2]
+target_scale: 1.0
+steps_per_epoch: 1000
+
+renorm: "min-max"
+order_dim_img: "zyx"
+crop_size: 128
+type_mask: "center"
+mask_geom: "sphere"
+downsample_factors: [1]
+cell_radius: 8
+time_axis_padding: 1
+
+monitor_val: "val/iou"
+monitor_direction: "max"
+
+callbacks:
+  early_stopping:
+    _target_: lightning.pytorch.callbacks.EarlyStopping
+    monitor: ${monitor_val}
+    mode: ${monitor_direction}
+    patience: ${model.finetune.patience}
+    min_delta: 0.0
+    check_finite: True
+
+# Fine-tune hyperparameters. Passed to SegmentationLitModule(finetune=...) which builds the
+# discriminative AdamW + warmup->cosine schedule and applies the freeze / BN policy.
+# NOTE: at downsample_factors=[1] there are no extra heads, so freeze_preset=encoder trains the
+# U-Net decoder + output; a backbone-only freeze that left nothing trainable would error.
+model:
+  finetune:
+    base_ckpt: ???            # REQUIRED: path to the base segmentation last.ckpt
+    stage: segmentation
+    freeze_preset: encoder    # encoder | encoder_partial | none
+    unfreeze_last_stages: 0   # >0 with encoder_partial: unfreeze the K deepest encoder stages
+    bn_mode: frozen           # frozen (true freeze) | adapt (re-estimate running stats)
+    ft_lr: 1e-4
+    backbone_lr_mult: 0.1     # unfrozen-backbone LR = ft_lr * this
+    weight_decay: 1e-4
+    warmup_epochs: 2
+    lr_schedule: warmup_cosine
+    grad_clip: 1.0
+    augment: true
+    augment_strength: 1.0
+    patience: 10
+    seed: 12345

@@ -4,7 +4,8 @@ Ties our quaternion->axis conversion and (m,t,x,y,z) -> napari (t,z,y,x) reversa
 to DARE3D's OWN reference drawing (``angles3d.get_points_from_quat``). No napari,
 no models, no GPU. Run:
 
-    python verify_geometry.py
+    python tests/test_geometry.py        # standalone
+    pytest tests/test_geometry.py        # collected with the suite
 """
 import numpy as np
 
@@ -87,4 +88,4 @@ if __name__ == "__main__":
     test_point_reversal()
     test_axis_and_segment_match_repo()
     test_centers_only_layer()
-    print("verify_geometry: ALL OK")
+    print("test_geometry: ALL OK")

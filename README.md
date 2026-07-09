@@ -7,6 +7,10 @@
 <a href="https://hydra.cc/"><img alt="Config: Hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a>
 <a href="https://napari.org"><img alt="napari" src="https://img.shields.io/badge/napari-plugin-blueviolet"></a>
 
+<br>
+
+<img src="napari_dare3d/DARE3Dnapari.png" width="900" alt="DARE3D inference in napari: detected division centers (red) and axes (cyan) overlaid on a 3D movie">
+
 </div>
 
 ---
@@ -27,27 +31,42 @@ by a single `pip install -e .`.
 > axis** encoded as a unit **quaternion** (the axis is the normalised imaginary part of the
 > quaternion) and an **axis length** in voxels.
 >
-> **Beta features.** Interactive **retraining** — and the upcoming **transfer-learning / fine-tuning**
-> mode — ship as **beta** in this version: experimental, with results, defaults, and the API subject
-> to change. See *Training & retraining* below.
-
 > **Citation.** If you use DARE3D, please cite the preprint:
 > Karpinski *et al.*, *bioRxiv* 2024 — <https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2>
 >
 > **Authors:** Romain Karpinski, Marc Karnat, Alice Gros, Qazi Saaheelur Rahaman, Jules Vanaret,
 > Mehdi Saadaoui, Sham Tlili, and Jean-François Rupprecht.
 
-## Repository contents
+## Project structure
 
 ```
-dare3d/                       # core package: data, models, losses, metrics, train/eval/predict
-configs/                      # Hydra configuration tree
-napari_dare3d/                # the napari plugin (in-process inference + training widgets)
-notebooks/                    # Run_dare3d_Prediction / Run_dare3d_Retraining + data viz/normalisation
-scripts/                      # dataset/experiment helpers
-tests/                        # unit + integration tests
-verify_geometry.py            # plugin geometry self-check (no models/GPU)
-verify_train.py               # plugin training-command self-check (no GPU)
+DARE3d/
+├── dare3d/                     # core framework (PyTorch Lightning + Hydra)
+│   ├── data/                   # datamodule + dataset components (seg / regression / tap / segres)
+│   ├── models/                 # LightningModules + nets (multiscale U-Net, SwinUNETR)
+│   ├── losses/                 # segmentation / angle / quaternion losses
+│   ├── metrics/                # inference + object-level matching (centers, axes, lengths)
+│   ├── loggers/                # training-time image-panel loggers (seg / regression)
+│   ├── tools/                  # CV-split + sparse-weight generators
+│   ├── utils/                  # logging, instantiation, helpers
+│   ├── train.py                # training entry point (Hydra)
+│   ├── eval.py                 # evaluation entry point
+│   ├── predict.py              # inference entry point
+│   └── train_eval.py           # seg → regression → eval orchestrator
+├── napari_dare3d/              # napari plugin (in-process inference + training)
+│   ├── _api.py                 # napari-free inference API (reuses dare3d.metrics)
+│   ├── _widget.py              # inference widget
+│   ├── _train_widget.py        # retraining + fine-tuning widget (beta)
+│   ├── _train.py               # builds + streams the Hydra training subprocess
+│   ├── _data.py, _io.py        # TIFF (T,Z,Y,X) loading + coordinate mapping
+│   └── napari.yaml             # npe2 plugin manifest
+├── configs/                    # Hydra config tree (experiment/ model/ data/ trainer/ logger/ …)
+├── notebooks/                  # Run_dare3d_Prediction / Run_dare3d_Retraining / Run_dare3d_Finetune + data viz
+├── scripts/                    # dataset/experiment generators
+├── tests/                      # pytest suite — unit + integration, plus geometry &
+│                               #   training-command self-checks (no GPU/models/napari)
+├── requirements.txt, setup.py, pyproject.toml   # dependencies + packaging
+└── README.md
 ```
 
 Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (core framework) and
@@ -55,8 +74,9 @@ Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (
 
 ## Installation
 
-**Prerequisites:** Python 3.10 and Conda (recommended). An NVIDIA GPU with **CUDA 11.8+** is needed
-for regression and training; CPU-only is fine for **segmentation-only inference**.
+**Prerequisites:** Python 3.10 and Conda (recommended). An NVIDIA GPU with **CUDA 11.8+** is
+**required for training** and strongly recommended for inference; **inference also runs CPU-only**
+(both segmentation and regression), just slower — fine for small movies.
 
 ```bash
 git clone https://github.com/qazi05/DARE3d
@@ -66,13 +86,13 @@ cd DARE3d
 conda create -n dare3d-v2 python=3.10 -y
 conda activate dare3d-v2
 
-# 2) PyTorch first — pick the build that matches your machine:
-#    CUDA 12.1:
-python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-#    CUDA 11.8:
-#    python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-#    CPU-only (segmentation inference only — no regression/training):
-#    python -m pip install torch torchvision torchaudio
+# 2) PyTorch first — install a CUDA build matching your GPU. Training needs torch >= 2.5
+#    (cuDNN >= 9); older cuDNN 8.x segfaults on 3D convolutions (see "Training & retraining").
+#    Default — CUDA 12.8 wheels (torch >= 2.7; includes RTX 50-series / Blackwell sm_120 kernels):
+python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+#    Other/older GPUs, a different CUDA, or CPU-only: use the official selector at
+#    https://pytorch.org/get-started/locally/  (CPU-only torch runs the full inference
+#    pipeline — segmentation + regression — but training needs a CUDA GPU).
 
 # 3) the rest of the dependencies
 pip install -r requirements.txt
@@ -85,8 +105,8 @@ pip install -e .
 ```
 
 The editable install registers the napari plugin via its `napari.manifest` entry point, so
-**napari lists "DARE3D" under Plugins** with no extra step. (CPU-only PyTorch works for
-segmentation inference; **regression and training require a CUDA GPU**.)
+**napari lists "DARE3D" under Plugins** with no extra step. (CPU-only PyTorch runs the full
+inference pipeline — segmentation + regression; **only training requires a CUDA GPU**.)
 
 > **Import errors after a layout change?** Re-run `pip install -e .` to refresh the editable
 > install. For full Hydra tracebacks, set `HYDRA_FULL_ERROR=1` (PowerShell: `$env:HYDRA_FULL_ERROR=1`).
@@ -154,7 +174,8 @@ matrices + lengths) are written under the Hydra run directory. Useful overrides:
 - **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3d/scales.json`.
 - **Detection tuning:** `segmentation.threshold=0.5`, `segmentation.min_weighted_prob=0.1`,
   `segmentation.inference_overlap=0.25`, `segmentation.inference_batch_size=4`.
-- **Device:** `device=gpu` (regression needs CUDA) or `device=cpu` (segmentation only).
+- **Device:** `device=gpu` (recommended) or `device=cpu` — both run the full pipeline
+  (segmentation + regression); CPU is slower.
 - Omit `+regression.model_dir` to get **centers only** (no axes).
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
@@ -164,8 +185,8 @@ validates them, runs segmentation + regression, and visualises the result.
 **Plugins → DARE3D → DARE3D inference**. Set the segmentation / regression model-dir fields and
 **Run** — it overlays the detected division **centers** and **axes** as napari Points layers.
 Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window, expand **Show advanced
-parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Regression needs a
-CUDA device; segmentation runs on CPU or GPU.)
+parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Both segmentation
+and regression run on CPU or GPU; pick GPU for speed on large movies.)
 
 ## Postprocessing
 
@@ -192,12 +213,16 @@ axes (cyan) as Points layers.
 
 ## Training & retraining
 
-> **⚠️ Beta feature.** Retraining — and the planned transfer-learning / fine-tuning mode — is
-> **experimental**: results, defaults, and the API may change in a future release, and the training
-> defaults currently assume a large-memory GPU. For routine use, run **inference** with the released
-> models above.
+> **Supported training stack: torch >= 2.5 (cuDNN >= 9).** Older cuDNN (8.x, e.g. torch 2.2)
+> intermittently **segfaults** during 3D-convolution training (native `0xC0000005`, no Python
+> traceback). `dare3d/train.py` guards against this and **fails fast** with install instructions
+> (see `check_cudnn_for_3d`). Manual override via the `DARE3D_CUDNN` env var: `DARE3D_CUDNN=0`
+> disables cuDNN (stable but slower, to train on an old stack); `DARE3D_CUDNN=1` forces cuDNN on
+> (only safe on cuDNN >= 9).
 
-Retraining can be run **two ways** — from the terminal or the notebook. **Training requires a
+Retraining and fine-tuning can be run from the terminal, the **notebooks**, or the napari widget.
+**The notebooks (`Run_dare3d_Retraining.ipynb` / `Run_dare3d_Finetune.ipynb`) are the recommended,
+supported workflow; the napari widget is an experimental GUI twin (beta).** **Training requires a
 CUDA GPU.** Data layout: `data/3d/<dataset>/{train,val}/{im,label}/*.tif` (movies are
 `(T, Z, Y, X)`; labels encode the daughter pair: first daughter → odd ids, second → even ids).
 
@@ -230,13 +255,28 @@ python dare3d/train.py experiment=regression   train_dir=3d/<dataset>/train val_
 | `--overwrite` | `True` | Re-run even if the run directory already exists. |
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Retraining.ipynb` — it validates your dataset layout and
-drives segmentation → regression → evaluation, streaming the logs inline.
+drives segmentation → regression → evaluation, streaming the logs inline. To **fine-tune** a
+pretrained checkpoint instead of retraining from scratch, use `notebooks/Run_dare3d_Finetune.ipynb`
+(the command-line twin of the widget's *Transfer learning — fine-tune* mode: it derives the imposed
+architecture from the base, drives the same `experiment=finetune_{segmentation,regression}` flow, and
+verifies the run in-process and via subprocess).
 
 Outputs land in `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `checkpoints/`), ready for the
 inference step. Runs are logged to a local **MLflow** SQLite store under `logs/` — browse it with
 `mlflow ui --backend-store-uri sqlite:///logs/mlflow.db`. (The napari plugin also exposes a
-**DARE3D training** widget that wraps these same `train.py` / `eval.py` steps.)
+**DARE3D retraining & fine-tuning** widget — the **beta** GUI twin of the notebooks above, offered
+for convenience; prefer the notebooks for supported runs — that wraps these same `train.py` /
+`eval.py` steps: a
+**Mode** selector switches between *Retrain from scratch* and *Transfer learning — fine-tune*; the
+latter reveals per-stage base-checkpoint pickers and an **Advanced** section — `freeze_preset`,
+`bn_mode` (frozen/adapt), `ft_lr`, discriminative LR, warmup→cosine, early stopping — driving the
+same `experiment=finetune_{segmentation,regression}` flow.)
 
+> **3. ⚠️ Beta — napari GUI.** The retraining / fine-tuning **capability is supported**, but the
+> **napari widget** that wraps is **experimental** — its defaults and GUI/API may change. The
+> **preferred, supported workflow are the notebooks or CLI options** above (`Run_dare3d_Retraining.ipynb` /
+> `Run_dare3d_Finetune.ipynb`), not the widget. 
+> 
 ## Data preparation & helper scripts
 
 Optional helpers for building the `data/3d/<dataset>/{train,val}/{im,label}` layout:
@@ -258,9 +298,9 @@ reproducibility; adapt one to your own movies rather than running it verbatim.
 ## Testing & development
 
 ```bash
-python verify_geometry.py   # quaternion -> axis + coordinate mapping (no napari/models/GPU)
-python verify_train.py      # training-command construction + paths (no GPU)
-make test                   # unit tests (excludes slow ones)
+python tests/test_geometry.py        # quaternion -> axis + coordinate mapping (no napari/models/GPU)
+python tests/test_train_commands.py  # training-command construction + paths (no GPU)
+make test                            # unit tests, incl. the two self-checks above (excludes slow ones)
 make test-full              # all tests, including slow ones
 make format                 # run pre-commit hooks (formatting/linting)
 make clean                  # remove build artefacts and caches
@@ -275,9 +315,7 @@ make clean                  # remove build artefacts and caches
   install and its `napari.manifest` entry point).
 - **Demo data won't download:** grab the Zenodo bundle manually
   ([record 19113351](https://zenodo.org/records/19113351)) and unzip it at the repo root.
-- DARE3D training was developed on Linux/HPC; on some Windows setups the Lightning backward pass
-  can crash natively even when inference is fine — train on Linux/HPC and reuse the resulting
-  model directory.
+- DARE3D provided models were trained on Linux/HPC.
 
 ## Related projects
 

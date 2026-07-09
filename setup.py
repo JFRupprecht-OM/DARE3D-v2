@@ -39,7 +39,7 @@ setup(
     name="dare3d",
     version="0.0.1",
     description="DARE3D: Division Axis and Region Estimation in 3D time-lapse images (core + napari plugin)",
-    author="Romain Karpinski, Marc Karnat, Alice Gros, Qazi Saaheelur Rahaman, "
+    author="Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, "
     "Jules Vanaret, Mehdi Saadaoui, Sham Tlili, Jean-Francois Rupprecht",
     author_email="rupprecht.jf@gmail.com",
     url="https://github.com/qazi05/DARE3d",

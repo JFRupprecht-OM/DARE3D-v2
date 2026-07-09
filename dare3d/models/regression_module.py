@@ -6,8 +6,9 @@ from lightning import LightningModule
 from torchmetrics import MeanMetric
 
 from dare3d.loggers.regression_logger import RegressionLogger
+from dare3d.models.finetune import FineTuneMixin
 
-class RegressionLitModule(LightningModule):
+class RegressionLitModule(FineTuneMixin, LightningModule):
     def __init__(
         self,
         net: torch.nn.Module,
@@ -15,6 +16,7 @@ class RegressionLitModule(LightningModule):
         scheduler: torch.optim.lr_scheduler = None,
         criterion=None,
         compile=False,
+        finetune: dict = None,
     ) -> None:
         super().__init__()
 
@@ -23,6 +25,7 @@ class RegressionLitModule(LightningModule):
         self.save_hyperparameters(logger=False, ignore=["net", "criterion"])
 
         self.net = net
+        self.init_finetune(finetune)
 
         # loss function
         self.criterion = criterion
@@ -210,6 +213,8 @@ class RegressionLitModule(LightningModule):
 
         :param stage: Either `"fit"`, `"validate"`, `"test"`, or `"predict"`.
         """
+        if stage == "fit" and getattr(self, "_finetune_active", False):
+            self.apply_finetune_setup()
         if self.hparams.compile and stage == "fit":
             self.net = torch.compile(self.net)
 
@@ -235,6 +240,8 @@ class RegressionLitModule(LightningModule):
 
         :return: A dict containing the configured optimizers and learning-rate schedulers to be used for training.
         """
+        if getattr(self, "_finetune_active", False):
+            return self.finetune_optimizers()
         optimizer = self.hparams.optimizer(params=self.trainer.model.parameters())
         if self.hparams.scheduler is not None:
             self.scheduler = self.hparams.scheduler(optimizer=optimizer)

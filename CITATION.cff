@@ -1,0 +1,67 @@
+cff-version: 1.2.0
+message: "If you use DARE3D, please cite the preprint (preferred-citation) and, where relevant, the software/data release."
+title: "DARE3D: Division Axis and Region Estimation in 3D time-lapse images"
+abstract: "napari plugin and PyTorch-Lightning framework for detecting cell divisions and estimating their 3D division axes in time-lapse microscopy."
+type: software
+repository-code: "https://github.com/qazi05/DARE3d"
+license: MIT
+version: "0.0.1"
+doi: "10.5281/zenodo.19113351"
+authors:
+  - family-names: Karpinski
+    given-names: Romain
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Gros
+    given-names: Alice
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Karnat
+    given-names: Marc
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: "Saaheelur Rahaman"
+    given-names: Qazi
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Vanaret
+    given-names: Jules
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Saadaoui
+    given-names: Mehdi
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Tlili
+    given-names: Sham
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+  - family-names: Rupprecht
+    given-names: Jean-François
+    affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.19113351"
+    description: "Software and data release (Zenodo)"
+  - type: doi
+    value: "10.1101/2024.02.05.578987"
+    description: "Method paper (bioRxiv preprint)"
+preferred-citation:
+  type: article
+  title: "DARE: Division Axis and Region Estimation from 2D and 3D Time-Lapse Images"
+  year: 2026
+  doi: "10.1101/2024.02.05.578987"
+  journal: "bioRxiv"
+  publisher:
+    name: "Cold Spring Harbor Laboratory"
+  url: "https://www.biorxiv.org/content/early/2026/03/27/2024.02.05.578987"
+  authors:
+    - family-names: Karpinski
+      given-names: Romain
+    - family-names: Gros
+      given-names: Alice
+    - family-names: Karnat
+      given-names: Marc
+    - family-names: "Saaheelur Rahaman"
+      given-names: Qazi
+    - family-names: Vanaret
+      given-names: Jules
+    - family-names: Saadaoui
+      given-names: Mehdi
+    - family-names: Tlili
+      given-names: Sham
+    - family-names: Rupprecht
+      given-names: Jean-François

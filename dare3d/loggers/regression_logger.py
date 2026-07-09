@@ -87,9 +87,14 @@ class RegressionLogger(Logger):
                 
                 # Display bipoint for confirmation
                 bp = head_true["bipoint"][j].detach().cpu()
+                # Clamp axis endpoints into the crop bounds: a tip can land exactly on the edge
+                # (e.g. index 32 in a size-32 crop), which would otherwise IndexError here.
+                _sp = bipoints.shape[1:]
+                p0 = [min(max(int(c), 0), s - 1) for c, s in zip(bp[0], _sp)]
+                p1 = [min(max(int(c), 0), s - 1) for c, s in zip(bp[1], _sp)]
                 for k in range(bipoints.shape[0]):
-                    bipoints[k, bp[0][0], bp[0][1], bp[0][2]] = 255
-                    bipoints[k, bp[1][0], bp[1][1], bp[1][2]] = 255
+                    bipoints[k, p0[0], p0[1], p0[2]] = 255
+                    bipoints[k, p1[0], p1[1], p1[2]] = 255
                 io.imsave(os.path.join(cdir, f"bipoints_{current_max_index}.tif"), bipoints, check_contrast=False)
                 
                 current_max_index += 1

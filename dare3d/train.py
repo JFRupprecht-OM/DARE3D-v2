@@ -1,3 +1,4 @@
+import os
 from typing import Any, Dict, List, Optional, Tuple
 
 import hydra
@@ -11,6 +12,15 @@ from monai.optimizers import LearningRateFinder
 
 from lightning.pytorch.plugins.environments import SLURMEnvironment
 SLURMEnvironment.detect = lambda: False
+
+# cuDNN's algorithm selection intermittently segfaults (native 0xC0000005, no CUDA error) during
+# 3D-conv training on some stacks — observed on Turing (RTX 5000) + torch 2.2.2 / cuDNN 8.8.
+# cudnn.benchmark/deterministic only REDUCE the crash rate; only disabling cuDNN was reliable
+# (verified 6/6 runs vs intermittent crashes otherwise). So cuDNN is off by default here for
+# dependable training; on a healthy stack (e.g. a newer cuDNN) set env DARE3D_CUDNN=1 to re-enable
+# it for speed. (Proper long-term fix: upgrade the CUDA/cuDNN/torch stack.)
+if os.environ.get("DARE3D_CUDNN") != "1":
+    torch.backends.cudnn.enabled = False
 
 OmegaConf.register_new_resolver("eval", eval)
 
@@ -48,6 +58,34 @@ from dare3d.utils import (
 log = RankedLogger(__name__, rank_zero_only=True)
 
 
+def check_cudnn_for_3d() -> None:
+    """Fail fast on a cuDNN version that segfaults DARE3D's 3D-conv training.
+
+    Older cuDNN (8.x) intermittently crashes the 3D convolutions with a native access
+    violation (0xC0000005, no Python traceback); cuDNN >= 9 (torch >= 2.5) runs clean.
+    If the user has made an explicit ``DARE3D_CUDNN`` choice, that wins and this guard
+    stays out of the way (consistent with the module-level gate above). Fail-fast (raise)
+    rather than auto-disabling, so we never mutate global cuDNN state here.
+    """
+    if not torch.cuda.is_available():
+        return
+    cudnn_ver = torch.backends.cudnn.version()
+    # ENCODING TRAP — do NOT "simplify" this: cuDNN changed its version integer at 9.0.
+    #   pre-9: MAJOR*1000  + MINOR*100 + PATCH  -> 8.9.7 = 8907
+    #   9+:    MAJOR*10000 + MINOR*100 + PATCH  -> 9.1.0 = 90100
+    # Compare against the integer 90000. Do NOT parse the leading digit.
+    if cudnn_ver is not None and cudnn_ver < 90000 and "DARE3D_CUDNN" not in os.environ:
+        raise RuntimeError(
+            f"cuDNN {cudnn_ver} (< 9.0) intermittently segfaults during DARE3D 3D-convolution "
+            "training (native 0xC0000005, no Python traceback). Install a supported stack — "
+            "torch>=2.5 (cuDNN>=9), e.g.:\n"
+            "    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128\n"
+            "Or run anyway on this cuDNN by setting DARE3D_CUDNN explicitly:\n"
+            "    DARE3D_CUDNN=0  -> disable cuDNN (stable but slower)\n"
+            "    DARE3D_CUDNN=1  -> keep cuDNN ON (faster, but will likely crash on cuDNN < 9)"
+        )
+
+
 @task_wrapper
 def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """Trains the model. Can additionally evaluate on a testset, using best weights obtained during
@@ -63,11 +101,20 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     if cfg.get("seed"):
         L.seed_everything(cfg.seed, workers=True)
 
+    # Refuse to run on a cuDNN that segfaults 3D-conv training (unless DARE3D_CUDNN is set).
+    check_cudnn_for_3d()
+
     log.info(f"Instantiating datamodule <{cfg.data._target_}>")
     datamodule: LightningDataModule = hydra.utils.instantiate(cfg.data)
 
     log.info(f"Instantiating model <{cfg.model._target_}>")
     model: LightningModule = hydra.utils.instantiate(cfg.model)
+
+    # Fine-tuning: load the base checkpoint into model.net BEFORE the (slow) data/Trainer setup,
+    # so a wrong-stage or missing base fails in seconds (stage-aware error).
+    if getattr(model, "_finetune_active", False):
+        log.info(f"Fine-tuning: loading base weights from {model._ft.get('base_ckpt')}")
+        model.load_base()
 
     log.info("Instantiating callbacks...")
     callbacks: List[Callback] = instantiate_callbacks(cfg.get("callbacks"))
@@ -125,6 +172,13 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
 
     # merge train and test metrics
     metric_dict = {**train_metrics, **test_metrics}
+
+    # Fine-tuning: write the provenance sidecar next to the saved checkpoints.
+    if getattr(model, "_finetune_active", False):
+        ckpt_cb = getattr(trainer, "checkpoint_callback", None)
+        ckpt_dir = getattr(ckpt_cb, "dirpath", None)
+        if ckpt_dir:
+            log.info(f"Fine-tuning: wrote provenance sidecar {model.write_sidecar(ckpt_dir)}")
 
     return metric_dict, object_dict
 

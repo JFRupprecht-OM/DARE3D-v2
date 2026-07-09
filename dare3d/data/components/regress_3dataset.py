@@ -151,27 +151,31 @@ class Regress3Dataset(Cell3Dataset):
         assert len(cosin_angles) == len(centers)
         return cosin_angles
 
-    def get_crop_from_center_gpu(self, center, device):
+    def get_crop_from_center(self, center, device="cpu"):
+        """Extract the 3-frame (t-2..t) crop around ``center`` as a float32 tensor.
+
+        Single source of truth for both the CPU and GPU regression-inference paths:
+        ``device`` is passed straight to ``torch.tensor`` (``"cpu"`` or a CUDA device).
+        Early timepoints with fewer than 3 frames of history are front-padded with
+        zeros so the regression net always receives 3 input channels.
+        """
         import torch
-        m,t,x,y,z = center
-        m,t,x,y,z = m,int(np.rint(t)),int(np.rint(x)),int(np.rint(y)),int(np.rint(z))
+        m, t, x, y, z = center
+        t, x, y, z = int(np.rint(t)), int(np.rint(x)), int(np.rint(y)), int(np.rint(z))
         movie = self.movies_im[m]
-        movie = movie[t-2:t+1]
+        movie = movie[t - 2:t + 1]
         if movie.shape[0] < 3:
             n_diff = 3 - movie.shape[0]
-            pad_section = np.zeros((n_diff,)+movie.shape[1:], dtype=movie.dtype)
+            pad_section = np.zeros((n_diff,) + movie.shape[1:], dtype=movie.dtype)
             movie = np.concatenate([pad_section, movie], axis=0)
         assert movie.shape[0] == 3
         movie = torch.tensor(movie.astype(np.float32), device=device)
         crop = self.crop_img_from_center(movie, (x, y, z), return_crop=True)
         return crop
 
-    def get_crop_from_center(self, center):
-        m,t,x,y,z = center
-        movie = self.movies_im[m]
-        movie = movie[int(t)-2:int(t)+1]
-        crop = self.crop_img_from_center(movie, (int(x), int(y), int(z)), return_crop=True)
-        return crop
+    def get_crop_from_center_gpu(self, center, device):
+        """GPU alias kept for the existing call site; see ``get_crop_from_center``."""
+        return self.get_crop_from_center(center, device)
 
     def augment_sample(self, X, Y):
         augmented = self._augmentations({"image": X, "label":Y})
