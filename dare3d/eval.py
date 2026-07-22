@@ -5,14 +5,13 @@ from typing import Any, Dict, List, Tuple
 import hydra
 import numpy as np
 import rootutils
-import torch
 from lightning import LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from lightning.pytorch.loggers.mlflow import MLFlowLogger
 from omegaconf import DictConfig, OmegaConf
 from rich.pretty import pprint
 
-OmegaConf.register_new_resolver("eval", eval)
+OmegaConf.register_new_resolver("eval", eval, replace=True)
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -34,6 +33,7 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 from dare3d.metrics.infer_measure import (infer_and_evaluate_regression,
                                              infer_and_evaluate_segmentation)
+from dare3d.models.finetune import load_net_state_dict
 from dare3d.utils import (RankedLogger, extras, instantiate_loggers,
                              log_hyperparameters, task_wrapper)
 
@@ -54,6 +54,7 @@ def evaluate_segmentation(cfg: DictConfig):
 
     log.info(f"Instantiating model <{cfg.model._target_}>")
     model: LightningModule = hydra.utils.instantiate(cfg.model)
+    load_net_state_dict(model.net, cfg.ckpt_path, stage="segmentation")
 
     log.info("Instantiating loggers...")
     logger: List[Logger] = instantiate_loggers(cfg.get("logger"))
@@ -80,13 +81,11 @@ def evaluate_segmentation(cfg: DictConfig):
         log_hyperparameters(object_dict)
 
     if cfg.lightning_test:
-        log.info("Starting testing!")        
-        trainer.test(model=model, datamodule=datamodule, ckpt_path=cfg.ckpt_path)
-    else:
-        # state_dict = torch.load(cfg.ckpt_path, map_location="cpu")["state_dict"]
-        state_dict = torch.load(cfg.ckpt_path, map_location="cpu", weights_only=False)["state_dict"] #qazi_change_23/10/25
-        model.load_state_dict(state_dict)
-        model.net.eval()
+        log.info("Starting testing!")
+        # The network is already loaded strictly above. Passing the checkpoint here would make
+        # Lightning reload version-sensitive criterion and TorchMetrics buffers.
+        trainer.test(model=model, datamodule=datamodule, ckpt_path=None)
+    model.net.eval()
 
     output_dir = cfg.model_dir
 
@@ -119,6 +118,7 @@ def evaluate_segmentation(cfg: DictConfig):
 def evaluate_regression(cfg: DictConfig, info):
     datamodule: LightningDataModule = hydra.utils.instantiate(cfg.data)
     model: LightningModule = hydra.utils.instantiate(cfg.model)
+    load_net_state_dict(model.net, cfg.ckpt_path, stage="regression")
 
     log.info("Instantiating loggers...")
     logger: List[Logger] = instantiate_loggers(cfg.get("logger"))
@@ -128,9 +128,6 @@ def evaluate_regression(cfg: DictConfig, info):
         if isinstance(logg, MLFlowLogger):
             mlflow_logger = logg
 
-    log.info(f"Loading checkpoint: {cfg.ckpt_path}")
-    state_dict = torch.load(cfg.ckpt_path, map_location="cpu", weights_only=False)["state_dict"]
-    model.load_state_dict(state_dict)
     model.net.eval()
     
     device_name = cfg.device

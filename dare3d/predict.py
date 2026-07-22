@@ -7,20 +7,19 @@ import rootutils
 import torch
 from omegaconf import DictConfig, OmegaConf
 
-from dare3d.utils import RankedLogger, extras
 from dare3d.metrics.inference import segmentation_inference, regression_inference
 from dare3d.metrics.object_level import connected_components, statistics_optimized, get_sphere_vol, filter_by_object_weighted_prob
+from dare3d.models.finetune import load_net_state_dict
+from dare3d.utils import RankedLogger, extras
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 log = RankedLogger(__name__, rank_zero_only=True)
 
-OmegaConf.register_new_resolver("eval", eval)
+OmegaConf.register_new_resolver("eval", eval, replace=True)
 
-def load_data(cfg):
+def load_data(cfg, *, stage: str):
     model = hydra.utils.instantiate(cfg.model)
-    # state_dict = torch.load(cfg.ckpt_path, map_location="cpu")["state_dict"]
-    state_dict = torch.load(cfg.ckpt_path, map_location="cpu", weights_only=False)["state_dict"] #qazi_change_23/10/25
-    model.load_state_dict(state_dict)
+    load_net_state_dict(model.net, cfg.ckpt_path, stage=stage)
 
     device=None
     if cfg.device == "gpu" or cfg.device == "cuda":
@@ -40,7 +39,7 @@ def load_data(cfg):
     return dataset, model, device, output_dir
 
 def do_segmentation(cfg):
-    dataset, model, device, output_dir = load_data(cfg)
+    dataset, model, device, output_dir = load_data(cfg, stage="segmentation")
     output_dir = os.path.join(output_dir, "segmentation")
     predictions = segmentation_inference(dataset, model, device, cfg.crop_size, cfg.inference_batch_size, cfg.inference_overlap, output_dir=output_dir)
     
@@ -68,7 +67,7 @@ def do_segmentation(cfg):
     return centers
 
 def do_regression(cfg, centers):
-    dataset, model, device, output_dir = load_data(cfg)
+    dataset, model, device, output_dir = load_data(cfg, stage="regression")
     dataset.pad_images()
     dataset._normalize(dataset.renorm)
 

@@ -22,7 +22,7 @@ SLURMEnvironment.detect = lambda: False
 if os.environ.get("DARE3D_CUDNN") != "1":
     torch.backends.cudnn.enabled = False
 
-OmegaConf.register_new_resolver("eval", eval)
+OmegaConf.register_new_resolver("eval", eval, replace=True)
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
