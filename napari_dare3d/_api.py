@@ -44,6 +44,7 @@ from dare3d.metrics.object_level import (
     get_sphere_vol,
     statistics_optimized,
 )
+from dare3d.models.finetune import load_net_state_dict
 
 # ``dare3d.predict`` registers this at import time; some net/config nodes use
 # ``${eval:...}``. ``replace=True`` keeps re-imports safe in a long napari session.
@@ -148,11 +149,10 @@ def _load_inference_cfg(
     return cfg
 
 
-def _build_model(cfg, torch_device: torch.device):
-    """Instantiate the LightningModule and load checkpoint weights (as predict.py)."""
+def _build_model(cfg, torch_device: torch.device, *, stage: str):
+    """Instantiate a LightningModule and strictly load only its network weights."""
     model = hydra.utils.instantiate(cfg.model)
-    state_dict = torch.load(cfg.ckpt_path, map_location="cpu", weights_only=False)["state_dict"]
-    model.load_state_dict(state_dict)
+    load_net_state_dict(model.net, cfg.ckpt_path, stage=stage)
     model.net = model.net.to(torch_device)
     model.net.eval()
     return model
@@ -168,7 +168,7 @@ def _build_dataset(cfg):
 # Inference stages (mirror dare3d.predict.do_segmentation / do_regression)     #
 # --------------------------------------------------------------------------- #
 def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_prob, should_stop=None):
-    model = _build_model(cfg, torch_device)
+    model = _build_model(cfg, torch_device, stage="segmentation")
     dataset = _build_dataset(cfg)
     predictions = segmentation_inference(
         dataset, model, torch_device, cfg.crop_size, batch_size, overlap,
@@ -199,7 +199,7 @@ def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_
 
 
 def _regress(cfg, torch_device, centers, should_stop=None):
-    model = _build_model(cfg, torch_device)
+    model = _build_model(cfg, torch_device, stage="regression")
     dataset = _build_dataset(cfg)
     dataset.pad_images()
     dataset._normalize(dataset.renorm)

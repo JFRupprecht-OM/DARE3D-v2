@@ -52,7 +52,7 @@ def test_load_net_state_dict_strips_prefix_and_drops_buffers():
     # a Lightning-style state_dict: net.* weights + foreign torchmetric/criterion buffers
     sd = {f"net.{k}": v for k, v in net.state_dict().items()}
     sd["train_loss.total"] = torch.tensor(3.0)
-    sd["criterion.weight"] = torch.zeros(5)
+    sd["criterion.focal.class_weight"] = torch.ones(1)
     with tempfile.NamedTemporaryFile(suffix=".ckpt", delete=False) as f:
         torch.save({"state_dict": sd}, f.name)
         path = f.name
