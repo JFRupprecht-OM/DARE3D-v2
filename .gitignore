@@ -10,7 +10,7 @@ dev_HC
 division_3D/main
 data.zip
 dare.sif
-.pytest*
+/.pytest_tmp/
 
 /garbage/*
 *.ipynb_checkpoints*

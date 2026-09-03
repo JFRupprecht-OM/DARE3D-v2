@@ -4,11 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 addopts = [
+  '--basetemp=.pytest_tmp',
   "--color=yes",
   "--durations=0",
   "--strict-markers",
   "--doctest-modules",
 ]
+cache_dir = '.pytest_tmp/cache'
 filterwarnings = [
   "ignore::DeprecationWarning",
   "ignore::UserWarning",

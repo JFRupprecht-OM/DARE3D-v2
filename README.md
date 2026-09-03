@@ -303,12 +303,18 @@ reproducibility; adapt one to your own movies rather than running it verbatim.
 
 ## Testing & development
 
+Permanent software tests are synthetic and live under `tests/`. Scientific validation
+programs and durable audit evidence remain under `docs/reproducibility_audit/` and are
+not imported by the test suite. Pytest places both its cache and per-run temporary
+files under the single ignored `.pytest_tmp/` directory.
+
 ```bash
 python tests/test_geometry.py        # quaternion -> axis + coordinate mapping (no napari/models/GPU)
 python tests/test_train_commands.py  # training-command construction + paths (no GPU)
 make test                            # unit tests, incl. the two self-checks above (excludes slow ones)
 make test-full              # all tests, including slow ones
 make format                 # run pre-commit hooks (formatting/linting)
+make clean-test             # remove the dedicated pytest area and legacy root basetemps
 make clean                  # remove build artefacts and caches
 ```
 
