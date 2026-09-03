@@ -62,6 +62,7 @@ setup(
         "console_scripts": [
             "train_command = dare3d.train:main",
             "eval_command = dare3d.eval:main",
+            "predict_command = dare3d.predict:main",
         ],
         "napari.manifest": [
             "dare3d = napari_dare3d:napari.yaml",

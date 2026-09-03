@@ -9,6 +9,10 @@ from skimage import io
 from tqdm import tqdm
 
 from dare3d.data.components.angles3d import representation_to_quaternion
+from dare3d.data.components.regression_geometry import (
+    TRAINING_CONSISTENT,
+    normalize_preprocessing_mode,
+)
 from dare3d.utils.regression_display import display_regression
 
 
@@ -107,6 +111,20 @@ def segmentation_inference(dataset, model, device, crop_size, batch_size, overla
         predictions.append(y_pred_full[0])
     return predictions
 
+def prepare_regression_dataset(dataset, mode=TRAINING_CONSISTENT):
+    """Initialize a regression dataset without changing segmentation behavior."""
+    mode = normalize_preprocessing_mode(mode)
+    if hasattr(dataset, "init_inference"):
+        dataset.init_inference(mode=mode)
+    else:
+        # Compatibility for light-weight third-party/test datasets.
+        dataset.init(preprocess=False)
+        dataset.pad_images()
+        if dataset.renorm:
+            dataset._normalize(dataset.renorm)
+    return dataset
+
+
 def regression_inference(dataset, model, centers, device, output_dir=None, should_stop=None):
     if output_dir is not None:
         os.makedirs(output_dir, exist_ok=True)
@@ -118,61 +136,118 @@ def regression_inference(dataset, model, centers, device, output_dir=None, shoul
     if output_dir is not None:
         print(f"Prediction will be stored in folder: {output_dir}")
     predictions = []
-    raw_predictions = []  # Store raw rotation matrices and positions
-    
-    # Loop over centers
-    for i in tqdm(range(len(centers)), desc="Running regression inference..."):
+
+    for center_value in tqdm(
+        centers, desc="Running regression inference...", total=len(centers)
+    ):
         if should_stop is not None and should_stop():
             raise InferenceAborted()
-        # Center = (M,T,X,Y,Z) with M the movie index
-        center = centers[i]
-        
-        # Get the crop for the corresponding center (same logic on CPU or GPU)
-        if use_cuda:
-            X = dataset.get_crop_from_center_gpu(center, device)
+
+        # Segmentation and evaluation supply raw (M,T,X,Y,Z) centers.
+        center_raw = tuple(float(item) for item in center_value)
+        if hasattr(dataset, "raw_center_to_regression"):
+            center_regression = dataset.raw_center_to_regression(center_raw)
         else:
-            X = dataset.get_crop_from_center(center, device)
+            center_regression = center_raw
+
+        if use_cuda:
+            X = dataset.get_crop_from_center_gpu(center_raw, device)
+        else:
+            X = dataset.get_crop_from_center(center_raw, device)
         X = torch.unsqueeze(X, axis=0)
-            
-        # Perform inference on current item
+
         with torch.no_grad():
-            y = model.forward(X)
-            y = y["head1"]
-            # Un-normalize length
-            length = y["len"][0].detach().cpu().numpy() * float(np.min(dataset.crop_size))
-            
-            # Compute rotation to quaternion
-            rot = y["angle"][0].detach().cpu().numpy()
-            quat = representation_to_quaternion(rot, dataset.representation, post=True)
+            y = model.forward(X)["head1"]
+            length = (
+                y["len"][0].detach().cpu().numpy()
+                * float(np.min(dataset.crop_size))
+            )
+            raw_rotation = y["angle"][0].detach().cpu().numpy()
+            quaternion = representation_to_quaternion(
+                raw_rotation, dataset.representation, post=True
+            )
 
-            # Convert rotation to 3x3 rotation matrix for saving
-            from scipy.spatial.transform import Rotation as R
-            rotation_matrix = R.from_quat(quat[[1,2,3,0]]).as_matrix()  # Convert wxyz to xyzw for scipy
+        from scipy.spatial.transform import Rotation as R
 
-            # length, rot, center = dataset.unscale_prediction(length, rot, center)
-            
-            predictions.append({"length": length, "rotation": quat, "center": center})
-            
-            # Store raw prediction data
-            raw_predictions.append({
-                "center": center,  # (M,T,X,Y,Z)
-                "length": length,
-                "rotation_matrix": rotation_matrix,  # 3x3 rotation matrix
-                "quaternion": quat,  # quaternion in wxyz format
-                "raw_rotation": rot,  # original network output
-                "representation": dataset.representation.name if hasattr(dataset.representation, 'name') else str(dataset.representation)
-            })
+        rotation_matrix = R.from_quat(
+            quaternion[[1, 2, 3, 0]]
+        ).as_matrix()
+        prediction = {
+            # Backward-compatible fields. Center remains raw MTXYZ; length is
+            # checkpoint-native regression-grid voxels.
+            "center": center_raw,
+            "length": length,
+            "rotation": quaternion,
+            # Explicit fields for new callers.
+            "center_raw": center_raw,
+            "center_regression": center_regression,
+            "length_regression_voxels": float(
+                np.asarray(length).reshape(-1)[0]
+            ),
+            "rotation_matrix": rotation_matrix,
+            "raw_rotation": raw_rotation,
+            "representation": (
+                dataset.representation.name
+                if hasattr(dataset.representation, "name")
+                else str(dataset.representation)
+            ),
+        }
+        if hasattr(dataset, "decode_prediction"):
+            prediction.update(
+                dataset.decode_prediction(center_raw, length, quaternion)
+            )
+        predictions.append(prediction)
 
-    # Save raw predictions in multiple formats
     if output_dir is not None:
-        # Save as numpy archive
-        np.savez(os.path.join(output_dir, "raw_predictions.npz"), 
-                centers=np.array([pred["center"] for pred in raw_predictions]),
-                lengths=np.array([pred["length"] for pred in raw_predictions]),
-                rotation_matrices=np.array([pred["rotation_matrix"] for pred in raw_predictions]),
-                quaternions=np.array([pred["quaternion"] for pred in raw_predictions]))
-        
-        # Create visual representation (existing functionality)
+        archive = {
+            "centers": np.asarray(
+                [prediction["center_raw"] for prediction in predictions],
+                dtype=np.float64,
+            ),
+            "centers_regression": np.asarray(
+                [prediction["center_regression"] for prediction in predictions],
+                dtype=np.float64,
+            ),
+            "lengths": np.asarray(
+                [prediction["length"] for prediction in predictions]
+            ),
+            "lengths_regression_voxels": np.asarray(
+                [
+                    prediction["length_regression_voxels"]
+                    for prediction in predictions
+                ],
+                dtype=np.float64,
+            ),
+            "rotation_matrices": np.asarray(
+                [prediction["rotation_matrix"] for prediction in predictions]
+            ),
+            "quaternions": np.asarray(
+                [prediction["rotation"] for prediction in predictions]
+            ),
+        }
+        optional_arrays = {
+            "lengths_physical_um": "length_physical_um",
+            "lengths_raw_voxels": "length_raw_voxels",
+            "axes_regression_xyz": "axis_regression_xyz",
+            "axes_physical_xyz": "axis_physical_xyz",
+            "axes_raw_xyz": "axis_raw_xyz",
+            "endpoints_raw_xyz": "endpoints_raw_xyz",
+        }
+        for archive_name, prediction_name in optional_arrays.items():
+            if predictions and prediction_name in predictions[0]:
+                archive[archive_name] = np.asarray(
+                    [prediction[prediction_name] for prediction in predictions]
+                )
+        np.savez(os.path.join(output_dir, "raw_predictions.npz"), **archive)
+
+        if hasattr(dataset, "preprocessing_manifest"):
+            with open(
+                os.path.join(output_dir, "regression_preprocessing.json"),
+                "w",
+                encoding="utf-8",
+            ) as file:
+                json.dump(dataset.preprocessing_manifest(), file, indent=2)
+
         display_regression(predictions, dataset, output_dir)
 
     return predictions

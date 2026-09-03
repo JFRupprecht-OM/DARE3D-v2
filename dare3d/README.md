@@ -79,7 +79,7 @@ Training writes runs to `logs/<task>/runs/<date>/` (`.hydra/config.yaml` + `chec
 |---|---|---|
 | `train.py` | Train one stage under Hydra. | `experiment=segmentation\|regression`, `train_dir=…`, `val_dir=…` → `logs/<task>/runs/<date>/` |
 | `eval.py` | Evaluate trained models on a val set. | `segmentation.model_dir=…`, `regression.model_dir=…` → metrics |
-| `predict.py` | Inference on one `(T,Z,Y,X)` movie. | `+segmentation.model_dir`, `+regression.model_dir`, `+inference_dir` → probability map, axis render, `raw_predictions.npz` |
+| `predict.py` | Inference on one `(T,Z,Y,X)` movie. | `segmentation.model_dir`, `regression.model_dir`, `inference_dir` → probability map, axis render, `raw_predictions.npz` |
 | `train_eval.py` | Wrap segmentation → regression → eval. | `--set_folder`, `--epoch` (+ flags; see root README) |
 
 A **model directory** is any folder with `.hydra/config.yaml` + `checkpoints/last.ckpt` — produced by
@@ -95,6 +95,13 @@ A **model directory** is any folder with `.hydra/config.yaml` + `checkpoints/las
    part) and the **axis length** (voxels).
 
 This is a **single-model** pipeline: there is no ensemble or consensus/clustering stage.
+
+Regression inference defaults to the `training_consistent` preprocessing contract used
+to create regression training crops. The historical raw-grid behavior is retained as
+the explicit `legacy_raw` replay mode. Legacy result fields (`center`, `rotation`,
+`length`) remain available; explicit raw-grid, regression-grid, and physical geometry
+fields remove unit ambiguity for new consumers. This contract is shared by
+`predict.py`, `eval.py`, and the napari/headless API.
 
 ## Coordinate order
 

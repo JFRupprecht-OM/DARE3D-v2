@@ -14,3 +14,4 @@ load_labels: true
 time_axis_padding: ${time_axis_padding}
 crop_size: ${crop_size}
 angle_representation: ${representation_mode}
+require_scale_file: false

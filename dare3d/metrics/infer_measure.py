@@ -169,6 +169,8 @@ class CenterList:
 
         self.real_rot_length = None
         self.all_gt_centers = []
+        self.all_gt_event_keys = []
+        self.matched_gt_event_keys = []
 
         self.load_info(movie_info)
 
@@ -181,60 +183,98 @@ class CenterList:
         # The two center lists (prediction & groundtruth) order must be kept intact so the map
         # that find the matched centers is accurate
 
-        for i, movie_info in enumerate(info):
+        for movie_index, movie_info in enumerate(info):
             movie_matched_items = movie_info["matched_items"]
-            if len(movie_info["pred_ccs_stats"]) == 0 or len(movie_info["true_ccs_stats"]) == 0:
-                continue
-            movie_pred_centers = movie_info["pred_ccs_stats"]["centroids"]
-            movie_true_centers = movie_info["true_ccs_stats"]["centroids"]
+            movie_pred_centers = movie_info["pred_ccs_stats"].get("centroids", [])
+            movie_true_centers = movie_info["true_ccs_stats"].get("centroids", [])
 
-            for center in movie_true_centers:
+            for true_index, center in enumerate(movie_true_centers):
                 self.all_gt_centers.append(
                     (
-                        i,
+                        movie_index,
                         int(np.rint(center[0] + self.movie_start_time)),
                         int(np.rint(center[1])),
                         int(np.rint(center[2])),
                         int(np.rint(center[3])),
                     )
                 )
+                self.all_gt_event_keys.append((movie_index, int(true_index)))
 
-            # <a,b> = <true, pred>
-            matching_index = bidict()
-            m_i = 0
-            for item in movie_matched_items:
-                a, b = item
-                matching_index[a] = b
+            if len(movie_pred_centers) == 0 or len(movie_true_centers) == 0:
+                continue
 
-                true_center = movie_true_centers[a]
-                pred_center = movie_pred_centers[b]
+            for true_index, prediction_index in movie_matched_items:
+                true_center = movie_true_centers[true_index]
+                pred_center = movie_pred_centers[prediction_index]
 
                 pred_center = (
-                    i,
+                    movie_index,
                     int(np.round(pred_center[0] + 1e-9 + self.movie_start_time)),
                     int(np.round(pred_center[1] + 1e-9)),
                     int(np.round(pred_center[2] + 1e-9)),
                     int(np.round(pred_center[3] + 1e-9)),
                 )
                 true_center = (
-                    i,
+                    movie_index,
                     true_center[0] + self.movie_start_time,
                     true_center[1],
                     true_center[2],
                     true_center[3],
                 )
 
+                pair_index = len(self.predicted_centers)
                 self.predicted_centers.append(pred_center)
                 self.true_centers.append(true_center)
-
-                self.matched_centers_idx[m_i] = m_i
-                m_i += 1
+                self.matched_gt_event_keys.append(
+                    (movie_index, int(true_index))
+                )
+                self.matched_centers_idx[pair_index] = pair_index
 
         print(f"Number of matched centers : {len(self.matched_centers_idx)}")
 
     def compute_real_rot_len_values(self, dataset):
+        # Resolve every segmentation ground-truth component from its all-GT
+        # center first. A temporally fused component can have a fractional
+        # matched true center whose rounded all-GT center misses the annotation;
+        # resolve only those missing matched events from the original true
+        # component coordinate. Never use the detector-predicted center.
         self.real_rot_length = dataset.gather_groundtruth_info(self.all_gt_centers)
-        self.real_rot_length_matched = dataset.gather_groundtruth_info(self.true_centers)
+        targets_by_event = dict(zip(self.all_gt_event_keys, self.real_rot_length))
+        if len(targets_by_event) != len(self.all_gt_event_keys):
+            raise RuntimeError("Ground-truth component event identifiers are not unique")
+
+        missing_matched_indices = [
+            index
+            for index, event_key in enumerate(self.matched_gt_event_keys)
+            if targets_by_event[event_key] is None
+        ]
+        fallback_targets = (
+            dataset.gather_groundtruth_info(
+                [self.true_centers[index] for index in missing_matched_indices]
+            )
+            if missing_matched_indices
+            else []
+        )
+        fallback_by_index = dict(zip(missing_matched_indices, fallback_targets))
+
+        for event_key, target in targets_by_event.items():
+            if target is not None:
+                movie_index, true_index = event_key
+                target["segmentation_event_id"] = (
+                    f"{dataset.movie_names[movie_index]}:component:{true_index}"
+                )
+
+        self.real_rot_length_matched = []
+        for index, event_key in enumerate(self.matched_gt_event_keys):
+            target = targets_by_event[event_key]
+            if target is None:
+                target = fallback_by_index.get(index)
+                if target is not None:
+                    movie_index, true_index = event_key
+                    target["segmentation_event_id"] = (
+                        f"{dataset.movie_names[movie_index]}:component:{true_index}"
+                    )
+            self.real_rot_length_matched.append(target)
 
     def create_gt_pairs(self, true_centers):
         assert self.real_rot_length

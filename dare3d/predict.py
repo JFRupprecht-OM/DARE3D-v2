@@ -7,12 +7,17 @@ import rootutils
 import torch
 from omegaconf import DictConfig, OmegaConf
 
-from dare3d.metrics.inference import segmentation_inference, regression_inference
+rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
+
+from dare3d.metrics.inference import (
+    prepare_regression_dataset,
+    regression_inference,
+    segmentation_inference,
+)
 from dare3d.metrics.object_level import connected_components, statistics_optimized, get_sphere_vol, filter_by_object_weighted_prob
 from dare3d.models.finetune import load_net_state_dict
 from dare3d.utils import RankedLogger, extras
 
-rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 log = RankedLogger(__name__, rank_zero_only=True)
 
 OmegaConf.register_new_resolver("eval", eval, replace=True)
@@ -31,7 +36,12 @@ def load_data(cfg, *, stage: str):
     model.net.eval()
 
     dataset = hydra.utils.instantiate(cfg.data.test_data)
-    dataset.init(preprocess=False)
+    if stage == "regression":
+        prepare_regression_dataset(
+            dataset, getattr(cfg, "preprocessing_mode", "training_consistent")
+        )
+    else:
+        dataset.init(preprocess=False)
     
     hydra_cfg = hydra.core.hydra_config.HydraConfig.get()
     output_dir = hydra_cfg['runtime']['output_dir']
@@ -68,9 +78,6 @@ def do_segmentation(cfg):
 
 def do_regression(cfg, centers):
     dataset, model, device, output_dir = load_data(cfg, stage="regression")
-    dataset.pad_images()
-    dataset._normalize(dataset.renorm)
-
     output_dir = os.path.join(output_dir, "regression")
     predictions = regression_inference(dataset, model, centers, device, output_dir=output_dir)
     return predictions
@@ -82,6 +89,8 @@ def inference(seg_cfg: DictConfig, reg_cfg: DictConfig = None) -> Tuple[Dict[str
         do_regression(reg_cfg, centers)
 
 def load_config(cfg, root_cfg, allow_missing=False):
+    is_regression = cfg.get('preprocessing_mode') is not None
+    require_scale_file = bool(cfg.get('require_scale_file', False))
     hydra_config_path = os.path.join(cfg.model_dir, cfg.hydra_dir, "config.yaml")
     checkpoint_config_path = os.path.join(cfg.model_dir, cfg.ckpt_dir, cfg.ckpt_name)
     
@@ -106,6 +115,13 @@ def load_config(cfg, root_cfg, allow_missing=False):
     cfg.inference_dir = root_cfg.inference_dir
     cfg.device = root_cfg.device
     cfg.data.test_data.im_folder = cfg.inference_dir
+
+    # Saved training configs can contain a workstation-specific scale path.
+    # Regression inference uses only a scale file supplied by the current caller;
+    # otherwise the checkpoint's saved default scale remains deterministic.
+    if is_regression:
+        cfg.data.test_data.scale_file = None
+        cfg.data.test_data.require_scale_file = require_scale_file
     
     # Edit scale file
     if root_cfg.get("scale_file"):

@@ -2,6 +2,9 @@
 
 inference_dir: ???
 device: gpu
+scale_file: null
+default_scale: null
+target_scale: null
 
 segmentation:
   model_dir: ???
@@ -26,3 +29,5 @@ regression:
   inference_dir: ""
   inference_batch_size: 4
   device: ""
+  preprocessing_mode: training_consistent
+  require_scale_file: false

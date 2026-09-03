@@ -33,6 +33,7 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 from dare3d.metrics.infer_measure import (infer_and_evaluate_regression,
                                              infer_and_evaluate_segmentation)
+from dare3d.metrics.inference import prepare_regression_dataset
 from dare3d.models.finetune import load_net_state_dict
 from dare3d.utils import (RankedLogger, extras, instantiate_loggers,
                              log_hyperparameters, task_wrapper)
@@ -134,10 +135,12 @@ def evaluate_regression(cfg: DictConfig, info):
     net = model.net.to(device_name)
     output_dir = cfg.model_dir
 
-    datamodule.data_test.init(preprocess=False)
-    # datamodule.data_test.rescale()
-    datamodule.data_test.pad_images()
-    datamodule.data_test._normalize(datamodule.data_test.renorm)
+    if cfg.get('require_scale_file') is not None:
+        datamodule.data_test.require_scale_file = bool(cfg.require_scale_file)
+
+    prepare_regression_dataset(
+        datamodule.data_test, getattr(cfg, "preprocessing_mode", "training_consistent")
+    )
 
     stats = infer_and_evaluate_regression(dataset=datamodule.data_test,
                                           net=net, 
@@ -216,6 +219,11 @@ def _remap_legacy_targets(cfg: DictConfig) -> DictConfig:
 
 
 def load_config(cfg, allow_missing=False):
+    is_regression = cfg.get('preprocessing_mode') is not None
+    scale_file_override = cfg.get('scale_file_override')
+    default_scale_override = cfg.get('default_scale_override')
+    target_scale_override = cfg.get('target_scale_override')
+    require_scale_file = bool(cfg.get('require_scale_file', False))
     hydra_config_path = os.path.join(cfg.model_dir, cfg.hydra_dir, "config.yaml")
     checkpoint_config_path = os.path.join(cfg.model_dir, cfg.ckpt_dir, cfg.ckpt_name)
     
@@ -234,6 +242,15 @@ def load_config(cfg, allow_missing=False):
     train_cfg.merge_with(cfg)
     
     cfg = train_cfg
+
+    if is_regression:
+        test_data = cfg.data.test_data
+        test_data.scale_file = scale_file_override
+        test_data.require_scale_file = require_scale_file
+        if default_scale_override is not None:
+            test_data.default_scale = default_scale_override
+        if target_scale_override is not None:
+            test_data.target_scale = target_scale_override
 
     OmegaConf.resolve(cfg)
 

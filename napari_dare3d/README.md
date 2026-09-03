@@ -47,6 +47,13 @@ The editable install registers the plugin via its `napari.manifest` entry point,
    subprocess. Retraining and fine-tuning are also available as notebooks under `notebooks/`, the
    recommended path for both.
 
+The widget and `infer_stack` default to the production `training_consistent`
+regression preprocessing path. API callers can request `legacy_raw` through
+`regression_preprocessing` only when replaying historical raw-grid behavior. Set
+`regression_require_scale_file=True` together with an explicit `scale_file` when
+per-movie scale metadata must be mandatory rather than falling back to the model
+config's `default_scale`.
+
 The advanced **Per-movie scales JSON** field is pre-filled with
 `data/3D/scales.json` when the source-checkout or installed-wheel copy is available.
 `infer_stack` preserves the source `movie_name` stem, so entries such as `movie2`

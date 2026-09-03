@@ -1,3 +1,4 @@
+import copy
 import logging
 
 import numpy as np
@@ -5,6 +6,13 @@ from skimage.measure import regionprops
 import scipy
 
 from .angles3d import ANGLE_REPRESENTATION, get_quaternion, quaternion_to_representation
+from .regression_geometry import (
+    TRAINING_CONSISTENT,
+    RegressionPreprocessingSpec,
+    RegressionSpatialTransform,
+    axis_from_wxyz_quaternion,
+    normalize_preprocessing_mode,
+)
 from .cell_3dataset import Cell3Dataset
 from tqdm import tqdm
 
@@ -18,6 +26,8 @@ class Regress3Dataset(Cell3Dataset):
         angle_representation="rotation_matrix_GS",
         angle_vec_size=9,
         spatial_shift=0,
+        inference_preprocessing=TRAINING_CONSISTENT,
+        require_scale_file=False,
         **kwargs
     ):
         if isinstance(crop_size, float) or isinstance(crop_size, int):
@@ -27,7 +37,77 @@ class Regress3Dataset(Cell3Dataset):
         self.representation = ANGLE_REPRESENTATION.from_string(angle_representation)
         self.angle_vec_size = angle_vec_size
         self.spatial_shift = spatial_shift
+        self.inference_preprocessing = normalize_preprocessing_mode(inference_preprocessing)
+        self.require_scale_file = bool(require_scale_file)
+        self.regression_inference_ready = False
         super(Regress3Dataset, self).__init__(**kwargs)
+
+    def on_data_loaded(self):
+        """Retain raw annotations and construct one spatial map per movie."""
+        self.movies_bipoints_raw = copy.deepcopy(self.movies_bipoints)
+        self._build_regression_transforms(TRAINING_CONSISTENT)
+
+    def _build_regression_transforms(self, mode):
+        mode = normalize_preprocessing_mode(mode)
+        if self.require_scale_file:
+            missing = [
+                name for name in self.movie_names if name not in self.movies_scale
+            ]
+            if missing:
+                raise ValueError(
+                    "Regression preprocessing requires per-movie scale metadata; "
+                    f"missing entries for {missing} in {self.scale_file!r}"
+                )
+        self.regression_preprocessing_mode = mode
+        self.regression_transforms = [
+            RegressionSpatialTransform(
+                RegressionPreprocessingSpec.from_dataset(self, index, mode)
+            )
+            for index in range(len(self.movie_names))
+        ]
+
+    def init_inference(self, mode=None):
+        """Load and prepare movies in the checkpoint's regression image space.
+
+        Unlike init(), this path does not enumerate annotation-centred samples.
+        Input centers remain raw MTXYZ coordinates and are transformed only when
+        their regression crop is requested.
+        """
+        mode = normalize_preprocessing_mode(mode or self.inference_preprocessing)
+        self.init(preprocess=False)
+        self._build_regression_transforms(mode)
+        if mode == TRAINING_CONSISTENT:
+            self.resize_data()
+        self.pad_images()
+        if self.renorm:
+            self._normalize(self.renorm)
+        self.prepare_data_after_norm()
+        self.regression_inference_ready = True
+
+    def preprocessing_manifest(self):
+        return {
+            "schema_version": 1,
+            "mode": self.regression_preprocessing_mode,
+            "movies": [transform.to_dict() for transform in self.regression_transforms],
+        }
+
+    def get_regression_transform(self, movie_index):
+        if not hasattr(self, "regression_transforms"):
+            raise RuntimeError(
+                "Regression spatial transforms are unavailable; initialize the dataset first"
+            )
+        return self.regression_transforms[int(movie_index)]
+
+    def raw_center_to_regression(self, center, *, round_result=False):
+        return self.get_regression_transform(center[0]).raw_center_to_regression(
+            center, round_result=round_result
+        )
+
+    def decode_prediction(self, center_raw, length_regression_voxels, quaternion):
+        axis = axis_from_wxyz_quaternion(quaternion)
+        return self.get_regression_transform(center_raw[0]).decode_axis_length(
+            center_raw, axis, length_regression_voxels
+        )
 
     def prepare_data(self):
         self.crops, self.bipoint_crops = self.make_crop_all_division()        
@@ -128,42 +208,109 @@ class Regress3Dataset(Cell3Dataset):
         return p1, p2
 
     def gather_groundtruth_info(self, centers, dist_th=3):
-        cosin_angles = []
-        for center in centers:
-            m,t,x,y,z = center
-            candidate = None
-            for bipoint in self.movies_bipoints[int(m)][int(t)]:
-                # Bipoint
-                a, b = bipoint
-                a = np.asarray(a)
-                b = np.asarray(b)
+        """Resolve targets in raw space, then express axis/length in regression space.
 
-                real_center = (a + b)/2
-                if np.all(np.isclose(np.asarray([x,y,z]), real_center, atol=dist_th)):
-                    # Compute quaternion from bipoint
-                    rot = get_quaternion(a, b)
-                    length = self.distance_from_bipoint((a,b)) * np.min(self.crop_size)
-                    candidate = {"length": length, "rotation": rot, "center": (m, t)+tuple(real_center)}
-                    break
-            cosin_angles.append(candidate)
-            if candidate is None:
-                print(f"/!\ Failed to find a matching groundtruth center for position {center}")
-        assert len(cosin_angles) == len(centers)
-        return cosin_angles
-
-    def get_crop_from_center(self, center, device="cpu"):
-        """Extract the 3-frame (t-2..t) crop around ``center`` as a float32 tensor.
-
-        Single source of truth for both the CPU and GPU regression-inference paths:
-        ``device`` is passed straight to ``torch.tensor`` (``"cpu"`` or a CUDA device).
-        Early timepoints with fewer than 3 frames of history are front-padded with
-        zeros so the regression net always receives 3 input channels.
+        A detector-predicted center is never passed here. CenterList calls this
+        method only with annotated/true-component centers and reuses the resolved
+        target for predicted-center evaluation.
         """
+        targets = []
+        raw_bipoints = getattr(self, "movies_bipoints_raw", self.movies_bipoints)
+        for center in centers:
+            m, t, x, y, z = center
+            movie_index = int(m)
+            time_index = int(t)
+            requested_xyz = np.asarray([x, y, z], dtype=np.float64)
+            candidates = []
+            for annotation_index, bipoint in enumerate(
+                raw_bipoints[movie_index][time_index]
+            ):
+                a_raw, b_raw = (
+                    np.asarray(bipoint[0], dtype=np.float64),
+                    np.asarray(bipoint[1], dtype=np.float64),
+                )
+                real_center_raw = (a_raw + b_raw) / 2.0
+                if np.all(np.isclose(requested_xyz, real_center_raw, atol=dist_th)):
+                    candidates.append(
+                        (
+                            annotation_index,
+                            float(np.linalg.norm(requested_xyz - real_center_raw)),
+                            a_raw,
+                            b_raw,
+                            real_center_raw,
+                        )
+                    )
+
+            candidate = None
+            if candidates:
+                # Preserve the historical file-order selection rule. Record the
+                # candidate count and distance so ambiguity is never silent.
+                annotation_index, distance, a_raw, b_raw, real_center_raw = candidates[0]
+                transform = self.get_regression_transform(movie_index)
+                a_regression = transform.raw_point_to_regression(
+                    a_raw, round_result=True
+                )
+                b_regression = transform.raw_point_to_regression(
+                    b_raw, round_result=True
+                )
+                rotation = get_quaternion(a_regression, b_regression)
+                length = float(np.linalg.norm(a_regression - b_regression))
+                decoded = transform.decode_axis_length(
+                    (m, t, *real_center_raw),
+                    axis_from_wxyz_quaternion(rotation),
+                    length,
+                )
+                candidate = {
+                    "length": np.asarray([length], dtype=np.float32),
+                    "rotation": rotation,
+                    "center": (m, t, *tuple(real_center_raw)),
+                    "event_id": (
+                        f"{self.movie_names[movie_index]}:"
+                        f"{time_index}:{annotation_index}"
+                    ),
+                    "annotation_index": annotation_index,
+                    "target_candidate_count": len(candidates),
+                    "target_center_distance_raw_voxels": distance,
+                    "annotated_endpoints_raw_xyz": np.stack((a_raw, b_raw)),
+                    "annotated_endpoints_regression_xyz": np.stack(
+                        (a_regression, b_regression)
+                    ),
+                    **decoded,
+                }
+
+            targets.append(candidate)
+            if candidate is None:
+                print(
+                    f"Failed to find a matching groundtruth center for "
+                    f"position {center}"
+                )
+        assert len(targets) == len(centers)
+        return targets
+
+    def get_crop_from_center(self, center, device="cpu", center_space="raw"):
+        """Extract the three-frame regression crop around a raw or grid center."""
         import torch
-        m, t, x, y, z = center
-        t, x, y, z = int(np.rint(t)), int(np.rint(x)), int(np.rint(y)), int(np.rint(z))
+
+        if center_space == "raw":
+            crop_center = self.raw_center_to_regression(center)
+        elif center_space == "regression":
+            crop_center = tuple(float(item) for item in center)
+        else:
+            raise ValueError(
+                f"Unknown center space {center_space!r}; expected raw or regression"
+            )
+
+        m, t, x, y, z = crop_center
+        m, t, x, y, z = (
+            int(np.rint(m)),
+            int(np.rint(t)),
+            int(np.rint(x)),
+            int(np.rint(y)),
+            int(np.rint(z)),
+        )
         movie = self.movies_im[m]
-        movie = movie[t - 2:t + 1]
+        start_time = max(0, t - 2)
+        movie = movie[start_time:t + 1]
         if movie.shape[0] < 3:
             n_diff = 3 - movie.shape[0]
             pad_section = np.zeros((n_diff,) + movie.shape[1:], dtype=movie.dtype)
@@ -171,11 +318,17 @@ class Regress3Dataset(Cell3Dataset):
         assert movie.shape[0] == 3
         movie = torch.tensor(movie.astype(np.float32), device=device)
         crop = self.crop_img_from_center(movie, (x, y, z), return_crop=True)
+        expected_shape = (3,) + tuple(int(item) for item in self.crop_size)
+        if tuple(crop.shape) != expected_shape:
+            raise RuntimeError(
+                f"Regression crop at raw center {center} mapped to {crop_center} "
+                f"has shape {tuple(crop.shape)}, expected {expected_shape}"
+            )
         return crop
 
-    def get_crop_from_center_gpu(self, center, device):
-        """GPU alias kept for the existing call site; see ``get_crop_from_center``."""
-        return self.get_crop_from_center(center, device)
+    def get_crop_from_center_gpu(self, center, device, center_space="raw"):
+        """GPU alias kept for the existing call site."""
+        return self.get_crop_from_center(center, device, center_space=center_space)
 
     def augment_sample(self, X, Y):
         augmented = self._augmentations({"image": X, "label":Y})

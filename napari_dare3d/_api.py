@@ -35,6 +35,7 @@ from omegaconf import OmegaConf
 
 from dare3d.metrics.inference import (
     InferenceAborted,
+    prepare_regression_dataset,
     regression_inference,
     segmentation_inference,
 )
@@ -109,14 +110,16 @@ def _load_inference_cfg(
     scale_file: Optional[str] = None,
     default_scale=None,
     target_scale=None,
+    require_scale_file: Optional[bool] = None,
 ):
     """Load the training config saved next to the checkpoint and rewire it for
     in-memory inference.
 
-    Mirrors ``dare3d.predict.load_config`` but pins the scale settings to concrete
-    values: in the saved config ``test_data.scale_file`` is ``${scale_file}`` ->
-    ``${paths.data_dir}/...``, an interpolation that only resolves under a live
-    Hydra run. Everything else (``crop_size``, ``input_channels``, ``renorm``,
+    Mirrors ``dare3d.predict.load_config`` but pins caller-supplied scale settings
+    to concrete values. A saved ``test_data.scale_file`` is not reused because it
+    commonly points at the training workstation; without a current scale file,
+    inference falls back to the saved ``default_scale``. Everything else
+    (``crop_size``, ``input_channels``, ``renorm``,
     ``cell_radius``, ``representation_mode``, ...) resolves within the saved tree.
     """
     model_dir = _resolve_model_dir(model_dir, hydra_dir)
@@ -143,6 +146,8 @@ def _load_inference_cfg(
     # Same rationale for scale_file: a provided file, else a non-existent path so
     # AbstractCellDataset.load_movie_scales falls back to default_scale.
     td.scale_file = scale_file if scale_file else os.path.join(im_folder, "__no_scales__.json")
+    if require_scale_file is not None:
+        td.require_scale_file = bool(require_scale_file)
     if default_scale is not None:
         td.default_scale = list(default_scale) if isinstance(default_scale, (list, tuple)) else default_scale
     if target_scale is not None:
@@ -159,9 +164,12 @@ def _build_model(cfg, torch_device: torch.device, *, stage: str):
     return model
 
 
-def _build_dataset(cfg):
+def _build_dataset(cfg, stage, preprocessing_mode="training_consistent"):
     dataset = hydra.utils.instantiate(cfg.data.test_data)
-    dataset.init(preprocess=False)
+    if stage == "regression":
+        prepare_regression_dataset(dataset, preprocessing_mode)
+    else:
+        dataset.init(preprocess=False)
     return dataset
 
 
@@ -170,7 +178,7 @@ def _build_dataset(cfg):
 # --------------------------------------------------------------------------- #
 def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_prob, should_stop=None):
     model = _build_model(cfg, torch_device, stage="segmentation")
-    dataset = _build_dataset(cfg)
+    dataset = _build_dataset(cfg, "segmentation")
     predictions = segmentation_inference(
         dataset, model, torch_device, cfg.crop_size, batch_size, overlap,
         output_dir=None, should_stop=should_stop,
@@ -199,11 +207,15 @@ def _segment(cfg, torch_device, *, overlap, batch_size, threshold, min_weighted_
     return centers
 
 
-def _regress(cfg, torch_device, centers, should_stop=None):
+def _regress(
+    cfg,
+    torch_device,
+    centers,
+    should_stop=None,
+    preprocessing_mode="training_consistent",
+):
     model = _build_model(cfg, torch_device, stage="regression")
-    dataset = _build_dataset(cfg)
-    dataset.pad_images()
-    dataset._normalize(dataset.renorm)
+    dataset = _build_dataset(cfg, "regression", preprocessing_mode)
     return regression_inference(
         dataset, model, centers, torch_device, output_dir=None, should_stop=should_stop
     )
@@ -239,17 +251,44 @@ def _center_to_detection(center) -> Dict:
 
 
 def _prediction_to_detection(pred) -> Dict:
-    center = pred["center"]  # (m, t, x, y, z)
-    length = float(np.asarray(pred["length"]).reshape(-1)[0])
+    center = pred.get("center_raw", pred["center"])  # (m, t, x, y, z)
+    time = float(center[1])
+    length = float(
+        np.asarray(pred.get("length_raw_voxels", pred["length"])).reshape(-1)[0]
+    )
     quat = np.asarray(pred["rotation"], dtype=np.float64)  # wxyz
-    axis_xyz = _axis_from_quat(quat)  # internal (x, y, z)
-    return {
+    axis_xyz = np.asarray(
+        pred.get("axis_raw_xyz", _axis_from_quat(quat)), dtype=np.float64
+    )
+    detection = {
         "center_internal": tuple(float(v) for v in center),
         "center_napari": _napari_point(center),
         "length": length,
         "axis_napari": tuple(float(v) for v in axis_xyz[::-1]),  # (dz, dy, dx)
         "quaternion": tuple(float(v) for v in quat),
     }
+    if "endpoints_raw_xyz" in pred:
+        endpoints = np.asarray(pred["endpoints_raw_xyz"], dtype=np.float64)
+        detection["endpoints_napari"] = tuple(
+            (time, float(point[2]), float(point[1]), float(point[0]))
+            for point in endpoints
+        )
+    for key in (
+        "center_regression",
+        "axis_regression_xyz",
+        "axis_physical_xyz",
+        "axis_raw_xyz",
+        "length_regression_voxels",
+        "length_physical_um",
+        "length_raw_voxels",
+        "preprocessing_mode",
+    ):
+        if key in pred:
+            value = pred[key]
+            if isinstance(value, np.ndarray):
+                value = tuple(float(item) for item in value.reshape(-1))
+            detection[key] = value
+    return detection
 
 
 # --------------------------------------------------------------------------- #
@@ -260,6 +299,7 @@ def infer_stack(
     seg_model_dir: str,
     reg_model_dir: Optional[str] = None,
     *,
+    regression_require_scale_file: bool = False,
     device: str = "gpu",
     overlap: float = 0.25,
     batch_size: int = 4,
@@ -269,6 +309,7 @@ def infer_stack(
     default_scale=None,
     target_scale=None,
     movie_name: str = "movie",
+    regression_preprocessing: str = "training_consistent",
     frames: Optional[Tuple[int, int]] = None,
     progress_cb: ProgressCb = None,
     should_stop: Optional[Callable[[], bool]] = None,
@@ -289,6 +330,12 @@ def infer_stack(
         movie_name: source movie name or filename. Its stem is preserved for
             per-movie lookup in the scale file; the compatibility default is
             "movie".
+        regression_preprocessing: regression image-space policy. The default
+            ``"training_consistent"`` reproduces checkpoint training
+            resampling; ``"legacy_raw"`` is retained only to replay the old
+            mismatched inference behavior.
+        regression_require_scale_file: fail unless every regression movie has an
+            entry in the explicitly supplied scale file. Defaults to false.
         frames: optional ``(t_start, t_end)`` INCLUSIVE time window (original frame
             indices) to analyse; ``None`` (default) analyses the whole movie. The
             needed context frames before ``t_start`` are included automatically and
@@ -350,8 +397,20 @@ def infer_stack(
 
             if reg_model_dir is not None and len(centers) > 0:
                 report("regression")
-                reg_cfg = _load_inference_cfg(reg_model_dir, tmp, device, **scale_kw)
-                preds = _regress(reg_cfg, torch_device, centers, should_stop=should_stop)
+                reg_cfg = _load_inference_cfg(
+                    reg_model_dir,
+                    tmp,
+                    device,
+                    require_scale_file=regression_require_scale_file,
+                    **scale_kw,
+                )
+                preds = _regress(
+                    reg_cfg,
+                    torch_device,
+                    centers,
+                    should_stop=should_stop,
+                    preprocessing_mode=regression_preprocessing,
+                )
                 detections = [_prediction_to_detection(p) for p in preds if p is not None]
     except InferenceAborted:
         report("aborted")
@@ -360,8 +419,21 @@ def infer_stack(
     # Map detection times from sub-stack indices back to original-movie indices.
     if offset:
         for d in detections:
-            ci = list(d["center_internal"]); ci[1] += offset; d["center_internal"] = tuple(ci)
-            cn = list(d["center_napari"]); cn[0] += offset; d["center_napari"] = tuple(cn)
+            center_internal = list(d["center_internal"])
+            center_internal[1] += offset
+            d["center_internal"] = tuple(center_internal)
+            center_napari = list(d["center_napari"])
+            center_napari[0] += offset
+            d["center_napari"] = tuple(center_napari)
+            if "center_regression" in d:
+                center_regression = list(d["center_regression"])
+                center_regression[1] += offset
+                d["center_regression"] = tuple(center_regression)
+            if "endpoints_napari" in d:
+                d["endpoints_napari"] = tuple(
+                    (point[0] + offset, *point[1:])
+                    for point in d["endpoints_napari"]
+                )
 
     report("done")
     return detections
@@ -427,14 +499,26 @@ def to_layer_data(
         # scrolling z in 2D view reveals the axis crossing every z-slice it traverses.
         samples = []
         for d in detections:
-            t = float(round(d["center_napari"][0]))
-            c = np.asarray(d["center_napari"][1:], dtype=float)  # (z, y, x)
-            axis = np.asarray(d["axis_napari"], dtype=float)     # (dz, dy, dx), unit
-            length = float(d["length"])
-            n = max(2, int(np.ceil(2.0 * length)) + 1)
-            for s in np.linspace(-0.5 * length, 0.5 * length, n):
-                p = c + s * axis
-                samples.append((t, p[0], p[1], p[2]))
+            if "endpoints_napari" in d:
+                start, end = (
+                    np.asarray(point, dtype=float)
+                    for point in d["endpoints_napari"]
+                )
+                length = float(np.linalg.norm(end[1:] - start[1:]))
+                n = max(2, int(np.ceil(2.0 * length)) + 1)
+                samples.extend(
+                    tuple(point)
+                    for point in np.linspace(start, end, n, endpoint=True)
+                )
+            else:
+                t = float(round(d["center_napari"][0]))
+                c = np.asarray(d["center_napari"][1:], dtype=float)
+                axis = np.asarray(d["axis_napari"], dtype=float)
+                length = float(d["length"])
+                n = max(2, int(np.ceil(2.0 * length)) + 1)
+                for s in np.linspace(-0.5 * length, 0.5 * length, n):
+                    p = c + s * axis
+                    samples.append((t, p[0], p[1], p[2]))
         axis_points = np.asarray(samples, dtype=float)
         axis_kwargs = {
             "name": "DARE3D axes",

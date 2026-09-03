@@ -159,25 +159,47 @@ python dare3d/train.py experiment=regression   model.optimizer.lr=0.001
 
 Inference can be run **three ways** — pick whichever fits your workflow:
 
+An installed checkout also exposes the equivalent `predict_command` console entry
+point.
+
 **1. Terminal (CLI).**
 
 ```bash
 python dare3d/predict.py \
-  +segmentation.model_dir=<seg_model_dir> \
-  +regression.model_dir=<reg_model_dir> \
-  +inference_dir=<folder_with_one_TZYX_tif> \
+  segmentation.model_dir=<seg_model_dir> \
+  regression.model_dir=<reg_model_dir> \
+  inference_dir=<folder_with_one_TZYX_tif> \
   device=gpu
 ```
 
 Results (probability map, division-axis render, and a `raw_predictions.npz` of centers + rotation
 matrices + lengths) are written under the Hydra run directory. Useful overrides:
 
-- **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3D/scales.json`.
+- **Voxel scale:** `default_scale=[0.621,0.621,2]` (x,y,z µm) or `scale_file=data/3D/scales.json`.
 - **Detection tuning:** `segmentation.threshold=0.5`, `segmentation.min_weighted_prob=0.1`,
   `segmentation.inference_overlap=0.25`, `segmentation.inference_batch_size=4`.
 - **Device:** `device=gpu` (recommended) or `device=cpu` — both run the full pipeline
   (segmentation + regression); CPU is slower.
-- Omit `+regression.model_dir` to get **centers only** (no axes).
+- Omit `regression.model_dir` to get **centers only** (no axes).
+
+Regression prediction, evaluation, and the napari/API path default to
+`training_consistent`: the input movie is resampled exactly as it is for regression
+training before the checkpoint crop is extracted. `legacy_raw` remains available only
+as an explicit historical replay mode, for example
+`regression.preprocessing_mode=legacy_raw`. New outputs name raw-grid,
+regression-grid, and physical geometry explicitly while retaining the historical
+`center`, `rotation`, and `length` fields for existing consumers.
+
+Saved model configs may contain scale-file paths from the training workstation. The
+prediction CLI ignores such a saved path and uses the saved `default_scale` unless the
+current invocation supplies `scale_file=...`. Set
+`regression.require_scale_file=true` to fail instead of falling back when a movie has
+no scale entry. Evaluation exposes the corresponding
+`regression.scale_file_override`, `default_scale_override`, and
+`target_scale_override` settings. The headless napari API accepts
+`regression_preprocessing`, `regression_require_scale_file`, and `movie_name`; the
+widget uses the production default, passes the selected layer name for table lookup, and
+pre-fills the canonical scale table when it is available.
 
 **2. Notebook.** Open `notebooks/Run_dare3d_Prediction.ipynb` — it sets the model/data paths,
 validates them, runs segmentation + regression, and visualises the result.
@@ -309,6 +331,7 @@ not imported by the test suite. Pytest places both its cache and per-run tempora
 files under the single ignored `.pytest_tmp/` directory.
 
 ```bash
+python -m pytest tests/test_regression_preprocessing.py tests/test_regression_entrypoint_configuration.py
 python tests/test_geometry.py        # quaternion -> axis + coordinate mapping (no napari/models/GPU)
 python tests/test_train_commands.py  # training-command construction + paths (no GPU)
 make test                            # unit tests, incl. the two self-checks above (excludes slow ones)

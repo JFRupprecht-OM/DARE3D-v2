@@ -22,3 +22,8 @@ regression:
   ckpt_dir: checkpoints
   ckpt_name: last.ckpt
   device: cuda
+  preprocessing_mode: training_consistent
+  scale_file_override: null
+  default_scale_override: null
+  target_scale_override: null
+  require_scale_file: false

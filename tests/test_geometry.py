@@ -84,6 +84,30 @@ def test_centers_only_layer():
     assert layers[0][0].shape == (1, 4)
 
 
+def test_decoded_raw_endpoints_drive_napari_axis():
+    prediction = {
+        "center": (0, 4, 10, 20, 30),
+        "center_raw": (0, 4, 10, 20, 30),
+        "length": np.array([99.0]),
+        "length_raw_voxels": 4.0,
+        "length_regression_voxels": 12.0,
+        "length_physical_um": 12.0,
+        "rotation": np.array([0.5, 0.5, 0.5, 0.5]),
+        "axis_raw_xyz": np.array([1.0, 0.0, 0.0]),
+        "endpoints_raw_xyz": np.array([[8.0, 20.0, 30.0], [12.0, 20.0, 30.0]]),
+        "preprocessing_mode": "training_consistent",
+    }
+
+    detection = _prediction_to_detection(prediction)
+    layers = to_layer_data([detection])
+    axis_points = layers[1][0]
+
+    assert detection["length"] == 4.0
+    assert detection["length_regression_voxels"] == 12.0
+    assert detection["preprocessing_mode"] == "training_consistent"
+    assert np.allclose(axis_points[0], (4.0, 30.0, 20.0, 8.0))
+    assert np.allclose(axis_points[-1], (4.0, 30.0, 20.0, 12.0))
+
 if __name__ == "__main__":
     test_point_reversal()
     test_axis_and_segment_match_repo()

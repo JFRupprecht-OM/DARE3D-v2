@@ -79,7 +79,9 @@ class AbstractCellDataset(DataLoader):
         self.n_input_channels = len(self.input_channels)
         self.default_scale = self.set_3dim(default_scale)
         self.target_scale = self.set_3dim(target_scale)
-        self.movies_scale = self.load_movie_scales(scale_file)
+        self.scale_file = str(scale_file) if scale_file is not None else None
+        self.scale_file_exists = bool(self.scale_file and os.path.exists(self.scale_file))
+        self.movies_scale = self.load_movie_scales(self.scale_file)
         self._augmentations = None
         self._sample_limit = np.inf
         self.idx = 0
@@ -106,7 +108,7 @@ class AbstractCellDataset(DataLoader):
         return np.array(r)
 
     def load_movie_scales(self, path):
-        if not os.path.exists(path):
+        if not path or not os.path.exists(path):
             log.warning(
                 f"Scale file does not exists at path: {path}. Using default scale {self.default_scale}"
             )
@@ -126,6 +128,7 @@ class AbstractCellDataset(DataLoader):
         # Load images and associated bipoints
         # Data are also rescaled based on the given scale
         self.movies_im, self.movies_bipoints = self._load_data()
+        self.on_data_loaded()
 
         if preprocess:
             self.resize_data()
@@ -152,6 +155,10 @@ class AbstractCellDataset(DataLoader):
 
         log.info(f"Total number of sequences: {self.total_valid_sequences}")
         self.post_process_init()
+
+    def on_data_loaded(self):
+        """Hook called after raw movies/labels are loaded and before resizing."""
+        pass
 
     def post_process_init(self):
         pass
