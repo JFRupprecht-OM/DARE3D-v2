@@ -27,7 +27,7 @@ data:
   batch_size: 8
 
 input_channels: [-1, 0, 1, 2]
-scale_file: ${paths.data_dir}/3d/scales.json
+scale_file: ${paths.data_dir}/3D/scales.json
 default_scale: [1.0, 1.0, 2.8]
 target_scale: 1.0
 renorm: "min-max"

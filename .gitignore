@@ -28,7 +28,10 @@ __pycache__
 DARE3d_data_*/
 *.zip
 *.part
-/data/
+/data/*
+!/data/3D/
+/data/3D/*
+!/data/3D/scales.json
 /logs/
 mlruns/
 *.ckpt

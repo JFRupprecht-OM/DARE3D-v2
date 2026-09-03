@@ -45,6 +45,7 @@ from dare3d.metrics.object_level import (
     statistics_optimized,
 )
 from dare3d.models.finetune import load_net_state_dict
+from napari_dare3d._scale import safe_movie_stem
 
 # ``dare3d.predict`` registers this at import time; some net/config nodes use
 # ``${eval:...}``. ``replace=True`` keeps re-imports safe in a long napari session.
@@ -267,6 +268,7 @@ def infer_stack(
     scale_file: Optional[str] = None,
     default_scale=None,
     target_scale=None,
+    movie_name: str = "movie",
     frames: Optional[Tuple[int, int]] = None,
     progress_cb: ProgressCb = None,
     should_stop: Optional[Callable[[], bool]] = None,
@@ -283,7 +285,10 @@ def infer_stack(
         overlap, batch_size, threshold, min_weighted_prob: segmentation knobs
             (defaults match ``configs/predict.yaml``).
         scale_file / default_scale / target_scale: optional scale overrides;
-            if omitted, the saved training config's values are used.
+            without a current scale file, the saved default/target scales are used.
+        movie_name: source movie name or filename. Its stem is preserved for
+            per-movie lookup in the scale file; the compatibility default is
+            "movie".
         frames: optional ``(t_start, t_end)`` INCLUSIVE time window (original frame
             indices) to analyse; ``None`` (default) analyses the whole movie. The
             needed context frames before ``t_start`` are included automatically and
@@ -324,12 +329,13 @@ def infer_stack(
             progress_cb(stage)
 
     scale_kw = dict(scale_file=scale_file, default_scale=default_scale, target_scale=target_scale)
+    movie_filename = f"{safe_movie_stem(movie_name)}.tif"
 
     try:
         with tempfile.TemporaryDirectory(prefix="dare3d_napari_") as tmp:
             # On-disk order must be (T, Z, Y, X) — read_tif_and_order_xyz swaps it to
             # internal (T, X, Y, Z).
-            tifffile.imwrite(os.path.join(tmp, "movie.tif"), stack)
+            tifffile.imwrite(os.path.join(tmp, movie_filename), stack)
 
             report("segmentation")
             seg_cfg = _load_inference_cfg(seg_model_dir, tmp, device, **scale_kw)
@@ -366,6 +372,7 @@ def to_layer_data(
     *,
     point_size: float = 12.0,
     axis_point_size: float = 4.0,
+    layer_scale: Optional[Sequence[float]] = None,
 ) -> List[tuple]:
     """Convert detections into napari ``LayerDataTuple``s (imports no napari).
 
@@ -386,6 +393,17 @@ def to_layer_data(
 
     points = np.array([d["center_napari"] for d in detections], dtype=float)
     layers: List[tuple] = []
+    napari_scale = None
+    if layer_scale is not None:
+        scale = np.asarray(layer_scale, dtype=float).reshape(-1)
+        if scale.size != points.shape[1]:
+            raise ValueError(
+                f"layer_scale must have {points.shape[1]} values for "
+                f"{points.shape[1]}D result coordinates, got {scale.size}"
+            )
+        if not np.all(np.isfinite(scale)) or np.any(scale <= 0):
+            raise ValueError("layer_scale values must be finite and positive")
+        napari_scale = tuple(float(value) for value in scale)
 
     point_kwargs = {
         "name": "DARE3D centers",
@@ -396,6 +414,8 @@ def to_layer_data(
         # point size of ~12 it would render every detection on (almost) every time
         # slice, making the detections look identical across all timepoints.
     }
+    if napari_scale is not None:
+        point_kwargs["scale"] = napari_scale
     has_orientation = "axis_napari" in detections[0]
     if has_orientation:
         point_kwargs["features"] = {"length": np.array([d["length"] for d in detections], dtype=float)}
@@ -422,6 +442,8 @@ def to_layer_data(
             "face_color": "cyan",
             "border_color": "cyan",
         }
+        if napari_scale is not None:
+            axis_kwargs["scale"] = napari_scale
         layers.append((axis_points, axis_kwargs, "points"))
 
     return layers

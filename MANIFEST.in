@@ -1,6 +1,7 @@
 # Ship the Hydra config tree and the napari manifest in source/wheel distributions.
 recursive-include configs *.yaml *.yml
 include napari_dare3d/napari.yaml
+include data/3D/scales.json
 
 # Keep tests and dev/CI noise out of the distribution.
 prune tests

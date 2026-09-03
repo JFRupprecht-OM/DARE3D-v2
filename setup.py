@@ -53,6 +53,9 @@ setup(
         "napari_dare3d": ["napari.yaml"],
         "configs": ["**/*.yaml", "**/*.yml"],
     },
+    # Keep the historical project-level path available in wheel installs as
+    # <environment>/data/3D/scales.json as well as in source checkouts/sdists.
+    data_files=[("data/3D", ["data/3D/scales.json"])],
     install_requires=INSTALL_REQUIRES,
     # console commands (core) + the napari plugin manifest (so napari discovers the plugin)
     entry_points={

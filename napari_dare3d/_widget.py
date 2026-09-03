@@ -5,6 +5,7 @@ dare3d) is deferred into the worker so merely loading this module (plugin
 discovery) stays cheap. Inference runs in a ``thread_worker`` to keep the UI
 responsive; results are added back on the main thread.
 """
+import sys
 from pathlib import Path
 
 import napari
@@ -15,6 +16,11 @@ from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
 from napari_dare3d._io import iter_tifs
+from napari_dare3d._scale import (
+    napari_scale_from_xyz,
+    resolve_source_scale_xyz,
+    xyz_from_napari_scale,
+)
 
 
 #: Name of the Zenodo download holding the demo models / data.
@@ -31,7 +37,7 @@ _INFER_STATE = {"stop": False, "call_button": None, "stop_button": None}
 #: divisibility), so exposing a size would crash inference (the DARE2d lesson).
 #: ``device`` lives here too (moved out of the main panel to match the DARE2D UX).
 _ADVANCED_FIELDS = ("device", "overlap", "batch_size", "threshold", "min_weighted_prob",
-                    "default_scale")
+                    "scale_file", "default_scale")
 
 #: Short overlay legend shown in the widget (QLabel rich text).
 LEGEND_HTML = (
@@ -82,6 +88,31 @@ def _default_image_path():
     test_input = root / "Gastruloid_241025" / "test_input"
     tifs = iter_tifs(test_input)  # case-insensitive .tif/.tiff
     return Path(tifs[0]) if tifs else None
+
+
+def _default_scale_file() -> Path:
+    """Return the backward-compatible scale table when available."""
+    candidates = (
+        Path(__file__).resolve().parents[1] / "data" / "3D" / "scales.json",
+        Path(sys.prefix) / "data" / "3D" / "scales.json",
+    )
+    return next((path for path in candidates if path.is_file()), Path())
+
+
+def _maybe_file(path: Path):
+    """Return str(path) for a real file, else None (treat empty as unset)."""
+    path = Path(path)
+    return str(path) if (str(path) not in ("", ".") and path.is_file()) else None
+
+
+def _result_layer_scale(image, stack_ndim: int):
+    """Map an input Image scale to four-dimensional (T,Z,Y,X) results."""
+    scale = tuple(float(value) for value in image.scale)
+    if stack_ndim == 3 and len(scale) == 3:
+        return (1.0, *scale)
+    if stack_ndim == 4 and len(scale) == 4:
+        return scale
+    return None
 
 
 def _set_advanced_visible(widget, visible: bool) -> None:
@@ -287,6 +318,12 @@ def _parse_scale(text: str):
         "tooltip": "Voxel size x,y,z in microns (e.g. 0.621,0.621,2). "
                    "Blank = use the value saved in the model config.",
     },
+    scale_file={
+        "widget_type": "FileEdit", "mode": "r", "label": "Per-movie scales JSON",
+        "tooltip": "Scale table keyed by the selected layer/movie name. Defaults to "
+                   "data/3D/scales.json when running from a source checkout; clear it "
+                   "to use default_scale or the model config.",
+    },
     legend={"widget_type": "Label", "label": "", "visible": False},  # shown after a run (see _init_widget)
     pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
     # Rendered just above the call button so it visually replaces "Run DARE3D" while
@@ -309,6 +346,7 @@ def dare3d_widget(
     batch_size: int = 4,
     threshold: float = 0.5,
     min_weighted_prob: float = 0.1,
+    scale_file: Path = _default_scale_file(),
     default_scale: str = "",
     legend: str = LEGEND_HTML,
     pbar: ProgressBar = None,
@@ -346,8 +384,31 @@ def dare3d_widget(
     except ValueError as exc:
         notifications.show_error(str(exc))
         return
+    sf = _maybe_file(scale_file)
+    if str(scale_file) not in ("", ".") and sf is None:
+        notifications.show_error(f"Scale file does not exist: {scale_file}")
+        return
 
     stack = np.asarray(image.data)
+    try:
+        layer_scale_xyz = xyz_from_napari_scale(image.scale, stack.ndim)
+        layer_scale_is_calibrated = not np.allclose(
+            layer_scale_xyz, (1.0, 1.0, 1.0)
+        )
+        inference_default_scale = (
+            ds
+            if ds is not None
+            else (layer_scale_xyz if layer_scale_is_calibrated else None)
+        )
+        source_scale_xyz = resolve_source_scale_xyz(
+            image.name, sf, inference_default_scale
+        )
+        if source_scale_xyz is not None:
+            image.scale = napari_scale_from_xyz(source_scale_xyz, stack.ndim)
+    except (OSError, TypeError, ValueError) as exc:
+        notifications.show_error(f"Invalid spatial calibration: {exc}")
+        return
+    result_layer_scale = _result_layer_scale(image, stack.ndim)
     n_t = stack.shape[0] if stack.ndim == 4 else 1
     # DARE2D end-frame convention: t_end == -1 means "to the final frame". The whole
     # movie (start 0, end -1) is passed as frames=None; any other window is resolved
@@ -377,7 +438,9 @@ def dare3d_widget(
             batch_size=int(batch_size),
             threshold=threshold,
             min_weighted_prob=min_weighted_prob,
-            default_scale=ds,
+            scale_file=sf,
+            default_scale=inference_default_scale,
+            movie_name=image.name,
             frames=frames,
             progress_cb=lambda stage: print(f"[DARE3D] {stage}"),
             should_stop=lambda: _INFER_STATE["stop"],
@@ -396,7 +459,9 @@ def dare3d_widget(
             notifications.show_info("DARE3D: inference stopped.")
             return
 
-        for data, kwargs, ltype in to_layer_data(detections):
+        for data, kwargs, ltype in to_layer_data(
+            detections, layer_scale=result_layer_scale
+        ):
             getattr(viewer, f"add_{ltype}")(data, **kwargs)
         notifications.show_info(f"DARE3D: {len(detections)} division(s) detected.")
         # Leave the bar in place, filled, as a "done" indicator.

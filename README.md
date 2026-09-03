@@ -131,9 +131,10 @@ A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/l
 - **Training data** lives under `data/3d/<dataset>/{train,val}/{im,label}/*.tif`, one 4-D movie per
   file. **Labels** encode the daughter-cell pair: first daughter → **odd** instance ids, second →
   **even** ids. An optional `train/weights/` folder supplies per-voxel sparse weighting.
-- **Voxel scale** (anisotropy) is read per movie from `data/3d/scales.json` in µm/voxel; if absent,
-  the experiment's `default_scale` (e.g. `0.621, 0.621, 2`) is used. The inference widget's
-  *default_scale x,y,z* field overrides it.
+- **Voxel scale** (anisotropy) is read per movie from the backward-compatible
+  `data/3D/scales.json` table in x,y,z µm/voxel. The TIFF filename stem is the lookup key.
+  A matching table entry takes precedence; a missing file or entry uses the experiment's
+  `default_scale` (for example `0.621, 0.621, 2`).
 
 ## Configuration (Hydra)
 
@@ -171,7 +172,7 @@ python dare3d/predict.py \
 Results (probability map, division-axis render, and a `raw_predictions.npz` of centers + rotation
 matrices + lengths) are written under the Hydra run directory. Useful overrides:
 
-- **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3d/scales.json`.
+- **Voxel scale:** `+default_scale=[0.621,0.621,2]` (x,y,z µm) or `+scale_file=data/3D/scales.json`.
 - **Detection tuning:** `segmentation.threshold=0.5`, `segmentation.min_weighted_prob=0.1`,
   `segmentation.inference_overlap=0.25`, `segmentation.inference_batch_size=4`.
 - **Device:** `device=gpu` (recommended) or `device=cpu` — both run the full pipeline
@@ -185,8 +186,13 @@ validates them, runs segmentation + regression, and visualises the result.
 **Plugins → DARE3D → DARE3D inference**. Set the segmentation / regression model-dir fields and
 **Run** — it overlays the detected division **centers** and **axes** as napari Points layers.
 Uncheck *Analyse whole movie* to process only a `[t_start, t_end]` window, expand **Show advanced
-parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. (Both segmentation
-and regression run on CPU or GPU; pick GPU for speed on large movies.)
+parameters** for the fine-tuning knobs, and use **Stop** to abort a long run. Both segmentation
+and regression use the per-movie JSON entry when the selected layer name matches. Otherwise a
+manual `default_scale`, a non-unit calibrated Image-layer scale, or finally the saved model
+default is used. Result layers inherit the Image layer's Napari scale, so anisotropic overlays
+remain registered. The built-in TIFF loader does not parse TIFF/CZI physical metadata; unknown
+movies therefore still require a calibrated layer or an explicit scale. Both stages run on CPU
+or GPU; pick GPU for speed on large movies.
 
 ## Postprocessing
 

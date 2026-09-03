@@ -47,6 +47,19 @@ The editable install registers the plugin via its `napari.manifest` entry point,
    subprocess. Retraining and fine-tuning are also available as notebooks under `notebooks/`, the
    recommended path for both.
 
+The advanced **Per-movie scales JSON** field is pre-filled with
+`data/3D/scales.json` when the source-checkout or installed-wheel copy is available.
+`infer_stack` preserves the source `movie_name` stem, so entries such as `movie2`
+and `movie_M` are selected correctly. For an unknown stem the widget uses the manual
+`default_scale`, then a non-unit scale already attached to the Napari Image layer,
+then the saved model default. The resolved JSON/manual scale is applied to the Image
+layer and all result layers; otherwise result layers inherit the existing Image-layer
+scale. Thus anisotropic overlays remain registered.
+
+The widget's direct TIFF loader uses `tifffile.imread` and does not derive physical
+spacing from TIFF/CZI metadata. If neither the table nor the model name covers a movie,
+set **default_scale x,y,z** or calibrate the Image layer before running.
+
 ## Modules
 
 | File | Role |
