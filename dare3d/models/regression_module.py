@@ -17,6 +17,7 @@ class RegressionLitModule(FineTuneMixin, LightningModule):
         criterion=None,
         compile=False,
         finetune: dict = None,
+        regression_log_batches_per_epoch: int = None,
     ) -> None:
         super().__init__()
 
@@ -185,7 +186,13 @@ class RegressionLitModule(FineTuneMixin, LightningModule):
             self.safe_update_metric(self.val_head2_len_loss, losses["head2_len_loss"])
             self.log("val/head2_len_loss", self.val_head2_len_loss, on_step=False, on_epoch=True, prog_bar=True)
 
-        self.log_regression_results(x, targets, preds)
+        log_limit = self.hparams.regression_log_batches_per_epoch
+        if log_limit is None:
+            self.log_regression_results(x, targets, preds, epoch=0)
+        elif batch_idx < log_limit:
+            self.log_regression_results(
+                x, targets, preds, epoch=self.current_epoch
+            )
 
     def test_step(self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single test step on a batch of data from the test set.
@@ -218,12 +225,12 @@ class RegressionLitModule(FineTuneMixin, LightningModule):
         if self.hparams.compile and stage == "fit":
             self.net = torch.compile(self.net)
 
-    def log_regression_results(self, x, targets, preds):
+    def log_regression_results(self, x, targets, preds, epoch):
         logger: RegressionLogger = self.get_regression_logger()
         if logger is None:
             return
         
-        logger.log_3D_images(x, targets, preds, epoch=0)
+        logger.log_3D_images(x, targets, preds, epoch=epoch)
         
     def get_regression_logger(self):
         for logger in self.loggers:

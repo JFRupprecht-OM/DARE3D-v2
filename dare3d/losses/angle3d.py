@@ -67,6 +67,42 @@ def geodesic_from_rot_matrix(y_true, y_pred):
     return angle_loss(y_true, y_pred)
 
 
+def rotation_axis_from_9d(rotation, project_prediction=False):
+    """Return the normalized nematic axis encoded by a flattened rotation.
+
+    Regression targets are already valid rotation matrices. Network predictions
+    are unconstrained 9D vectors and must first be projected to SO(3), matching
+    the historical SVD inference path.
+    """
+    matrix = (
+        symmetric_orthogonalization(rotation)
+        if project_prediction
+        else rotation.reshape(-1, 3, 3)
+    )
+    quaternion = matrix_to_quaternion(matrix)
+    return F.normalize(quaternion[..., 1:], dim=-1, p=2, eps=1e-8)
+
+
+def nematic_axis_projector_loss(scale_degrees=90.0):
+    """Smooth sign- and roll-invariant division-axis training loss.
+
+    The squared axis dot product gives identical minima for ``u`` and ``-u``
+    and ignores the physically irrelevant rotation around the division axis.
+    Scaling by 90 keeps the loss on the same numerical range as the exact
+    nematic angle used for evaluation while avoiding ``acos`` endpoint
+    singularities during training.
+    """
+    def loss(y_true, y_pred):
+        true_axis = rotation_axis_from_9d(y_true, project_prediction=False)
+        predicted_axis = rotation_axis_from_9d(
+            y_pred, project_prediction=True
+        )
+        dot_product = torch.sum(true_axis * predicted_axis, dim=-1)
+        dot_product = torch.clamp(dot_product, -1.0, 1.0)
+        return torch.mean(scale_degrees * (1.0 - torch.square(dot_product)))
+
+    return loss
+
 def angle_loss(y_true, y_pred):
     # Φ3(q1, q2) = arccos(|q1 · q2|)
     # or 2 arccos for values in range [0; pi]

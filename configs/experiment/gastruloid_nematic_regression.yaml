@@ -1,0 +1,107 @@
+# @package _global_
+
+# Fresh gastruloid regression training with the corrected nematic-axis loss.
+# The required model_root and split_root are supplied explicitly at launch so
+# Hydra records the concrete source and destination paths in its native files.
+defaults:
+  - override /data: regression
+  - override /data/augmentation: monai_augmentation_reg
+  - override /model: regression
+  - override /model/net: simple_regression_net
+  - override /model/criterion: nematic_angle_len
+  - override /callbacks: default
+  - override /trainer: default
+  - override /logger: regression_many_loggers
+
+tags: ["gastruloid", "regression", "nematic", "hydra", "seed12345"]
+task_name: regression3d_nematic_hydra_seed12345
+train: true
+test: true
+ckpt_path: null
+seed: 12345
+
+# Refuse implicit destinations or data sources for the release-candidate run.
+model_root: ???
+split_root: ???
+date: ???
+
+paths:
+  log_dir: ${model_root}
+  output_dir: ${model_root}/runs/${date}
+
+hydra:
+  run:
+    dir: ${model_root}
+
+steps_per_epoch: 2000
+train_dir: unused_by_explicit_split_paths
+val_dir: unused_by_explicit_split_paths
+test_dir: unused_by_explicit_split_paths
+
+input_channels: [-1, 0, 1]
+scale_file: ${paths.root_dir}/data/3D/scales.json
+default_scale: [0.621, 0.621, 2]
+target_scale: 1.0
+renorm: min-max
+order_dim_img: zyx
+crop_size: 32
+time_axis_padding: 1
+representation_mode: rotation_matrix_SVD
+vec_size: 9
+angle_activation: linear
+monitor_val: val/loss
+monitor_direction: min
+
+model:
+  regression_log_batches_per_epoch: 1
+  net:
+    n_stages: 5
+    start_filters: 16
+  optimizer:
+    lr: 0.001
+
+data:
+  batch_size: 12
+  num_workers: 0
+  pin_memory: false
+  train_data:
+    im_folder: ${split_root}/train/im
+    label_folder: ${split_root}/train/label
+    require_scale_file: true
+  val_data:
+    im_folder: ${split_root}/val/im
+    label_folder: ${split_root}/val/label
+    require_scale_file: true
+  test_data:
+    im_folder: ${split_root}/val/im
+    label_folder: ${split_root}/val/label
+    require_scale_file: true
+
+callbacks:
+  model_checkpoint:
+    dirpath: ${model_root}/checkpoints
+    filename: epoch_{epoch:03d}
+    monitor: val/loss
+    mode: min
+    save_last: true
+    save_top_k: 1
+    auto_insert_metric_name: false
+
+logger:
+  mlflow:
+    tracking_uri: sqlite:///${model_root}/mlflow.db
+    artifact_location: file:///${paths.output_dir}/mlflow-artifacts
+  regression:
+    log_freq: 20
+
+trainer:
+  min_epochs: 10
+  max_epochs: 100
+  accelerator: gpu
+  devices: 1
+  precision: 32
+  log_every_n_steps: 5
+  check_val_every_n_epoch: 1
+  deterministic: false
+  accumulate_grad_batches: 1
+  detect_anomaly: false
