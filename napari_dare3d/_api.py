@@ -46,6 +46,7 @@ from dare3d.metrics.object_level import (
     statistics_optimized,
 )
 from dare3d.models.finetune import load_net_state_dict
+from napari_dare3d._release_models import model_dir_from_checkpoint
 from napari_dare3d._scale import safe_movie_stem
 
 # ``dare3d.predict`` registers this at import time; some net/config nodes use
@@ -107,6 +108,7 @@ def _load_inference_cfg(
     hydra_dir: str = ".hydra",
     ckpt_dir: str = "checkpoints",
     ckpt_name: str = "last.ckpt",
+    checkpoint_path: Optional[str] = None,
     scale_file: Optional[str] = None,
     default_scale=None,
     target_scale=None,
@@ -124,7 +126,11 @@ def _load_inference_cfg(
     """
     model_dir = _resolve_model_dir(model_dir, hydra_dir)
     hydra_config_path = os.path.join(model_dir, hydra_dir, "config.yaml")
-    ckpt_path = os.path.join(model_dir, ckpt_dir, ckpt_name)
+    ckpt_path = (
+        os.fspath(checkpoint_path)
+        if checkpoint_path is not None
+        else os.path.join(model_dir, ckpt_dir, ckpt_name)
+    )
     if not os.path.exists(hydra_config_path):
         raise FileNotFoundError(f"Missing training config: {hydra_config_path}")
     if not os.path.exists(ckpt_path):
@@ -296,9 +302,11 @@ def _prediction_to_detection(pred) -> Dict:
 # --------------------------------------------------------------------------- #
 def infer_stack(
     stack: np.ndarray,
-    seg_model_dir: str,
+    seg_model_dir: Optional[str] = None,
     reg_model_dir: Optional[str] = None,
     *,
+    seg_checkpoint: Optional[str] = None,
+    reg_checkpoint: Optional[str] = None,
     regression_require_scale_file: bool = False,
     device: str = "gpu",
     overlap: float = 0.25,
@@ -308,6 +316,7 @@ def infer_stack(
     scale_file: Optional[str] = None,
     default_scale=None,
     target_scale=None,
+    segmentation_scale_mode: str = "source",
     movie_name: str = "movie",
     regression_preprocessing: str = "training_consistent",
     frames: Optional[Tuple[int, int]] = None,
@@ -318,15 +327,25 @@ def infer_stack(
 
     Args:
         stack: ``(T, Z, Y, X)`` or ``(Z, Y, X)`` array (napari order).
-        seg_model_dir: model dir holding ``.hydra/config.yaml`` + ``checkpoints/``.
-        reg_model_dir: optional regression model dir; if given, each detection
-            also carries orientation (``length``, ``axis_napari``, ``quaternion``).
+        seg_model_dir: optional model dir holding its saved ``.hydra/config.yaml``.
+            It is inferred when ``seg_checkpoint`` is supplied.
+        reg_model_dir: optional regression model dir. It is inferred when
+            ``reg_checkpoint`` is supplied.
+        seg_checkpoint / reg_checkpoint: optional explicit checkpoint files. If
+            omitted, the corresponding model directory's ``checkpoints/last.ckpt``
+            is used for backward compatibility.
         device: ``"gpu"``/``"cuda"`` or ``"cpu"``. Both segmentation and regression
             run on either device; CPU is correct but slower (use GPU for large movies).
         overlap, batch_size, threshold, min_weighted_prob: segmentation knobs
             (defaults match ``configs/predict.yaml``).
         scale_file / default_scale / target_scale: optional scale overrides;
             without a current scale file, the saved default/target scales are used.
+        segmentation_scale_mode: segmentation image-space scale policy.
+            ``"source"`` applies the invocation scale overrides (the backward-
+            compatible API default). ``"checkpoint_default"`` retains the saved
+            segmentation checkpoint's default and target scales; physical scale
+            overrides still apply unchanged to regression and remain available to
+            the caller for display calibration.
         movie_name: source movie name or filename. Its stem is preserved for
             per-movie lookup in the scale file; the compatibility default is
             "movie".
@@ -359,6 +378,19 @@ def infer_stack(
     if stack.dtype == np.float64:
         stack = stack.astype(np.float32)  # avoid the dataset's float64 -> float16 downcast
 
+    valid_segmentation_scale_modes = {"source", "checkpoint_default"}
+    if segmentation_scale_mode not in valid_segmentation_scale_modes:
+        raise ValueError(
+            "segmentation_scale_mode must be 'source' or 'checkpoint_default', "
+            f"got {segmentation_scale_mode!r}"
+        )
+    if seg_model_dir is None:
+        if seg_checkpoint is None:
+            raise ValueError("Provide a segmentation checkpoint or model directory")
+        seg_model_dir = str(model_dir_from_checkpoint(seg_checkpoint, "segmentation"))
+    if reg_model_dir is None and reg_checkpoint is not None:
+        reg_model_dir = str(model_dir_from_checkpoint(reg_checkpoint, "regression"))
+
     # Restrict to the requested time window (keeping the model's context frames).
     offset = 0
     if frames is not None:
@@ -375,7 +407,12 @@ def infer_stack(
         if progress_cb is not None:
             progress_cb(stage)
 
-    scale_kw = dict(scale_file=scale_file, default_scale=default_scale, target_scale=target_scale)
+    scale_kw = dict(
+        scale_file=scale_file,
+        default_scale=default_scale,
+        target_scale=target_scale,
+    )
+    segmentation_scale_kw = scale_kw if segmentation_scale_mode == "source" else {}
     movie_filename = f"{safe_movie_stem(movie_name)}.tif"
 
     try:
@@ -385,7 +422,13 @@ def infer_stack(
             tifffile.imwrite(os.path.join(tmp, movie_filename), stack)
 
             report("segmentation")
-            seg_cfg = _load_inference_cfg(seg_model_dir, tmp, device, **scale_kw)
+            seg_cfg = _load_inference_cfg(
+                seg_model_dir,
+                tmp,
+                device,
+                checkpoint_path=seg_checkpoint,
+                **segmentation_scale_kw,
+            )
             centers = _segment(
                 seg_cfg, torch_device,
                 overlap=overlap, batch_size=batch_size,
@@ -401,6 +444,7 @@ def infer_stack(
                     reg_model_dir,
                     tmp,
                     device,
+                    checkpoint_path=reg_checkpoint,
                     require_scale_file=regression_require_scale_file,
                     **scale_kw,
                 )

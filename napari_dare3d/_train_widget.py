@@ -19,7 +19,7 @@ from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
 from napari_dare3d import _train
-from napari_dare3d._widget import _data_root, _maybe_dir
+from napari_dare3d._release_models import find_release_root
 
 #: Shared state (single widget instance in practice): Stop flag + call/stop button refs.
 _TRAIN_STATE = {"stop": False, "call_button": None, "stop_button": None}
@@ -48,12 +48,18 @@ def _set_running(running: bool) -> None:
 
 def _default_trainingset() -> Path:
     """Default dataset: the Gastruloid per-movie ``trainingset/`` (if present)."""
-    root = _data_root()
+    root = find_release_root()
     if root is not None:
         p = root / "Gastruloid_241025" / "trainingset"
         if p.is_dir():
             return p
     return Path()
+
+
+def _maybe_dir(path: Path):
+    """Return a real directory as a string, treating an empty path as unset."""
+    path = Path(path)
+    return str(path) if (str(path) not in ("", ".") and path.is_dir()) else None
 
 
 def _advanced_expanded(widget) -> bool:
@@ -153,11 +159,19 @@ def _autofill_inference(viewer, result: dict) -> None:
     try:
         for dock in viewer.window._dock_widgets.values():
             inner = getattr(dock.widget(), "_magic_widget", None)
-            if inner is not None and hasattr(inner, "seg_model_dir") and hasattr(inner, "reg_model_dir"):
+            if (
+                inner is not None
+                and hasattr(inner, "seg_checkpoint")
+                and hasattr(inner, "reg_checkpoint")
+            ):
                 if result.get("segmentation"):
-                    inner.seg_model_dir.value = result["segmentation"]
+                    inner.seg_checkpoint.value = (
+                        Path(result["segmentation"]) / "checkpoints" / "last.ckpt"
+                    )
                 if result.get("regression"):
-                    inner.reg_model_dir.value = result["regression"]
+                    inner.reg_checkpoint.value = (
+                        Path(result["regression"]) / "checkpoints" / "last.ckpt"
+                    )
     except Exception:
         pass
 

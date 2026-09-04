@@ -38,14 +38,19 @@ The editable install registers the plugin via its `napari.manifest` entry point,
 
 ## Quick start
 
-1. Launch napari from a directory containing `DARE3d_data_190326` (or run the download widget below)
-   so the model-directory fields pre-fill.
+1. Launch napari from a directory containing `DARE3dv2_Zenodo_040926` so the verified release
+   checkpoint fields pre-fill.
 2. Open **Plugins → DARE3D → DARE3D inference**. Select an open image layer or load a `.tif`/`.tiff`
-   movie, confirm the segmentation (and optional regression) model directories, then **Run DARE3D**.
+   movie, confirm the segmentation (and optional regression) checkpoints, then **Run DARE3D**.
 3. **Plugins → DARE3D → DARE3D download data** fetches the demo data/models bundle from Zenodo.
 4. **Plugins → DARE3D → DARE3D retraining & fine-tuning (beta)** drives training/fine-tuning as a
    subprocess. Retraining and fine-tuning are also available as notebooks under `notebooks/`, the
    recommended path for both.
+
+The widget has Gastruloid and neural-tube release presets. Each preset supplies explicit promoted
+checkpoints from `DARE3dv2_Zenodo_040926`; the matching saved model-config directories are inferred
+internally. The widget never assumes that a historical `last.ckpt` is the validation-selected model.
+`infer_stack` retains directory arguments for backward-compatible API calls.
 
 The widget and `infer_stack` default to the production `training_consistent`
 regression preprocessing path. API callers can request `legacy_raw` through
@@ -57,11 +62,27 @@ config's `default_scale`.
 The advanced **Per-movie scales JSON** field is pre-filled with
 `data/3D/scales.json` when the source-checkout or installed-wheel copy is available.
 `infer_stack` preserves the source `movie_name` stem, so entries such as `movie2`
-and `movie_M` are selected correctly. For an unknown stem the widget uses the manual
-`default_scale`, then a non-unit scale already attached to the Napari Image layer,
-then the saved model default. The resolved JSON/manual scale is applied to the Image
-layer and all result layers; otherwise result layers inherit the existing Image-layer
-scale. Thus anisotropic overlays remain registered.
+and `movie_M` are selected correctly. Physical calibration precedence is a matching
+table entry, the manual `default_scale`, a non-unit scale already attached to the
+Napari Image layer, then a documented movie-specific fallback. The resolved physical
+scale is applied to the Image layer and all result layers. With none of those sources,
+model preprocessing may still use its saved default, while result layers inherit the
+existing Image-layer scale. Thus anisotropic overlays remain registered.
+
+For `movie_M` only, if neither the scale table, an explicit manual scale, nor calibrated
+Napari Image-layer metadata supplies spacing, the fallback is `(T,Z,Y,X)=(1,1,0.2,0.2)`.
+
+Physical/display calibration is separate from segmentation checkpoint geometry.
+The exact promoted neural-tube `epoch057` segmenter is a legacy compatibility
+exception: the widget keeps that checkpoint's saved preprocessing scale
+`XYZ=(0.621,0.621,2)` and saved target scale for segmentation only. The authoritative
+`movie_M` physical calibration, `XYZ=(0.2076,0.2076,1)` (or the documented
+`XYZ=(0.2,0.2,1)` fallback), is still passed unchanged to `training_consistent`
+regression and applied to the Image, center, and axis layers. The legacy scale is
+therefore not a claim about the movie's physical voxel size. Gastruloid and custom
+segmentation checkpoints retain normal source-scale behavior. Headless callers can
+select this policy explicitly with
+`segmentation_scale_mode="checkpoint_default"`; the API default remains `"source"`.
 
 The widget's direct TIFF loader uses `tifffile.imread` and does not derive physical
 spacing from TIFF/CZI metadata. If neither the table nor the model name covers a movie,

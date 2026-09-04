@@ -42,6 +42,16 @@ def resolve_source_scale_xyz(
     return _validated_xyz(default_scale, "default_scale")
 
 
+def movie_fallback_scale_xyz(
+    movie_name: str,
+) -> Optional[tuple[float, float, float]]:
+    """Return the documented fallback calibration for known uncalibrated movies."""
+    if safe_movie_stem(movie_name).casefold() == "movie_m":
+        # Requested TZYX fallback (1, 1, 0.2, 0.2) converted to internal XYZ.
+        return (0.2, 0.2, 1.0)
+    return None
+
+
 def napari_scale_from_xyz(
     scale_xyz: Sequence[float], stack_ndim: int
 ) -> tuple[float, ...]:

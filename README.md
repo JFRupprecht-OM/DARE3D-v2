@@ -113,14 +113,12 @@ inference pipeline — segmentation + regression; **only training requires a CUD
 
 ## Models & data
 
-The training/inference dataset (pretrained weights + demo movies) is published on **Zenodo**
-([record 19113351](https://zenodo.org/records/19113351): `DARE3d_data_190326.zip`). Unzip it at
-the repository root so models resolve as
-`DARE3d_data_190326/<case>/weights/{segmentation3d_*,regression3d_*}` (the bundle ships the
-**Gastruloid** and **Neural tube** cases). Or click **Download DARE3D data (Zenodo)** in the plugin
-(Plugins → DARE3D) to fetch and unzip it automatically into the folder you launch napari from.
-
-A model directory is any folder containing `.hydra/config.yaml` + `checkpoints/last.ckpt`.
+The verified v2 release bundle is `DARE3dv2_Zenodo_040926`. Place it at the repository root (or
+in the directory from which napari is launched). The Napari inference widget offers Gastruloid and
+neural-tube release presets containing explicit, clearly named promoted checkpoints. Selecting a
+checkpoint is sufficient; the matching saved `.hydra/config.yaml` directory is resolved internally.
+The widget does not infer that `last.ckpt` is the best model. API callers may still supply model
+directories to retain backward compatibility.
 
 ## Data format
 

@@ -15,16 +15,20 @@ from magicgui.widgets import ProgressBar
 from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
-from napari_dare3d._io import iter_tifs
+from napari_dare3d._release_models import (
+    DATASET_CHOICES,
+    DEFAULT_DATASET,
+    release_model_selection,
+    release_movie_path,
+    release_segmentation_scale_mode,
+)
 from napari_dare3d._scale import (
+    movie_fallback_scale_xyz,
     napari_scale_from_xyz,
     resolve_source_scale_xyz,
     xyz_from_napari_scale,
 )
 
-
-#: Name of the Zenodo download holding the demo models / data.
-DATA_ROOT_NAME = "DARE3d_data_190326"
 
 #: Shared run state (single widget instance in practice): ``stop`` is the abort flag
 #: (set by the Stop button, polled by ``infer_stack`` between frames); ``call_button``
@@ -47,47 +51,25 @@ LEGEND_HTML = (
     "(3D orientation &amp; length)"
 )
 
-
-def _data_root():
-    """Locate the ``DARE3d_data_190326`` dir that holds ``Gastruloid_241025``.
-
-    Looks first under the current working directory (honours "put the data in the
-    current folder"), then relative to this plugin's source — which, as an
-    editable install under ``DARE3Dnapariplugin/``, sits next to the data
-    regardless of where napari was launched. Tolerant of the common unzip
-    double-nesting (``DARE3d_data_190326/DARE3d_data_190326/...``). Returns the
-    resolved root, or None.
-    """
-    bases = [
-        Path.cwd() / DATA_ROOT_NAME,
-        Path(__file__).resolve().parents[2] / DATA_ROOT_NAME,  # .../DARE3Dnapariplugin/
-    ]
-    for base in bases:
-        for root in (base, base / DATA_ROOT_NAME):
-            if (root / "Gastruloid_241025").is_dir():
-                return root
-    return None
+PREAMBLE_HTML = (
+    "<b>DARE3D v2 &mdash; 04/09/2026</b><br>"
+    "<small>Reference: <i>DARE3D: Division Axis and Region Estimation from "
+    "2D/3D time-lapse microscopy</i><br>"
+    "https://www.biorxiv.org/content/10.1101/2024.02.05.578987v2</small>"
+)
+PREAMBLE_MAX_WIDTH = 330
 
 
-def _default_model_dir(kind: str) -> Path:
-    """Default Gastruloid model dir (``segmentation3d_exp10-b`` /
-    ``regression3d_exp10-b``), or ``Path()`` if the data isn't found."""
-    root = _data_root()
-    if root is not None:
-        cand = root / "Gastruloid_241025" / "weights" / kind
-        if cand.is_dir():
-            return cand
-    return Path()
+def _release_default_checkpoint(stage: str, dataset: str = DEFAULT_DATASET) -> Path:
+    """Return the explicit promoted release checkpoint (never infer ``last``)."""
+    _, checkpoint = release_model_selection(dataset, stage)
+    return checkpoint if checkpoint.is_file() else Path()
 
 
-def _default_image_path():
-    """Path of the Gastruloid ``test_input`` movie to preload, or None."""
-    root = _data_root()
-    if root is None:
-        return None
-    test_input = root / "Gastruloid_241025" / "test_input"
-    tifs = iter_tifs(test_input)  # case-insensitive .tif/.tiff
-    return Path(tifs[0]) if tifs else None
+def _release_default_image_path(dataset: str = DEFAULT_DATASET):
+    """Path of the selected release dataset's representative movie."""
+    path = release_movie_path(dataset)
+    return path if path.is_file() else None
 
 
 def _default_scale_file() -> Path:
@@ -141,6 +123,20 @@ def _set_running(running: bool) -> None:
 def _init_widget(widget):
     """magic_factory hook: preload the Gastruloid test_input movie into the viewer
     and select it as the input image. Runs once when the widget is created."""
+    # A Label parameter is normally wrapped by magicgui in a two-column
+    # ``parameter name | value`` row.  The preamble is display-only: hide that
+    # generated name cell and wrap its contents so the citation remains one
+    # compact vertical block instead of determining the width of the whole dock.
+    preamble = getattr(widget, "about", None)
+    if preamble is not None:
+        labeled_preamble = preamble._labeled_widget()
+        if labeled_preamble is not None:
+            labeled_preamble[0].visible = False
+            labeled_preamble.max_width = PREAMBLE_MAX_WIDTH
+        preamble.min_width = 0
+        preamble.max_width = PREAMBLE_MAX_WIDTH
+        preamble.native.setWordWrap(True)
+
     # The call button is not a function parameter, so set its tooltip here.
     if getattr(widget, "call_button", None) is not None:
         widget.call_button.tooltip = (
@@ -170,6 +166,23 @@ def _init_widget(widget):
                 widget.pbar.label = "DARE3D: stopping…"
 
         widget.stop.changed.connect(_request_stop)
+
+    def _apply_release_preset(*_):
+        dataset = widget.dataset.value
+        _, seg_checkpoint = release_model_selection(dataset, "segmentation")
+        _, reg_checkpoint = release_model_selection(dataset, "regression")
+        widget.seg_checkpoint.value = (
+            seg_checkpoint if seg_checkpoint.is_file() else Path()
+        )
+        widget.reg_checkpoint.value = (
+            reg_checkpoint if reg_checkpoint.is_file() else Path()
+        )
+        movie_path = _release_default_image_path(dataset)
+        if movie_path is not None:
+            widget.movie.value = movie_path
+
+    if getattr(widget, "dataset", None) is not None:
+        widget.dataset.changed.connect(_apply_release_preset)
 
     viewer = napari.current_viewer()
     if viewer is None:
@@ -215,7 +228,7 @@ def _init_widget(widget):
     viewer.layers.events.inserted.connect(_update_legend)
     viewer.layers.events.removed.connect(_update_legend)
 
-    path = _default_image_path()
+    path = _release_default_image_path(widget.dataset.value)
     if path is None:
         return
     name = path.stem
@@ -237,12 +250,6 @@ def _init_widget(widget):
             pass
 
 
-def _maybe_dir(p: Path):
-    """Return ``str(p)`` if it is a real directory, else None (treat empty as unset)."""
-    p = Path(p)
-    return str(p) if (str(p) not in ("", ".") and p.is_dir()) else None
-
-
 def _parse_scale(text: str):
     """Parse 'x,y,z' (or empty) into a list of 3 floats (or None)."""
     text = (text or "").strip()
@@ -258,6 +265,9 @@ def _parse_scale(text: str):
     call_button="Run DARE3D",
     widget_init=_init_widget,
     tooltips=False,  # use the explicit per-control "tooltip" options below, not the docstring
+    # A single space prevents magicgui from regenerating the parameter name
+    # "About" before _init_widget hides the display-only label cell.
+    about={"widget_type": "Label", "label": " "},
     image={"label": "Image layer (already open)",
            "tooltip": "Run on an Image layer already open in napari. 4D (T,Z,Y,X) or 3D "
                       "(Z,Y,X). Leave empty if you load a movie file below instead."},
@@ -265,15 +275,22 @@ def _parse_scale(text: str):
            "tooltip": "Browse for a (T,Z,Y,X) or (Z,Y,X) .tif/.tiff stack; it loads and "
                       "displays immediately and becomes the Run input. Leave blank to use "
                       "the open Image layer above."},
-    seg_model_dir={
-        "widget_type": "FileEdit", "mode": "d", "label": "Segmentation model dir",
-        "tooltip": "Segmentation model folder: must contain .hydra/config.yaml + "
-                   "checkpoints/last.ckpt. Pre-filled from DARE3d_data_190326 if found.",
+    dataset={
+        "widget_type": "ComboBox", "choices": DATASET_CHOICES,
+        "label": "Release model preset",
+        "tooltip": "Select the promoted Gastruloid or neural-tube segmentation and "
+                   "regression checkpoints from DARE3dv2_Zenodo_040926.",
     },
-    reg_model_dir={
-        "widget_type": "FileEdit", "mode": "d", "label": "Regression model dir (optional)",
-        "tooltip": "Optional regression model folder. If set, each detection also gets a 3D "
-                   "division axis. Runs on gpu or cpu (cpu is correct but slower).",
+    seg_checkpoint={
+        "widget_type": "FileEdit", "mode": "r", "label": "Segmentation checkpoint",
+        "filter": "*.ckpt",
+        "tooltip": "Explicit promoted segmentation checkpoint from the v2 release bundle.",
+    },
+    reg_checkpoint={
+        "widget_type": "FileEdit", "mode": "r", "label": "Regression checkpoint",
+        "filter": "*.ckpt",
+        "tooltip": "Optional promoted regression checkpoint. If set, each detection "
+                   "also gets a 3D division axis.",
     },
     t_start={
         "min": 0, "label": "Start frame",
@@ -334,10 +351,12 @@ def _parse_scale(text: str):
     },
 )
 def dare3d_widget(
-    image: "napari.layers.Image",
+    about: str = PREAMBLE_HTML,
+    image: "napari.layers.Image" = None,
     movie: Path = Path(""),
-    seg_model_dir: Path = _default_model_dir("segmentation3d_exp10-b"),
-    reg_model_dir: Path = _default_model_dir("regression3d_exp10-b"),
+    dataset: str = DEFAULT_DATASET,
+    seg_checkpoint: Path = _release_default_checkpoint("segmentation"),
+    reg_checkpoint: Path = _release_default_checkpoint("regression"),
     t_start: int = 0,
     t_end: int = -1,
     advanced: bool = False,
@@ -371,14 +390,18 @@ def dare3d_widget(
     if image is None:
         notifications.show_warning("DARE3D: select an Image layer or load a movie (.tif) first.")
         return
-    seg = _maybe_dir(seg_model_dir)
-    if seg is None:
-        notifications.show_warning("DARE3D: choose a valid segmentation model directory.")
+    seg_ckpt = _maybe_file(seg_checkpoint)
+    if seg_ckpt is None:
+        notifications.show_error(
+            f"Choose a valid segmentation checkpoint: {seg_checkpoint}"
+        )
         return
-    reg = _maybe_dir(reg_model_dir)
-    if reg is None and device == "cpu":
-        # seg-only is fine on CPU; this branch only guards the reg+CPU combo below.
-        pass
+    reg_ckpt = _maybe_file(reg_checkpoint)
+    if str(reg_checkpoint) not in ("", ".") and reg_ckpt is None:
+        notifications.show_error(
+            f"Regression checkpoint does not exist: {reg_checkpoint}"
+        )
+        return
     try:
         ds = _parse_scale(default_scale)
     except ValueError as exc:
@@ -395,10 +418,15 @@ def dare3d_widget(
         layer_scale_is_calibrated = not np.allclose(
             layer_scale_xyz, (1.0, 1.0, 1.0)
         )
+        movie_fallback = movie_fallback_scale_xyz(image.name)
         inference_default_scale = (
             ds
             if ds is not None
-            else (layer_scale_xyz if layer_scale_is_calibrated else None)
+            else (
+                layer_scale_xyz
+                if layer_scale_is_calibrated
+                else movie_fallback
+            )
         )
         source_scale_xyz = resolve_source_scale_xyz(
             image.name, sf, inference_default_scale
@@ -432,7 +460,9 @@ def dare3d_widget(
         from napari_dare3d._api import infer_stack  # defer torch/dare3d import
 
         return infer_stack(
-            stack, seg, reg,
+            stack,
+            seg_checkpoint=seg_ckpt,
+            reg_checkpoint=reg_ckpt,
             device=device,
             overlap=overlap,
             batch_size=int(batch_size),
@@ -442,6 +472,9 @@ def dare3d_widget(
             default_scale=inference_default_scale,
             movie_name=image.name,
             frames=frames,
+            segmentation_scale_mode=release_segmentation_scale_mode(
+                dataset, seg_ckpt
+            ),
             progress_cb=lambda stage: print(f"[DARE3D] {stage}"),
             should_stop=lambda: _INFER_STATE["stop"],
         )
@@ -502,18 +535,17 @@ def dare3d_widget(
     call_button="Download DARE3D data (Zenodo)",
     dest={
         "widget_type": "FileEdit", "mode": "d", "label": "Download into",
-        "tooltip": "Folder to download DARE3d_data_190326 into (Zenodo record 19113351, "
-                   "~7 GB). Launch napari from here so the model-dir fields auto-fill.",
+        "tooltip": "Folder for the legacy DARE3d_data_190326 demo bundle "
+                   "(Zenodo record 19113351, ~7 GB).",
     },
     pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
 )
 def dare3d_download_widget(dest: Path = Path.cwd(), pbar: ProgressBar = None):
     """Download the DARE3D demo data + pretrained models from Zenodo (~7 GB) and unzip.
 
-    Saves ``DARE3d_data_190326`` into the chosen folder; the inference widget then
-    auto-fills its model-dir fields when napari is launched from there. The download
-    runs in a worker thread (napari stays responsive); percent progress prints to the
-    terminal.
+    Saves the legacy ``DARE3d_data_190326`` bundle into the chosen folder. Verified
+    release presets come from ``DARE3dv2_Zenodo_040926``. The download runs in a
+    worker thread (napari stays responsive); percent progress prints to the terminal.
     """
     from napari_dare3d import _data
 

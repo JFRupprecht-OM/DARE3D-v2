@@ -11,6 +11,7 @@ import pytest
 from dare3d.data.components.abstract_celldataset import AbstractCellDataset
 from napari_dare3d import _api as napari_api
 from napari_dare3d._scale import (
+    movie_fallback_scale_xyz,
     napari_scale_from_xyz,
     resolve_source_scale_xyz,
     xyz_from_napari_scale,
@@ -159,6 +160,35 @@ def test_napari_calibration_resolves_json_manual_and_layer_sources():
         0.5,
         0.4,
     )
+
+
+def test_movie_m_uncalibrated_fallback_is_tzyx_1_1_point2_point2():
+    fallback_xyz = movie_fallback_scale_xyz("movie_M.tif")
+
+    assert fallback_xyz == (0.2, 0.2, 1.0)
+    assert resolve_source_scale_xyz("movie_M.tif", str(SCALE_FILE), fallback_xyz) == (
+        0.2076,
+        0.2076,
+        1.0,
+    )
+    assert napari_scale_from_xyz((0.2076, 0.2076, 1.0), 4) == (
+        1.0, 1.0, 0.2076, 0.2076
+    )
+    assert napari_scale_from_xyz(fallback_xyz, 4) == (1.0, 1.0, 0.2, 0.2)
+    assert movie_fallback_scale_xyz("movie2.tif") is None
+
+
+def test_movie_m_fallback_is_preserved_on_result_layers():
+    detection = {
+        "center_internal": (0, 1, 2, 3, 4),
+        "center_napari": (1.0, 4.0, 3.0, 2.0),
+    }
+    fallback_scale = (1.0, 1.0, 0.2, 0.2)
+
+    layers = napari_api.to_layer_data([detection], layer_scale=fallback_scale)
+
+    assert len(layers) == 1
+    assert layers[0][1]["scale"] == fallback_scale
 
 
 def test_napari_result_layers_inherit_anisotropic_image_scale():

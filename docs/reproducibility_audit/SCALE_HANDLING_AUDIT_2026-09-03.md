@@ -245,21 +245,50 @@ aspect ratio.
 - infer_stack accepts movie_name and preserves a filesystem-safe version of
   its stem for the temporary TIFF, enabling the shared dataset reader to
   select the correct JSON entry.
-- Precedence is matching JSON entry, explicit manual default, non-unit
-  Image-layer scale, then saved model default for model preprocessing.
+- Physical calibration precedence is matching JSON entry, explicit manual
+  default, non-unit Image-layer scale, then a documented movie-specific
+  fallback. Saved checkpoint defaults are model geometry, not display metadata.
 - XYZ source spacing is converted to Napari ZYX or TZYX scale.
 - The resolved calibration is assigned to the Image layer, and center/axis
   result layers receive the same four-dimensional scale.
 - Corrected regression output uses raw-grid endpoints for overlays, so
   centers and axes remain registered with the original image grid.
 
+### Legacy neural-tube segmentation compatibility
+
+Physical/display calibration and checkpoint-compatible segmentation geometry
+are now deliberately separate. Passing the authoritative movie_M spacing
+`XYZ=(0.2076,0.2076,1)` into the promoted legacy neural-tube segmenter resizes
+its input to approximately `212x212x10`; its observed probability maximum is
+only `0.000437`, so no voxel reaches the unchanged `0.5` threshold. The
+documented `XYZ=(0.2,0.2,1)` physical fallback also yields no detections.
+
+The promoted `DARE3D_neural_tube_segmentation_epoch057.ckpt` was trained and
+historically inferred with its saved `default_scale=XYZ=(0.621,0.621,2)` and
+saved target scale, producing approximately `635x635x20` model inputs. Replaying
+that preprocessing with the unchanged widget thresholds produced 51 retained
+movie_M centers. This scale is checkpoint preprocessing geometry only; it must
+not be interpreted as movie_M physical calibration.
+
+The release preset therefore declares `segmentation_scale_mode=checkpoint_default`
+only for that exact promoted checkpoint path. Gastruloid remains in `source`
+mode, and a manually substituted checkpoint uses `source` even when its filename
+matches. The headless API also defaults to `source` and rejects unknown modes.
+In compatibility mode, only segmentation ignores invocation scale overrides.
+Corrected `training_consistent` regression still receives the authoritative or
+fallback physical scale unchanged, and the Image, center, and axis layers retain
+the same physical TZYX calibration.
+
+The post-integration release-asset GPU smoke returned 51 orientations for
+the 51 retained centers with `training_consistent` regression. Both result
+layers kept the authoritative `(T,Z,Y,X)=(1,1,0.2076,0.2076)` calibration.
+
 The plugin is correctly calibrated when the selected layer name matches a
-table entry, the user supplies a manual scale, or the input layer already
-has a non-unit valid scale. If none is available, the model can still use
-its saved default internally, but Napari remains at unit display scale
-because physical calibration is unknown. The built-in TIFF loader still
-does not parse TIFF/CZI spacing; this limitation is now explicit rather
-than hidden.
+table entry, the user supplies a manual scale, the input layer already has
+a non-unit valid scale, or a documented movie-specific fallback applies. For
+an unknown movie with none of those sources, Napari remains at unit display
+scale because physical calibration is unknown. The built-in TIFF loader still
+does not parse TIFF/CZI spacing; this limitation is explicit rather than hidden.
 
 ## v1-to-v2 comparison
 
