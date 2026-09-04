@@ -1,5 +1,6 @@
 import warnings
 from importlib.util import find_spec
+from pathlib import Path
 from typing import Any, Callable, Dict, Optional, Tuple
 import numpy as np
 
@@ -36,6 +37,10 @@ def extras(cfg: DictConfig) -> None:
     if not cfg.get("extras"):
         log.warning("Extras config not found! <cfg.extras=null>")
         return
+
+    # Some Hydra experiments keep native .hydra files at the model root while
+    # routing run logs to a nested output directory.
+    Path(cfg.paths.output_dir).mkdir(parents=True, exist_ok=True)
 
     # disable python warnings
     if cfg.extras.get("ignore_warnings"):

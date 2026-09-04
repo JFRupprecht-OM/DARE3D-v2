@@ -11,6 +11,7 @@ from omegaconf import OmegaConf
 from scipy.spatial.transform import Rotation
 
 from dare3d.losses.angle3d import nematic_axis_projector_loss
+from dare3d.utils.utils import extras
 
 
 def _axis_matrix(axis, angle_degrees):
@@ -114,3 +115,21 @@ def test_default_regression_experiment_keeps_historical_loss():
 def test_candidate_and_legacy_directories_are_distinct():
     root = Path("DARE3d_data_190326/Gastruloid_241025/weights")
     assert root / "regression3d_nematic_hydra_seed12345" != root / "regression3d_exp10-b"
+
+
+def test_extras_creates_the_declared_nested_output_directory(tmp_path):
+    output_dir = tmp_path / "candidate" / "runs" / "run-id"
+    cfg = OmegaConf.create(
+        {
+            "paths": {"output_dir": str(output_dir)},
+            "extras": {
+                "ignore_warnings": False,
+                "enforce_tags": False,
+                "print_config": False,
+            },
+        }
+    )
+
+    extras(cfg)
+
+    assert output_dir.is_dir()
