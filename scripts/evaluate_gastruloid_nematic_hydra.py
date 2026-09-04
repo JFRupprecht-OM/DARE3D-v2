@@ -535,6 +535,35 @@ def training_contract() -> dict[str, Any]:
     parameter_count = sum(parameter.numel() for parameter in model.net.parameters())
     del model
 
+    observed_datasets = {}
+    for role, dataset_cfg in (
+        ("train", cfg.data.train_data),
+        ("validation", cfg.data.val_data),
+    ):
+        dataset = hydra.utils.instantiate(dataset_cfg)
+        dataset.init()
+        observed_datasets[role] = {
+            "movie_names": list(dataset.movie_names),
+            "unique_crops": len(dataset.crops),
+            "original_internal_shapes_txyz": [
+                list(shape) for shape in dataset.original_movies_shape
+            ],
+            "resized_shapes_xyz_before_crop_padding": [
+                list(
+                    dataset._compute_target_shape(shape, movie_name)[1:]
+                )
+                for shape, movie_name in zip(
+                    dataset.original_movies_shape,
+                    dataset.movie_names,
+                )
+            ],
+            "padded_preprocessed_shapes_txyz": [
+                list(movie.shape) for movie in dataset.movies_im
+            ],
+        }
+        del dataset
+        gc.collect()
+
     sources = {
         "movie2_image": (
             REPO
@@ -628,6 +657,22 @@ def training_contract() -> dict[str, Any]:
             and cfg.crop_size == 32
             and cfg.representation_mode == "rotation_matrix_SVD"
         ),
+        "native_split_and_crop_counts_observed": (
+            observed_datasets["train"]["movie_names"] == ["movie3", "movie4"]
+            and observed_datasets["train"]["unique_crops"] == 526
+            and observed_datasets["validation"]["movie_names"] == ["movie2"]
+            and observed_datasets["validation"]["unique_crops"] == 156
+        ),
+        "native_resized_shapes_observed": (
+            observed_datasets["train"][
+                "resized_shapes_xyz_before_crop_padding"
+            ]
+            == [[387, 375, 77], [405, 394, 152]]
+            and observed_datasets["validation"][
+                "resized_shapes_xyz_before_crop_padding"
+            ]
+            == [[330, 278, 164]]
+        ),
         "all_staged_sources_verified": all(
             record["verified"] for record in source_records.values()
         ),
@@ -643,6 +688,7 @@ def training_contract() -> dict[str, Any]:
             "movie3": [387, 375, 77],
             "movie4": [405, 394, 152],
         },
+        "observed_datasets": observed_datasets,
         "assertions": assertions,
         "all_assertions_pass": all(assertions.values()),
     }
