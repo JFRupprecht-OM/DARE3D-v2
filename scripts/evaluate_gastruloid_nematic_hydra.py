@@ -388,6 +388,19 @@ def current_hash_tree(root_relative: str) -> list[dict[str, Any]]:
     ]
 
 
+def hashed_records_match(current, baseline) -> bool:
+    def index(records):
+        return {
+            record["path"]: {
+                "bytes": int(record["bytes"]),
+                "sha256": record["sha256"],
+            }
+            for record in records
+        }
+
+    return index(current) == index(baseline)
+
+
 def protected_asset_verification() -> dict[str, Any]:
     before = json.loads(PROTECTED_BEFORE.read_text(encoding="utf-8"))
     legacy_now = current_hash_tree(before["legacy"]["root"])
@@ -433,10 +446,10 @@ def protected_asset_verification() -> dict[str, Any]:
     assertions = {
         "candidate_was_absent_at_baseline": not before["candidate_existed"],
         "legacy_regression_folder_byte_identical": (
-            legacy_now == before["legacy"]["files"]
+            hashed_records_match(legacy_now, before["legacy"]["files"])
         ),
         "validated_audit_run_byte_identical": (
-            audit_now == before["validated_audit"]["files"]
+            hashed_records_match(audit_now, before["validated_audit"]["files"])
         ),
         "selected_segmentation_files_byte_identical": (
             segmentation_now == before["segmentation_selected_files"]
