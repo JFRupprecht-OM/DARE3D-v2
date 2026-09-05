@@ -21,9 +21,24 @@ After reviewing the completed locked result, the user explicitly accepted the ca
 - Recorded misses: controlled mean delta `+1.0013901` degrees and paired-bootstrap upper 95% CI `2.1155412` degrees
 - All other locked scientific, loadability, training-contract, native-artifact, and protected-asset checks passed
 - Accepted source: `regression3d_nematic_hydra_seed12345/checkpoints/epoch_098.ckpt`
-- Promoted copy: `regression3d_nematic_hydra_seed12345/checkpoints/DARE3D_gastruloid_regression_epoch098.ckpt`
+- Superseded interim local copy: `DARE3d_data_190326/Gastruloid_241025/weights/regression3d_nematic_hydra_seed12345/checkpoints/DARE3D_gastruloid_regression_epoch098.ckpt`
 - Both checkpoint files are 70,823,338 bytes with SHA-256 `202ec55cdde73088a6b67b6abbd072ba25c7a150471cc419295abda4c4806aef`
 - Machine-readable override: `regression3d_nematic_hydra_seed12345/provenance/release_acceptance_override.json` (SHA-256 `18470c0d1032bc3897790c2865b87de98fb748deed8d4f2b9303a537b36bbb0d`)
+
+## Corrected Zenodo promotion destination (2026-09-05)
+
+The user corrected the prior destination instruction. The accepted model is now promoted into the Zenodo staging tree; the `DARE3d_data_190326` directory is retained as the immutable training/audit source.
+
+- Training/audit source retained: `DARE3d_data_190326/Gastruloid_241025/weights/regression3d_nematic_hydra_seed12345/`
+- Final model directory: `DARE3dv2_Zenodo_040926/Gastruloid_241025/weights/regression3d_nematic_hydra_seed12345/`
+- Final checkpoint: `DARE3dv2_Zenodo_040926/Gastruloid_241025/weights/regression3d_nematic_hydra_seed12345/checkpoints/DARE3D_gastruloid_regression_epoch098.ckpt`
+- Final filename: `DARE3D_gastruloid_regression_epoch098.ckpt`
+- Selected source and final checkpoint are both 70,823,338 bytes with SHA-256 `202ec55cdde73088a6b67b6abbd072ba25c7a150471cc419295abda4c4806aef`
+- Full-tree verification before adding the correction record: 274 files and 311,857,654 bytes on each side, with zero path/size/SHA-256 mismatches
+- Destination-only correction record: `provenance/release_destination_correction.json` (SHA-256 `0637ba8a85285e061c241973b0e005578e73b8a5dcb3a1c6de90dbcbe9889e9a`)
+- The original evaluation and provenance remain unchanged and continue to record `release_suitable: false`; explicit acceptance exists only in the additive override records
+- The interim local release-named copy is retained inside the source directory as historical evidence, but it is not the final release destination
+- No existing Zenodo file was overwritten; the legacy gastruloid regression directory, every segmentation model, all neural-tube models, the validated audit, and Napari configuration remain unchanged
 
 ## Safe-stop state
 
