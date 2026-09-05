@@ -17,6 +17,7 @@ import json
 import math
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -401,6 +402,13 @@ def hashed_records_match(current, baseline) -> bool:
     return index(current) == index(baseline)
 
 
+def parse_iso_timestamp(value: str) -> float:
+    value = re.sub(
+        r"(\.\d{6})\d+(?=(?:Z|[+-]\d{2}:\d{2})$)", r"\1", value
+    )
+    return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp()
+
+
 def protected_asset_verification() -> dict[str, Any]:
     before = json.loads(PROTECTED_BEFORE.read_text(encoding="utf-8"))
     legacy_now = current_hash_tree(before["legacy"]["root"])
@@ -426,9 +434,7 @@ def protected_asset_verification() -> dict[str, Any]:
     zenodo_before = {
         record["path"]: {
             "bytes": int(record["bytes"]),
-            "mtime": datetime.fromisoformat(
-                record["last_write_utc"].replace("Z", "+00:00")
-            ).timestamp(),
+            "mtime": parse_iso_timestamp(record["last_write_utc"]),
         }
         for record in before["zenodo_tree_metadata"]
     }
