@@ -543,7 +543,10 @@ def training_contract() -> dict[str, Any]:
             "default_scale_xyz_um": [
                 float(value) for value in dataset.default_scale
             ],
-            "target_scale_um": float(dataset.target_scale),
+            "target_scale_xyz_um": [
+                float(value)
+                for value in np.asarray(dataset.target_scale).reshape(-1)
+            ],
             "original_internal_shapes_txyz": [
                 [int(value) for value in shape]
                 for shape in dataset.original_movies_shape
