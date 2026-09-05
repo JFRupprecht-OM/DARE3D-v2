@@ -963,7 +963,7 @@ def smoke_test_checkpoint(path: Path) -> dict[str, Any]:
             net, loaded_keys = load_regression_net(path)
             dataset = make_controlled_dataset("physical_02076")
             inputs, _ = dataset[0]
-            batch = inputs["input"].unsqueeze(0).to("cuda")
+            batch = torch.as_tensor(inputs["input"]).unsqueeze(0).to("cuda")
             with torch.inference_mode():
                 output = net(batch)["head1"]
             angle = output["angle"].detach().cpu()
@@ -1033,26 +1033,49 @@ def shared_copy_verification() -> dict[str, Any]:
 def promote(
     checkpoint: Path,
     decision: dict[str, Any],
+    *,
+    resume_existing: bool = False,
 ) -> dict[str, Any]:
     if not decision["promotion_authorized"]:
         raise RuntimeError("Promotion called without a passing release decision")
-    if DESTINATION_ROOT.exists():
+    promotion_path = DESTINATION_ROOT / "provenance/release_promotion.json"
+    if promotion_path.exists():
+        raise FileExistsError(
+            f"Promotion is already finalized: {promotion_path}"
+        )
+    if DESTINATION_ROOT.exists() and not resume_existing:
         raise FileExistsError(
             f"Refusing to overwrite Zenodo destination: {DESTINATION_ROOT}"
         )
+    if resume_existing and not DESTINATION_ROOT.is_dir():
+        raise FileNotFoundError(
+            "Cannot resume promotion because the partial destination is absent: "
+            f"{DESTINATION_ROOT}"
+        )
 
     selected = checkpoint_record(checkpoint)
-    shutil.copytree(MODEL_ROOT, DESTINATION_ROOT, copy_function=shutil.copy2)
+    if not resume_existing:
+        shutil.copytree(
+            MODEL_ROOT,
+            DESTINATION_ROOT,
+            copy_function=shutil.copy2,
+        )
     initial_copy = shared_copy_verification()
     if not initial_copy["all_source_files_present_and_byte_identical"]:
-        raise AssertionError("Structured candidate copy is not byte-identical")
+        raise AssertionError(
+            "Structured candidate copy is incomplete or not byte-identical"
+        )
 
     epoch = selected["epoch"]
     alias_name = f"DARE3D_neural_tube_regression_epoch{epoch:03d}.ckpt"
     alias = DESTINATION_ROOT / "checkpoints" / alias_name
-    shutil.copy2(checkpoint, alias)
+    if not alias.exists():
+        shutil.copy2(checkpoint, alias)
     alias_hash = sha256(alias)
-    if alias_hash != selected["sha256"]:
+    if (
+        alias.stat().st_size != selected["bytes"]
+        or alias_hash != selected["sha256"]
+    ):
         raise AssertionError("Promoted release alias hash differs from source")
 
     smoke = smoke_test_checkpoint(alias)
@@ -1079,6 +1102,7 @@ def promote(
         "source_model_directory": str(MODEL_ROOT),
         "source_model_directory_retained": MODEL_ROOT.is_dir(),
         "destination_model_directory": str(DESTINATION_ROOT),
+        "resumed_from_verified_partial_copy": resume_existing,
         "selected_source_checkpoint": selected,
         "copied_selected_checkpoint": {
             "path": rel(
@@ -1132,7 +1156,7 @@ def promote(
         ],
     }
     write_json(
-        DESTINATION_ROOT / "provenance/release_promotion.json",
+        promotion_path,
         promotion_record,
     )
 
@@ -1143,7 +1167,7 @@ def promote(
         )
     promotion_record["zenodo_scope_verification_after_record"] = final_zenodo
     write_json(
-        DESTINATION_ROOT / "provenance/release_promotion.json",
+        promotion_path,
         promotion_record,
     )
     return promotion_record
@@ -1485,15 +1509,53 @@ def run_evaluation_and_promotion() -> tuple[dict[str, Any], dict[str, Any]]:
     return result, promotion_record
 
 
+def resume_verified_promotion() -> tuple[dict[str, Any], dict[str, Any]]:
+    result_path = EVALUATION_ROOT / "result.json"
+    if not result_path.is_file():
+        raise FileNotFoundError(
+            f"Cannot resume promotion without completed evaluation: {result_path}"
+        )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    checkpoint = candidate_checkpoint()
+    selected = result["selection"]["selected_checkpoint"]
+    if selected != rel(checkpoint):
+        raise AssertionError(
+            "Completed evaluation selected a different checkpoint: "
+            f"{selected}"
+        )
+    evaluated = result["checkpoints"]["fresh_hydra_candidate"]
+    if evaluated["sha256"] != sha256(checkpoint):
+        raise AssertionError(
+            "Selected checkpoint changed after the completed evaluation"
+        )
+    promotion = promote(
+        checkpoint,
+        result["decision"],
+        resume_existing=True,
+    )
+    return result, promotion
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.parse_args()
-    EVALUATION_ROOT.mkdir(parents=True, exist_ok=True)
-    log_path = EVALUATION_ROOT / "evaluation.log"
-    with log_path.open("a", encoding="utf-8", buffering=1) as stream:
-        with contextlib.redirect_stdout(Tee(sys.stdout, stream)):
-            with contextlib.redirect_stderr(Tee(sys.stderr, stream)):
-                result, promotion = run_evaluation_and_promotion()
+    parser.add_argument(
+        "--resume-promotion",
+        action="store_true",
+        help=(
+            "Finalize an already evaluated, verified partial promotion without "
+            "re-running scientific evaluation"
+        ),
+    )
+    args = parser.parse_args()
+    if args.resume_promotion:
+        result, promotion = resume_verified_promotion()
+    else:
+        EVALUATION_ROOT.mkdir(parents=True, exist_ok=True)
+        log_path = EVALUATION_ROOT / "evaluation.log"
+        with log_path.open("a", encoding="utf-8", buffering=1) as stream:
+            with contextlib.redirect_stdout(Tee(sys.stdout, stream)):
+                with contextlib.redirect_stderr(Tee(sys.stderr, stream)):
+                    result, promotion = run_evaluation_and_promotion()
     print(
         json.dumps(
             {
