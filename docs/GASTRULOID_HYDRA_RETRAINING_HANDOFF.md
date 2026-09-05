@@ -2,6 +2,18 @@
 
 Recorded: 2026-09-05 (Europe/Paris)
 
+## Resume outcome (2026-09-05)
+
+The locked evaluation was resumed from the existing `epoch_098.ckpt`; no retraining occurred.
+
+- Final status: `complete_with_failed_gates`; `release_suitable: false`
+- Controlled nematic mean: reference `10.8928976` degrees, candidate `11.8942862` degrees; delta `+1.0013901` degrees exceeded the locked `+1.0`-degree limit
+- Paired bootstrap 95% CI for candidate-minus-reference: `[-0.0884531, 2.1155412]` degrees; upper bound exceeded the locked `<2.0`-degree limit
+- Controlled p95, length MAE, all three `training_consistent` frozen-center comparisons, finite/range checks, checkpoint loading, training contract, and native-artifact checks passed
+- Legacy regression, validated audit, selected segmentation, and the complete Zenodo metadata tree all passed the final protection check
+- Focused permanent suite: 40 passed using the single repository `.pytest_tmp`
+- No checkpoint was substituted and no Zenodo, Napari, segmentation, legacy, or validated-audit state was changed
+
 ## Safe-stop state
 
 The user requested a safe stop after the Hydra training had already completed and after the locked evaluator had stopped with an error. No training or evaluation process is intentionally left running. Do not launch another training run when resuming.
@@ -150,7 +162,9 @@ Untracked material already present and deliberately preserved includes `DARE3D_A
 
 No session commit has been pushed; local `main` is five commits ahead of `origin/main`.
 
-## Exact resume instruction
+## Historical resume instruction (completed 2026-09-05)
+
+The steps below record the completed resume procedure for audit purposes; do not rerun them merely because they remain in this handoff.
 
 Do not retrain. Resume from the existing `epoch_098.ckpt`.
 
