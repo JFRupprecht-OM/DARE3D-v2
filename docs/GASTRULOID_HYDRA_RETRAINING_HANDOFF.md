@@ -14,6 +14,17 @@ The locked evaluation was resumed from the existing `epoch_098.ckpt`; no retrain
 - Focused permanent suite: 40 passed using the single repository `.pytest_tmp`
 - No checkpoint was substituted and no Zenodo, Napari, segmentation, legacy, or validated-audit state was changed
 
+## Explicit scientific release override (2026-09-05)
+
+After reviewing the completed locked result, the user explicitly accepted the candidate for release despite its narrow miss. This is a release-decision override only, not a claim that the original criteria were met; `evaluation/result.json`, its thresholds, its failed assertions, and the original `provenance.json` remain unchanged.
+
+- Recorded misses: controlled mean delta `+1.0013901` degrees and paired-bootstrap upper 95% CI `2.1155412` degrees
+- All other locked scientific, loadability, training-contract, native-artifact, and protected-asset checks passed
+- Accepted source: `regression3d_nematic_hydra_seed12345/checkpoints/epoch_098.ckpt`
+- Promoted copy: `regression3d_nematic_hydra_seed12345/checkpoints/DARE3D_gastruloid_regression_epoch098.ckpt`
+- Both checkpoint files are 70,823,338 bytes with SHA-256 `202ec55cdde73088a6b67b6abbd072ba25c7a150471cc419295abda4c4806aef`
+- Machine-readable override: `regression3d_nematic_hydra_seed12345/provenance/release_acceptance_override.json` (SHA-256 `18470c0d1032bc3897790c2865b87de98fb748deed8d4f2b9303a537b36bbb0d`)
+
 ## Safe-stop state
 
 The user requested a safe stop after the Hydra training had already completed and after the locked evaluator had stopped with an error. No training or evaluation process is intentionally left running. Do not launch another training run when resuming.
