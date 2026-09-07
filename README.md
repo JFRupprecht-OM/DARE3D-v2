@@ -9,7 +9,7 @@
 
 <br>
 
-<img src="napari_dare3d/DARE3Dnapari.png" width="900" alt="DARE3D inference in napari: detected division centers (red) and axes (cyan) overlaid on a 3D movie">
+<img src="napari_dare3d/DARE3D_GIF_050926.gif" width="900" alt="DARE3D inference in napari: detected division centers (red) and axes (cyan) overlaid on a 3D movie">
 
 </div>
 
