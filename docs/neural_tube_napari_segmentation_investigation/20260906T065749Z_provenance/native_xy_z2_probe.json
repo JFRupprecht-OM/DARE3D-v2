@@ -1,0 +1,51 @@
+{
+  "checkpoint": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+  "checkpoint_sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+  "geometry": [
+    1,
+    1,
+    2
+  ],
+  "effective_test_config": {
+    "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+    "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+    "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+    "sparse_folder": null,
+    "input_channels": [
+      -1,
+      0,
+      1
+    ],
+    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im\\__no_scales__.json",
+    "default_scale": [
+      1,
+      1,
+      2
+    ],
+    "target_scale": 1.0,
+    "renorm": "min-max",
+    "order_dim_img": "zyx",
+    "crop_size": 128,
+    "type_mask": "center",
+    "mask_geom": "sphere",
+    "radius": 8,
+    "training": false,
+    "steps_per_epoch": 1000,
+    "load_labels": false,
+    "downsample_factors": [
+      1
+    ],
+    "time_axis_padding": 1
+  },
+  "overlap": 0.5,
+  "batch_size": 4,
+  "prediction_frame": 2,
+  "elapsed_seconds": 55.416889700019965,
+  "mean_abs": 0.0023915793281048536,
+  "max_abs": 1.0,
+  "binary_disagreement_half": 25140,
+  "exact_fraction": 0.9876340866088867,
+  "correlation_foreground": -0.04049178367743944,
+  "positive_voxels": 30450,
+  "archived_positive_voxels": 13804
+}

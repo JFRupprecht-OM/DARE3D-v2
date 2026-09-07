@@ -1,0 +1,84 @@
+{
+  "classification": "Reconstructed diagnostic replay recipe; NOT a recovered historical Hydra launch manifest",
+  "checkpoint": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+  "checkpoint_sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+  "genuine_saved_config": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml",
+  "genuine_saved_config_sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+  "effective_test_config": {
+    "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+    "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+    "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+    "sparse_folder": null,
+    "input_channels": [
+      -1,
+      0,
+      1
+    ],
+    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\neural_tube_napari_segmentation_investigation\\20260906T065749Z_provenance\\__historical_scale_file_unavailable__.json",
+    "default_scale": [
+      1,
+      1,
+      1
+    ],
+    "target_scale": 1.0,
+    "renorm": "min-max",
+    "order_dim_img": "zyx",
+    "crop_size": 128,
+    "type_mask": "center",
+    "mask_geom": "sphere",
+    "radius": 8,
+    "training": false,
+    "steps_per_epoch": 1000,
+    "load_labels": false,
+    "downsample_factors": [
+      1
+    ],
+    "time_axis_padding": 1
+  },
+  "spatial_resampling_ratio_xyz": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "spatial_shape_native_xyz": [
+    1024,
+    1024,
+    10
+  ],
+  "model_sequence_shape_cxyz": [
+    3,
+    1024,
+    1024,
+    128
+  ],
+  "padding_z_before_after": [
+    59,
+    59
+  ],
+  "normalization": "Per three-frame sequence, after zero padding; min-max normalization, float32 network input.",
+  "temporal_sequence": "(t-2,t-1,t), predictions for t=2..20; output t=0,1 remain zero.",
+  "sliding_window": {
+    "roi": [
+      128,
+      128,
+      128
+    ],
+    "overlap": 0.5,
+    "mode": "gaussian",
+    "batch_size_used_for_verification": 12,
+    "original_batch_size_not_proven": true
+  },
+  "network": "196 net state entries loaded strictly; float32; eval mode; primary heatmap logits stitched before sigmoid; output converted to float16; remove Z padding and retain native grid.",
+  "historical_source_match": "Core files match pre-archive public revision 60b565483178cb5444a4388e3c5ca0d5b28e517f; actual verification imports read-only checkout fffadb27062a844a2f0798bd392a8f1cf80dc95e with identical core files.",
+  "warning_physical_scale": "The unit computational resampling ratio is NOT a declaration of 1 micrometer physical voxels. Physical calibration remains independent.",
+  "warning_legacy_eval": "Do not run the historical eval.py directly with the protected legacy model_dir: it writes probabilities and stats into model_dir. The verification calls segmentation_inference(output_dir=None) and saves new files only here.",
+  "historical_postprocessing": {
+    "threshold": 0.55,
+    "comparison": ">=",
+    "minimum_weighted_probability": 0.15,
+    "temporal_dilation": "plus/minus one frame maximum",
+    "connected_components": "4D",
+    "weighted_volume_reference": "3 * sphere(radius=8) volume",
+    "matching": "greedy IoU > 1e-6"
+  }
+}

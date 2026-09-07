@@ -1,0 +1,164 @@
+{
+  "record_id": 17456474,
+  "timestamp_caveat": "ZIP local timestamps have 2-second precision and no recorded timezone; they are provenance clues, not cryptographic proof of creation time.",
+  "events": [
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/config_tree.log",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        15,
+        46
+      ],
+      "bytes": 65432,
+      "crc32": "0xbfa21a4e"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/stats.csv",
+      "zip_local_timestamp": [
+        2026,
+        2,
+        13,
+        16,
+        5,
+        16
+      ],
+      "bytes": 1151,
+      "crc32": "0xd4f34bba"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/segmentation3d_new_set_og.log",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        17,
+        58
+      ],
+      "bytes": 4782,
+      "crc32": "0x72354a79"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tags.log",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        15,
+        44
+      ],
+      "bytes": 22,
+      "crc32": "0x987a2f9c"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif",
+      "zip_local_timestamp": [
+        2026,
+        2,
+        13,
+        15,
+        23,
+        26
+      ],
+      "bytes": 440439394,
+      "crc32": "0xfdfe75af"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        15,
+        44
+      ],
+      "bytes": 8104,
+      "crc32": "0x83285bf7"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/hydra.yaml",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        15,
+        44
+      ],
+      "bytes": 5764,
+      "crc32": "0x846d7ae7"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/overrides.yaml",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        15,
+        44
+      ],
+      "bytes": 585,
+      "crc32": "0x45eff1d2"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "zip_local_timestamp": [
+        2026,
+        2,
+        11,
+        23,
+        29,
+        22
+      ],
+      "bytes": 1378684724,
+      "crc32": "0x89c6efff"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+      "zip_local_timestamp": [
+        2026,
+        2,
+        8,
+        10,
+        22,
+        16
+      ],
+      "bytes": 1378684724,
+      "crc32": "0xe404f736"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/hparams.yaml",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        12,
+        17,
+        18,
+        0
+      ],
+      "bytes": 6929,
+      "crc32": "0x5df841b9"
+    },
+    {
+      "path": "DARE3d_data_160226/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/events.out.tfevents.1768234548.LEN-GENESYS.36548.0",
+      "zip_local_timestamp": [
+        2026,
+        1,
+        14,
+        23,
+        51,
+        4
+      ],
+      "bytes": 165477,
+      "crc32": "0xe73ec7a"
+    }
+  ],
+  "current_model_already_predates_probability_map": true,
+  "source_workstation_path_exists_here": false
+}

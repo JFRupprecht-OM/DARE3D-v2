@@ -1,0 +1,356 @@
+{
+  "files": [
+    {
+      "path": "archived_archived.json",
+      "bytes": 32246,
+      "sha256": "7cce8da3196760f795ee29608ab697b0c1a304edf3d76f9aaa7e651975f652ac"
+    },
+    {
+      "path": "archived_napari_actual_centers.json",
+      "bytes": 14286,
+      "sha256": "da42592b918889bf003bec11a391d5c9c1743578270ddd4dfa89484fa4ca3c0d"
+    },
+    {
+      "path": "archived_napari_ge.json",
+      "bytes": 30977,
+      "sha256": "06b7221052cae05b4488584d6bb6223514a7cd0c6b88aa3ea495707e0c2417ec"
+    },
+    {
+      "path": "archived_no_dilation_only.json",
+      "bytes": 29903,
+      "sha256": "b15433df6f842ecdd27626e2db4b00c39b0ddbe14ac326acc9d079fa9dbf0e5d"
+    },
+    {
+      "path": "archived_threshold_only.json",
+      "bytes": 32539,
+      "sha256": "e4e8841764a945dca26cccf3a64c26ed3dad1312b1352331c26f663ec6d664ae"
+    },
+    {
+      "path": "archived_weight_only.json",
+      "bytes": 33571,
+      "sha256": "8fdef3ddadd1e675e609d2607bd2e0641c3d46eef4fc294aac98e18d31432ba9"
+    },
+    {
+      "path": "checkpoint_datamodule_hyperparameters.json",
+      "bytes": 69,
+      "sha256": "7a2178e64657d35ddf5db2cb68006dc6820ef828845af3223bc27e6b5a88ec35"
+    },
+    {
+      "path": "checkpoint_hyperparameters.json",
+      "bytes": 667,
+      "sha256": "b025798b2640485762406021d7ce6db592716d99641af24a78c8c819ef6143cb"
+    },
+    {
+      "path": "checkpoint_metadata_legacy_last.json",
+      "bytes": 1425,
+      "sha256": "f9b59a6ecd53c6785c5de7b3a51210ca4cbeffbefa12921bb07ea183067c71bc"
+    },
+    {
+      "path": "checkpoint_metadata_selected.json",
+      "bytes": 1379,
+      "sha256": "371fe7bbb26281bb9075faf862463fac5fa9abdae32d129b4b746c03bad5ce9f"
+    },
+    {
+      "path": "cpu_gpu_preprocessing_complete.json",
+      "bytes": 564,
+      "sha256": "c918989a17f003c2031ae40f28cb6b76a15a5473d2d661a1e1348e20fa521627"
+    },
+    {
+      "path": "cpu_preprocessing.json",
+      "bytes": 597,
+      "sha256": "83317a7b0e09b445a4ccf7fbb6a094d2ba218cfb7cddd54661bfd775eefd40b7"
+    },
+    {
+      "path": "diagnostic_summary.json",
+      "bytes": 12736,
+      "sha256": "bef8f8ecdf3351a87143ff4a7f2d68170e0bec16d70660131c98606a31dc5c52"
+    },
+    {
+      "path": "display.json",
+      "bytes": 45804,
+      "sha256": "55a00ee665cdf94f4016abe65dbe094b4f4d7b9a6a63cdbebb1ad833ee07b9f6"
+    },
+    {
+      "path": "executed_diag_archived.json",
+      "bytes": 3630,
+      "sha256": "2b7bb08f752c5b3e274d848e391d1307709594225c8c3fa480fad1b26da0217b"
+    },
+    {
+      "path": "executed_diag_audit_env_probe.json",
+      "bytes": 4670,
+      "sha256": "f360206b6e49bc4001eef39ac53fa751318f89d4447e44abc6c0c4d1a9b2106e"
+    },
+    {
+      "path": "executed_diag_base.json",
+      "bytes": 2224,
+      "sha256": "d7007af9b83e857997f2ac4382759136c50f9957a10b3ca5b7b7e1aee7dd8f8c"
+    },
+    {
+      "path": "executed_diag_cpu_preprocessing.json",
+      "bytes": 1413,
+      "sha256": "df6011cd3288e03b0662c3a4b5fd1299fe4c93620e59a59b970096e44f04e316"
+    },
+    {
+      "path": "executed_diag_display.json",
+      "bytes": 3275,
+      "sha256": "fc098541e9fa3cd47bb26e64e9b5f81c0ec45fa9fc7dd6f7604bdd79e24089b6"
+    },
+    {
+      "path": "executed_diag_fresh_scores.json",
+      "bytes": 4579,
+      "sha256": "950b7ac4173992290abfa808fdf215f463c8572c2073688007a38cc76fd10648"
+    },
+    {
+      "path": "executed_diag_gpu.json",
+      "bytes": 5101,
+      "sha256": "06d2b3b4ab26feec64a09de42b92b3a2d9ee7219b40f3cc4324fbd3c645a265f"
+    },
+    {
+      "path": "executed_diag_targeted_probes.json",
+      "bytes": 4583,
+      "sha256": "253809e052f932aae5e8ce6215494119ea520cfaf66aa23c4f2493ba4c1f872b"
+    },
+    {
+      "path": "focused_tests.json",
+      "bytes": 589,
+      "sha256": "8181cad302effd1dd2fc6675f2e4ff9d282c27692f7e9488fcf56248d04b7233"
+    },
+    {
+      "path": "focused_tests_audit_environment.json",
+      "bytes": 17922,
+      "sha256": "46efe24971c92f8504e2390e018c0a8c2bab201260a2846b5202abe129d42320"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 739138,
+      "sha256": "1e58fd82a9c6c42ed515f152649a13e619ca0f41ff0c88b10cfe428bd258ba3e"
+    },
+    {
+      "path": "legacy_tensorboard_provenance.json",
+      "bytes": 194416,
+      "sha256": "4b8c38bf056bb51ef0fd54fdc0d73a4fd4c0bb5afedde264a3bd5ef0ab61ad9f"
+    },
+    {
+      "path": "model_load.json",
+      "bytes": 440,
+      "sha256": "9abe8c07bd66c67f5db49483cb5cc8551bc0c4eca0e31172ec072539f6ff4ebb"
+    },
+    {
+      "path": "movie_I2_annotation_centers.npy",
+      "bytes": 4064,
+      "sha256": "5fee088f56b37ae0f30117e35b476d3ce8baa4f18a12e9450e887751f512ebd2"
+    },
+    {
+      "path": "movie_I2_cpu_prepared_valid_z.npy",
+      "bytes": 96774128,
+      "sha256": "ad774d388ddc4079505d727075cdd0a604ea18fb3a90febf01389e783cc45302"
+    },
+    {
+      "path": "movie_I2_gpu_prepared_valid_z.npy",
+      "bytes": 96774128,
+      "sha256": "eccdc57a069719bf9d537ece0a53fcbb36630c3e54fa257b1a2f5ec60c778b7c"
+    },
+    {
+      "path": "movie_I2_legacy_last_gpu_resize_probe.json",
+      "bytes": 867,
+      "sha256": "9070b1c8364bbebcf5ab8f6e4a753336db1d92fa616cc474d69e98318fd3d7a8"
+    },
+    {
+      "path": "movie_I2_legacy_last_gpu_resize_probe.tif",
+      "bytes": 62920010,
+      "sha256": "03d66bd90c3105184ee5974a7b41b99d738a817fb4c27816780b9c018b8fb114"
+    },
+    {
+      "path": "movie_I2_napari.json",
+      "bytes": 24328,
+      "sha256": "223adc8cee5dfc6d1638cf41f5eae8cc6a2ce253605a714badf84967dc87dcaa"
+    },
+    {
+      "path": "movie_I2_napari.tif",
+      "bytes": 440439410,
+      "sha256": "dba0238b34cb30a6f551a8d43a0ec8df9eff66eb0dd2eebe30b3128970158645"
+    },
+    {
+      "path": "movie_I2_napari_score_historical.json",
+      "bytes": 26142,
+      "sha256": "a4cb763a3ddea8b486f8b1d5c8cfbe365f9145c8ebbe071dbb2d0214aae33a35"
+    },
+    {
+      "path": "movie_I2_napari_score_napari_ge.json",
+      "bytes": 22585,
+      "sha256": "6b8246251d3dcad4a5502616a3ee5a9ec53dedd9f57a1e9f6ea1018d1e476ca7"
+    },
+    {
+      "path": "movie_I2_offline_overlap.json",
+      "bytes": 24380,
+      "sha256": "0c58501edf66a204b2de0f76333a877bdb65dfecea4f978aeae9f7b3b9e63a58"
+    },
+    {
+      "path": "movie_I2_offline_overlap.tif",
+      "bytes": 440439410,
+      "sha256": "317224fd354e69a2db8ae83951d27fc288d903c019cd3f186e01465ff8dad750"
+    },
+    {
+      "path": "movie_I2_offline_overlap_score_historical.json",
+      "bytes": 26065,
+      "sha256": "3054e8062cc50e41992421ae00d7cd2c2ce5dbb38ce699baad197bb744790945"
+    },
+    {
+      "path": "movie_I2_offline_overlap_score_napari_ge.json",
+      "bytes": 22630,
+      "sha256": "6e7c4013b7b7e5358ef4e89fe42784553d0be1f13972bdd0c25ee4d65f4957d5"
+    },
+    {
+      "path": "movie_I2_physical_probe.json",
+      "bytes": 7910,
+      "sha256": "c0ff59aff2f31e146f8cd5acde15e4d5f0b331ce8310a3d1b1a76b2c90a29845"
+    },
+    {
+      "path": "movie_I2_physical_probe.tif",
+      "bytes": 62920010,
+      "sha256": "0c5f5b33cbe1596934051de42f57c2749b77090ed58a28d8161a4c05555fc78d"
+    },
+    {
+      "path": "movie_I2_selected_audit_environment_gpu_probe.json",
+      "bytes": 1011,
+      "sha256": "74ebd83ddc11a7f77a8a76e9eb646b37519441a4a81462238ed0ad63031a9819"
+    },
+    {
+      "path": "movie_I2_selected_audit_environment_gpu_probe.tif",
+      "bytes": 62920010,
+      "sha256": "356cead13bd5d131500f0f0483d381b732f9e320e6f0d621bd938581a43c8776"
+    },
+    {
+      "path": "movie_I2_selected_cpu_resize_probe.json",
+      "bytes": 823,
+      "sha256": "b1aad4faa7e413efde5b52b44e90dac87d6003446681b55639835591c7a3f186"
+    },
+    {
+      "path": "movie_I2_selected_cpu_resize_probe.tif",
+      "bytes": 62920010,
+      "sha256": "5dceecfa6dde84d7aefad0a55c22d7438cecd16a391028f7f64f5b54468b8929"
+    },
+    {
+      "path": "movie_I2_truth_inventory.json",
+      "bytes": 432,
+      "sha256": "34cf499f171c6a827b04a341ae65c4d007e82b802e733e5335acbe4bfb36ca75"
+    },
+    {
+      "path": "movie_I2_truth_raw.npy",
+      "bytes": 220201088,
+      "sha256": "43fb6a43d013ea8e3690befbc30b999832e0c16a8c0ab547033d452a107de658"
+    },
+    {
+      "path": "movie_M_annotation_centers.npy",
+      "bytes": 2688,
+      "sha256": "b21c1b661e70189d3f2b45cd3139440a78790317baf79178f7e972108dfbb503"
+    },
+    {
+      "path": "movie_M_napari.json",
+      "bytes": 17375,
+      "sha256": "7e2c7b7c7f24365775fda1a420cce8b1f4879b1e12db4333f70181dce43d3655"
+    },
+    {
+      "path": "movie_M_napari.tif",
+      "bytes": 230706410,
+      "sha256": "052c0e77fc589b44946a83dd0323f316621d007b2345f560e4d40239fc05efd4"
+    },
+    {
+      "path": "movie_M_napari_score_historical.json",
+      "bytes": 18618,
+      "sha256": "e96d6f41604ccd588da4ba9846f1b8cd552e85e3a3a458ca7e30cac372e59093"
+    },
+    {
+      "path": "movie_M_napari_score_napari_ge.json",
+      "bytes": 15084,
+      "sha256": "3d30afd00aaa104c768709a13a7122f4bb16d22d600b97a372510de4dfb8c993"
+    },
+    {
+      "path": "movie_M_offline_overlap.json",
+      "bytes": 18545,
+      "sha256": "e1fa310a1857fe4ea045c3127861b64ddaab866ec5ee27ddded2dac7d79678a0"
+    },
+    {
+      "path": "movie_M_offline_overlap.tif",
+      "bytes": 230706410,
+      "sha256": "52b3c1d981ce0d2ac537a88504e8bc8b200904b194bfb6eac23eb3071bf5dbc1"
+    },
+    {
+      "path": "movie_M_offline_overlap_score_historical.json",
+      "bytes": 18437,
+      "sha256": "a62cadba4e8e6e3e49055d9b63fd0318062ae10e3b77332e6dce1b34d09144b9"
+    },
+    {
+      "path": "movie_M_offline_overlap_score_napari_ge.json",
+      "bytes": 15680,
+      "sha256": "69549ee33c039f0d30b50e96cb7a179753b39b467f6847e9eaae4d7d72bfb28b"
+    },
+    {
+      "path": "movie_M_physical_probe.json",
+      "bytes": 7907,
+      "sha256": "e2e7a30348f02547188efbea304529873f5fffe76ff9240f6c1d340ed1860629"
+    },
+    {
+      "path": "movie_M_physical_probe.tif",
+      "bytes": 62920010,
+      "sha256": "46e8ba735ca5dfdf66ac19c40f4f548a00790bd1679c17e3c75f59d3b69aa9c3"
+    },
+    {
+      "path": "movie_M_truth_inventory.json",
+      "bytes": 249,
+      "sha256": "53e439ec2a8d7fe8c19ad3f49a01ec70ceb6c26fd127e1b0064382735e94cb45"
+    },
+    {
+      "path": "movie_M_truth_raw.npy",
+      "bytes": 115343488,
+      "sha256": "8a36c7c143500f50f7b237517ce9b133a10789fecd0d9c5cc3ab3e7d10a093e7"
+    },
+    {
+      "path": "napari_settings.yaml",
+      "bytes": 202,
+      "sha256": "5dea4a7512ee541b3b4208dbd0d3813dd024f383fab1f4c9a09e1bdd91295c68"
+    },
+    {
+      "path": "paired_annotation_center_metrics.json",
+      "bytes": 106970,
+      "sha256": "837dc7e3a9038866b5ef56c350019ea8b0610b83b90ae64bbfb157377dbb13f2"
+    },
+    {
+      "path": "probability_comparisons.json",
+      "bytes": 19532,
+      "sha256": "65cefba2b2654d95106ac2f7d0e2afbc8fa4bb0657e4644fdc10845b974acc15"
+    },
+    {
+      "path": "protected_tree_final.json",
+      "bytes": 196,
+      "sha256": "21319b0657ab7e6473c73ebbd6c5775033493f90c425b54f805c6841157f8e41"
+    },
+    {
+      "path": "protection_verification.json",
+      "bytes": 11827,
+      "sha256": "25c8db1378f55ed70947a405b73cb87513db937a5305869fe2d5e2946236096e"
+    },
+    {
+      "path": "replay_notes.json",
+      "bytes": 1382,
+      "sha256": "033a8087518017ba3e8ef5ef3fa666bbd7fa427b2b8c04b3270839662bc1b7ff"
+    },
+    {
+      "path": "report_quality_checks.json",
+      "bytes": 273,
+      "sha256": "bb2b0754dc61053a08a3cd3f9240c6baa425577a07de1c4085d4e73ec5cec9eb"
+    },
+    {
+      "path": "source_release_input_verification.json",
+      "bytes": 2339,
+      "sha256": "4d409b572864300247a20f6737113a3e2ad051ce5d1d6dba3b7f7c282a13f95c"
+    },
+    {
+      "path": "SUMMARY.md",
+      "bytes": 8176,
+      "sha256": "3b7d0e416288788b0d04b58cd0a5dfda064259936d866930b406936303826254"
+    }
+  ],
+  "total_bytes": 2187629982,
+  "note": "Generated investigation artifacts only. Existing source/audit files were not copied or edited."
+}

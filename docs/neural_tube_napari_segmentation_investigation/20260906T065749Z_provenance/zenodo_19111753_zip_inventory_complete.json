@@ -1,0 +1,5512 @@
+{
+  "record_id": 19111753,
+  "url": "https://zenodo.org/api/records/19111753/files/DARE3d_data_190326.zip/content",
+  "size": 7287672559,
+  "range": "bytes 7287410415-7287672558/7287672559",
+  "entries": [
+    {
+      "name": "DARE3d_data_190326/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 0,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/.DS_Store",
+      "bytes": 6148,
+      "compressed_bytes": 499,
+      "crc32": "0x8bb1584e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 81,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 686,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/.DS_Store",
+      "bytes": 6148,
+      "compressed_bytes": 521,
+      "crc32": "0xe2121aa",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 785,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/test_input/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        14,
+        15,
+        2
+      ],
+      "header_offset": 1430,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/test_input/movie4.tif",
+      "bytes": 1359433824,
+      "compressed_bytes": 407580139,
+      "crc32": "0x3d4e5cb7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        18
+      ],
+      "header_offset": 1540,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 407581815,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/.DS_Store",
+      "bytes": 6148,
+      "compressed_bytes": 338,
+      "crc32": "0xac3d2424",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 407581926,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 407582400,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 407582518,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/1.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 15034204,
+      "crc32": "0xc055abd2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 407582639,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/10.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 52934819,
+      "crc32": "0x62a04239",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 422616985,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/11.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 53490655,
+      "crc32": "0xc8ee4971",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 475551947,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/12.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 50830956,
+      "crc32": "0xe4afa176",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 529042745,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/13.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 54058528,
+      "crc32": "0x7c6552e0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 579873844,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/14.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 53881725,
+      "crc32": "0x3a0c412b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 633932515,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/2.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 18976139,
+      "crc32": "0x7518beb5",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 687814383,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/3.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 21883854,
+      "crc32": "0x35a06631",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 706790664,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/4.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 16566331,
+      "crc32": "0x1d353211",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 728674660,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/5.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 17891675,
+      "crc32": "0xb9914e72",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 745241133,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/6.tif",
+      "bytes": 28864174,
+      "compressed_bytes": 24894336,
+      "crc32": "0x6c808cd1",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 763132950,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/7.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 55089487,
+      "crc32": "0xe27dc581",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 788027428,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/8.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 55106654,
+      "crc32": "0x4f32cd72",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 843117057,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/im/9.tif",
+      "bytes": 60614662,
+      "compressed_bytes": 54519269,
+      "crc32": "0x207a7a2e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        24
+      ],
+      "header_offset": 898223853,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 952743264,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/1.tif",
+      "bytes": 116937,
+      "compressed_bytes": 8297,
+      "crc32": "0xa3f59a03",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952743388,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/10.tif",
+      "bytes": 294822,
+      "compressed_bytes": 12846,
+      "crc32": "0xc141657b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952751830,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/11.tif",
+      "bytes": 244617,
+      "compressed_bytes": 15735,
+      "crc32": "0x123682a8",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952764822,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/12.tif",
+      "bytes": 295478,
+      "compressed_bytes": 13773,
+      "crc32": "0x58827a41",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952780703,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/13.tif",
+      "bytes": 250137,
+      "compressed_bytes": 22065,
+      "crc32": "0x723a8b96",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952794622,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/14.tif",
+      "bytes": 301046,
+      "compressed_bytes": 21185,
+      "crc32": "0xa846e732",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952816833,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/2.tif",
+      "bytes": 139718,
+      "compressed_bytes": 5558,
+      "crc32": "0xba360793",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952838164,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/3.tif",
+      "bytes": 117481,
+      "compressed_bytes": 9155,
+      "crc32": "0xf7f5686f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952843867,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/4.tif",
+      "bytes": 87629,
+      "compressed_bytes": 4414,
+      "crc32": "0xa8b5124e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952853167,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/5.tif",
+      "bytes": 117657,
+      "compressed_bytes": 9735,
+      "crc32": "0x177a1885",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952857726,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/6.tif",
+      "bytes": 139686,
+      "compressed_bytes": 5502,
+      "crc32": "0x5beaae30",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952867606,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/7.tif",
+      "bytes": 253673,
+      "compressed_bytes": 26417,
+      "crc32": "0xe1129294",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952873253,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/8.tif",
+      "bytes": 303142,
+      "compressed_bytes": 25277,
+      "crc32": "0x131b2f15",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952899815,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie1/label/9.tif",
+      "bytes": 246009,
+      "compressed_bytes": 16987,
+      "crc32": "0x70f21fef",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952925237,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 952942369,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 952942487,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/movie2.tif",
+      "bytes": 397774890,
+      "compressed_bytes": 168320467,
+      "crc32": "0x7d4e4825",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 952942608,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 1121263222,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif",
+      "bytes": 4010499,
+      "compressed_bytes": 263729,
+      "crc32": "0x17f3dcc9",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 1121263346,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 1121527225,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/im/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 1121527343,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/im/movie3.tif",
+      "bytes": 829825365,
+      "compressed_bytes": 511572345,
+      "crc32": "0x1282c8e1",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        22
+      ],
+      "header_offset": 1121527464,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/label/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 1633099956,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/label/movie3.tif",
+      "bytes": 15486894,
+      "compressed_bytes": 372952,
+      "crc32": "0xc9bcb4cf",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        18
+      ],
+      "header_offset": 1633100080,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 1633473182,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/im/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        46
+      ],
+      "header_offset": 1633473300,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/im/movie4.tif",
+      "bytes": 1359433824,
+      "compressed_bytes": 407580139,
+      "crc32": "0x3d4e5cb7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        18
+      ],
+      "header_offset": 1633473421,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/label/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2041053707,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/label/movie4.tif",
+      "bytes": 13123314,
+      "compressed_bytes": 462337,
+      "crc32": "0x73618ca2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        16
+      ],
+      "header_offset": 2041053831,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2041516318,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/.DS_Store",
+      "bytes": 6148,
+      "compressed_bytes": 320,
+      "crc32": "0x7b76a678",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 2041516425,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2041516877,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2041517005,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/config.yaml",
+      "bytes": 6879,
+      "compressed_bytes": 1860,
+      "crc32": "0x5ceb8380",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 2041517140,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/hydra.yaml",
+      "bytes": 5353,
+      "compressed_bytes": 1671,
+      "crc32": "0x44f57308",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        14
+      ],
+      "header_offset": 2041519162,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/overrides.yaml",
+      "bytes": 401,
+      "compressed_bytes": 240,
+      "crc32": "0x9cd0f613",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        14
+      ],
+      "header_offset": 2041520994,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2041521399,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "bytes": 70823146,
+      "compressed_bytes": 38198788,
+      "crc32": "0x7392d3e7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        16
+      ],
+      "header_offset": 2041521539,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/last.ckpt",
+      "bytes": 70823146,
+      "compressed_bytes": 38122682,
+      "crc32": "0xf0610c0e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        14
+      ],
+      "header_offset": 2079720497,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2117843344,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2117843477,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/all_true_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2117843616,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/all_true_centers/movie2.tif",
+      "bytes": 281841370,
+      "compressed_bytes": 298146,
+      "crc32": "0x7828bf77",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2117843772,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/config_tree.log",
+      "bytes": 20121,
+      "compressed_bytes": 2186,
+      "crc32": "0x20ce2a07",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 2118142100,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/groundtruth/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2118144456,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/groundtruth/movie2.tif",
+      "bytes": 281841370,
+      "compressed_bytes": 298648,
+      "crc32": "0x63941da1",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        54
+      ],
+      "header_offset": 2118144607,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/matched_true_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2118443432,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/matched_true_centers/movie2.tif",
+      "bytes": 281841370,
+      "compressed_bytes": 297380,
+      "crc32": "0xacb80b69",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2118443592,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/only_gt/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2118741158,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/only_gt/movie2.tif",
+      "bytes": 282143490,
+      "compressed_bytes": 307786,
+      "crc32": "0x39ae9191",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2118741305,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/pred_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2119049264,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/pred_centers/movie2.tif",
+      "bytes": 281841370,
+      "compressed_bytes": 297341,
+      "crc32": "0x60838271",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        54
+      ],
+      "header_offset": 2119049416,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2119346935,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2119347085,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 927,
+      "crc32": "0xf95fb291",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119347237,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 934,
+      "crc32": "0xc4faaab",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119348346,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xa4bc671e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119349462,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x307402a2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119350578,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 929,
+      "crc32": "0xa1e13f99",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119351694,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 934,
+      "crc32": "0xe4f48148",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119352805,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 924,
+      "crc32": "0x5344a2ae",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119353921,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xbf7f6274",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119355027,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 927,
+      "crc32": "0x47a44145",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119356141,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 928,
+      "crc32": "0xee66aabe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119357250,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xc7c993d4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119358360,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/bipoints_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xf7c15685",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119359475,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 338363,
+      "crc32": "0x8553c896",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119360590,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 245925,
+      "crc32": "0xa68c461a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119699129,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 351877,
+      "crc32": "0x4359d0a4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2119945230,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 352033,
+      "crc32": "0xfb1a1af6",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2120297284,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 358544,
+      "crc32": "0x11157362",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2120649494,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 352702,
+      "crc32": "0x1dd994b6",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2121008214,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 353023,
+      "crc32": "0xd8936303",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2121361092,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 351545,
+      "crc32": "0xf9424667",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2121714291,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 349761,
+      "crc32": "0xf9791a63",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2122066012,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 352967,
+      "crc32": "0xd44c697d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2122415949,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 354590,
+      "crc32": "0x76d3065b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2122769092,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/im_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 353385,
+      "crc32": "0x20089147",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123123858,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 965,
+      "crc32": "0x3a609d8d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123477419,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1075,
+      "crc32": "0x5d8b800c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123478563,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1045,
+      "crc32": "0x402528dd",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123479817,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1018,
+      "crc32": "0x548d3560",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123481042,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1051,
+      "crc32": "0x21002e7a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123482240,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1045,
+      "crc32": "0x2565ce67",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123483470,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 935,
+      "crc32": "0x3512c84",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123484694,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 997,
+      "crc32": "0x59120403",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123485808,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 921,
+      "crc32": "0x66a31c2d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123486984,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1041,
+      "crc32": "0x91b27c7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123488084,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1045,
+      "crc32": "0x786dc025",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123489304,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/label_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1018,
+      "crc32": "0xaa8b2102",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123490528,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1000,
+      "crc32": "0xf296d419",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123491725,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1041,
+      "crc32": "0xe8f18ee",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123492903,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1012,
+      "crc32": "0x23667618",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123494122,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1054,
+      "crc32": "0x7fa7f64",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123495313,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1051,
+      "crc32": "0x4dbc2afe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123496546,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1078,
+      "crc32": "0x96304270",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123497775,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 939,
+      "crc32": "0x719fd352",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123499031,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1018,
+      "crc32": "0x2d43557f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123500148,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 970,
+      "crc32": "0x4bf1de84",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123501344,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1039,
+      "crc32": "0x640b814e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123502492,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1039,
+      "crc32": "0x72e3455c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123503709,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression/0/pred_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1071,
+      "crc32": "0xa5f6055",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123504926,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/regression3d_exp10-b.log",
+      "bytes": 11135,
+      "compressed_bytes": 1737,
+      "crc32": "0xb2497b8d",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 2123506175,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tags.log",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "0x987a2f9c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "header_offset": 2123508091,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tensorboard/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2123508278,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tensorboard/version_0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2123508429,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tensorboard/version_0/events.out.tfevents.1719859109.Len-Genesys.42032.0",
+      "bytes": 362744,
+      "compressed_bytes": 91059,
+      "crc32": "0x736f29e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123508590,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tensorboard/version_0/events.out.tfevents.1719864846.Len-Genesys.42032.1",
+      "bytes": 182,
+      "compressed_bytes": 150,
+      "crc32": "0x968e450e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 2123599876,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tensorboard/version_0/hparams.yaml",
+      "bytes": 5595,
+      "compressed_bytes": 1373,
+      "crc32": "0x31b2166e",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 2123600253,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2123601815,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2123601945,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/config.yaml",
+      "bytes": 8089,
+      "compressed_bytes": 2095,
+      "crc32": "0x6ff74c56",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 2123602082,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/hydra.yaml",
+      "bytes": 5680,
+      "compressed_bytes": 1759,
+      "crc32": "0xb4c409b2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 2123604341,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/overrides.yaml",
+      "bytes": 564,
+      "compressed_bytes": 318,
+      "crc32": "0xfd356baa",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 2123606263,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 2123606748,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/epoch_067.ckpt",
+      "bytes": 1378684724,
+      "compressed_bytes": 1264583874,
+      "crc32": "0x1fc8e939",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        14
+      ],
+      "header_offset": 2123606890,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/last.ckpt",
+      "bytes": 1378684724,
+      "compressed_bytes": 1264741675,
+      "crc32": "0xda32ea9d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        8
+      ],
+      "header_offset": 3388190936,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        48
+      ],
+      "header_offset": 4652932778,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4652932913,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/config_tree.log",
+      "bytes": 24321,
+      "compressed_bytes": 2494,
+      "crc32": "0xfbd4e78f",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 4652933054,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4652935720,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2/movie2_fn.tif",
+      "bytes": 397774890,
+      "compressed_bytes": 405328,
+      "crc32": "0x74f0cbbe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        54
+      ],
+      "header_offset": 4652935868,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2/movie2_fp.tif",
+      "bytes": 397774890,
+      "compressed_bytes": 402257,
+      "crc32": "0xe9b619d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        50
+      ],
+      "header_offset": 4653341373,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2/movie2_pred.tif",
+      "bytes": 397774890,
+      "compressed_bytes": 420007,
+      "crc32": "0x8cc75d86",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        52
+      ],
+      "header_offset": 4653743807,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2/movie2_true.tif",
+      "bytes": 397774890,
+      "compressed_bytes": 422909,
+      "crc32": "0x878b597c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        52
+      ],
+      "header_offset": 4654163993,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2.tif",
+      "bytes": 397796494,
+      "compressed_bytes": 58254090,
+      "crc32": "0x4cb0a326",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "header_offset": 4654587081,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/segmentation3d_exp10-b.log",
+      "bytes": 11635,
+      "compressed_bytes": 1876,
+      "crc32": "0xbd3c4be9",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 4712841338,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+      "bytes": 1143,
+      "compressed_bytes": 457,
+      "crc32": "0xc8ff6135",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 4712843397,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tags.log",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "0x987a2f9c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 4712844020,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tensorboard/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712844209,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tensorboard/version_0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712844362,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tensorboard/version_0/events.out.tfevents.1719844015.Len-Genesys.39212.0",
+      "bytes": 359467,
+      "compressed_bytes": 105632,
+      "crc32": "0x240ae733",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4712844525,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tensorboard/version_0/events.out.tfevents.1719859092.Len-Genesys.39212.1",
+      "bytes": 230,
+      "compressed_bytes": 178,
+      "crc32": "0x747ff43f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4712950386,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tensorboard/version_0/hparams.yaml",
+      "bytes": 6756,
+      "compressed_bytes": 1612,
+      "crc32": "0xb7e6c446",
+      "time": [
+        2026,
+        3,
+        18,
+        15,
+        13,
+        28
+      ],
+      "header_offset": 4712950793,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4712952596,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/.DS_Store",
+      "bytes": 6148,
+      "compressed_bytes": 333,
+      "crc32": "0xf51c1c51",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        2
+      ],
+      "header_offset": 4712952696,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712953154,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712953278,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4712953407,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/.hydra/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712953545,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+      "bytes": 6891,
+      "compressed_bytes": 1860,
+      "crc32": "0x410b2e88",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        44
+      ],
+      "header_offset": 4712953690,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/.hydra/hydra.yaml",
+      "bytes": 5431,
+      "compressed_bytes": 1694,
+      "crc32": "0x19df5551",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        44
+      ],
+      "header_offset": 4712955722,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/.hydra/overrides.yaml",
+      "bytes": 419,
+      "compressed_bytes": 250,
+      "crc32": "0xfe3d21a4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        44
+      ],
+      "header_offset": 4712957587,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4712958012,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/movie_I2.tif",
+      "bytes": 983696470,
+      "compressed_bytes": 969758,
+      "crc32": "0x6618cc0b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        50
+      ],
+      "header_offset": 4712958167,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz",
+      "bytes": 16650,
+      "compressed_bytes": 13856,
+      "crc32": "0xad637b10",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        48
+      ],
+      "header_offset": 4713928108,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/checkpoints/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4713942154,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt",
+      "bytes": 18652854,
+      "compressed_bytes": 16982717,
+      "crc32": "0x654d9b82",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        48
+      ],
+      "header_offset": 4713942304,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "bytes": 18652854,
+      "compressed_bytes": 16418881,
+      "crc32": "0x9ead7e1a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        48
+      ],
+      "header_offset": 4730925201,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/config_tree.log",
+      "bytes": 54027,
+      "compressed_bytes": 2639,
+      "crc32": "0xd89b1f74",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 4747344257,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/groundtruth/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        50
+      ],
+      "header_offset": 4747347065,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/groundtruth/movie_I2.tif",
+      "bytes": 983696470,
+      "compressed_bytes": 969789,
+      "crc32": "0xaf9533f2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        46
+      ],
+      "header_offset": 4747347215,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        54
+      ],
+      "header_offset": 4748317182,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/movie_I2.tif",
+      "bytes": 983696470,
+      "compressed_bytes": 969362,
+      "crc32": "0x74a2c436",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        48
+      ],
+      "header_offset": 4748317341,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz",
+      "bytes": 17906,
+      "compressed_bytes": 13317,
+      "crc32": "0x26f4612d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        46
+      ],
+      "header_offset": 4749286890,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4749300401,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/movie_I2.tif",
+      "bytes": 983696470,
+      "compressed_bytes": 969544,
+      "crc32": "0x84abf65e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        44
+      ],
+      "header_offset": 4749300552,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz",
+      "bytes": 15626,
+      "compressed_bytes": 13076,
+      "crc32": "0x4efb34f0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ],
+      "header_offset": 4750270275,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4750283537,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4750283686,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xe6e567d9",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750283837,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 934,
+      "crc32": "0x4a01921a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750284951,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 931,
+      "crc32": "0xfa5631e4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750286066,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xecaf44de",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750287179,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_12.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x9ff6afc6",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750288293,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_13.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xe56be487",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750289408,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_14.tif",
+      "bytes": 395048,
+      "compressed_bytes": 928,
+      "crc32": "0xfc220f3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750290522,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_15.tif",
+      "bytes": 395048,
+      "compressed_bytes": 927,
+      "crc32": "0x32cb63ca",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750291632,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_16.tif",
+      "bytes": 395048,
+      "compressed_bytes": 924,
+      "crc32": "0xf0ffdcc",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750292741,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_17.tif",
+      "bytes": 395048,
+      "compressed_bytes": 925,
+      "crc32": "0x43fa2251",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750293847,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_18.tif",
+      "bytes": 395048,
+      "compressed_bytes": 927,
+      "crc32": "0x2d506ba2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750294954,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_19.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xec3c2ef0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750296063,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0x70540546",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750297178,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_20.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0x7d0bf190",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750298291,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_21.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xe5da48b3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750299405,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_22.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xdb045ec0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750300520,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_23.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x688560be",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750301634,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_24.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x8f3a2332",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750302749,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_25.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0x4f62a3f3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750303864,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_26.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x427f7025",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750304978,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_27.tif",
+      "bytes": 395048,
+      "compressed_bytes": 926,
+      "crc32": "0xdc32baa4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750306093,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_28.tif",
+      "bytes": 395048,
+      "compressed_bytes": 927,
+      "crc32": "0x62fe765d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750307201,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_29.tif",
+      "bytes": 395048,
+      "compressed_bytes": 928,
+      "crc32": "0x31d6bec2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750308310,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0x625089d4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750309420,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_30.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0x3ccc5e2c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750310534,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_31.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xe9e3f5a5",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750311648,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 934,
+      "crc32": "0x74e13e74",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750312763,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xf855f8",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750313878,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 932,
+      "crc32": "0xd175f939",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750314991,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 931,
+      "crc32": "0xfb7a6546",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750316104,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xd3575ff",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750317216,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/bipoints_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 933,
+      "crc32": "0xf26c23a7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750318330,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213880,
+      "crc32": "0xbc82043c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750319444,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213987,
+      "crc32": "0x87f8bbb9",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750533499,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214192,
+      "crc32": "0x8984d3ec",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750747661,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213612,
+      "crc32": "0x7cc22232",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4750962029,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_12.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213084,
+      "crc32": "0x67eec243",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4751175817,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_13.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213844,
+      "crc32": "0x2b64aabf",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4751389077,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_14.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214068,
+      "crc32": "0x83262f03",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4751603097,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_15.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214611,
+      "crc32": "0xb375b061",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4751817341,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_16.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214812,
+      "crc32": "0x91b7a299",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4752032128,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_17.tif",
+      "bytes": 395048,
+      "compressed_bytes": 215342,
+      "crc32": "0x68da66a8",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4752247116,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_18.tif",
+      "bytes": 395048,
+      "compressed_bytes": 195793,
+      "crc32": "0x88123148",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4752462634,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_19.tif",
+      "bytes": 395048,
+      "compressed_bytes": 210943,
+      "crc32": "0x29c69c5e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4752658603,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 212522,
+      "crc32": "0xec6bab99",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4752869722,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_20.tif",
+      "bytes": 395048,
+      "compressed_bytes": 215894,
+      "crc32": "0x59455405",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4753082419,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_21.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214009,
+      "crc32": "0x239bae8f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4753298489,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_22.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214316,
+      "crc32": "0x485d69e7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4753512674,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_23.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213466,
+      "crc32": "0x1a407639",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4753727166,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_24.tif",
+      "bytes": 395048,
+      "compressed_bytes": 153870,
+      "crc32": "0xf6a792eb",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4753940808,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_25.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214153,
+      "crc32": "0x396ef1c6",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4754094854,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_26.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213436,
+      "crc32": "0xc6eefc14",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4754309183,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_27.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214393,
+      "crc32": "0x55dedf24",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4754522795,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_28.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214290,
+      "crc32": "0x79eb102",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4754737364,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_29.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213764,
+      "crc32": "0x21c3188",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4754951830,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214852,
+      "crc32": "0xc12d9444",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4755165770,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_30.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214450,
+      "crc32": "0xd98e06dd",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4755380797,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_31.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214020,
+      "crc32": "0x5bf1f3f0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4755595423,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214250,
+      "crc32": "0x8e2e69fe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4755809619,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214293,
+      "crc32": "0xf71a5c3e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4756024044,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 213657,
+      "crc32": "0x59d76595",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4756238512,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 215572,
+      "crc32": "0x8928dd63",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4756452344,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 214786,
+      "crc32": "0x4bf7aa22",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4756668091,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/im_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 168441,
+      "crc32": "0x111554ec",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4756883052,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1146,
+      "crc32": "0xb4aaa147",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757051668,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1115,
+      "crc32": "0x274b1184",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757052992,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1104,
+      "crc32": "0xc6a5e07b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757054285,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1154,
+      "crc32": "0x72a59bce",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757055568,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_12.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1120,
+      "crc32": "0xeb630f2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757056901,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_13.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1064,
+      "crc32": "0xa6b21a55",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757058200,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_14.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1072,
+      "crc32": "0x47925ed9",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757059443,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_15.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1108,
+      "crc32": "0x8e074212",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757060694,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_16.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1033,
+      "crc32": "0x1a8419d3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757061981,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_17.tif",
+      "bytes": 395048,
+      "compressed_bytes": 999,
+      "crc32": "0x960d7f9f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757063193,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_18.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1047,
+      "crc32": "0x415f659e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757064371,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_19.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1094,
+      "crc32": "0x6fdef151",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757065597,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1116,
+      "crc32": "0xa486628d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757066870,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_20.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1129,
+      "crc32": "0xae2d6fde",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757068164,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_21.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1073,
+      "crc32": "0x5c2167fe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757069472,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_22.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1111,
+      "crc32": "0xbffa5c01",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757070724,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_23.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1139,
+      "crc32": "0x55dbad08",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757072014,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_24.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1167,
+      "crc32": "0xc20c008c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757073332,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_25.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1084,
+      "crc32": "0x40c7bed0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757074678,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_26.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1068,
+      "crc32": "0x784e790f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757075941,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_27.tif",
+      "bytes": 395048,
+      "compressed_bytes": 988,
+      "crc32": "0xb11c175",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757077188,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_28.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1042,
+      "crc32": "0x643aea44",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757078355,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_29.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1029,
+      "crc32": "0xfd563645",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757079576,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1109,
+      "crc32": "0xdc658ee",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757080784,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_30.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1092,
+      "crc32": "0x3b0e3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757082071,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_31.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1111,
+      "crc32": "0x84c363ae",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757083342,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1114,
+      "crc32": "0x2d3a6d69",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757084632,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1116,
+      "crc32": "0x93794348",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757085924,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1113,
+      "crc32": "0x2e1c4265",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757087218,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1133,
+      "crc32": "0xa89d92fa",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757088509,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1137,
+      "crc32": "0x37b86c0",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757089820,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/label_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1107,
+      "crc32": "0x6db58469",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757091135,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_0.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1106,
+      "crc32": "0x6ddf1d65",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757092420,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_1.tif",
+      "bytes": 395048,
+      "compressed_bytes": 998,
+      "crc32": "0x2696f9e7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757093703,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_10.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1059,
+      "crc32": "0x8b70c853",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757094878,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_11.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1172,
+      "crc32": "0xf5c583fe",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757096115,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_12.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1074,
+      "crc32": "0x907b78ea",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757097465,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_13.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1131,
+      "crc32": "0x195b812f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757098717,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_14.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1063,
+      "crc32": "0x3bd3cde4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757100026,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_15.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1126,
+      "crc32": "0xa46d8c53",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757101267,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_16.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1025,
+      "crc32": "0x1a310df4",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757102571,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_17.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1034,
+      "crc32": "0xf8c5840f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757103774,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_18.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1026,
+      "crc32": "0xa89160f6",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757104986,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_19.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1168,
+      "crc32": "0xfc671bef",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757106190,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_2.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1095,
+      "crc32": "0x4e970559",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757107536,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_20.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1082,
+      "crc32": "0x45f7a440",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757108808,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_21.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1075,
+      "crc32": "0x487d757e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757110068,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_22.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1158,
+      "crc32": "0x2fdd54df",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757111321,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_23.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1190,
+      "crc32": "0xedcb4588",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757112657,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_24.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1085,
+      "crc32": "0xd0be1b41",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757114025,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_25.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1128,
+      "crc32": "0x76eee97b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757115288,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_26.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1181,
+      "crc32": "0xd47b8f1b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757116594,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_27.tif",
+      "bytes": 395048,
+      "compressed_bytes": 975,
+      "crc32": "0xf5233418",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757117953,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_28.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1029,
+      "crc32": "0x8bbb21ac",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757119106,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_29.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1062,
+      "crc32": "0x1ee07018",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757120313,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_3.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1134,
+      "crc32": "0x3bb2d5aa",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757121553,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_30.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1117,
+      "crc32": "0x602a7f54",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757122864,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_31.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1106,
+      "crc32": "0x9f37805f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757124159,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_4.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1049,
+      "crc32": "0xaea752e3",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757125443,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_5.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1113,
+      "crc32": "0xc01f1d45",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757126669,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_6.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1129,
+      "crc32": "0x8342e3a8",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757127959,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_7.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1055,
+      "crc32": "0x6ea3f98b",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757129265,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_8.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1167,
+      "crc32": "0x6435655c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757130497,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression/0/pred_9.tif",
+      "bytes": 395048,
+      "compressed_bytes": 1099,
+      "crc32": "0x18845d2c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757131841,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/regression3d_new_set_og.log",
+      "bytes": 8212,
+      "compressed_bytes": 1212,
+      "crc32": "0x1201e9a2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 4757133117,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tags.log",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "0x987a2f9c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 4757134510,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tensorboard/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757134696,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tensorboard/version_0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757134846,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tensorboard/version_0/events.out.tfevents.1768473737.LEN-GENESYS.1240.0",
+      "bytes": 333085,
+      "compressed_bytes": 85304,
+      "crc32": "0x38aa4318",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757135006,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tensorboard/version_0/events.out.tfevents.1768482567.LEN-GENESYS.1240.1",
+      "bytes": 180,
+      "compressed_bytes": 152,
+      "crc32": "0x1d6746bb",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757220535,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tensorboard/version_0/hparams.yaml",
+      "bytes": 5753,
+      "compressed_bytes": 1391,
+      "crc32": "0xc3ba3a0e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 4757220912,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757222491,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757222617,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        58
+      ],
+      "header_offset": 4757222748,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757222888,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+      "bytes": 8104,
+      "compressed_bytes": 2098,
+      "crc32": "0x83285bf7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "header_offset": 4757223035,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/hydra.yaml",
+      "bytes": 5764,
+      "compressed_bytes": 1793,
+      "crc32": "0x846d7ae7",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "header_offset": 4757225307,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/overrides.yaml",
+      "bytes": 585,
+      "compressed_bytes": 332,
+      "crc32": "0x45eff1d2",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "header_offset": 4757227273,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 4757227782,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+      "bytes": 1378684724,
+      "compressed_bytes": 1263104199,
+      "crc32": "0xe404f736",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        40
+      ],
+      "header_offset": 4757227934,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "bytes": 1378684724,
+      "compressed_bytes": 1263773127,
+      "crc32": "0x89c6efff",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        34
+      ],
+      "header_offset": 6020332315,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/config_tree.log",
+      "bytes": 65432,
+      "compressed_bytes": 3057,
+      "crc32": "0xbfa21a4e",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 7284105619,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        56
+      ],
+      "header_offset": 7284108847,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_fn.tif",
+      "bytes": 440436886,
+      "compressed_bytes": 431007,
+      "crc32": "0x5b74e68c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        40
+      ],
+      "header_offset": 7284108996,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_fp.tif",
+      "bytes": 440436886,
+      "compressed_bytes": 430815,
+      "crc32": "0xb028116d",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ],
+      "header_offset": 7284540183,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_pred.tif",
+      "bytes": 440436886,
+      "compressed_bytes": 447840,
+      "crc32": "0x27fa7c1a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ],
+      "header_offset": 7284971178,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_true.tif",
+      "bytes": 440436886,
+      "compressed_bytes": 447950,
+      "crc32": "0xdba4929f",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ],
+      "header_offset": 7285419200,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif",
+      "bytes": 440439394,
+      "compressed_bytes": 1694551,
+      "crc32": "0xfdfe75af",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 7285867332,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/segmentation3d_new_set_og.log",
+      "bytes": 4782,
+      "compressed_bytes": 1023,
+      "crc32": "0x72354a79",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 7287562051,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/stats.csv",
+      "bytes": 1151,
+      "compressed_bytes": 439,
+      "crc32": "0xd4f34bba",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 7287563259,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tags.log",
+      "bytes": 22,
+      "compressed_bytes": 24,
+      "crc32": "0x987a2f9c",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "header_offset": 7287563863,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        58
+      ],
+      "header_offset": 7287564051,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": "0x0",
+      "time": [
+        2026,
+        3,
+        19,
+        12,
+        28,
+        58
+      ],
+      "header_offset": 7287564203,
+      "compress_type": 0
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/events.out.tfevents.1768234548.LEN-GENESYS.36548.0",
+      "bytes": 165477,
+      "compressed_bytes": 47845,
+      "crc32": "0xe73ec7a",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 7287564365,
+      "compress_type": 8
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/hparams.yaml",
+      "bytes": 6929,
+      "compressed_bytes": 1626,
+      "crc32": "0x5df841b9",
+      "time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "header_offset": 7287612438,
+      "compress_type": 8
+    }
+  ]
+}

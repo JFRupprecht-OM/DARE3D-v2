@@ -1,0 +1,170 @@
+{
+  "candidate_historical_commit": "60b565483178cb5444a4388e3c5ca0d5b28e517f",
+  "repository": "C:\\Users\\ruppr\\Documents\\Codexsession\\older\\DARE3\\DARE3d",
+  "comparison": [
+    {
+      "file": "dare3d/metrics/inference.py",
+      "historical_sha256": "04f3abdd591587b5e8f4656fbc05cf152c0f2181c4ffab9d64b2fd1b721427b0",
+      "current_sha256": "b6dca9b381f8eb4817823ef23cdd9a1e6c914aa8982dc13cb258a15c23fe9ed9",
+      "unchanged_functions": [
+        "monai_model_wrapper"
+      ],
+      "changed_or_removed_functions": [
+        "segmentation_inference",
+        "regression_inference"
+      ]
+    },
+    {
+      "file": "dare3d/metrics/infer_measure.py",
+      "historical_sha256": "bead1e0238d5e3d1259ebc7365c470cd45b2ac13d4ad6b5866987d0a4d4ee0e7",
+      "current_sha256": "4148076f68603996c20690f6905640c9cb02f29d5e57de7fa9b1709b4e069e5b",
+      "unchanged_functions": [
+        "evaluate_segmentation",
+        "infer_and_evaluate_segmentation",
+        "infer_eval_wrapper",
+        "bidict.__init__",
+        "bidict.__setitem__",
+        "bidict.__delitem__",
+        "CenterList.create_gt_pairs",
+        "CenterList.create_matched_gt_pairs",
+        "CenterList.create_pred_gt_pairs",
+        "infer_and_evaluate_regression",
+        "plot_errors",
+        "get_mean_std",
+        "get_mean_curve",
+        "evaluate_center_pair"
+      ],
+      "changed_or_removed_functions": [
+        "CenterList.__init__",
+        "CenterList.load_info",
+        "CenterList.compute_real_rot_len_values"
+      ]
+    },
+    {
+      "file": "dare3d/data/components/abstract_celldataset.py",
+      "historical_sha256": "3847553e38cb0019af7f3e09c0e88704fc38e08ddf28f9fca9acc1125fd4e1cf",
+      "current_sha256": "e2230604903e9fc73842af7b7281bb2fbdd270dc97adc67c8ad83504b5555e8d",
+      "unchanged_functions": [
+        "atoi",
+        "natural_keys",
+        "AbstractCellDataset.set_3dim",
+        "AbstractCellDataset.post_process_init",
+        "AbstractCellDataset.compute_sequences_index",
+        "AbstractCellDataset.add_sequence_indices",
+        "AbstractCellDataset.resize_data",
+        "AbstractCellDataset.preprocess_sample",
+        "AbstractCellDataset.preprocess_sample_gpu",
+        "AbstractCellDataset.prepare_data_after_norm",
+        "AbstractCellDataset.set_sample_limit",
+        "AbstractCellDataset.resize",
+        "AbstractCellDataset.prepare_data",
+        "AbstractCellDataset._normalize",
+        "AbstractCellDataset._load_image",
+        "AbstractCellDataset.unscale_prediction",
+        "AbstractCellDataset.add_time_padding",
+        "AbstractCellDataset._load_data",
+        "AbstractCellDataset._resize_bipoints",
+        "AbstractCellDataset._load_bipoints_from_array",
+        "AbstractCellDataset._load_bipoints_from_label",
+        "AbstractCellDataset._bipoints_from_label_im",
+        "AbstractCellDataset._load_bipoints",
+        "AbstractCellDataset.get_movie_scale",
+        "AbstractCellDataset._compute_target_shape",
+        "AbstractCellDataset.set_augmentations",
+        "AbstractCellDataset.__next__",
+        "AbstractCellDataset.__iter__",
+        "AbstractCellDataset.__len__",
+        "AbstractCellDataset.__getitem__"
+      ],
+      "changed_or_removed_functions": [
+        "AbstractCellDataset.__init__",
+        "AbstractCellDataset.load_movie_scales",
+        "AbstractCellDataset.init",
+        "AbstractCellDataset._list_data"
+      ]
+    },
+    {
+      "file": "dare3d/data/components/cell_3dataset.py",
+      "historical_sha256": "c9bc56d53eb5231e4985214d6efafdf6d25dac30124ed6fbf594e086999c67df",
+      "current_sha256": "8418b35499b50ed3429c6fbcd1cb8d503553939476a0c916caf9eff8d2a5497d",
+      "unchanged_functions": [
+        "Cell3Dataset.__init__",
+        "Cell3Dataset.compute_window_indices",
+        "Cell3Dataset._normalize",
+        "Cell3Dataset.normalize_percentile",
+        "Cell3Dataset.percentile_torch",
+        "Cell3Dataset.normalise_gpu",
+        "Cell3Dataset.normalise",
+        "Cell3Dataset.read_tif_and_order_xyz",
+        "Cell3Dataset._load_image"
+      ],
+      "changed_or_removed_functions": []
+    },
+    {
+      "file": "dare3d/data/components/seg_3dataset.py",
+      "historical_sha256": "7568a2267ae002a7861daf851b1d6c7a6241aff987e5d1cc2d13600bd6fc3cbf",
+      "current_sha256": "bddcd2bca11223eb9026cecbd7829a66ff66e0c946f318502af189c8dbba1b04",
+      "unchanged_functions": [
+        "Segmentation3Dataset.__init__",
+        "Segmentation3Dataset.load_sparse_weights",
+        "Segmentation3Dataset.post_process_init",
+        "Segmentation3Dataset.add_sequence_indices",
+        "Segmentation3Dataset.make_masks",
+        "Segmentation3Dataset.prepare_data",
+        "Segmentation3Dataset._construct_all_mask",
+        "Segmentation3Dataset.make_a_mask",
+        "Segmentation3Dataset.draw_line_in_matrix",
+        "Segmentation3Dataset._pad_movies",
+        "Segmentation3Dataset.preprocess_sample",
+        "Segmentation3Dataset.preprocess_sample_gpu",
+        "Segmentation3Dataset._flatten_tuples",
+        "Segmentation3Dataset.pad_movie_gpu",
+        "Segmentation3Dataset.get_movie_padding",
+        "Segmentation3Dataset._pad_movie_and_masks",
+        "Segmentation3Dataset.set_augmentations",
+        "Segmentation3Dataset.random_crop",
+        "Segmentation3Dataset.get_movie_mask_from_idx",
+        "Segmentation3Dataset.compute_heatmaps",
+        "Segmentation3Dataset.build_output",
+        "Segmentation3Dataset.__getitem__",
+        "Segmentation3Dataset.__next__"
+      ],
+      "changed_or_removed_functions": []
+    },
+    {
+      "file": "dare3d/models/components/multiscale_unet.py",
+      "historical_sha256": "cc952909154cea59342f5ec26bcfa3f8cffdf34245de30514310686671c4564b",
+      "current_sha256": "5a522faf59bd6f07058d0f241439cd9b2a2431c0fac1883b85ed57decbfc9aa4",
+      "unchanged_functions": [
+        "MultiScaleUNet.__init__",
+        "MultiScaleUNet.build_output_models",
+        "MultiScaleUNet.hook_level",
+        "MultiScaleUNet.get_deepest_submodule",
+        "MultiScaleUNet.unet_features",
+        "MultiScaleUNet.forward"
+      ],
+      "changed_or_removed_functions": []
+    },
+    {
+      "file": "dare3d/eval.py",
+      "historical_sha256": "f3fff85b90c824110b44d3f1e801d296a1ff4c213fdc814fee8cf5fc46de49db",
+      "current_sha256": "88299afc05266fe5098de84096be4d18a30fa7745a5d31faa661ef229570000c",
+      "unchanged_functions": [
+        "NumpyFloatValuesEncoder.default",
+        "evaluate",
+        "main"
+      ],
+      "changed_or_removed_functions": [
+        "evaluate_segmentation",
+        "evaluate_regression",
+        "load_config"
+      ]
+    },
+    {
+      "file": "configs/eval.yaml",
+      "historical_sha256": "2a5fbeb5cff1c19b91b2463d31a2c5d97c85a977293e3851baa902f3001e25b2",
+      "current_sha256": "6c0bc4e76c0dab66f3712f765319616f765774d5992c7e281ec2926c9a845fe3"
+    }
+  ],
+  "relevant_history_before_release": "a5e742e1c117c6d1886e26d4043abad5d249443b 2025-11-25T14:21:09+01:00 new changes by qazi\n02dd1dbf57281edfc2c4e82b91ffb628be1400b4 2025-11-04T10:41:33+01:00 Replace repo with DARE3d_working files\n5539b57d60add5b9c76e307d6de43d0c17ed03dc 2025-10-27T12:02:51+01:00 Fix outputs, add notebook, correct naming issues\n2bd0bbc145952e84d73f01d0cdd702eda908b5ab 2025-10-23T17:44:58+02:00 Changed name of folder\n42e2fcf22fac3d3b3d6a63ea3234cd67092e3151 2025-10-23T17:05:53+02:00 Copy of Romain's latest deletme_pytorch fork\n"
+}

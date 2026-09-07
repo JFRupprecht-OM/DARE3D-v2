@@ -1,0 +1,177 @@
+{
+  "protected_files_checked": 3835,
+  "changed_file_stats": [],
+  "missing_files": [],
+  "all_baseline_file_stats_unchanged": true,
+  "hashes": {
+    "DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt": {
+      "before": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "after": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\epoch_057.ckpt": {
+      "before": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "after": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "unchanged": true
+    },
+    "DARE3dv2_Zenodo_040926\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml": {
+      "before": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "after": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml": {
+      "before": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "after": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\stats.csv": {
+      "before": "a3aae738805c45e667df45158fa11110e1cafe414b0d33738dcfb6420dc81769",
+      "after": "a3aae738805c45e667df45158fa11110e1cafe414b0d33738dcfb6420dc81769",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\movie_I2.tif": {
+      "before": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+      "after": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+      "unchanged": true
+    },
+    "data\\3D\\scales.json": {
+      "before": "e206eb6502a5a5907bd919e647be24fc66dce6ea7a6fc1a357856b09fc4021fe",
+      "after": "e206eb6502a5a5907bd919e647be24fc66dce6ea7a6fc1a357856b09fc4021fe",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im\\movie_I2.tif": {
+      "before": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+      "after": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\label\\movie_I2.tif": {
+      "before": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+      "after": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\test_input\\im\\movie_M.tif": {
+      "before": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88",
+      "after": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88",
+      "unchanged": true
+    },
+    "DARE3d_data_190326\\Neural_tube_160226\\test_input\\label\\movie_M.tif": {
+      "before": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df",
+      "after": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df",
+      "unchanged": true
+    },
+    "napari_dare3d\\_api.py": {
+      "before": "5753308b9186f249994962d186f41203f298af727fb6fb1e1956d99a17a19a17",
+      "after": "5753308b9186f249994962d186f41203f298af727fb6fb1e1956d99a17a19a17",
+      "unchanged": true
+    },
+    "napari_dare3d\\_data.py": {
+      "before": "be13c2c626f34ee789f4e935c23e5902d39912dc2115837b65a9ed7b416db49e",
+      "after": "be13c2c626f34ee789f4e935c23e5902d39912dc2115837b65a9ed7b416db49e",
+      "unchanged": true
+    },
+    "napari_dare3d\\_io.py": {
+      "before": "ee61d7045657e48ce5863a0cf53522a7ffd8b8b1d1c07e38f2f0a0a7d3ee2999",
+      "after": "ee61d7045657e48ce5863a0cf53522a7ffd8b8b1d1c07e38f2f0a0a7d3ee2999",
+      "unchanged": true
+    },
+    "napari_dare3d\\_release_models.py": {
+      "before": "62a06be2290482b9a49b5908585c56c73acd284ba45acdf6edb2e2ef2b4ff4c4",
+      "after": "62a06be2290482b9a49b5908585c56c73acd284ba45acdf6edb2e2ef2b4ff4c4",
+      "unchanged": true
+    },
+    "napari_dare3d\\_scale.py": {
+      "before": "2da69caaca4a83c712ead6af66eca22c20abb2aa520e3234d6d554aa54c0cfe6",
+      "after": "2da69caaca4a83c712ead6af66eca22c20abb2aa520e3234d6d554aa54c0cfe6",
+      "unchanged": true
+    },
+    "napari_dare3d\\_train.py": {
+      "before": "c56935c390562e6aa84fdbb245a8a3c73d9dbef72f3dddbff43f0f031b6a9a12",
+      "after": "c56935c390562e6aa84fdbb245a8a3c73d9dbef72f3dddbff43f0f031b6a9a12",
+      "unchanged": true
+    },
+    "napari_dare3d\\_train_widget.py": {
+      "before": "67e1abf4164e750ac5885ed736877e140d866bbc2d1a847e50abfb6c16ba921d",
+      "after": "67e1abf4164e750ac5885ed736877e140d866bbc2d1a847e50abfb6c16ba921d",
+      "unchanged": true
+    },
+    "napari_dare3d\\_widget.py": {
+      "before": "5af15abb6122e997597631ec5998728ae784a2ddb66796be6cff8efb8d16433b",
+      "after": "5af15abb6122e997597631ec5998728ae784a2ddb66796be6cff8efb8d16433b",
+      "unchanged": true
+    },
+    "napari_dare3d\\__init__.py": {
+      "before": "0b60ed2343e688254bd0009210e965773679072a5d239b5004c25f95fc516092",
+      "after": "0b60ed2343e688254bd0009210e965773679072a5d239b5004c25f95fc516092",
+      "unchanged": true
+    },
+    "dare3d\\metrics\\inference.py": {
+      "before": "b6dca9b381f8eb4817823ef23cdd9a1e6c914aa8982dc13cb258a15c23fe9ed9",
+      "after": "b6dca9b381f8eb4817823ef23cdd9a1e6c914aa8982dc13cb258a15c23fe9ed9",
+      "unchanged": true
+    },
+    "dare3d\\metrics\\infer_measure.py": {
+      "before": "4148076f68603996c20690f6905640c9cb02f29d5e57de7fa9b1709b4e069e5b",
+      "after": "4148076f68603996c20690f6905640c9cb02f29d5e57de7fa9b1709b4e069e5b",
+      "unchanged": true
+    },
+    "dare3d\\metrics\\object_level.py": {
+      "before": "f0e64960660cf0c368aa09b367b3467840928ba4c18fe375503116b7db688e1b",
+      "after": "f0e64960660cf0c368aa09b367b3467840928ba4c18fe375503116b7db688e1b",
+      "unchanged": true
+    },
+    "dare3d\\metrics\\__init__.py": {
+      "before": "4dd39d3303e41ad49b30c1a048e0f53e6a86a13fff965df842a65b97c424f798",
+      "after": "4dd39d3303e41ad49b30c1a048e0f53e6a86a13fff965df842a65b97c424f798",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\abstract_celldataset.py": {
+      "before": "e2230604903e9fc73842af7b7281bb2fbdd270dc97adc67c8ad83504b5555e8d",
+      "after": "e2230604903e9fc73842af7b7281bb2fbdd270dc97adc67c8ad83504b5555e8d",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\angles3d.py": {
+      "before": "d5fecf7bfd32a167511474ce9663a4a398f92f9ad4fff64cfd219200e5b50ec1",
+      "after": "d5fecf7bfd32a167511474ce9663a4a398f92f9ad4fff64cfd219200e5b50ec1",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\cell_3dataset.py": {
+      "before": "8418b35499b50ed3429c6fbcd1cb8d503553939476a0c916caf9eff8d2a5497d",
+      "after": "8418b35499b50ed3429c6fbcd1cb8d503553939476a0c916caf9eff8d2a5497d",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\regression_geometry.py": {
+      "before": "30d85dc0b2f27d53de09c975ea9146b2955be0f6ed078933a6299920debb4de1",
+      "after": "30d85dc0b2f27d53de09c975ea9146b2955be0f6ed078933a6299920debb4de1",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\regress_3dataset.py": {
+      "before": "d38aa7f2b5efedbb47dc9a41393dd01159be03909d737f196843bd1a35025db3",
+      "after": "d38aa7f2b5efedbb47dc9a41393dd01159be03909d737f196843bd1a35025db3",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\segres_3dataset.py": {
+      "before": "f0ba1e7f8226ec8842891d51ae986650f8e1cc2108c8716724bfebe6defd8b10",
+      "after": "f0ba1e7f8226ec8842891d51ae986650f8e1cc2108c8716724bfebe6defd8b10",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\seg_3dataset.py": {
+      "before": "bddcd2bca11223eb9026cecbd7829a66ff66e0c946f318502af189c8dbba1b04",
+      "after": "bddcd2bca11223eb9026cecbd7829a66ff66e0c946f318502af189c8dbba1b04",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\tap_3dataset.py": {
+      "before": "be6020685747719572152211e206cab78e61639ee60b54e0d11bfd9d8de7159e",
+      "after": "be6020685747719572152211e206cab78e61639ee60b54e0d11bfd9d8de7159e",
+      "unchanged": true
+    },
+    "dare3d\\data\\components\\__init__.py": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    }
+  },
+  "all_selected_hashes_unchanged": true,
+  "git_status": "## main...origin/main [ahead 4]\n?? DARE3D_AUDIT_PROGRESS.md\n?? DARE3dv2_Zenodo_040926/\n?? SESSION_HANDOFF.md\n?? docs/DARE3D_GENERIC_REGRESSION_PREPROCESSING_FIX_PLAN.md\n?? docs/DARE3D_REGRESSION_FIX_FINAL_INTEGRATION_PLAN.md\n?? docs/DARE3D_REPRODUCIBILITY_AUDIT_PLAN.md\n?? docs/neural_tube_napari_segmentation_investigation/\n?? docs/reproducibility_audit/DARE3D_REPRODUCIBILITY_AUDIT_REPORT.md\n?? docs/reproducibility_audit/NEMATIC_AXIS_METRIC_COMPARISON.md\n?? docs/reproducibility_audit/NEMATIC_RETRAINING_COMPARISON.md\n?? docs/reproducibility_audit/NEURAL_TUBE_NEMATIC_FULL_PIPELINE_COMPARISON.md\n?? docs/reproducibility_audit/NUCLEI_REGRESSION_PREPROCESSING_TRACE.md\n?? docs/reproducibility_audit/audit_artifacts.py\n?? docs/reproducibility_audit/build_final_audit_package.py\n?? docs/reproducibility_audit/checkpoint_compatibility.py\n?? docs/reproducibility_audit/checkpoint_metadata.py\n?? docs/reproducibility_audit/checkpoint_runs/\n?? docs/reproducibility_audit/evidence/\n?? docs/reproducibility_audit/exact_scale_regression_replay.py\n?? docs/reproducibility_audit/exact_scale_regression_replay/\n?? docs/reproducibility_audit/investigate_membrane_fp.py\n?? docs/reproducibility_audit/launch_detached_training.py\n?? docs/reproducibility_audit/nematic_axis_metric_comparison.py\n?? docs/reproducibility_audit/nematic_retraining/\n?? docs/reproducibility_audit/nematic_retraining_evaluation.py\n?? docs/reproducibility_audit/nematic_retraining_experiment.py\n?? docs/reproducibility_audit/neural_tube_nematic_evaluation.py\n?? docs/reproducibility_audit/neural_tube_nematic_experiment.py\n?? docs/reproducibility_audit/neural_tube_nematic_full_pipeline/\n?? docs/reproducibility_audit/neural_tube_nematic_report.py\n?? docs/reproducibility_audit/neural_tube_nematic_supervisor.py\n?? docs/reproducibility_audit/neural_tube_nematic_training.py\n?? docs/reproducibility_audit/neural_tube_regression_center_replay.py\n?? docs/reproducibility_audit/neural_tube_regression_training_space_validation.py\n?? docs/reproducibility_audit/regression_artifact_analysis.py\n?? docs/reproducibility_audit/regression_checkpoint_compatibility.py\n?? docs/reproducibility_audit/regression_preprocessing_fix_validation.py\n?? docs/reproducibility_audit/regression_preprocessing_fix_validation/\n?? docs/reproducibility_audit/replay_saved_nuclei.py\n?? docs/reproducibility_audit/scientific_edge_cases.py\n?? docs/reproducibility_audit/summarize_checkpoint_compatibility.py\n?? docs/reproducibility_audit/summarize_regression_checkpoint_compatibility.py\n?? docs/reproducibility_audit/workflow_path_checks.py\n?? grep.exe.stackdump\n?? manuscript_280826version/\n",
+  "tracked_diff_stat": "",
+  "note": "Size/mtime verified for full protected snapshot; SHA-256 reverified for all 32 explicitly fingerprinted code/input/checkpoint/config/evidence files. No claim of full hash coverage of all 3835 files."
+}

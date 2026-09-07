@@ -1,0 +1,12 @@
+{
+  "new_set_og/val/im/movie_I2.tif": {
+    "archive_member_sha256": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+    "local_sha256": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+    "local": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im\\movie_I2.tif"
+  },
+  "new_set_og/val/label/movie_I2.tif": {
+    "archive_member_sha256": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+    "local_sha256": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+    "local": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\label\\movie_I2.tif"
+  }
+}

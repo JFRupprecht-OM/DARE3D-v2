@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-09-06T07:18:08.213875+00:00",
+  "scope": "Find the checkpoint and inference provenance of archived movie_I2.tif. No production changes, promotion, retraining, or regression inference.",
+  "baseline_protected_files": 3835,
+  "baseline_differences": [],
+  "git_status": "## main...origin/main [ahead 4]\n?? DARE3D_AUDIT_PROGRESS.md\n?? DARE3dv2_Zenodo_040926/\n?? SESSION_HANDOFF.md\n?? docs/DARE3D_GENERIC_REGRESSION_PREPROCESSING_FIX_PLAN.md\n?? docs/DARE3D_REGRESSION_FIX_FINAL_INTEGRATION_PLAN.md\n?? docs/DARE3D_REPRODUCIBILITY_AUDIT_PLAN.md\n?? docs/neural_tube_napari_segmentation_investigation/\n?? docs/reproducibility_audit/DARE3D_REPRODUCIBILITY_AUDIT_REPORT.md\n?? docs/reproducibility_audit/NEMATIC_AXIS_METRIC_COMPARISON.md\n?? docs/reproducibility_audit/NEMATIC_RETRAINING_COMPARISON.md\n?? docs/reproducibility_audit/NEURAL_TUBE_NEMATIC_FULL_PIPELINE_COMPARISON.md\n?? docs/reproducibility_audit/NUCLEI_REGRESSION_PREPROCESSING_TRACE.md\n?? docs/reproducibility_audit/audit_artifacts.py\n?? docs/reproducibility_audit/build_final_audit_package.py\n?? docs/reproducibility_audit/checkpoint_compatibility.py\n?? docs/reproducibility_audit/checkpoint_metadata.py\n?? docs/reproducibility_audit/checkpoint_runs/\n?? docs/reproducibility_audit/evidence/\n?? docs/reproducibility_audit/exact_scale_regression_replay.py\n?? docs/reproducibility_audit/exact_scale_regression_replay/\n?? docs/reproducibility_audit/investigate_membrane_fp.py\n?? docs/reproducibility_audit/launch_detached_training.py\n?? docs/reproducibility_audit/nematic_axis_metric_comparison.py\n?? docs/reproducibility_audit/nematic_retraining/\n?? docs/reproducibility_audit/nematic_retraining_evaluation.py\n?? docs/reproducibility_audit/nematic_retraining_experiment.py\n?? docs/reproducibility_audit/neural_tube_nematic_evaluation.py\n?? docs/reproducibility_audit/neural_tube_nematic_experiment.py\n?? docs/reproducibility_audit/neural_tube_nematic_full_pipeline/\n?? docs/reproducibility_audit/neural_tube_nematic_report.py\n?? docs/reproducibility_audit/neural_tube_nematic_supervisor.py\n?? docs/reproducibility_audit/neural_tube_nematic_training.py\n?? docs/reproducibility_audit/neural_tube_regression_center_replay.py\n?? docs/reproducibility_audit/neural_tube_regression_training_space_validation.py\n?? docs/reproducibility_audit/regression_artifact_analysis.py\n?? docs/reproducibility_audit/regression_checkpoint_compatibility.py\n?? docs/reproducibility_audit/regression_preprocessing_fix_validation.py\n?? docs/reproducibility_audit/regression_preprocessing_fix_validation/\n?? docs/reproducibility_audit/replay_saved_nuclei.py\n?? docs/reproducibility_audit/scientific_edge_cases.py\n?? docs/reproducibility_audit/summarize_checkpoint_compatibility.py\n?? docs/reproducibility_audit/summarize_regression_checkpoint_compatibility.py\n?? docs/reproducibility_audit/workflow_path_checks.py\n?? grep.exe.stackdump\n?? manuscript_280826version/\n",
+  "public_sources": [
+    "https://zenodo.org/api/records/19113351/versions",
+    "https://zenodo.org/records/17456474",
+    "https://zenodo.org/records/19113351",
+    "https://github.com/JFRupprecht-OM/DARE3d/tree/60b565483178cb5444a4388e3c5ca0d5b28e517f"
+  ],
+  "source_checks": [
+    "current repository and original 7.0 GB ZIP",
+    "older/DARE3D_220726 released model copies",
+    "older/DARE3/DARE3d original Git history",
+    "Downloads/new_set_og.zip original input images and labels",
+    "Downloads/deletme*.zip code archives",
+    "all five public Zenodo versions via bounded ZIP64 index reads"
+  ],
+  "constraints": [
+    "Original validation audit, release models, segmentation/default paths, Napari config, and all existing forensic results remain untouched.",
+    "All newly generated artifacts are confined to this new repository directory.",
+    "The original C:/Users/tlili/Documents/TRIAL/DARE3d workstation tree is not present here.",
+    "No package install, Git checkout/reset/clean, commit, push, or remote write performed."
+  ]
+}

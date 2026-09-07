@@ -1,0 +1,28 @@
+{
+  "checkpoint": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+  "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+  "probe_frames": [
+    0,
+    1,
+    2
+  ],
+  "prediction_frame": 2,
+  "cpu_preprocessing_only_changed": true,
+  "overlap": 0.5,
+  "batch_size": 4,
+  "elapsed_seconds": 26.6372110999946,
+  "vs_archived": {
+    "mean_abs": 0.001186262583360076,
+    "max_abs": 1.0,
+    "binary_disagreement_half": 12292,
+    "correlation": 0.4830810240856172,
+    "above_half": 6332
+  },
+  "vs_selected_gpu": {
+    "mean_abs": 3.43373540090397e-05,
+    "max_abs": 0.328369140625,
+    "binary_disagreement_half": 331,
+    "correlation": 0.9974942708101223,
+    "above_half": 6332
+  }
+}

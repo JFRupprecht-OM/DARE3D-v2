@@ -1,0 +1,7 @@
+{
+  "json_artifacts_checked": 42,
+  "executed_sources_syntax_valid": true,
+  "local_report_links_exist": true,
+  "key_result_assertions_pass": true,
+  "scope": "Report/schema/record consistency, not a repeated model evaluation."
+}

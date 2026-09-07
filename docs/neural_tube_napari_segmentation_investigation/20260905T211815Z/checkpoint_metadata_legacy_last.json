@@ -1,0 +1,20 @@
+{
+  "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\last.ckpt",
+  "sha256": "0fa7e3339f967fbc0001d47489fe86b7e0f99649097fb5e223900cb4982f48b7",
+  "epoch": 131,
+  "global_step": 8316,
+  "lightning": "2.5.6",
+  "callbacks": {
+    "ModelCheckpoint{'monitor': 'val/iou', 'mode': 'max', 'every_n_train_steps': 0, 'every_n_epochs': 1, 'train_time_interval': None}": {
+      "monitor": "val/iou",
+      "best_model_score": "tensor(0.2917)",
+      "best_model_path": "C:\\Users\\tlili\\Documents\\TRIAL\\DARE3d\\logs\\segmentation3d_new_set_og\\runs\\05-02-26\\checkpoints\\epoch_057.ckpt",
+      "current_score": "tensor(0.2917)",
+      "dirpath": "C:\\Users\\tlili\\Documents\\TRIAL\\DARE3d\\logs\\segmentation3d_new_set_og\\runs\\05-02-26\\checkpoints",
+      "best_k_models": "{'C:\\\\Users\\\\tlili\\\\Documents\\\\TRIAL\\\\DARE3d\\\\logs\\\\segmentation3d_new_set_og\\\\runs\\\\05-02-26\\\\checkpoints\\\\epoch_057.ckpt': tensor(0.2917)}",
+      "kth_best_model_path": "C:\\Users\\tlili\\Documents\\TRIAL\\DARE3d\\logs\\segmentation3d_new_set_og\\runs\\05-02-26\\checkpoints\\epoch_057.ckpt",
+      "kth_value": "tensor(0.2917)",
+      "last_model_path": "C:\\Users\\tlili\\Documents\\TRIAL\\DARE3d\\logs\\segmentation3d_new_set_og\\runs\\05-02-26\\checkpoints\\last.ckpt"
+    }
+  }
+}

@@ -472,3 +472,45 @@ fallback geometry. Otherwise use targeted inference/evaluation.
    long-term design: source-scale resolution, metadata extraction, units,
    and raw-grid physical postprocessing should eventually be centralized
    behind one tested API.
+
+## 2026-09-06 addendum: native-grid neural segmentation
+
+This dated correction supersedes the interpretation in "Legacy neural-tube
+segmentation compatibility" above; the earlier measurements remain unchanged.
+The existing promoted epoch057 checkpoint is correct, but the saved
+`default_scale=(0.621,0.621,2)` is not the effective preprocessing that produced
+the archived movie_I2 probability map. The January Hydra artifacts and February
+checkpoint have mixed provenance; an exact original evaluation manifest is still
+unavailable.
+
+The [native-grid replay](../neural_tube_napari_segmentation_investigation/20260906T065749Z_provenance/SUMMARY.md)
+used no effective XYZ spatial resizing: 1024 x 1024 x 10, Z-padding to 128,
+causal three-frame input, min-max normalization and overlap 0.5. It reproduced
+122 historical centers, 114 TP / 8 FP / 8 FN, F1 93.4426%, and 99.886% equal
+probability voxels. The [first investigation](../neural_tube_napari_segmentation_investigation/20260905T211815Z/SUMMARY.md)
+separately established the remaining 122 historical versus 118 Napari
+post-processing difference.
+
+Napari now gives only the exact promoted neural checkpoint a `native`
+segmentation scale policy and overlap default 0.5. This policy uses a unit
+computational ratio, not a claim of unit physical voxel spacing. The API default
+`source` and explicit `checkpoint_default` behavior remain backward compatible.
+Physical scale-table/manual/layer/fallback resolution, regression preprocessing
+and result-layer calibration are unchanged. No checkpoint, saved Hydra file,
+segmentation threshold, weighted filter or temporal-dilation behavior is changed.
+The two investigation directories and validated audit results remain immutable.
+No new movie_M performance claim follows from the movie_I2 replay.
+
+Implementation verification: 76 focused tests passed. One additional opt-in GPU
+acceptance test passed through the modified Napari API with batch 4 and overlap
+0.5, loading only the unchanged promoted epoch057. It reproduced 122 historical
+centers, 114 TP / 8 FP / 8 FN and all 114 matched event pairs; unchanged Napari
+extraction returned 118 centers. Probability equality was 99.886178%, mean
+absolute difference 5.9666882e-7, maximum 0.016357421875 and minimum foreground
+correlation 0.999982646. All predeclared numerical checks passed.
+
+Local evidence is retained under `.pytest_tmp/neural_native_20260906T161401Z/`
+(`SUMMARY.md`, both JUnit XML files, `preservation.json` and the GPU replay's
+`result.json`). Protected-tree checks cover 4,311 files; all model/movie paths
+remain unchanged, and this document's entire pre-addendum byte prefix was
+verified unchanged. No training, regression inference, commit or push was run.

@@ -23,7 +23,8 @@ _PRESETS = {
     },
     "neural_tube": {
         "movie": Path("Neural_tube_160226/test_input/im/movie_M.tif"),
-        "segmentation_scale_mode": "checkpoint_default",
+        "segmentation_scale_mode": "native",
+        "segmentation_overlap": 0.5,
         "segmentation": (
             Path(
                 "Neural_tube_160226/weights/segmentation3d_new_set_og/"
@@ -97,6 +98,15 @@ def release_segmentation_scale_mode(
     if Path(checkpoint).resolve() != promoted_checkpoint.resolve():
         return "source"
     return str(_PRESETS[dataset]["segmentation_scale_mode"])
+
+
+def release_segmentation_overlap(
+    dataset: str, checkpoint: Path, root: Optional[Path] = None
+) -> Optional[float]:
+    """Return the verified overlap default only for the promoted native segmenter."""
+    if release_segmentation_scale_mode(dataset, checkpoint, root) != "native":
+        return None
+    return float(_PRESETS[dataset]["segmentation_overlap"])
 
 
 def model_dir_from_checkpoint(checkpoint: Path, stage: str) -> Path:

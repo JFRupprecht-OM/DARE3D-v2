@@ -1,0 +1,23 @@
+{
+  "requested": "Exact checkpoint + Hydra config + preprocessing/code state that generated the archived map",
+  "recoverable_from_artifacts": [
+    "Checkpoint files and their exact hashes",
+    "Bundled Hydra training config, hydra.yaml and overrides.yaml and their hashes",
+    "Probability-map bytes and hash, unchanged since earliest public release",
+    "Public historical core source files and a content-identical pre-archive Git revision",
+    "An effective native-grid inference recipe supported by near-identical first-frame numerical output; full replay pending"
+  ],
+  "not_uniquely_identifiable_without_additional_source_artifacts": [
+    "The exact historical Hydra evaluation command/overrides",
+    "Whether a workstation-only scales.json entry, default/target override, or local edit provided the native grid",
+    "Literal scale values (multiple scale ratios truncate to the same integer target dimensions)",
+    "Exact original inference batch size, installed dependency versions, GPU/CUDA/cuDNN numerical settings",
+    "The exact Git commit/dirty-worktree state used on the original workstation; unchanged source files span multiple commits"
+  ],
+  "required_for_historical_certificate": [
+    "Original evaluation run output directory containing its .hydra/config.yaml, hydra.yaml, overrides.yaml and evaluation log",
+    "The actual source-workstation data/3d/scales.json used for movie_I2",
+    "The original source commit/working-tree archive and environment/GPU record"
+  ],
+  "important_distinction": "Numerically reproducing an archive identifies a compatible computational recipe; it does not invent an absent launch manifest or uniquely recover every literal historical setting."
+}

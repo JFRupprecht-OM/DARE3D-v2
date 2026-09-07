@@ -343,9 +343,12 @@ def infer_stack(
         segmentation_scale_mode: segmentation image-space scale policy.
             ``"source"`` applies the invocation scale overrides (the backward-
             compatible API default). ``"checkpoint_default"`` retains the saved
-            segmentation checkpoint's default and target scales; physical scale
-            overrides still apply unchanged to regression and remain available to
-            the caller for display calibration.
+            segmentation checkpoint's default and target scales. ``"native"``
+            preserves the input XYZ grid, ignoring both saved and invocation
+            spatial scales for segmentation only. Native geometry still uses the
+            existing patch padding and is not physical voxel calibration.
+            Physical scale overrides apply unchanged to regression and remain
+            available to the caller for display calibration in every mode.
         movie_name: source movie name or filename. Its stem is preserved for
             per-movie lookup in the scale file; the compatibility default is
             "movie".
@@ -378,10 +381,10 @@ def infer_stack(
     if stack.dtype == np.float64:
         stack = stack.astype(np.float32)  # avoid the dataset's float64 -> float16 downcast
 
-    valid_segmentation_scale_modes = {"source", "checkpoint_default"}
+    valid_segmentation_scale_modes = {"source", "checkpoint_default", "native"}
     if segmentation_scale_mode not in valid_segmentation_scale_modes:
         raise ValueError(
-            "segmentation_scale_mode must be 'source' or 'checkpoint_default', "
+            "segmentation_scale_mode must be 'source', 'checkpoint_default', or 'native', "
             f"got {segmentation_scale_mode!r}"
         )
     if seg_model_dir is None:
@@ -412,7 +415,17 @@ def infer_stack(
         default_scale=default_scale,
         target_scale=target_scale,
     )
-    segmentation_scale_kw = scale_kw if segmentation_scale_mode == "source" else {}
+    # Computational geometry is stage-local: never rewrite the physical scales
+    # used by regression or the caller's image/result-layer calibration.
+    segmentation_scale_kw = {
+        "source": scale_kw,
+        "checkpoint_default": {},
+        "native": dict(
+            scale_file=None,
+            default_scale=[1.0, 1.0, 1.0],
+            target_scale=1.0,
+        ),
+    }[segmentation_scale_mode]
     movie_filename = f"{safe_movie_stem(movie_name)}.tif"
 
     try:

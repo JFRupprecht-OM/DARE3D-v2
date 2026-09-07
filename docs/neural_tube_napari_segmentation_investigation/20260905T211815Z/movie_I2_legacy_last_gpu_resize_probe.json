@@ -1,0 +1,28 @@
+{
+  "checkpoint": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\last.ckpt",
+  "sha256": "0fa7e3339f967fbc0001d47489fe86b7e0f99649097fb5e223900cb4982f48b7",
+  "probe_frames": [
+    0,
+    1,
+    2
+  ],
+  "prediction_frame": 2,
+  "cpu_preprocessing_only_changed": false,
+  "overlap": 0.5,
+  "batch_size": 4,
+  "elapsed_seconds": 22.280722800001968,
+  "vs_archived": {
+    "mean_abs": 0.0017624773317947984,
+    "max_abs": 1.0,
+    "binary_disagreement_half": 18215,
+    "correlation": 0.35381876217088093,
+    "above_half": 12777
+  },
+  "vs_selected_gpu": {
+    "mean_abs": 0.001277030212804675,
+    "max_abs": 1.0,
+    "binary_disagreement_half": 13156,
+    "correlation": 0.40543002578910026,
+    "above_half": 12777
+  }
+}

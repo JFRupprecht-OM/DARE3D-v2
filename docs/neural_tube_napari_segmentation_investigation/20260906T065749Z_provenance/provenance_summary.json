@@ -1,0 +1,110 @@
+{
+  "status": "Compatible producer recipe identified and full archived event result reproduced; exact original Hydra evaluation manifest / Git working state not recovered.",
+  "created_utc": "2026-09-06T07:42:42.868006+00:00",
+  "checkpoint": {
+    "native_path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\epoch_057.ckpt",
+    "promoted_identical_alias": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+    "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+    "recorded_original_training_path": "C:\\Users\\tlili\\Documents\\TRIAL\\DARE3d\\logs\\segmentation3d_new_set_og\\runs\\05-02-26\\checkpoints\\epoch_057.ckpt",
+    "epoch": 57,
+    "global_step": 3654,
+    "checkpoint_lightning_version": "2.5.6",
+    "identity_caveat": "Strong numerical producer identification, not independent proof of the exact historical launch."
+  },
+  "hydra": {
+    "native_saved_config": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml",
+    "promoted_identical_config": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml",
+    "sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+    "saved_default_scale_xyz": [
+      0.621,
+      0.621,
+      2
+    ],
+    "saved_target_scale": 1,
+    "replay_effective_recipe": "recovered_effective_recipe.json",
+    "original_evaluation_manifest_recovered": false,
+    "config_provenance_caveat": "The bundled Jan 12 training config is genuine, but is not the Feb 05 training/evaluation provenance recorded by epoch057; its default spatial geometry does not reproduce the archived map."
+  },
+  "archive": {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\movie_I2.tif",
+    "sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+    "shape_tzyx": [
+      21,
+      10,
+      1024,
+      1024
+    ],
+    "dtype": "float16"
+  },
+  "comparison": {
+    "overall_mean_abs": 5.966768209678516e-07,
+    "overall_max_abs": 0.016357421875,
+    "half_threshold_disagreement": 106,
+    "threshold055_disagreement": 123,
+    "exact_voxel_fraction": 0.9988617669968378,
+    "probability_path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\neural_tube_napari_segmentation_investigation\\20260906T065749Z_provenance\\full_native_replay_movie_I2.tif",
+    "probability_file_sha256": "8c94f42b5c3c6132965ddd7b817137cb5eb27bc96fd964fc69311f3ef5f83d8c"
+  },
+  "foreground_correlation_range": [
+    0.9999826461939376,
+    0.9999956899786294
+  ],
+  "historical_evaluation": {
+    "metrics": {
+      "tp": 114,
+      "fp": 8,
+      "fn": 8,
+      "precision": 0.9344262295081968,
+      "recall": 0.9344262295081968,
+      "fmeasure": 0.9344262295081968
+    },
+    "same_metrics_as_archive": true,
+    "centers": 122,
+    "same_matched_events": true,
+    "paired_center_max_abs_txyz": [
+      0.0015417209660348874,
+      0.013111888111886572,
+      0.018259518259469587,
+      0.02114089614089565
+    ]
+  },
+  "actual_napari_extraction": {
+    "count": 118,
+    "archived_actual_napari_count": 118,
+    "count_matches_archive": true,
+    "threshold": 0.5,
+    "min_weighted_prob": 0.1,
+    "temporal_dilation": false
+  },
+  "code": {
+    "pre_archive_compatible_revision": "60b565483178cb5444a4388e3c5ca0d5b28e517f",
+    "read_only_checkout_used": "fffadb27062a844a2f0798bd392a8f1cf80dc95e",
+    "files": "historical_inference_code_identity.json",
+    "model_wrapper": "historical_model_module_identity.json",
+    "evaluator": "object_level_code_identity.json",
+    "exact_original_commit_or_dirty_state_recovered": false
+  },
+  "preservation": {
+    "protected_file_count": 3835,
+    "protected_tree_unchanged": true,
+    "selected_hashes_unchanged": true,
+    "selected_hash_count": 33,
+    "prior_manifested_artifact_count": 70,
+    "prior_artifacts_unchanged": true,
+    "tracked_or_staged_diff": false
+  },
+  "remaining_unknowns": [
+    "Exact original Hydra evaluation .hydra files and command",
+    "Original workstation scales.json / literal overrides providing native geometry",
+    "Original runtime/GPU numerical settings and inference batch size",
+    "Exact historical Git revision and local edits",
+    "Authoritative physical movie_I2 calibration and manuscript I2-versus-M dataset attribution"
+  ],
+  "next_step": "No further inference needed to establish I2 numerical recipe. Obtain original Feb 05 training and Feb 13 evaluation Hydra/log/scale/environment artifacts for an exact historical certificate. Any Napari compatibility change and separate movie_M validation require a subsequent scoped implementation decision.",
+  "public_sources": [
+    "https://zenodo.org/api/records/19113351/versions",
+    "https://zenodo.org/records/17456474",
+    "https://zenodo.org/records/19113351",
+    "https://github.com/JFRupprecht-OM/DARE3d/tree/60b565483178cb5444a4388e3c5ca0d5b28e517f"
+  ]
+}

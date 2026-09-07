@@ -1,0 +1,22 @@
+{
+  "top_level_keys": [
+    "epoch",
+    "global_step",
+    "pytorch-lightning_version",
+    "state_dict",
+    "loops",
+    "callbacks",
+    "optimizer_states",
+    "lr_schedulers",
+    "hparams_name",
+    "hyper_parameters",
+    "datamodule_hparams_name",
+    "datamodule_hyper_parameters"
+  ],
+  "hyper_parameters": {
+    "optimizer": "functools.partial(<class 'torch.optim.adamw.AdamW'>, lr=0.1, betas=[0.9, 0.999], weight_decay=0.0001)",
+    "scheduler": "functools.partial(<class 'torch.optim.lr_scheduler.OneCycleLR'>, max_lr=0.1, steps_per_epoch=63, epochs=200, pct_start=0.1)",
+    "compile": false,
+    "scheduler_interval": "step"
+  }
+}

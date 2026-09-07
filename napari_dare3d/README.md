@@ -74,15 +74,43 @@ Napari Image-layer metadata supplies spacing, the fallback is `(T,Z,Y,X)=(1,1,0.
 
 Physical/display calibration is separate from segmentation checkpoint geometry.
 The exact promoted neural-tube `epoch057` segmenter is a legacy compatibility
-exception: the widget keeps that checkpoint's saved preprocessing scale
-`XYZ=(0.621,0.621,2)` and saved target scale for segmentation only. The authoritative
+exception: the widget selects `segmentation_scale_mode="native"`. Segmentation
+retains the input XYZ grid without spatial resizing, then applies the existing
+patch padding. For `movie_I2` this means native `1024 x 1024 x 10` and 59 zero
+planes on each side of Z, not the saved `635 x 635 x 20` geometry. The computational
+unit scale ratio is not physical voxel spacing. The authoritative
 `movie_M` physical calibration, `XYZ=(0.2076,0.2076,1)` (or the documented
 `XYZ=(0.2,0.2,1)` fallback), is still passed unchanged to `training_consistent`
-regression and applied to the Image, center, and axis layers. The legacy scale is
-therefore not a claim about the movie's physical voxel size. Gastruloid and custom
-segmentation checkpoints retain normal source-scale behavior. Headless callers can
-select this policy explicitly with
-`segmentation_scale_mode="checkpoint_default"`; the API default remains `"source"`.
+regression and applied to the Image, center, and axis layers.
+
+Only the exact promoted neural checkpoint receives this preset; gastruloid and
+custom segmentation checkpoints retain source-scale behavior. Headless callers
+may explicitly request `"native"`. The API default stays `"source"`, and
+`"checkpoint_default"` retains its previous meaning for explicit historical replays.
+The neural preset initializes the existing overlap control to `0.5`; its manual
+value is remembered separately from the gastruloid/custom setting (default `0.25`).
+Batch size `4`, causal `(t-2,t-1,t)` frames, min-max normalization, Gaussian
+blending and 128-cubed patches are unchanged.
+
+The [initial investigation](../docs/neural_tube_napari_segmentation_investigation/20260905T211815Z/SUMMARY.md)
+and [native-grid provenance replay](../docs/neural_tube_napari_segmentation_investigation/20260906T065749Z_provenance/SUMMARY.md)
+establish why the bundled January Hydra defaults are not the effective archived
+inference recipe. The original evaluation launch manifest remains unrecovered.
+Historical scoring gives 122 centers and 114 TP / 8 FP / 8 FN (F1 93.4426%).
+Unchanged Napari post-processing gives 118 centers: its threshold `>0.5`,
+weighted cutoff `0.1` and omission of temporal dilation are a separate issue,
+not a reason to alter this inference fix. These are `movie_I2` results, not a
+new `movie_M` performance claim.
+
+The permanent release-asset replay is opt-in: set `DARE3D_NATIVE_REPLAY=1` for
+`tests/test_neural_tube_native_segmentation.py`'s slow test. If pytest and inference
+use different existing environments, set `DARE3D_NATIVE_REPLAY_PYTHON` to the
+inference interpreter. It performs one GPU inference and scores both cached maps.
+Alternatively run `python -B tests/helpers/neural_tube_native_replay.py --output-dir
+.pytest_tmp/neural_native_replay/run_001` from the repository root, choosing an
+unused output directory. Existing results are never overwritten. No downloads,
+training or regression inference are performed; probability tolerances are locked
+in the helper rather than requiring byte-identical TIFF output.
 
 The widget's direct TIFF loader uses `tifffile.imread` and does not derive physical
 spacing from TIFF/CZI metadata. If neither the table nor the model name covers a movie,

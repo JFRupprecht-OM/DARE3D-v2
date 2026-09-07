@@ -1,0 +1,290 @@
+{
+  "status": "diagnostic_round_complete_remaining_archive_producer_ambiguity",
+  "completed_utc": "2026-09-05T22:40:39.119747+00:00",
+  "scope": "Neural-tube segmentation diagnostic investigation only; no production fix, training, replacement or threshold tuning.",
+  "selected_checkpoint": {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+    "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+    "config_directory": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26"
+  },
+  "findings": [
+    {
+      "status": "confirmed",
+      "finding": "The local manuscript neural-tube/membrane result is 93.4% F1 (114 TP / 8 FP / 8 FN); 91.8% is gastruloid/nuclei. The archived movie_I2 probability map reproduces the exact neural counts with the historical evaluator. This verifies archived-output scoring, not its generating checkpoint.",
+      "evidence": [
+        "manuscript_280826version/main.tex:402",
+        "archived_archived.json"
+      ]
+    },
+    {
+      "status": "confirmed",
+      "finding": "Napari omits temporal dilation but retains the times-three weighted-volume denominator. Removing dilation alone from the archived evaluation lowers native IoU F1 from 93.44% to 77.78%. Actual current Napari extraction of the same archived map gives 118 centers versus 122 historical. Some F1 decline reflects temporal matching tolerance, not simply fewer detections.",
+      "evidence": [
+        "archived_no_dilation_only.json",
+        "archived_napari_actual_centers.json",
+        "paired_annotation_center_metrics.json"
+      ]
+    },
+    {
+      "status": "confirmed",
+      "finding": "Fresh promoted epoch057 inference gives 74 I2 centers and 51 M centers with current Napari settings. With identical historical post-processing, fresh I2 gives 79 TP / 13 FP / 43 FN, F1 73.83%, not 114/8/8. The fresh probability-map discrepancy is upstream of filtering.",
+      "evidence": [
+        "movie_I2_napari.json",
+        "movie_M_napari.json",
+        "movie_I2_napari_score_historical.json"
+      ]
+    },
+    {
+      "status": "confirmed_provenance_inconsistency_not_proven_cause",
+      "finding": "Released epoch057 and its bundled legacy copy are byte-identical, but the checkpoints internally reference a 05-02-26 run. The bundled 12-01-26 config/log/TensorBoard show a different history: January 32 steps/epoch and best val/IoU 0.317997843 at epoch 47; selected checkpoint 63 steps/epoch and best val/IoU 0.291719139 at epoch 57. A folder rename alone does not reconcile this. The archived probability producer checkpoint/config/code combination is not verified.",
+      "evidence": [
+        "checkpoint_metadata_selected.json",
+        "checkpoint_hyperparameters.json",
+        "checkpoint_metadata_legacy_last.json",
+        "legacy_tensorboard_provenance.json"
+      ]
+    },
+    {
+      "status": "confirmed",
+      "finding": "movie_I2 has no current scales.json entry, no physical TIFF metadata, and no widget-specific fallback. Uncalibrated loading remains unit-scale display. movie_M resolves authoritative XYZ (0.2076,0.2076,1), fallback (0.2,0.2,1). Shared image/point scaling preserves coordinates; segmenter compatibility geometry (0.621,0.621,2) is NOT physical calibration.",
+      "evidence": [
+        "inventory.json",
+        "display.json",
+        "source_release_input_verification.json"
+      ]
+    },
+    {
+      "status": "confirmed_bounded",
+      "finding": "A separate hidden native Napari viewer showed all 122 archived centers across all time/z slices, but at most 16 on any single slice. Changing shared physical scale preserved visibility and zero coordinate/landmark errors. The live user viewer and its actual selected controls were not inspected or modified.",
+      "evidence": [
+        "display.json"
+      ]
+    },
+    {
+      "status": "not_supporting_main_cause_in_tested_probes",
+      "finding": "Input readers/axis conversions and data-versus-Zenodo inputs match exactly. Increasing overlap 0.25 to 0.5 does not improve I2 counts/F1. CPU rather than GPU resampling on the first sequence has 0.99749 correlation with current GPU output and does not recover archive. The existing audit runtime has zero 0.5-threshold voxel disagreements with current runtime on that sequence. Neither short probe excludes every possible full-movie/runtime difference.",
+      "evidence": [
+        "inventory.json",
+        "source_release_input_verification.json",
+        "probability_comparisons.json",
+        "movie_I2_selected_cpu_resize_probe.json",
+        "movie_I2_selected_audit_environment_gpu_probe.json"
+      ]
+    },
+    {
+      "status": "confirmed_bounded",
+      "finding": "Replacing segmentation compatibility geometry with physical scaling suppresses all detections in first-sequence probes of both movies. This is not a fix for the remaining 74-versus-118 discrepancy. Compatibility activation is exact-path-specific: manually choosing the same-hash native checkpoint selects source mode.",
+      "evidence": [
+        "movie_I2_physical_probe.json",
+        "movie_M_physical_probe.json",
+        "display.json"
+      ]
+    },
+    {
+      "status": "confirmed",
+      "finding": "Offline and Napari both use causal frames (t-2,t-1,t), with no predictions for the first two frames despite saved channel labels [-1,0,1]. Eligible paired annotations: 123 I2 (122 merged mask objects), 80 M (104 paired annotations across all 11 frames). Comparing 51 detections directly with 104 is not the same recall metric.",
+      "evidence": [
+        "movie_I2_truth_inventory.json",
+        "movie_M_truth_inventory.json",
+        "paired_annotation_center_metrics.json"
+      ]
+    }
+  ],
+  "full_movie_metrics": [
+    {
+      "movie": "movie_I2",
+      "overlap": 0.25,
+      "actual_napari_centers": 74,
+      "historical_postprocessing_centers": 92,
+      "historical_metrics": {
+        "tp": 79,
+        "fp": 13,
+        "fn": 43,
+        "precision": 0.8586956521739131,
+        "recall": 0.6475409836065574,
+        "fmeasure": 0.738317757009346
+      },
+      "no_dilation_ge_half_metrics": {
+        "tp": 53,
+        "fp": 21,
+        "fn": 69,
+        "precision": 0.7162162162162162,
+        "recall": 0.4344262295081967,
+        "fmeasure": 0.5408163265306122
+      }
+    },
+    {
+      "movie": "movie_I2",
+      "overlap": 0.5,
+      "actual_napari_centers": 74,
+      "historical_postprocessing_centers": 92,
+      "historical_metrics": {
+        "tp": 79,
+        "fp": 13,
+        "fn": 43,
+        "precision": 0.8586956521739131,
+        "recall": 0.6475409836065574,
+        "fmeasure": 0.738317757009346
+      },
+      "no_dilation_ge_half_metrics": {
+        "tp": 52,
+        "fp": 22,
+        "fn": 70,
+        "precision": 0.7027027027027027,
+        "recall": 0.4262295081967213,
+        "fmeasure": 0.5306122448979592
+      }
+    },
+    {
+      "movie": "movie_M",
+      "overlap": 0.25,
+      "actual_napari_centers": 51,
+      "historical_postprocessing_centers": 72,
+      "historical_metrics": {
+        "tp": 48,
+        "fp": 24,
+        "fn": 32,
+        "precision": 0.6666666666666666,
+        "recall": 0.6,
+        "fmeasure": 0.631578947368421
+      },
+      "no_dilation_ge_half_metrics": {
+        "tp": 30,
+        "fp": 21,
+        "fn": 50,
+        "precision": 0.5882352941176471,
+        "recall": 0.375,
+        "fmeasure": 0.4580152671755725
+      }
+    },
+    {
+      "movie": "movie_M",
+      "overlap": 0.5,
+      "actual_napari_centers": 55,
+      "historical_postprocessing_centers": 71,
+      "historical_metrics": {
+        "tp": 47,
+        "fp": 24,
+        "fn": 33,
+        "precision": 0.6619718309859155,
+        "recall": 0.5875,
+        "fmeasure": 0.6225165562913908
+      },
+      "no_dilation_ge_half_metrics": {
+        "tp": 32,
+        "fp": 23,
+        "fn": 48,
+        "precision": 0.5818181818181818,
+        "recall": 0.4,
+        "fmeasure": 0.4740740740740741
+      }
+    }
+  ],
+  "archived_map_one_factor_tests": [
+    {
+      "profile": "archived",
+      "dilation": true,
+      "threshold": 0.55,
+      "weighted_cutoff": 0.15,
+      "center_count": 122,
+      "metrics": {
+        "tp": 114,
+        "fp": 8,
+        "fn": 8,
+        "precision": 0.9344262295081968,
+        "recall": 0.9344262295081968,
+        "fmeasure": 0.9344262295081968
+      }
+    },
+    {
+      "profile": "no_dilation_only",
+      "dilation": false,
+      "threshold": 0.55,
+      "weighted_cutoff": 0.15,
+      "center_count": 112,
+      "metrics": {
+        "tp": 91,
+        "fp": 21,
+        "fn": 31,
+        "precision": 0.8125,
+        "recall": 0.7459016393442623,
+        "fmeasure": 0.7777777777777778
+      }
+    },
+    {
+      "profile": "threshold_only",
+      "dilation": true,
+      "threshold": 0.5,
+      "weighted_cutoff": 0.15,
+      "center_count": 124,
+      "metrics": {
+        "tp": 114,
+        "fp": 10,
+        "fn": 8,
+        "precision": 0.9193548387096774,
+        "recall": 0.9344262295081968,
+        "fmeasure": 0.9268292682926829
+      }
+    },
+    {
+      "profile": "weight_only",
+      "dilation": true,
+      "threshold": 0.55,
+      "weighted_cutoff": 0.1,
+      "center_count": 131,
+      "metrics": {
+        "tp": 116,
+        "fp": 15,
+        "fn": 6,
+        "precision": 0.8854961832061069,
+        "recall": 0.9508196721311475,
+        "fmeasure": 0.9169960474308301
+      }
+    },
+    {
+      "profile": "napari_ge",
+      "dilation": false,
+      "threshold": 0.5,
+      "weighted_cutoff": 0.1,
+      "center_count": 118,
+      "metrics": {
+        "tp": 95,
+        "fp": 23,
+        "fn": 27,
+        "precision": 0.8050847457627118,
+        "recall": 0.7786885245901639,
+        "fmeasure": 0.7916666666666666
+      }
+    }
+  ],
+  "supplementary_metric": "paired_annotation_center_metrics.json: event-identical one-to-one matching, radius 10 raw voxels, |dt| <= 1, original annotations. NOT historical IoU scoring. Physical radius10um is sensitivity only; I2 0.208 spacing is not table-authoritative.",
+  "tests": {
+    "passed": 36,
+    "exit_code": 0,
+    "environment": "dare3d-v2.0",
+    "note": "Live Napari environment has no pytest. Existing audit environment passed 36 tests; its pre-existing optional pyarrow access-violation trace appeared but pytest exited 0. No packages installed. Basetemp was a new child under existing .pytest_tmp."
+  },
+  "protection": {
+    "baseline_count": 3835,
+    "current_count": 3835,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "selected_hash_count": 33,
+    "selected_hash_check": "protection_verification.json"
+  },
+  "changes": "Only new generated investigation artifacts and .pytest_tmp/neural_seg_diagnostic_20260905T211815Z test files. No tracked changes. Existing untracked Zenodo/audit/manuscript/handoff files and grep.exe.stackdump preserved. No commit or push.",
+  "next_steps": [
+    "Obtain genuine 05-02-26 neural segmentation Hydra/config/log/scale provenance and/or the checkpoint that actually produced archived movie_I2.tif; preserve all existing assets.",
+    "Compare that provenance/config/network to promoted epoch057; replay only the first eligible I2 sequence against the saved archive before another full inference. Do not tune thresholds/scales to manufacture a manuscript match.",
+    "Once the historical producer is established, rerun fixed full-movie historical evaluation and the same event-identical center metric on I2 and M, changing exactly one verified factor at a time.",
+    "Separately establish authoritative I2 voxel calibration and the live widget checkpoint/dataset/image name/time window, total count and suspect t/z slice. Never treat (0.621,0.621,2) as physical calibration.",
+    "Any production change to post-processing/display or release checkpoint/config pairing requires a separate explicit implementation decision."
+  ],
+  "limitations": [
+    "Archive scoring is reproduced; end-to-end reproduction from promoted checkpoint is NOT achieved.",
+    "Mixed provenance is confirmed; its causal contribution to the probability gap is unproven.",
+    "Actual live viewer settings and authoritative I2 spacing remain unverified.",
+    "cpu_preprocessing.json is a retained partial serialization output; use cpu_gpu_preprocessing_complete.json."
+  ]
+}

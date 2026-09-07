@@ -307,7 +307,8 @@ def test_napari_zero_segmentation_centers_skip_regression(monkeypatch):
 
 def test_napari_rejects_unknown_segmentation_scale_mode():
     with np.testing.assert_raises_regex(
-        ValueError, "segmentation_scale_mode must be 'source' or 'checkpoint_default'"
+        ValueError,
+        "segmentation_scale_mode must be 'source', 'checkpoint_default', or 'native'",
     ):
         api_module.infer_stack(
             np.zeros((1, 2, 2, 2), dtype=np.uint8),

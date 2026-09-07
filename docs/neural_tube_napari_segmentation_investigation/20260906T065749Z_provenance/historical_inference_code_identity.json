@@ -1,0 +1,73 @@
+{
+  "commits": {
+    "pre_archive_latest_public": "60b565483178cb5444a4388e3c5ca0d5b28e517f",
+    "read_only_checkout_used": "fffadb27062a844a2f0798bd392a8f1cf80dc95e"
+  },
+  "files": {
+    "pre_archive_latest_public": {
+      "dare3d/metrics/inference.py": {
+        "git_blob": "cdad4a6ed46c4a647bde62a205f06a38ec7ce4ba",
+        "git_content_sha256": "04f3abdd591587b5e8f4656fbc05cf152c0f2181c4ffab9d64b2fd1b721427b0",
+        "working_content_sha256": "bee68719c026af6ddd2c53e03ce32cf4dc89c19693e4587f70251787c02cdb47",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/abstract_celldataset.py": {
+        "git_blob": "59ae7dcc41b98481e60e5a569104c18d42024f66",
+        "git_content_sha256": "3847553e38cb0019af7f3e09c0e88704fc38e08ddf28f9fca9acc1125fd4e1cf",
+        "working_content_sha256": "a18da580a038f7c1982a5a8bf217ff9f0174c269400a6f0a061164c333efee57",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/cell_3dataset.py": {
+        "git_blob": "494a1495fffb89f633afc8a03858923eed4515a1",
+        "git_content_sha256": "c9bc56d53eb5231e4985214d6efafdf6d25dac30124ed6fbf594e086999c67df",
+        "working_content_sha256": "8418b35499b50ed3429c6fbcd1cb8d503553939476a0c916caf9eff8d2a5497d",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/seg_3dataset.py": {
+        "git_blob": "8ac02a116abfc96c537e9a33faf2b36c188145c7",
+        "git_content_sha256": "7568a2267ae002a7861daf851b1d6c7a6241aff987e5d1cc2d13600bd6fc3cbf",
+        "working_content_sha256": "bddcd2bca11223eb9026cecbd7829a66ff66e0c946f318502af189c8dbba1b04",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/models/components/multiscale_unet.py": {
+        "git_blob": "6ff70d9c72a2dfa986087281adfc95503ec270a3",
+        "git_content_sha256": "cc952909154cea59342f5ec26bcfa3f8cffdf34245de30514310686671c4564b",
+        "working_content_sha256": "5a522faf59bd6f07058d0f241439cd9b2a2431c0fac1883b85ed57decbfc9aa4",
+        "identical_after_CRLF_normalization": true
+      }
+    },
+    "read_only_checkout_used": {
+      "dare3d/metrics/inference.py": {
+        "git_blob": "cdad4a6ed46c4a647bde62a205f06a38ec7ce4ba",
+        "git_content_sha256": "04f3abdd591587b5e8f4656fbc05cf152c0f2181c4ffab9d64b2fd1b721427b0",
+        "working_content_sha256": "bee68719c026af6ddd2c53e03ce32cf4dc89c19693e4587f70251787c02cdb47",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/abstract_celldataset.py": {
+        "git_blob": "59ae7dcc41b98481e60e5a569104c18d42024f66",
+        "git_content_sha256": "3847553e38cb0019af7f3e09c0e88704fc38e08ddf28f9fca9acc1125fd4e1cf",
+        "working_content_sha256": "a18da580a038f7c1982a5a8bf217ff9f0174c269400a6f0a061164c333efee57",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/cell_3dataset.py": {
+        "git_blob": "494a1495fffb89f633afc8a03858923eed4515a1",
+        "git_content_sha256": "c9bc56d53eb5231e4985214d6efafdf6d25dac30124ed6fbf594e086999c67df",
+        "working_content_sha256": "8418b35499b50ed3429c6fbcd1cb8d503553939476a0c916caf9eff8d2a5497d",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/data/components/seg_3dataset.py": {
+        "git_blob": "8ac02a116abfc96c537e9a33faf2b36c188145c7",
+        "git_content_sha256": "7568a2267ae002a7861daf851b1d6c7a6241aff987e5d1cc2d13600bd6fc3cbf",
+        "working_content_sha256": "bddcd2bca11223eb9026cecbd7829a66ff66e0c946f318502af189c8dbba1b04",
+        "identical_after_CRLF_normalization": true
+      },
+      "dare3d/models/components/multiscale_unet.py": {
+        "git_blob": "6ff70d9c72a2dfa986087281adfc95503ec270a3",
+        "git_content_sha256": "cc952909154cea59342f5ec26bcfa3f8cffdf34245de30514310686671c4564b",
+        "working_content_sha256": "5a522faf59bd6f07058d0f241439cd9b2a2431c0fac1883b85ed57decbfc9aa4",
+        "identical_after_CRLF_normalization": true
+      }
+    }
+  },
+  "note": "A matching public source state is recovered, not evidence of the exact Git revision or uncommitted edits on the original training/evaluation workstation."
+}

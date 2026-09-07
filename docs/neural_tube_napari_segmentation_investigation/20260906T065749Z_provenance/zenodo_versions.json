@@ -1,0 +1,590 @@
+{
+  "hits": {
+    "hits": [
+      {
+        "created": "2026-03-20T09:10:44.688748+00:00",
+        "modified": "2026-03-20T09:10:44.931774+00:00",
+        "id": 19113351,
+        "conceptrecid": "17456473",
+        "doi": "10.5281/zenodo.19113351",
+        "conceptdoi": "10.5281/zenodo.17456473",
+        "doi_url": "https://doi.org/10.5281/zenodo.19113351",
+        "metadata": {
+          "title": "DARE3d",
+          "doi": "10.5281/zenodo.19113351",
+          "publication_date": "2026-03-19",
+          "description": "<p># DARE 3D<br>Creation of README file: 17/03/2026</p>\n<p>This repository contains the 3D datasets and associated files related to the paper:</p>\n<p>Romain Karpinski&dagger;, Alice Gros&loz;, Marc Karnat*, Qazi Saaheelur Rahaman*&loz;, Jules Vanaret&loz;, Mehdi Saadaoui&loz;, Sham Tlili&loz;, Jean-Fran&ccedil;ois Rupprecht*<br>* Aix Marseille Univ, Universit&eacute; de Toulon, CNRS, CPT (UMR 7332), Turing Centre for Living Systems, Marseille, France<br>&dagger; LORIA, CNRS, Nancy, France<br>&loz; Aix Marseille Univ, CNRS, IBDM (UMR 7288), Turing Centre for Living Systems, Marseille, France</p>\n<p>Contact: romain.karpinski@loria.fr, sham.tlili@univ-amu.fr, jean-francois.rupprecht@univ-amu.fr</p>\n<p>---</p>\n<p>## Description</p>\n<p>We propose a two-stage deep learning method to characterize cell divisions in 3D time-lapse microscopy sequences.</p>\n<p>1. **Stage 1 &ndash; Division Detection:** &nbsp;<br>&nbsp; &nbsp;A 3D semantic segmentation network (3D U-Net) identifies candidate division events in volumetric image sequences using temporal context from consecutive frames.</p>\n<p>2. **Stage 2 &ndash; Regression of Division Geometry:** &nbsp;<br>&nbsp; &nbsp;A 3D convolutional regression model estimates the orientation and separation of daughter cells for each detected event.</p>\n<p>The method was applied to challenging 3D live-imaging datasets, including avian neural tube explants labeled with **SiR-actin** (membrane signal) and mouse gastruloids expressing **H2B&ndash;GFP** (nuclear signal). &nbsp;<br>The image stacks were acquired every 3&ndash;4 minutes, with optical planes spaced by 1 &micro;m, and include difficult cases such as dense tissues, anisotropic resolution, rapid neighbor exchanges, and divisions oriented out of the imaging plane. &nbsp;<br>Ground-truth annotations consist of the two daughter-cell centers represented as 3D spheres centered on the estimated daughter positions. &nbsp;<br>The workflow was optimized through systematic hyperparameter exploration and is intended for datasets in which full segmentation and cell tracking are difficult or unreliable.</p>\n<p>---</p>\n<p>## Repository contents</p>\n<p>- **DARE3d_data_160226.zip (7.62 GB):** 3D+time image sequences and annotations used for training, validation, and testing. &nbsp;<br>- **DARE3d-main_v0_150326.zip (328.15 KB):** Main DARE3d project archive associated with this release.</p>\n<p>---</p>\n<p>## Citation</p>\n<p>If you use this dataset or associated files, please cite:</p>\n<p>Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, Jules Vanaret, Mehdi Saadaoui, Sham Tlili, and Jean-Fran&ccedil;ois Rupprecht, &nbsp;<br>&ldquo;DARE: Division Axis and Region Estimation from time-lapse image sequences in 2D and 3D.&rdquo;</p>\n<p>---</p>\n<p>## License</p>\n<p>Please insert here the license chosen for this Zenodo record.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Rupprecht, Jean-Francois",
+              "affiliation": "Centre National de la Recherche Scientifique",
+              "orcid": "0000-0001-8904-5878"
+            }
+          ],
+          "dates": [
+            {
+              "type": "created",
+              "description": "v0"
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 4,
+                "is_last": true,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "17456473"
+                }
+              }
+            ]
+          }
+        },
+        "title": "DARE3d",
+        "links": {
+          "self": "https://zenodo.org/api/records/19113351",
+          "self_html": "https://zenodo.org/records/19113351",
+          "preview_html": "https://zenodo.org/records/19113351?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.19113351",
+          "self_doi": "https://doi.org/10.5281/zenodo.19113351",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19113351",
+          "reserve_doi": "https://zenodo.org/api/records/19113351/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/17456473",
+          "parent_html": "https://zenodo.org/records/17456473",
+          "parent_doi": "https://doi.org/10.5281/zenodo.17456473",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456473",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:19113351/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:19113351/sequence/default",
+          "files": "https://zenodo.org/api/records/19113351/files",
+          "media_files": "https://zenodo.org/api/records/19113351/media-files",
+          "archive": "https://zenodo.org/api/records/19113351/files-archive",
+          "archive_media": "https://zenodo.org/api/records/19113351/media-files-archive",
+          "latest": "https://zenodo.org/api/records/19113351/versions/latest",
+          "latest_html": "https://zenodo.org/records/19113351/latest",
+          "versions": "https://zenodo.org/api/records/19113351/versions",
+          "draft": "https://zenodo.org/api/records/19113351/draft",
+          "access_links": "https://zenodo.org/api/records/19113351/access/links",
+          "access_grants": "https://zenodo.org/api/records/19113351/access/grants",
+          "access_users": "https://zenodo.org/api/records/19113351/access/users",
+          "access_request": "https://zenodo.org/api/records/19113351/access/request",
+          "access": "https://zenodo.org/api/records/19113351/access",
+          "communities": "https://zenodo.org/api/records/19113351/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/19113351/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/19113351/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/19113351/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/19113351/quota-increase",
+          "requests": "https://zenodo.org/api/records/19113351/requests"
+        },
+        "updated": "2026-03-20T09:10:44.931774+00:00",
+        "recid": "19113351",
+        "revision": 4,
+        "files": [
+          {
+            "id": "69e4eda4-a1be-465b-9603-278de651a1b4",
+            "key": "DARE3d_data_190326.zip",
+            "size": 7048412887,
+            "checksum": "md5:f8df147bb8249aad44b8ef1509d280dd",
+            "links": {
+              "self": "https://zenodo.org/api/records/19113351/files/DARE3d_data_190326.zip/content"
+            }
+          }
+        ],
+        "swh": null,
+        "owners": [
+          {
+            "id": "569244"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 43,
+          "unique_downloads": 32,
+          "views": 186,
+          "unique_views": 164,
+          "version_downloads": 18,
+          "version_unique_downloads": 12,
+          "version_unique_views": 61,
+          "version_views": 68
+        },
+        "state": "done",
+        "submitted": true
+      },
+      {
+        "created": "2026-03-19T13:35:56.206259+00:00",
+        "modified": "2026-03-19T13:35:56.441780+00:00",
+        "id": 19111753,
+        "conceptrecid": "17456473",
+        "doi": "10.5281/zenodo.19111753",
+        "conceptdoi": "10.5281/zenodo.17456473",
+        "doi_url": "https://doi.org/10.5281/zenodo.19111753",
+        "metadata": {
+          "title": "DARE3d",
+          "doi": "10.5281/zenodo.19111753",
+          "publication_date": "2026-03-19",
+          "description": "<p># DARE 3D<br>Creation of README file: 17/03/2026</p>\n<p>This repository contains the 3D datasets and associated files related to the paper:</p>\n<p>Romain Karpinski&dagger;, Alice Gros&loz;, Marc Karnat*, Qazi Saaheelur Rahaman*&loz;, Jules Vanaret&loz;, Mehdi Saadaoui&loz;, Sham Tlili&loz;, Jean-Fran&ccedil;ois Rupprecht*<br>* Aix Marseille Univ, Universit&eacute; de Toulon, CNRS, CPT (UMR 7332), Turing Centre for Living Systems, Marseille, France<br>&dagger; LORIA, CNRS, Nancy, France<br>&loz; Aix Marseille Univ, CNRS, IBDM (UMR 7288), Turing Centre for Living Systems, Marseille, France</p>\n<p>Contact: romain.karpinski@loria.fr, sham.tlili@univ-amu.fr, jean-francois.rupprecht@univ-amu.fr</p>\n<p>---</p>\n<p>## Description</p>\n<p>We propose a two-stage deep learning method to characterize cell divisions in 3D time-lapse microscopy sequences.</p>\n<p>1. **Stage 1 &ndash; Division Detection:** &nbsp;<br>&nbsp; &nbsp;A 3D semantic segmentation network (3D U-Net) identifies candidate division events in volumetric image sequences using temporal context from consecutive frames.</p>\n<p>2. **Stage 2 &ndash; Regression of Division Geometry:** &nbsp;<br>&nbsp; &nbsp;A 3D convolutional regression model estimates the orientation and separation of daughter cells for each detected event.</p>\n<p>The method was applied to challenging 3D live-imaging datasets, including avian neural tube explants labeled with **SiR-actin** (membrane signal) and mouse gastruloids expressing **H2B&ndash;GFP** (nuclear signal). &nbsp;<br>The image stacks were acquired every 3&ndash;4 minutes, with optical planes spaced by 1 &micro;m, and include difficult cases such as dense tissues, anisotropic resolution, rapid neighbor exchanges, and divisions oriented out of the imaging plane. &nbsp;<br>Ground-truth annotations consist of the two daughter-cell centers represented as 3D spheres centered on the estimated daughter positions. &nbsp;<br>The workflow was optimized through systematic hyperparameter exploration and is intended for datasets in which full segmentation and cell tracking are difficult or unreliable.</p>\n<p>---</p>\n<p>## Repository contents</p>\n<p>- **DARE3d_data_160226.zip (7.62 GB):** 3D+time image sequences and annotations used for training, validation, and testing. &nbsp;<br>- **DARE3d-main_v0_150326.zip (328.15 KB):** Main DARE3d project archive associated with this release.</p>\n<p>---</p>\n<p>## Citation</p>\n<p>If you use this dataset or associated files, please cite:</p>\n<p>Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, Jules Vanaret, Mehdi Saadaoui, Sham Tlili, and Jean-Fran&ccedil;ois Rupprecht, &nbsp;<br>&ldquo;DARE: Division Axis and Region Estimation from time-lapse image sequences in 2D and 3D.&rdquo;</p>\n<p>---</p>\n<p>## License</p>\n<p>Please insert here the license chosen for this Zenodo record.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Rupprecht, Jean-Francois",
+              "affiliation": "Centre National de la Recherche Scientifique",
+              "orcid": "0000-0001-8904-5878"
+            }
+          ],
+          "dates": [
+            {
+              "type": "created",
+              "description": "v0"
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 3,
+                "is_last": false,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "17456473"
+                }
+              }
+            ]
+          }
+        },
+        "title": "DARE3d",
+        "links": {
+          "self": "https://zenodo.org/api/records/19111753",
+          "self_html": "https://zenodo.org/records/19111753",
+          "preview_html": "https://zenodo.org/records/19111753?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.19111753",
+          "self_doi": "https://doi.org/10.5281/zenodo.19111753",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19111753",
+          "reserve_doi": "https://zenodo.org/api/records/19111753/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/17456473",
+          "parent_html": "https://zenodo.org/records/17456473",
+          "parent_doi": "https://doi.org/10.5281/zenodo.17456473",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456473",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:19111753/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:19111753/sequence/default",
+          "files": "https://zenodo.org/api/records/19111753/files",
+          "media_files": "https://zenodo.org/api/records/19111753/media-files",
+          "archive": "https://zenodo.org/api/records/19111753/files-archive",
+          "archive_media": "https://zenodo.org/api/records/19111753/media-files-archive",
+          "latest": "https://zenodo.org/api/records/19111753/versions/latest",
+          "latest_html": "https://zenodo.org/records/19111753/latest",
+          "versions": "https://zenodo.org/api/records/19111753/versions",
+          "draft": "https://zenodo.org/api/records/19111753/draft",
+          "access_links": "https://zenodo.org/api/records/19111753/access/links",
+          "access_grants": "https://zenodo.org/api/records/19111753/access/grants",
+          "access_users": "https://zenodo.org/api/records/19111753/access/users",
+          "access_request": "https://zenodo.org/api/records/19111753/access/request",
+          "access": "https://zenodo.org/api/records/19111753/access",
+          "communities": "https://zenodo.org/api/records/19111753/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/19111753/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/19111753/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/19111753/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/19111753/quota-increase",
+          "requests": "https://zenodo.org/api/records/19111753/requests"
+        },
+        "updated": "2026-03-19T13:35:56.441780+00:00",
+        "recid": "19111753",
+        "revision": 4,
+        "files": [
+          {
+            "id": "f6356f8e-2b49-4223-8244-85f2c20b6cf4",
+            "key": "DARE3d_data_190326.zip",
+            "size": 7287672559,
+            "checksum": "md5:9f8d74230361db03f3753b60ecbda39f",
+            "links": {
+              "self": "https://zenodo.org/api/records/19111753/files/DARE3d_data_190326.zip/content"
+            }
+          }
+        ],
+        "swh": null,
+        "owners": [
+          {
+            "id": "569244"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 43,
+          "unique_downloads": 32,
+          "views": 186,
+          "unique_views": 164,
+          "version_downloads": 3,
+          "version_unique_downloads": 3,
+          "version_unique_views": 18,
+          "version_views": 18
+        },
+        "state": "done",
+        "submitted": true
+      },
+      {
+        "created": "2026-03-19T11:48:32.155689+00:00",
+        "modified": "2026-03-19T11:48:32.468410+00:00",
+        "id": 19109763,
+        "conceptrecid": "17456473",
+        "doi": "10.5281/zenodo.19109763",
+        "conceptdoi": "10.5281/zenodo.17456473",
+        "doi_url": "https://doi.org/10.5281/zenodo.19109763",
+        "metadata": {
+          "title": "DARE3d",
+          "doi": "10.5281/zenodo.19109763",
+          "publication_date": "2026-03-19",
+          "description": "<p># DARE 3D<br>Creation of README file: 17/03/2026</p>\n<p>This repository contains the 3D datasets and associated files related to the paper:</p>\n<p>Romain Karpinski&dagger;, Alice Gros&loz;, Marc Karnat*, Qazi Saaheelur Rahaman*&loz;, Jules Vanaret&loz;, Mehdi Saadaoui&loz;, Sham Tlili&loz;, Jean-Fran&ccedil;ois Rupprecht*<br>* Aix Marseille Univ, Universit&eacute; de Toulon, CNRS, CPT (UMR 7332), Turing Centre for Living Systems, Marseille, France<br>&dagger; LORIA, CNRS, Nancy, France<br>&loz; Aix Marseille Univ, CNRS, IBDM (UMR 7288), Turing Centre for Living Systems, Marseille, France</p>\n<p>Contact: romain.karpinski@loria.fr, sham.tlili@univ-amu.fr, jean-francois.rupprecht@univ-amu.fr</p>\n<p>---</p>\n<p>## Description</p>\n<p>We propose a two-stage deep learning method to characterize cell divisions in 3D time-lapse microscopy sequences.</p>\n<p>1. **Stage 1 &ndash; Division Detection:** &nbsp;<br>&nbsp; &nbsp;A 3D semantic segmentation network (3D U-Net) identifies candidate division events in volumetric image sequences using temporal context from consecutive frames.</p>\n<p>2. **Stage 2 &ndash; Regression of Division Geometry:** &nbsp;<br>&nbsp; &nbsp;A 3D convolutional regression model estimates the orientation and separation of daughter cells for each detected event.</p>\n<p>The method was applied to challenging 3D live-imaging datasets, including avian neural tube explants labeled with **SiR-actin** (membrane signal) and mouse gastruloids expressing **H2B&ndash;GFP** (nuclear signal). &nbsp;<br>The image stacks were acquired every 3&ndash;4 minutes, with optical planes spaced by 1 &micro;m, and include difficult cases such as dense tissues, anisotropic resolution, rapid neighbor exchanges, and divisions oriented out of the imaging plane. &nbsp;<br>Ground-truth annotations consist of the two daughter-cell centers represented as 3D spheres centered on the estimated daughter positions. &nbsp;<br>The workflow was optimized through systematic hyperparameter exploration and is intended for datasets in which full segmentation and cell tracking are difficult or unreliable.</p>\n<p>---</p>\n<p>## Repository contents</p>\n<p>- **DARE3d_data_160226.zip (7.62 GB):** 3D+time image sequences and annotations used for training, validation, and testing. &nbsp;<br>- **DARE3d-main_v0_150326.zip (328.15 KB):** Main DARE3d project archive associated with this release.</p>\n<p>---</p>\n<p>## Citation</p>\n<p>If you use this dataset or associated files, please cite:</p>\n<p>Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, Jules Vanaret, Mehdi Saadaoui, Sham Tlili, and Jean-Fran&ccedil;ois Rupprecht, &nbsp;<br>&ldquo;DARE: Division Axis and Region Estimation from time-lapse image sequences in 2D and 3D.&rdquo;</p>\n<p>---</p>\n<p>## License</p>\n<p>Please insert here the license chosen for this Zenodo record.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Rupprecht, Jean-Francois",
+              "affiliation": "Centre National de la Recherche Scientifique",
+              "orcid": "0000-0001-8904-5878"
+            }
+          ],
+          "dates": [
+            {
+              "type": "created",
+              "description": "v0"
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 2,
+                "is_last": false,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "17456473"
+                }
+              }
+            ]
+          }
+        },
+        "title": "DARE3d",
+        "links": {
+          "self": "https://zenodo.org/api/records/19109763",
+          "self_html": "https://zenodo.org/records/19109763",
+          "preview_html": "https://zenodo.org/records/19109763?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.19109763",
+          "self_doi": "https://doi.org/10.5281/zenodo.19109763",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19109763",
+          "reserve_doi": "https://zenodo.org/api/records/19109763/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/17456473",
+          "parent_html": "https://zenodo.org/records/17456473",
+          "parent_doi": "https://doi.org/10.5281/zenodo.17456473",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456473",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:19109763/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:19109763/sequence/default",
+          "files": "https://zenodo.org/api/records/19109763/files",
+          "media_files": "https://zenodo.org/api/records/19109763/media-files",
+          "archive": "https://zenodo.org/api/records/19109763/files-archive",
+          "archive_media": "https://zenodo.org/api/records/19109763/media-files-archive",
+          "latest": "https://zenodo.org/api/records/19109763/versions/latest",
+          "latest_html": "https://zenodo.org/records/19109763/latest",
+          "versions": "https://zenodo.org/api/records/19109763/versions",
+          "draft": "https://zenodo.org/api/records/19109763/draft",
+          "access_links": "https://zenodo.org/api/records/19109763/access/links",
+          "access_grants": "https://zenodo.org/api/records/19109763/access/grants",
+          "access_users": "https://zenodo.org/api/records/19109763/access/users",
+          "access_request": "https://zenodo.org/api/records/19109763/access/request",
+          "access": "https://zenodo.org/api/records/19109763/access",
+          "communities": "https://zenodo.org/api/records/19109763/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/19109763/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/19109763/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/19109763/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/19109763/quota-increase",
+          "requests": "https://zenodo.org/api/records/19109763/requests"
+        },
+        "updated": "2026-03-19T11:48:32.468410+00:00",
+        "recid": "19109763",
+        "revision": 4,
+        "files": [
+          {
+            "id": "e6414bf0-08c2-4c90-9fce-597b5343f7b0",
+            "key": "DARE3d_data_190326.zip",
+            "size": 7048412887,
+            "checksum": "md5:b54215dfa9a01bc06196713039b400a6",
+            "links": {
+              "self": "https://zenodo.org/api/records/19109763/files/DARE3d_data_190326.zip/content"
+            }
+          }
+        ],
+        "swh": null,
+        "owners": [
+          {
+            "id": "569244"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 43,
+          "unique_downloads": 32,
+          "views": 186,
+          "unique_views": 164,
+          "version_downloads": 1,
+          "version_unique_downloads": 1,
+          "version_unique_views": 19,
+          "version_views": 20
+        },
+        "state": "done",
+        "submitted": true
+      },
+      {
+        "created": "2026-03-18T21:47:52.855988+00:00",
+        "modified": "2026-03-18T21:47:53.062034+00:00",
+        "id": 19096377,
+        "conceptrecid": "17456473",
+        "doi": "10.5281/zenodo.19096377",
+        "conceptdoi": "10.5281/zenodo.17456473",
+        "doi_url": "https://doi.org/10.5281/zenodo.19096377",
+        "metadata": {
+          "title": "DARE3d",
+          "doi": "10.5281/zenodo.19096377",
+          "publication_date": "2026-03-18",
+          "description": "<p># DARE 3D<br>Creation of README file: 17/03/2026</p>\n<p>This repository contains the 3D datasets and associated files related to the paper:</p>\n<p>Romain Karpinski&dagger;, Alice Gros&loz;, Marc Karnat*, Qazi Saaheelur Rahaman*&loz;, Jules Vanaret&loz;, Mehdi Saadaoui&loz;, Sham Tlili&loz;, Jean-Fran&ccedil;ois Rupprecht*<br>* Aix Marseille Univ, Universit&eacute; de Toulon, CNRS, CPT (UMR 7332), Turing Centre for Living Systems, Marseille, France<br>&dagger; LORIA, CNRS, Nancy, France<br>&loz; Aix Marseille Univ, CNRS, IBDM (UMR 7288), Turing Centre for Living Systems, Marseille, France</p>\n<p>Contact: romain.karpinski@loria.fr, sham.tlili@univ-amu.fr, jean-francois.rupprecht@univ-amu.fr</p>\n<p>---</p>\n<p>## Description</p>\n<p>We propose a two-stage deep learning method to characterize cell divisions in 3D time-lapse microscopy sequences.</p>\n<p>1. **Stage 1 &ndash; Division Detection:** &nbsp;<br>&nbsp; &nbsp;A 3D semantic segmentation network (3D U-Net) identifies candidate division events in volumetric image sequences using temporal context from consecutive frames.</p>\n<p>2. **Stage 2 &ndash; Regression of Division Geometry:** &nbsp;<br>&nbsp; &nbsp;A 3D convolutional regression model estimates the orientation and separation of daughter cells for each detected event.</p>\n<p>The method was applied to challenging 3D live-imaging datasets, including avian neural tube explants labeled with **SiR-actin** (membrane signal) and mouse gastruloids expressing **H2B&ndash;GFP** (nuclear signal). &nbsp;<br>The image stacks were acquired every 3&ndash;4 minutes, with optical planes spaced by 1 &micro;m, and include difficult cases such as dense tissues, anisotropic resolution, rapid neighbor exchanges, and divisions oriented out of the imaging plane. &nbsp;<br>Ground-truth annotations consist of the two daughter-cell centers represented as 3D spheres centered on the estimated daughter positions. &nbsp;<br>The workflow was optimized through systematic hyperparameter exploration and is intended for datasets in which full segmentation and cell tracking are difficult or unreliable.</p>\n<p>---</p>\n<p>## Repository contents</p>\n<p>- **DARE3d_data_160226.zip (7.62 GB):** 3D+time image sequences and annotations used for training, validation, and testing. &nbsp;<br>- **DARE3d-main_v0_150326.zip (328.15 KB):** Main DARE3d project archive associated with this release.</p>\n<p>---</p>\n<p>## Citation</p>\n<p>If you use this dataset or associated files, please cite:</p>\n<p>Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, Jules Vanaret, Mehdi Saadaoui, Sham Tlili, and Jean-Fran&ccedil;ois Rupprecht, &nbsp;<br>&ldquo;DARE: Division Axis and Region Estimation from time-lapse image sequences in 2D and 3D.&rdquo;</p>\n<p>---</p>\n<p>## License</p>\n<p>Please insert here the license chosen for this Zenodo record.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Rupprecht, Jean-Francois",
+              "affiliation": "Centre National de la Recherche Scientifique",
+              "orcid": "0000-0001-8904-5878"
+            }
+          ],
+          "dates": [
+            {
+              "type": "created",
+              "description": "v0"
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 1,
+                "is_last": false,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "17456473"
+                }
+              }
+            ]
+          }
+        },
+        "title": "DARE3d",
+        "links": {
+          "self": "https://zenodo.org/api/records/19096377",
+          "self_html": "https://zenodo.org/records/19096377",
+          "preview_html": "https://zenodo.org/records/19096377?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.19096377",
+          "self_doi": "https://doi.org/10.5281/zenodo.19096377",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19096377",
+          "reserve_doi": "https://zenodo.org/api/records/19096377/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/17456473",
+          "parent_html": "https://zenodo.org/records/17456473",
+          "parent_doi": "https://doi.org/10.5281/zenodo.17456473",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456473",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:19096377/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:19096377/sequence/default",
+          "files": "https://zenodo.org/api/records/19096377/files",
+          "media_files": "https://zenodo.org/api/records/19096377/media-files",
+          "archive": "https://zenodo.org/api/records/19096377/files-archive",
+          "archive_media": "https://zenodo.org/api/records/19096377/media-files-archive",
+          "latest": "https://zenodo.org/api/records/19096377/versions/latest",
+          "latest_html": "https://zenodo.org/records/19096377/latest",
+          "versions": "https://zenodo.org/api/records/19096377/versions",
+          "draft": "https://zenodo.org/api/records/19096377/draft",
+          "access_links": "https://zenodo.org/api/records/19096377/access/links",
+          "access_grants": "https://zenodo.org/api/records/19096377/access/grants",
+          "access_users": "https://zenodo.org/api/records/19096377/access/users",
+          "access_request": "https://zenodo.org/api/records/19096377/access/request",
+          "access": "https://zenodo.org/api/records/19096377/access",
+          "communities": "https://zenodo.org/api/records/19096377/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/19096377/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/19096377/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/19096377/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/19096377/quota-increase",
+          "requests": "https://zenodo.org/api/records/19096377/requests"
+        },
+        "updated": "2026-03-18T21:47:53.062034+00:00",
+        "recid": "19096377",
+        "revision": 4,
+        "files": [
+          {
+            "id": "2db08d06-29af-4367-a62c-3493e0dafba5",
+            "key": "DARE3d_data_180326.zip",
+            "size": 7616442371,
+            "checksum": "md5:3de9d35bec3f4821e12b066b375e0d19",
+            "links": {
+              "self": "https://zenodo.org/api/records/19096377/files/DARE3d_data_180326.zip/content"
+            }
+          }
+        ],
+        "swh": null,
+        "owners": [
+          {
+            "id": "569244"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 43,
+          "unique_downloads": 32,
+          "views": 186,
+          "unique_views": 164,
+          "version_downloads": 3,
+          "version_unique_downloads": 3,
+          "version_unique_views": 34,
+          "version_views": 39
+        },
+        "state": "done",
+        "submitted": true
+      },
+      {
+        "created": "2026-03-17T19:51:16.555937+00:00",
+        "modified": "2026-03-18T13:31:21.761235+00:00",
+        "id": 17456474,
+        "conceptrecid": "17456473",
+        "doi": "10.5281/zenodo.17456474",
+        "conceptdoi": "10.5281/zenodo.17456473",
+        "doi_url": "https://doi.org/10.5281/zenodo.17456474",
+        "metadata": {
+          "title": "DARE3d",
+          "doi": "10.5281/zenodo.17456474",
+          "publication_date": "2025-10-27",
+          "description": "<p># DARE 3D<br>Creation of README file: 17/03/2026</p>\n<p>This repository contains the 3D datasets and associated files related to the paper:</p>\n<p>Romain Karpinski&dagger;, Alice Gros&loz;, Marc Karnat*, Qazi Saaheelur Rahaman*&loz;, Jules Vanaret&loz;, Mehdi Saadaoui&loz;, Sham Tlili&loz;, Jean-Fran&ccedil;ois Rupprecht*<br>* Aix Marseille Univ, Universit&eacute; de Toulon, CNRS, CPT (UMR 7332), Turing Centre for Living Systems, Marseille, France<br>&dagger; LORIA, CNRS, Nancy, France<br>&loz; Aix Marseille Univ, CNRS, IBDM (UMR 7288), Turing Centre for Living Systems, Marseille, France</p>\n<p>Contact: romain.karpinski@loria.fr, sham.tlili@univ-amu.fr, jean-francois.rupprecht@univ-amu.fr</p>\n<p>---</p>\n<p>## Description</p>\n<p>We propose a two-stage deep learning method to characterize cell divisions in 3D time-lapse microscopy sequences.</p>\n<p>1. **Stage 1 &ndash; Division Detection:** &nbsp;<br>&nbsp; &nbsp;A 3D semantic segmentation network (3D U-Net) identifies candidate division events in volumetric image sequences using temporal context from consecutive frames.</p>\n<p>2. **Stage 2 &ndash; Regression of Division Geometry:** &nbsp;<br>&nbsp; &nbsp;A 3D convolutional regression model estimates the orientation and separation of daughter cells for each detected event.</p>\n<p>The method was applied to challenging 3D live-imaging datasets, including avian neural tube explants labeled with **SiR-actin** (membrane signal) and mouse gastruloids expressing **H2B&ndash;GFP** (nuclear signal). &nbsp;<br>The image stacks were acquired every 3&ndash;4 minutes, with optical planes spaced by 1 &micro;m, and include difficult cases such as dense tissues, anisotropic resolution, rapid neighbor exchanges, and divisions oriented out of the imaging plane. &nbsp;<br>Ground-truth annotations consist of the two daughter-cell centers represented as 3D spheres centered on the estimated daughter positions. &nbsp;<br>The workflow was optimized through systematic hyperparameter exploration and is intended for datasets in which full segmentation and cell tracking are difficult or unreliable.</p>\n<p>---</p>\n<p>## Repository contents</p>\n<p>- **DARE3d_data_160226.zip (7.62 GB):** 3D+time image sequences and annotations used for training, validation, and testing. &nbsp;<br>- **DARE3d-main_v0_150326.zip (328.15 KB):** Main DARE3d project archive associated with this release.</p>\n<p>---</p>\n<p>## Citation</p>\n<p>If you use this dataset or associated files, please cite:</p>\n<p>Romain Karpinski, Alice Gros, Marc Karnat, Qazi Saaheelur Rahaman, Jules Vanaret, Mehdi Saadaoui, Sham Tlili, and Jean-Fran&ccedil;ois Rupprecht, &nbsp;<br>&ldquo;DARE: Division Axis and Region Estimation from time-lapse image sequences in 2D and 3D.&rdquo;</p>\n<p>---</p>\n<p>## License</p>\n<p>Please insert here the license chosen for this Zenodo record.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Rupprecht, Jean-Francois",
+              "affiliation": "Centre National de la Recherche Scientifique",
+              "orcid": "0000-0001-8904-5878"
+            }
+          ],
+          "dates": [
+            {
+              "type": "created",
+              "description": "v0"
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 0,
+                "is_last": false,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "17456473"
+                }
+              }
+            ]
+          }
+        },
+        "title": "DARE3d",
+        "links": {
+          "self": "https://zenodo.org/api/records/17456474",
+          "self_html": "https://zenodo.org/records/17456474",
+          "preview_html": "https://zenodo.org/records/17456474?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.17456474",
+          "self_doi": "https://doi.org/10.5281/zenodo.17456474",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456474",
+          "reserve_doi": "https://zenodo.org/api/records/17456474/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/17456473",
+          "parent_html": "https://zenodo.org/records/17456473",
+          "parent_doi": "https://doi.org/10.5281/zenodo.17456473",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.17456473",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:17456474/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:17456474/sequence/default",
+          "files": "https://zenodo.org/api/records/17456474/files",
+          "media_files": "https://zenodo.org/api/records/17456474/media-files",
+          "archive": "https://zenodo.org/api/records/17456474/files-archive",
+          "archive_media": "https://zenodo.org/api/records/17456474/media-files-archive",
+          "latest": "https://zenodo.org/api/records/17456474/versions/latest",
+          "latest_html": "https://zenodo.org/records/17456474/latest",
+          "versions": "https://zenodo.org/api/records/17456474/versions",
+          "draft": "https://zenodo.org/api/records/17456474/draft",
+          "access_links": "https://zenodo.org/api/records/17456474/access/links",
+          "access_grants": "https://zenodo.org/api/records/17456474/access/grants",
+          "access_users": "https://zenodo.org/api/records/17456474/access/users",
+          "access_request": "https://zenodo.org/api/records/17456474/access/request",
+          "access": "https://zenodo.org/api/records/17456474/access",
+          "communities": "https://zenodo.org/api/records/17456474/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/17456474/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/17456474/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/17456474/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/17456474/quota-increase",
+          "requests": "https://zenodo.org/api/records/17456474/requests"
+        },
+        "updated": "2026-03-18T13:31:21.761235+00:00",
+        "recid": "17456474",
+        "revision": 10,
+        "files": [
+          {
+            "id": "c0a8c03d-b4c7-49f9-ac02-dfaf55d2f33c",
+            "key": "DARE3d_data_160226.zip",
+            "size": 7616554029,
+            "checksum": "md5:3a9bb4ddcd9e85f6152fba1a875858e2",
+            "links": {
+              "self": "https://zenodo.org/api/records/17456474/files/DARE3d_data_160226.zip/content"
+            }
+          }
+        ],
+        "swh": null,
+        "owners": [
+          {
+            "id": "569244"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 43,
+          "unique_downloads": 32,
+          "views": 186,
+          "unique_views": 164,
+          "version_downloads": 18,
+          "version_unique_downloads": 13,
+          "version_unique_views": 32,
+          "version_views": 41
+        },
+        "state": "done",
+        "submitted": true
+      }
+    ],
+    "total": 5
+  },
+  "links": {
+    "self": "https://zenodo.org/api/records/19113351/versions?page=1&size=25&sort=version"
+  }
+}

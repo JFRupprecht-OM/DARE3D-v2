@@ -1,0 +1,248 @@
+{
+  "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326.zip",
+  "size": 7048412887,
+  "entries": [
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+      "bytes": 8104,
+      "crc32": "0x83285bf7",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "zip_member_sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "local_sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/hydra.yaml",
+      "bytes": 5764,
+      "crc32": "0x846d7ae7",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "zip_member_sha256": "954318bbc23cedb5e833e708b8a5599156738ba970256cf4c787f5cb6f4b5074",
+      "local_sha256": "954318bbc23cedb5e833e708b8a5599156738ba970256cf4c787f5cb6f4b5074",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/.hydra/overrides.yaml",
+      "bytes": 585,
+      "crc32": "0x45eff1d2",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        28
+      ],
+      "zip_member_sha256": "e5dbb6c053aeff2a885e8d63ad36216613a3230a2b9562266d5fec5cbe8edc51",
+      "local_sha256": "e5dbb6c053aeff2a885e8d63ad36216613a3230a2b9562266d5fec5cbe8edc51",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+      "bytes": 1378684724,
+      "crc32": "0xe404f736",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        40
+      ],
+      "zip_member_sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "local_sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "bytes": 1378684724,
+      "crc32": "0x89c6efff",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        34
+      ],
+      "zip_member_sha256": "0fa7e3339f967fbc0001d47489fe86b7e0f99649097fb5e223900cb4982f48b7",
+      "local_sha256": "0fa7e3339f967fbc0001d47489fe86b7e0f99649097fb5e223900cb4982f48b7",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/config_tree.log",
+      "bytes": 65432,
+      "crc32": "0xbfa21a4e",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "zip_member_sha256": "8a6a7e4e4c9e075947963f7c5f8286204a61ed348fe1b37887e93cfadcaf17a1",
+      "local_sha256": "8a6a7e4e4c9e075947963f7c5f8286204a61ed348fe1b37887e93cfadcaf17a1",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_fn.tif",
+      "bytes": 440436886,
+      "crc32": "0x5b74e68c",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        40
+      ]
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_fp.tif",
+      "bytes": 440436886,
+      "crc32": "0xb028116d",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ]
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_pred.tif",
+      "bytes": 440436886,
+      "crc32": "0x27fa7c1a",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ]
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2/movie_I2_true.tif",
+      "bytes": 440436886,
+      "crc32": "0xdba4929f",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        42
+      ]
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif",
+      "bytes": 440439394,
+      "crc32": "0xfdfe75af",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "zip_member_sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+      "local_sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/segmentation3d_new_set_og.log",
+      "bytes": 4782,
+      "crc32": "0x72354a79",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "zip_member_sha256": "2f0ac6e6f7b0bb8170943681fa6ec15d2e7973cc7e327b3648c5978f3e53c5df",
+      "local_sha256": "2f0ac6e6f7b0bb8170943681fa6ec15d2e7973cc7e327b3648c5978f3e53c5df",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/stats.csv",
+      "bytes": 1151,
+      "crc32": "0xd4f34bba",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "zip_member_sha256": "a3aae738805c45e667df45158fa11110e1cafe414b0d33738dcfb6420dc81769",
+      "local_sha256": "a3aae738805c45e667df45158fa11110e1cafe414b0d33738dcfb6420dc81769",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tags.log",
+      "bytes": 22,
+      "crc32": "0x987a2f9c",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        26
+      ],
+      "zip_member_sha256": "0f617f996ad0703d3dca794d1561e9b744a3b46dc28ba7a8ab8be15255ad2f8c",
+      "local_sha256": "0f617f996ad0703d3dca794d1561e9b744a3b46dc28ba7a8ab8be15255ad2f8c",
+      "matches_current": true
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/events.out.tfevents.1768234548.LEN-GENESYS.36548.0",
+      "bytes": 165477,
+      "crc32": "0xe73ec7a",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ]
+    },
+    {
+      "name": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tensorboard/version_0/hparams.yaml",
+      "bytes": 6929,
+      "crc32": "0x5df841b9",
+      "zip_time": [
+        2026,
+        3,
+        18,
+        14,
+        58,
+        56
+      ],
+      "zip_member_sha256": "4f83c79456ab558a93b7891b7a17482f169db520771d873bc573c583585a3844",
+      "local_sha256": "4f83c79456ab558a93b7891b7a17482f169db520771d873bc573c583585a3844",
+      "matches_current": true
+    }
+  ],
+  "zip_md5": "f8df147bb8249aad44b8ef1509d280dd"
+}

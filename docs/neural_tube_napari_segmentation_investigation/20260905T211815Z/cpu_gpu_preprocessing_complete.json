@@ -1,0 +1,28 @@
+{
+  "cpu_input_channels": [
+    -1,
+    0,
+    1
+  ],
+  "cpu_valid_shape": [
+    3,
+    635,
+    635,
+    20
+  ],
+  "gpu_full_shape": [
+    3,
+    635,
+    635,
+    128
+  ],
+  "gpu_mean": 0.0020117752719670534,
+  "gpu_std": 0.008598164655268192,
+  "valid_mean_cpu": 0.013003000989556313,
+  "valid_mean_gpu": 0.012875350192189217,
+  "valid_std_cpu": 0.017985792830586433,
+  "valid_std_gpu": 0.01825566217303276,
+  "max_abs_difference": 0.17963910102844238,
+  "mean_abs_difference": 0.0005005799466744065,
+  "pearson": 0.9965091536353805
+}

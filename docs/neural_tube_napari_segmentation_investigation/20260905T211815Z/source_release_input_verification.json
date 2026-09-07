@@ -1,0 +1,38 @@
+[
+  {
+    "movie": "movie_I2",
+    "role": "image",
+    "source": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im\\movie_I2.tif",
+    "release": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\trainingset\\movie2\\im\\movie_I2.tif",
+    "source_sha256": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+    "release_sha256": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062",
+    "byte_identical_by_sha256": true
+  },
+  {
+    "movie": "movie_I2",
+    "role": "labels",
+    "source": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\label\\movie_I2.tif",
+    "release": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\trainingset\\movie2\\label\\movie_I2.tif",
+    "source_sha256": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+    "release_sha256": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5",
+    "byte_identical_by_sha256": true
+  },
+  {
+    "movie": "movie_M",
+    "role": "image",
+    "source": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\im\\movie_M.tif",
+    "release": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\test_input\\im\\movie_M.tif",
+    "source_sha256": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88",
+    "release_sha256": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88",
+    "byte_identical_by_sha256": true
+  },
+  {
+    "movie": "movie_M",
+    "role": "labels",
+    "source": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\label\\movie_M.tif",
+    "release": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\Neural_tube_160226\\test_input\\label\\movie_M.tif",
+    "source_sha256": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df",
+    "release_sha256": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df",
+    "byte_identical_by_sha256": true
+  }
+]

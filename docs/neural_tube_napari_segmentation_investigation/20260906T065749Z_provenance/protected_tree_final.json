@@ -1,0 +1,22 @@
+{
+  "roots": [
+    "DARE3dv2_Zenodo_040926",
+    "DARE3d_data_190326/Neural_tube_160226/weights",
+    "docs/reproducibility_audit",
+    "configs",
+    "dare3d",
+    "manuscript_280826version",
+    "napari_dare3d",
+    "data/3D/scales.json"
+  ],
+  "excluded": [
+    "__pycache__",
+    "*.pyc",
+    "*.pyo"
+  ],
+  "baseline_count": 3835,
+  "current_count": 3835,
+  "added": [],
+  "removed": [],
+  "changed": []
+}

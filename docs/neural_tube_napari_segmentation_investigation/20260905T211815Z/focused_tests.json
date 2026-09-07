@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "tests/test_napari_release_models.py",
+    "tests/test_scale_handling.py",
+    "tests/test_inference_checkpoint_loading.py",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\.pytest_tmp\\neural_seg_diagnostic_20260905T211815Z"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.12685240000428166,
+  "output": "C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2\\python.exe: No module named pytest\n"
+}

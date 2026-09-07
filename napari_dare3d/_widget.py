@@ -20,6 +20,7 @@ from napari_dare3d._release_models import (
     DEFAULT_DATASET,
     release_model_selection,
     release_movie_path,
+    release_segmentation_overlap,
     release_segmentation_scale_mode,
 )
 from napari_dare3d._scale import (
@@ -120,6 +121,29 @@ def _set_running(running: bool) -> None:
         sb.visible = running
 
 
+def _wire_segmentation_overlap_preset(widget):
+    """Remember manual overlap values separately for native and other models."""
+    active_profile = None
+    remembered = {None: float(widget.overlap.value)}
+
+    def sync(*_):
+        nonlocal active_profile
+        profile = release_segmentation_overlap(
+            widget.dataset.value, widget.seg_checkpoint.value
+        )
+        if profile == active_profile:
+            return
+        remembered[active_profile] = float(widget.overlap.value)
+        active_profile = profile
+        widget.overlap.value = remembered.setdefault(profile, profile)
+
+    # Dataset changes first apply the checkpoint preset; checkpoint changes also
+    # cover manually substituted files. Repeated syncs leave manual edits alone.
+    widget.dataset.changed.connect(sync)
+    widget.seg_checkpoint.changed.connect(sync)
+    sync()
+
+
 def _init_widget(widget):
     """magic_factory hook: preload the Gastruloid test_input movie into the viewer
     and select it as the input image. Runs once when the widget is created."""
@@ -183,6 +207,7 @@ def _init_widget(widget):
 
     if getattr(widget, "dataset", None) is not None:
         widget.dataset.changed.connect(_apply_release_preset)
+        _wire_segmentation_overlap_preset(widget)
 
     viewer = napari.current_viewer()
     if viewer is None:
@@ -313,7 +338,8 @@ def _parse_scale(text: str):
     },
     overlap={
         "min": 0.0, "max": 0.9, "step": 0.05,
-        "tooltip": "Sliding-window overlap for 3D segmentation (0-0.9; default 0.25). "
+        "tooltip": "Sliding-window overlap for 3D segmentation (0-0.9; default 0.25, "
+                   "promoted neural-tube preset 0.5). "
                    "Higher = more accurate, slower.",
     },
     batch_size={

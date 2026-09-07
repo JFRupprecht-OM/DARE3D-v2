@@ -1,0 +1,9 @@
+{
+  "valid_json_count": 51,
+  "excluded_known_partial_json": "cpu_preprocessing.json",
+  "json_or_metric_errors": [],
+  "protected_tree_checks_pass": true,
+  "selected_hashes_checked": 33,
+  "tracked_diff_empty": true,
+  "all_diagnostic_processes_completed": true
+}

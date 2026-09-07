@@ -1,0 +1,7 @@
+{
+  "display_execution_prelude": "After diag_base, before importing napari: QT_QPA_PLATFORM=windows; NAPARI_CONFIG=<new output>/napari_settings.yaml; XDG_CACHE_HOME=<new output>/app_cache. Run the saved display body in that environment. The offscreen Qt attempt failed to create an OpenGL context; the native Windows hidden viewer succeeded. Reading Napari's installed/user settings required sandbox escalation; the live viewer was not modified.",
+  "source_records": "executed_diag_*.json contain main diagnostic bodies and base, not every wrapper or exploratory read-only command. Use a NEW output location when replaying; existing artifact names are not intended to be overwritten.",
+  "metadata_serialization_failure": "cpu_preprocessing.json intentionally retained as partial output. CPU array saving succeeded. cpu_gpu_preprocessing_complete.json is valid and includes the completed comparison.",
+  "protection_count_clarification": "protection_verification.json note text says 32 selected hashes; the actual hashes dictionary has 33 entries, all checked. protected_tree_final.json and SUMMARY.md report the correct count 33.",
+  "evaluation_scope": "No thresholds were optimized; the historical and current thresholds were frozen before evaluation. Legacy last.ckpt and audit-runtime/CPU-resize probes each used only first three input frames (one prediction at t=2)."
+}

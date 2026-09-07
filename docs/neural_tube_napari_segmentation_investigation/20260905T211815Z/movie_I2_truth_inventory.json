@@ -1,0 +1,40 @@
+{
+  "raw_bipoints_per_frame": [
+    10,
+    12,
+    5,
+    5,
+    6,
+    6,
+    6,
+    4,
+    6,
+    6,
+    4,
+    9,
+    5,
+    5,
+    6,
+    8,
+    6,
+    5,
+    8,
+    8,
+    15
+  ],
+  "eligible_annotations": 123,
+  "raw_shape": [
+    21,
+    1024,
+    1024,
+    10
+  ],
+  "time_padding": 0,
+  "target_shape": [
+    21,
+    635,
+    635,
+    20
+  ],
+  "reader_data_matches_tifffile": true
+}

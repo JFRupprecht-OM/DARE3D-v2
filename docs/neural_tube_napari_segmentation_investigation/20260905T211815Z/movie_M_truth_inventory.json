@@ -1,0 +1,23 @@
+{
+  "raw_bipoints_per_frame": [
+    10,
+    14,
+    6,
+    11,
+    7,
+    11,
+    7,
+    8,
+    8,
+    10,
+    12
+  ],
+  "eligible_annotations": 80,
+  "raw_shape": [
+    11,
+    1024,
+    1024,
+    10
+  ],
+  "time_padding": 0
+}

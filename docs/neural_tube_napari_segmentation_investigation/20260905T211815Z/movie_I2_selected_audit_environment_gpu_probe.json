@@ -1,0 +1,35 @@
+{
+  "runtime": {
+    "torch": "2.5.1+cu121",
+    "monai": "1.3.0",
+    "numpy": "1.23.4",
+    "scikit-image": "0.24.0"
+  },
+  "python": "C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2.0\\python.exe",
+  "checkpoint": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3dv2_Zenodo_040926\\DARE3D_neural_tube_segmentation_epoch057.ckpt",
+  "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+  "probe_frames": [
+    0,
+    1,
+    2
+  ],
+  "prediction_frame": 2,
+  "cpu_preprocessing_only_changed": false,
+  "overlap": 0.5,
+  "batch_size": 4,
+  "elapsed_seconds": 20.69680309999967,
+  "vs_archived": {
+    "mean_abs": 0.0011895672651007771,
+    "max_abs": 1.0,
+    "binary_disagreement_half": 12301,
+    "correlation": 0.48137475580121536,
+    "above_half": 6299
+  },
+  "vs_selected_gpu": {
+    "mean_abs": 9.47011392915531e-12,
+    "max_abs": 6.103515625e-05,
+    "binary_disagreement_half": 0,
+    "correlation": 1.0,
+    "above_half": 6299
+  }
+}

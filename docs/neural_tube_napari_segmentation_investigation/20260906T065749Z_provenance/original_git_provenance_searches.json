@@ -1,0 +1,61 @@
+{
+  "scale_table_history": {
+    "command": [
+      "log",
+      "--all",
+      "--full-history",
+      "--format=%H %ad %s",
+      "--date=iso-strict",
+      "--raw",
+      "--",
+      "data/3D/scales.json",
+      "data/3d/scales.json"
+    ],
+    "exit_code": 0,
+    "stdout": "288aedb323dc836428c218da1bd7ae96e831abdd 2025-11-27T18:27:44+01:00 Merge branch 'qazi_dare'\nfc005b19dba0501a50f448d228c66d295ecd62d8 2025-11-25T14:55:06+01:00 new changes by qazi\n\n:000000 100644 0000000 505217d A\tdata/3D/scales.json\n",
+    "stderr": ""
+  },
+  "checkpoint_files_in_git": {
+    "command": [
+      "log",
+      "--all",
+      "--format=%H %s",
+      "--name-only",
+      "--",
+      "*.ckpt",
+      "*.pth",
+      "*.pt"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "movie_I2_mentions": {
+    "command": [
+      "log",
+      "--all",
+      "--format=%H %s",
+      "-S",
+      "movie_I2",
+      "--",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "february_run_mentions": {
+    "command": [
+      "log",
+      "--all",
+      "--format=%H %s",
+      "-S",
+      "05-02-26",
+      "--",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

@@ -10,6 +10,7 @@ from napari_dare3d._release_models import (
     model_dir_from_checkpoint,
     release_movie_path,
     release_model_selection,
+    release_segmentation_overlap,
     release_segmentation_scale_mode,
 )
 
@@ -90,7 +91,7 @@ def test_unknown_release_dataset_is_rejected(release_root, dataset):
 
 @pytest.mark.parametrize(
     ("dataset", "expected"),
-    (("gastruloid", "source"), ("neural_tube", "checkpoint_default")),
+    (("gastruloid", "source"), ("neural_tube", "native")),
 )
 def test_promoted_release_segmentation_scale_mode_is_checkpoint_specific(
     release_root, dataset, expected
@@ -103,6 +104,9 @@ def test_promoted_release_segmentation_scale_mode_is_checkpoint_specific(
         release_segmentation_scale_mode(dataset, checkpoint, release_root)
         == expected
     )
+    assert release_segmentation_overlap(dataset, checkpoint, release_root) == (
+        0.5 if dataset == "neural_tube" else None
+    )
 
 
 def test_custom_checkpoint_does_not_inherit_neural_scale_exception(release_root):
@@ -114,3 +118,4 @@ def test_custom_checkpoint_does_not_inherit_neural_scale_exception(release_root)
     assert (
         release_segmentation_scale_mode("neural_tube", custom, release_root) == "source"
     )
+    assert release_segmentation_overlap("neural_tube", custom, release_root) is None

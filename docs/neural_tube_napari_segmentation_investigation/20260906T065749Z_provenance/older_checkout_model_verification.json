@@ -1,0 +1,22 @@
+[
+  {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\older\\DARE3D_220726\\DARE3d\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\epoch_057.ckpt",
+    "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+    "same_as_current": true
+  },
+  {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\older\\DARE3D_220726\\DARE3d\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\checkpoints\\last.ckpt",
+    "sha256": "0fa7e3339f967fbc0001d47489fe86b7e0f99649097fb5e223900cb4982f48b7",
+    "same_as_current": true
+  },
+  {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\older\\DARE3D_220726\\DARE3d\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\.hydra\\config.yaml",
+    "sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761",
+    "same_as_current": true
+  },
+  {
+    "path": "C:\\Users\\ruppr\\Documents\\Codexsession\\older\\DARE3D_220726\\DARE3d\\DARE3d_data_190326\\Neural_tube_160226\\weights\\segmentation3d_new_set_og\\runs\\12-01-26\\movie_I2.tif",
+    "sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+    "same_as_current": true
+  }
+]

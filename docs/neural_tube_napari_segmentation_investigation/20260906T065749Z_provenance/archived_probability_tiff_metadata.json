@@ -1,0 +1,17 @@
+{
+  "ImageWidth": "1024",
+  "ImageLength": "1024",
+  "BitsPerSample": "16",
+  "Compression": "COMPRESSION.NONE",
+  "PhotometricInterpretation": "PHOTOMETRIC.MINISBLACK",
+  "ImageDescription": "{\"shape\": [21, 10, 1024, 1024]}",
+  "StripOffsets": "(272,)",
+  "SamplesPerPixel": "1",
+  "RowsPerStrip": "1024",
+  "StripByteCounts": "(2097152,)",
+  "XResolution": "(1, 1)",
+  "YResolution": "(1, 1)",
+  "ResolutionUnit": "RESUNIT.NONE",
+  "Software": "tifffile.py",
+  "SampleFormat": "SAMPLEFORMAT.IEEEFP"
+}
