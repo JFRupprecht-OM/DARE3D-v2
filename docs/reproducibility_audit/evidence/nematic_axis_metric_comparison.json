@@ -1,0 +1,752 @@
+{
+  "affected_locations": {
+    "direct_quantitative_claims": [
+      {
+        "claim": "orientation-angle error 28 +/- 2 degrees",
+        "location": "manuscript_280826version/main.tex:395",
+        "section": "Results: 3D nuclei model"
+      },
+      {
+        "claim": "orientation-angle error 28 +/- 2 degrees",
+        "location": "manuscript_280826version/main.tex:402",
+        "section": "Results: 3D membrane model"
+      }
+    ],
+    "interpretive_claims": [
+      {
+        "claim": "orientation accuracy approaches annotation uncertainty",
+        "location": "manuscript_280826version/main.tex:79",
+        "section": "Abstract"
+      },
+      {
+        "claim": "mean error is of the same order as about 20 degrees",
+        "location": "manuscript_280826version/main.tex:481",
+        "section": "Discussion: 3D nuclei orientation error"
+      },
+      {
+        "claim": "mean error is of the same order as about 20 degrees",
+        "location": "manuscript_280826version/main.tex:493-494",
+        "section": "Discussion: 3D membrane orientation error"
+      },
+      {
+        "claim": "3D error is below the 61.2-degree random nematic RMS",
+        "location": "manuscript_280826version/main.tex:501-505",
+        "section": "Discussion: 2D vs 3D regression"
+      }
+    ],
+    "not_numerically_affected": [
+      "manuscript_280826version/main.tex:178-212, Table dataset:stats_all; supplies dataset/test provenance and lengths, not angular performance",
+      "manuscript_280826version/main.tex:645-656, Figs. fig:regression and fig:regression_neuraltube; qualitative axes are unchanged",
+      "manuscript_280826version/main.tex:672-675, Fig. fig:3Dsuccess; qualitative predictions and detection examples are unchanged",
+      "manuscript_280826version/main.tex:572-594, supplementary movie captions; displayed axes are unchanged and no aggregate angle is embedded"
+    ],
+    "production_and_generated_statistic_provenance": [
+      "dare3d/losses/angle3d.py:70-84 (training loss)",
+      "dare3d/losses/angle3d.py:106-116 (production evaluation function)",
+      "dare3d/metrics/infer_measure.py:372-411 (three-mode aggregation)",
+      "dare3d/metrics/infer_measure.py:329-344 (unused error-plot helper)",
+      "dare3d/data/components/angles3d.py:265-290 (rendered axis)",
+      "dare3d/metrics/inference.py:144-176 (prediction/output)",
+      "dare3d/models/regression_module.py:83-107,123-186 (training/validation angular-loss logs)",
+      "configs/experiment/regression.yaml:43 (checkpoint monitor val/loss)",
+      "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+      "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/stats.csv",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/event_errors.csv",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/result.json"
+    ]
+  },
+  "all_assertions_pass": true,
+  "assertions": {
+    "all_corrected_means_in_nematic_range": true,
+    "effective_event_count_is_732": true,
+    "event_row_count_is_743": true,
+    "membrane_all_gt_corrected_mean_above_30": true,
+    "membrane_all_gt_rms_below_random_61_2": true,
+    "membrane_counts_match_122_114_114": true,
+    "neural_truth_fallback_counts_match": true,
+    "nuclei_all_gt_corrected_mean_below_20": true,
+    "nuclei_all_gt_rms_below_random_61_2": true,
+    "nuclei_checkpoint_production_replay_within_0_016_deg": true,
+    "nuclei_counts_match_140_121_121": true,
+    "prior_axis_evidence_crosscheck_exact": true,
+    "six_dataset_mode_summaries": true,
+    "synthetic_checks_pass": true
+  },
+  "classification": "Audit-only fixed-prediction angular-metric replacement. No production file or released artifact was modified.",
+  "crosscheck_against_prior_saved_output_evidence": {
+    "all_values_within_1e_minus_10_deg": true,
+    "effective_rows_compared": 732,
+    "interpretation": "The independent implementation exactly cross-checks the earlier saved-output axis reconstruction. Nuclei primary values additionally use raw quaternions from the checkpoint compatibility replay.",
+    "maximum_absolute_difference_deg": 1.2256862191861728e-13,
+    "new_row_count": 743,
+    "prior_row_count": 743
+  },
+  "definitions": {
+    "aggregation": "Same production event selection and skip rules; float32 mean and population SD; SEM=population SD/sqrt(effective N).",
+    "corrected_nematic_axis": "acos(abs(dot(unit(u_pred),unit(u_true)))) in degrees, with only the absolute scalar product clipped to exact [0,1]",
+    "current_production": "2*acos(abs(dot(unit(q_pred),unit(q_true)))) in degrees, with the un-absolute dot clipped to [-0.9999,0.9999]"
+  },
+  "gastruloid_nuclei": {
+    "classification": "Same checkpoint, inputs, center modes, matching, and raw labels. Original raw quaternions were not released, so primary axes use the independently verified epoch_098 compatibility replay.",
+    "modes": {
+      "all_groundtruth_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 10.412042617797852,
+            "absolute_relative_percent_of_current": 41.144648272589386,
+            "signed_deg": -10.412042617797852,
+            "signed_relative_percent_of_current": -41.144648272589386
+          },
+          "std_population": {
+            "absolute_deg": 15.318327903747559,
+            "absolute_relative_percent_of_current": 54.673309024298575,
+            "signed_deg": -15.318327903747559,
+            "signed_relative_percent_of_current": -54.673309024298575
+          }
+        },
+        "corrected_nematic_axis_archived_raster_sensitivity": {
+          "max_deg": 78.93693606019438,
+          "mean_deg": 15.184563636779785,
+          "median_deg": 12.494625392251494,
+          "n": 140,
+          "p95_deg": 35.1261957874836,
+          "rms_deg": 19.633870186971915,
+          "sem_population_deg": 1.051929610737237,
+          "std_population_deg": 12.446599006652832
+        },
+        "corrected_nematic_axis_raw_quaternion_replay": {
+          "max_deg": 83.29144745883688,
+          "mean_deg": 14.893903732299805,
+          "median_deg": 12.341823336568467,
+          "n": 140,
+          "p95_deg": 36.16758012726975,
+          "rms_deg": 19.573149618498732,
+          "sem_population_deg": 1.0733120353051202,
+          "std_population_deg": 12.699599266052246
+        },
+        "effective_n": 140,
+        "production_event_distribution_checkpoint_replay": {
+          "max_deg": 178.12080256402805,
+          "mean_deg": 25.307039260864258,
+          "median_deg": 17.735297573308912,
+          "n": 140,
+          "p95_deg": 70.44109305050465,
+          "rms_deg": 37.75558068507919,
+          "sem_population_deg": 2.367997330141944,
+          "std_population_deg": 28.018522262573242
+        },
+        "production_reported_n": 145,
+        "raw_quaternion_vs_archived_raster_axis_disagreement": {
+          "max_deg": 9.264146124448342,
+          "mean_deg": 1.8878713846206665,
+          "median_deg": 1.5582615497570467,
+          "n": 140,
+          "p95_deg": 4.846057715379514,
+          "rms_deg": 2.3657624833909954,
+          "sem_population_deg": 0.12049817156943649,
+          "std_population_deg": 1.4257535934448242
+        },
+        "released_production_full_quaternion": {
+          "mean_angle_error": 25.305946350097656,
+          "mean_distance_error": 0.6222168803215027,
+          "mean_length_error": 1.943732738494873,
+          "n": 145,
+          "std_angle_error": 28.017927169799805,
+          "std_distance_error": 0.5015391707420349,
+          "std_length_error": 1.580136775970459
+        }
+      },
+      "matched_groundtruth_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 11.386316299438477,
+            "absolute_relative_percent_of_current": 43.2786282688466,
+            "signed_deg": -11.386316299438477,
+            "signed_relative_percent_of_current": -43.2786282688466
+          },
+          "std_population": {
+            "absolute_deg": 18.502097129821777,
+            "absolute_relative_percent_of_current": 57.78276626912287,
+            "signed_deg": -18.502097129821777,
+            "signed_relative_percent_of_current": -57.78276626912287
+          }
+        },
+        "corrected_nematic_axis_archived_raster_sensitivity": {
+          "max_deg": 78.93693606019438,
+          "mean_deg": 15.22522258758545,
+          "median_deg": 12.07705717981234,
+          "n": 121,
+          "p95_deg": 36.390079904513534,
+          "rms_deg": 20.242425166889756,
+          "sem_population_deg": 1.2127025777643377,
+          "std_population_deg": 13.339728355407715
+        },
+        "corrected_nematic_axis_raw_quaternion_replay": {
+          "max_deg": 83.29144745883688,
+          "mean_deg": 14.923011779785156,
+          "median_deg": 12.194883859960582,
+          "n": 121,
+          "p95_deg": 37.9349562740687,
+          "rms_deg": 20.13535707088006,
+          "sem_population_deg": 1.228908972306685,
+          "std_population_deg": 13.517998695373535
+        },
+        "effective_n": 121,
+        "production_event_distribution_checkpoint_replay": {
+          "max_deg": 178.12080256402805,
+          "mean_deg": 26.31011390686035,
+          "median_deg": 17.487584497484363,
+          "n": 121,
+          "p95_deg": 77.10049700841796,
+          "rms_deg": 41.44244903151384,
+          "sem_population_deg": 2.910872372713956,
+          "std_population_deg": 32.019596099853516
+        },
+        "production_reported_n": 124,
+        "raw_quaternion_vs_archived_raster_axis_disagreement": {
+          "max_deg": 9.264146124448342,
+          "mean_deg": 1.8333390951156616,
+          "median_deg": 1.5572902688960228,
+          "n": 121,
+          "p95_deg": 4.806845287550506,
+          "rms_deg": 2.3169439004827574,
+          "sem_population_deg": 0.1287927735935558,
+          "std_population_deg": 1.4167205095291138
+        },
+        "released_production_full_quaternion": {
+          "mean_angle_error": 26.309328079223633,
+          "mean_distance_error": 0.6364277601242065,
+          "mean_length_error": 2.0183234214782715,
+          "n": 124,
+          "std_angle_error": 32.02009582519531,
+          "std_distance_error": 0.5226491689682007,
+          "std_length_error": 1.5754529237747192
+        }
+      },
+      "predicted_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 17.796918869018555,
+            "absolute_relative_percent_of_current": 47.497548437699166,
+            "signed_deg": -17.796918869018555,
+            "signed_relative_percent_of_current": -47.497548437699166
+          },
+          "std_population": {
+            "absolute_deg": 23.790668487548828,
+            "absolute_relative_percent_of_current": 52.196081976035224,
+            "signed_deg": -23.790668487548828,
+            "signed_relative_percent_of_current": -52.196081976035224
+          }
+        },
+        "corrected_nematic_axis_archived_raster_sensitivity": {
+          "max_deg": 86.9568286889049,
+          "mean_deg": 19.933712005615234,
+          "median_deg": 11.404902173387566,
+          "n": 121,
+          "p95_deg": 75.01559217057857,
+          "rms_deg": 29.396703607430258,
+          "sem_population_deg": 1.9641692421653054,
+          "std_population_deg": 21.60586166381836
+        },
+        "corrected_nematic_axis_raw_quaternion_replay": {
+          "max_deg": 88.87466789660542,
+          "mean_deg": 19.672212600708008,
+          "median_deg": 10.105886726113056,
+          "n": 121,
+          "p95_deg": 76.65075769096622,
+          "rms_deg": 29.35549898370277,
+          "sem_population_deg": 1.9807950800115413,
+          "std_population_deg": 21.788745880126953
+        },
+        "effective_n": 121,
+        "production_event_distribution_checkpoint_replay": {
+          "max_deg": 176.66796674487108,
+          "mean_deg": 37.48206329345703,
+          "median_deg": 15.202810519278461,
+          "n": 121,
+          "p95_deg": 142.30189879659684,
+          "rms_deg": 59.02409209781802,
+          "sem_population_deg": 4.145034443248402,
+          "std_population_deg": 45.59537887573242
+        },
+        "production_reported_n": 124,
+        "raw_quaternion_vs_archived_raster_axis_disagreement": {
+          "max_deg": 6.484427007583574,
+          "mean_deg": 2.0060319900512695,
+          "median_deg": 1.6844667392573782,
+          "n": 121,
+          "p95_deg": 5.289925140144226,
+          "rms_deg": 2.4492941907003636,
+          "sem_population_deg": 0.1277548291466453,
+          "std_population_deg": 1.4053031206130981
+        },
+        "released_production_full_quaternion": {
+          "mean_angle_error": 37.46913146972656,
+          "mean_distance_error": 3.668400526046753,
+          "mean_length_error": 2.1517438888549805,
+          "n": 124,
+          "std_angle_error": 45.57941436767578,
+          "std_distance_error": 2.441033363342285,
+          "std_length_error": 2.0729737281799316
+        }
+      }
+    },
+    "sources": [
+      "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+      "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif",
+      "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+      "docs/reproducibility_audit/evidence/nuclei_saved_visualization_alignment.csv",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/result.json",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/event_errors.csv",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/all_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/matched_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/predicted_centers_raw_predictions.npz",
+      "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/all_true_centers/movie2.tif",
+      "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/matched_true_centers/movie2.tif",
+      "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/pred_centers/movie2.tif"
+    ]
+  },
+  "limitations": [
+    "Original nuclei raw prediction quaternions were not released; the primary counterfactual uses the verified epoch_098 replay.",
+    "Membrane raw daughter annotations are absent; truth axes are decoded from a uint8 raster, including 37 next-frame fallbacks.",
+    "Production medians and event angles were not released. Nuclei production distribution statistics use a near-exact replay; membrane production distribution statistics are raster proxies.",
+    "The models were trained and checkpoint-selected with the full-quaternion loss. This fixed-prediction test does not estimate retraining or checkpoint-selection effects.",
+    "No split, anisotropy, matching, reported-N, or manuscript dataset-identity issue was changed."
+  ],
+  "manuscript_replacement": {
+    "interpretation": "The two 28-degree central values match released population SDs, not means. Corrected mean+/-SEM is the coherent replacement.",
+    "membrane_all_groundtruth_centers": {
+      "corrected_mean_deg": 36.63445281982422,
+      "corrected_sem_deg": 2.003202846732029,
+      "corrected_std_population_deg": 22.1260986328125,
+      "current_manuscript_text_deg": "28 +/- 2",
+      "effective_n": 122,
+      "nominal_n": 122
+    },
+    "nuclei_all_groundtruth_centers": {
+      "corrected_mean_deg": 14.893903732299805,
+      "corrected_sem_deg": 1.0733120353051202,
+      "corrected_std_population_deg": 12.699599266052246,
+      "current_manuscript_text_deg": "28 +/- 2",
+      "effective_n": 140,
+      "nominal_n": 145
+    }
+  },
+  "neural_tube_membrane": {
+    "classification": "Released prediction quaternions with independently decoded saved truth-axis raster. Raw neural images and daughter annotations are absent.",
+    "groundtruth_time_offsets_all_modes": {
+      "-1": 0,
+      "0": 313,
+      "1": 37
+    },
+    "modes": {
+      "all_groundtruth_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 12.93161392211914,
+            "absolute_relative_percent_of_current": 26.089651191096557,
+            "signed_deg": -12.93161392211914,
+            "signed_relative_percent_of_current": -26.089651191096557
+          },
+          "std_population": {
+            "absolute_deg": 4.97801399230957,
+            "absolute_relative_percent_of_current": 18.366268105363403,
+            "signed_deg": -4.97801399230957,
+            "signed_relative_percent_of_current": -18.366268105363403
+          }
+        },
+        "corrected_nematic_axis": {
+          "max_deg": 89.07529976191695,
+          "mean_deg": 36.63445281982422,
+          "median_deg": 32.22158570266962,
+          "n": 122,
+          "p95_deg": 83.60043489111258,
+          "rms_deg": 42.79775286826702,
+          "sem_population_deg": 2.003202846732029,
+          "std_population_deg": 22.1260986328125
+        },
+        "effective_n": 122,
+        "groundtruth_raster_quality": {
+          "max_deg": 2699.675584177491,
+          "mean_deg": 1082.189453125,
+          "median_deg": 1071.9133453569111,
+          "n": 122,
+          "p95_deg": 1669.4433202187809,
+          "rms_deg": 1130.122325496403,
+          "sem_population_deg": 29.48222191753172,
+          "std_population_deg": 325.64178466796875
+        },
+        "groundtruth_time_offsets": {
+          "-1": 0,
+          "0": 122,
+          "1": 0
+        },
+        "production_event_distribution_raster_proxy": {
+          "max_deg": 166.5581842376633,
+          "mean_deg": 49.87043762207031,
+          "median_deg": 40.52685365052246,
+          "n": 122,
+          "p95_deg": 104.08345728580798,
+          "rms_deg": 57.05249692742826,
+          "sem_population_deg": 2.508880305553988,
+          "std_population_deg": 27.711488723754883
+        },
+        "production_proxy_minus_released": {
+          "mean_deg": 0.3043708801269531,
+          "std_population_deg": 0.6073760986328125
+        },
+        "production_reported_n": 122,
+        "released_production_full_quaternion": {
+          "mean_angle_error": 49.56606674194336,
+          "mean_distance_error": 0.6452796459197998,
+          "mean_length_error": 13.963602066040039,
+          "n": 122,
+          "std_angle_error": 27.10411262512207,
+          "std_distance_error": 0.34596192836761475,
+          "std_length_error": 3.3541419506073
+        }
+      },
+      "matched_groundtruth_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 12.611648559570312,
+            "absolute_relative_percent_of_current": 26.224781575700963,
+            "signed_deg": -12.611648559570312,
+            "signed_relative_percent_of_current": -26.224781575700963
+          },
+          "std_population": {
+            "absolute_deg": 4.263744354248047,
+            "absolute_relative_percent_of_current": 16.56961900246065,
+            "signed_deg": -4.263744354248047,
+            "signed_relative_percent_of_current": -16.56961900246065
+          }
+        },
+        "corrected_nematic_axis": {
+          "max_deg": 89.07529976191695,
+          "mean_deg": 35.47892761230469,
+          "median_deg": 29.84352885456576,
+          "n": 114,
+          "p95_deg": 83.15952800562563,
+          "rms_deg": 41.46870244009985,
+          "sem_population_deg": 2.0107146216432104,
+          "std_population_deg": 21.468557357788086
+        },
+        "effective_n": 114,
+        "groundtruth_raster_quality": {
+          "max_deg": 2699.675584177491,
+          "mean_deg": 1089.4742431640625,
+          "median_deg": 1064.5200003640284,
+          "n": 114,
+          "p95_deg": 1679.222905552427,
+          "rms_deg": 1134.5710695799014,
+          "sem_population_deg": 29.66145657037234,
+          "std_population_deg": 316.69769287109375
+        },
+        "groundtruth_time_offsets": {
+          "-1": 0,
+          "0": 114,
+          "1": 0
+        },
+        "production_event_distribution_raster_proxy": {
+          "max_deg": 166.5581842376633,
+          "mean_deg": 48.42399978637695,
+          "median_deg": 40.289341550399456,
+          "n": 114,
+          "p95_deg": 101.74633950803866,
+          "rms_deg": 55.176991837036915,
+          "sem_population_deg": 2.477294373989182,
+          "std_population_deg": 26.450265884399414
+        },
+        "production_proxy_minus_released": {
+          "mean_deg": 0.3334236145019531,
+          "std_population_deg": 0.7179641723632812
+        },
+        "production_reported_n": 114,
+        "released_production_full_quaternion": {
+          "mean_angle_error": 48.090576171875,
+          "mean_distance_error": 0.7178862690925598,
+          "mean_length_error": 14.069099426269531,
+          "n": 114,
+          "std_angle_error": 25.732301712036133,
+          "std_distance_error": 0.2639610469341278,
+          "std_length_error": 3.0467329025268555
+        }
+      },
+      "predicted_centers": {
+        "comparison": {
+          "mean": {
+            "absolute_deg": 15.334827423095703,
+            "absolute_relative_percent_of_current": 29.8537136225137,
+            "signed_deg": -15.334827423095703,
+            "signed_relative_percent_of_current": -29.8537136225137
+          },
+          "std_population": {
+            "absolute_deg": 7.667774200439453,
+            "absolute_relative_percent_of_current": 27.74842577328098,
+            "signed_deg": -7.667774200439453,
+            "signed_relative_percent_of_current": -27.74842577328098
+          }
+        },
+        "corrected_nematic_axis": {
+          "max_deg": 89.39576405291879,
+          "mean_deg": 36.03173828125,
+          "median_deg": 32.62048972841633,
+          "n": 114,
+          "p95_deg": 76.99950643203275,
+          "rms_deg": 41.193489031750936,
+          "sem_population_deg": 1.8699321732604295,
+          "std_population_deg": 19.965412139892578
+        },
+        "effective_n": 114,
+        "groundtruth_raster_quality": {
+          "max_deg": 2699.675584177491,
+          "mean_deg": 1089.202392578125,
+          "median_deg": 1064.5200003640284,
+          "n": 114,
+          "p95_deg": 1679.222905552427,
+          "rms_deg": 1134.2801496955972,
+          "sem_population_deg": 29.651432747004367,
+          "std_population_deg": 316.5906677246094
+        },
+        "groundtruth_time_offsets": {
+          "-1": 0,
+          "0": 77,
+          "1": 37
+        },
+        "production_event_distribution_raster_proxy": {
+          "max_deg": 178.91327751738794,
+          "mean_deg": 51.675594329833984,
+          "median_deg": 44.101976819541306,
+          "n": 114,
+          "p95_deg": 113.0566662377497,
+          "rms_deg": 58.91190369198733,
+          "sem_population_deg": 2.649471118467463,
+          "std_population_deg": 28.288610458374023
+        },
+        "production_proxy_minus_released": {
+          "mean_deg": 0.30902862548828125,
+          "std_population_deg": 0.6554241180419922
+        },
+        "production_reported_n": 114,
+        "released_production_full_quaternion": {
+          "mean_angle_error": 51.3665657043457,
+          "mean_distance_error": 3.5872504711151123,
+          "mean_length_error": 14.074281692504883,
+          "n": 114,
+          "std_angle_error": 27.63318634033203,
+          "std_distance_error": 1.885632872581482,
+          "std_length_error": 3.2042531967163086
+        }
+      }
+    },
+    "sources": [
+      "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/stats.csv",
+      "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/groundtruth/movie_I2.tif",
+      "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz",
+      "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz",
+      "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz"
+    ]
+  },
+  "outputs": [
+    "docs/reproducibility_audit/evidence/nematic_axis_metric_comparison.json",
+    "docs/reproducibility_audit/evidence/nematic_axis_metric_comparison.csv",
+    "docs/reproducibility_audit/evidence/nematic_axis_event_metrics.csv"
+  ],
+  "summary_rows": [
+    {
+      "corrected_basis": "epoch_098 raw quaternion replay; released production mean/std reproduced within 0.016 degrees",
+      "corrected_max_deg": 83.29144745883688,
+      "corrected_mean_deg": 14.893903732299805,
+      "corrected_median_deg": 12.341823336568467,
+      "corrected_p95_deg": 36.16758012726975,
+      "corrected_rms_deg": 19.573149618498732,
+      "corrected_sem_deg_using_effective_n": 1.0733120353051202,
+      "corrected_std_population_deg": 12.699599266052246,
+      "dataset": "gastruloid_nuclei",
+      "effective_n": 140,
+      "mean_absolute_difference_deg": 10.412042617797852,
+      "mean_signed_difference_deg": -10.412042617797852,
+      "mean_signed_relative_difference_percent": -41.144648272589386,
+      "median_proxy_absolute_difference_deg": 5.393474236740445,
+      "mode": "all_groundtruth_centers",
+      "production_mean_deg_exact": 25.305946350097656,
+      "production_median_deg_event_proxy": 17.735297573308912,
+      "production_median_proxy_status": "near-exact epoch_098 checkpoint replay; released median was not stored",
+      "production_reported_n": 145,
+      "production_rms_deg_event_proxy": 37.75558068507919,
+      "production_sem_deg_using_reported_n": 2.3267622063231634,
+      "production_std_population_deg_exact": 28.017927169799805,
+      "rms_proxy_absolute_difference_deg": 18.182431066580456,
+      "sem_absolute_difference_deg": 1.2534501710180432,
+      "std_absolute_difference_deg": 15.318327903747559,
+      "std_signed_difference_deg": -15.318327903747559,
+      "std_signed_relative_difference_percent": -54.673309024298575
+    },
+    {
+      "corrected_basis": "epoch_098 raw quaternion replay; released production mean/std reproduced within 0.016 degrees",
+      "corrected_max_deg": 83.29144745883688,
+      "corrected_mean_deg": 14.923011779785156,
+      "corrected_median_deg": 12.194883859960582,
+      "corrected_p95_deg": 37.9349562740687,
+      "corrected_rms_deg": 20.13535707088006,
+      "corrected_sem_deg_using_effective_n": 1.228908972306685,
+      "corrected_std_population_deg": 13.517998695373535,
+      "dataset": "gastruloid_nuclei",
+      "effective_n": 121,
+      "mean_absolute_difference_deg": 11.386316299438477,
+      "mean_signed_difference_deg": -11.386316299438477,
+      "mean_signed_relative_difference_percent": -43.2786282688466,
+      "median_proxy_absolute_difference_deg": 5.292700637523781,
+      "mode": "matched_groundtruth_centers",
+      "production_mean_deg_exact": 26.309328079223633,
+      "production_median_deg_event_proxy": 17.487584497484363,
+      "production_median_proxy_status": "near-exact epoch_098 checkpoint replay; released median was not stored",
+      "production_reported_n": 124,
+      "production_rms_deg_event_proxy": 41.44244903151384,
+      "production_sem_deg_using_reported_n": 2.8754894908052395,
+      "production_std_population_deg_exact": 32.02009582519531,
+      "rms_proxy_absolute_difference_deg": 21.307091960633777,
+      "sem_absolute_difference_deg": 1.6465805184985545,
+      "std_absolute_difference_deg": 18.502097129821777,
+      "std_signed_difference_deg": -18.502097129821777,
+      "std_signed_relative_difference_percent": -57.78276626912287
+    },
+    {
+      "corrected_basis": "epoch_098 raw quaternion replay; released production mean/std reproduced within 0.016 degrees",
+      "corrected_max_deg": 88.87466789660542,
+      "corrected_mean_deg": 19.672212600708008,
+      "corrected_median_deg": 10.105886726113056,
+      "corrected_p95_deg": 76.65075769096622,
+      "corrected_rms_deg": 29.35549898370277,
+      "corrected_sem_deg_using_effective_n": 1.9807950800115413,
+      "corrected_std_population_deg": 21.788745880126953,
+      "dataset": "gastruloid_nuclei",
+      "effective_n": 121,
+      "mean_absolute_difference_deg": 17.796918869018555,
+      "mean_signed_difference_deg": -17.796918869018555,
+      "mean_signed_relative_difference_percent": -47.497548437699166,
+      "median_proxy_absolute_difference_deg": 5.096923793165406,
+      "mode": "predicted_centers",
+      "production_mean_deg_exact": 37.46913146972656,
+      "production_median_deg_event_proxy": 15.202810519278461,
+      "production_median_proxy_status": "near-exact epoch_098 checkpoint replay; released median was not stored",
+      "production_reported_n": 124,
+      "production_rms_deg_event_proxy": 59.02409209781802,
+      "production_sem_deg_using_reported_n": 4.093152241854966,
+      "production_std_population_deg_exact": 45.57941436767578,
+      "rms_proxy_absolute_difference_deg": 29.66859311411525,
+      "sem_absolute_difference_deg": 2.112357161843425,
+      "std_absolute_difference_deg": 23.790668487548828,
+      "std_signed_difference_deg": -23.790668487548828,
+      "std_signed_relative_difference_percent": -52.196081976035224
+    },
+    {
+      "corrected_basis": "released raw quaternion plus decoded ground-truth line raster",
+      "corrected_max_deg": 89.07529976191695,
+      "corrected_mean_deg": 36.63445281982422,
+      "corrected_median_deg": 32.22158570266962,
+      "corrected_p95_deg": 83.60043489111258,
+      "corrected_rms_deg": 42.79775286826702,
+      "corrected_sem_deg_using_effective_n": 2.003202846732029,
+      "corrected_std_population_deg": 22.1260986328125,
+      "dataset": "neural_tube_membrane",
+      "effective_n": 122,
+      "mean_absolute_difference_deg": 12.93161392211914,
+      "mean_signed_difference_deg": -12.93161392211914,
+      "mean_signed_relative_difference_percent": -26.089651191096557,
+      "median_proxy_absolute_difference_deg": 8.30526794785284,
+      "mode": "all_groundtruth_centers",
+      "production_mean_deg_exact": 49.56606674194336,
+      "production_median_deg_event_proxy": 40.52685365052246,
+      "production_median_proxy_status": "raster-derived proxy; released event-level production errors and raw annotations were not stored",
+      "production_reported_n": 122,
+      "production_rms_deg_event_proxy": 57.05249692742826,
+      "production_sem_deg_using_reported_n": 2.453891057335872,
+      "production_std_population_deg_exact": 27.10411262512207,
+      "rms_proxy_absolute_difference_deg": 14.25474405916124,
+      "sem_absolute_difference_deg": 0.45068821060384323,
+      "std_absolute_difference_deg": 4.97801399230957,
+      "std_signed_difference_deg": -4.97801399230957,
+      "std_signed_relative_difference_percent": -18.366268105363403
+    },
+    {
+      "corrected_basis": "released raw quaternion plus decoded ground-truth line raster",
+      "corrected_max_deg": 89.07529976191695,
+      "corrected_mean_deg": 35.47892761230469,
+      "corrected_median_deg": 29.84352885456576,
+      "corrected_p95_deg": 83.15952800562563,
+      "corrected_rms_deg": 41.46870244009985,
+      "corrected_sem_deg_using_effective_n": 2.0107146216432104,
+      "corrected_std_population_deg": 21.468557357788086,
+      "dataset": "neural_tube_membrane",
+      "effective_n": 114,
+      "mean_absolute_difference_deg": 12.611648559570312,
+      "mean_signed_difference_deg": -12.611648559570312,
+      "mean_signed_relative_difference_percent": -26.224781575700963,
+      "median_proxy_absolute_difference_deg": 10.445812695833695,
+      "mode": "matched_groundtruth_centers",
+      "production_mean_deg_exact": 48.090576171875,
+      "production_median_deg_event_proxy": 40.289341550399456,
+      "production_median_proxy_status": "raster-derived proxy; released event-level production errors and raw annotations were not stored",
+      "production_reported_n": 114,
+      "production_rms_deg_event_proxy": 55.176991837036915,
+      "production_sem_deg_using_reported_n": 2.4100508682832373,
+      "production_std_population_deg_exact": 25.732301712036133,
+      "rms_proxy_absolute_difference_deg": 13.708289396937069,
+      "sem_absolute_difference_deg": 0.399336246640027,
+      "std_absolute_difference_deg": 4.263744354248047,
+      "std_signed_difference_deg": -4.263744354248047,
+      "std_signed_relative_difference_percent": -16.56961900246065
+    },
+    {
+      "corrected_basis": "released raw quaternion plus decoded ground-truth line raster",
+      "corrected_max_deg": 89.39576405291879,
+      "corrected_mean_deg": 36.03173828125,
+      "corrected_median_deg": 32.62048972841633,
+      "corrected_p95_deg": 76.99950643203275,
+      "corrected_rms_deg": 41.193489031750936,
+      "corrected_sem_deg_using_effective_n": 1.8699321732604295,
+      "corrected_std_population_deg": 19.965412139892578,
+      "dataset": "neural_tube_membrane",
+      "effective_n": 114,
+      "mean_absolute_difference_deg": 15.334827423095703,
+      "mean_signed_difference_deg": -15.334827423095703,
+      "mean_signed_relative_difference_percent": -29.8537136225137,
+      "median_proxy_absolute_difference_deg": 11.481487091124976,
+      "mode": "predicted_centers",
+      "production_mean_deg_exact": 51.3665657043457,
+      "production_median_deg_event_proxy": 44.101976819541306,
+      "production_median_proxy_status": "raster-derived proxy; released event-level production errors and raw annotations were not stored",
+      "production_reported_n": 114,
+      "production_rms_deg_event_proxy": 58.91190369198733,
+      "production_sem_deg_using_reported_n": 2.5880850255148053,
+      "production_std_population_deg_exact": 27.63318634033203,
+      "rms_proxy_absolute_difference_deg": 17.71841466023639,
+      "sem_absolute_difference_deg": 0.7181528522543759,
+      "std_absolute_difference_deg": 7.667774200439453,
+      "std_signed_difference_deg": -7.667774200439453,
+      "std_signed_relative_difference_percent": -27.74842577328098
+    }
+  ],
+  "synthetic_checks": {
+    "all_assertions_pass": true,
+    "assertions": {
+      "exact_clip_introduces_no_floor": true,
+      "identical_axes_are_exactly_zero": true,
+      "opposite_axes_are_exactly_zero": true,
+      "orthogonal_axes_are_exactly_90": true,
+      "production_metric_has_nonzero_identity_floor": true,
+      "production_metric_penalizes_axis_invariant_rotation": true,
+      "rotation_about_axis_is_exactly_invariant": true
+    },
+    "clip_rule": "Clip only abs(unit-axis dot product) to the exact closed interval [0,1].",
+    "floating_point_safety_axis_error_after_exact_interval_clip_deg": 0.0,
+    "floating_point_safety_raw_self_dot": 1.0000000000000002,
+    "identical_axes_deg": 0.0,
+    "opposite_nematic_axes_deg": 0.0,
+    "orthogonal_axes_deg": 90.0,
+    "production_identical_quaternion_floor_deg": 1.6205828741313097,
+    "same_axis_different_rotation_angles_axis_error_deg": 0.0,
+    "same_axis_different_rotation_angles_production_error_deg": 120.00000000000001
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "all_assertions_pass": true,
+  "arguments": {
+    "batch_size": 12,
+    "checkpoint": "best",
+    "preflight_only": true,
+    "scale_mode": "log_reconstructed"
+  },
+  "assertions": {
+    "checkpoint_manifest_hash_present": true,
+    "computed_target_matches_frozen_expectation": true,
+    "current_checkout_imports": true
+  },
+  "elapsed_seconds": 1.6301955000008093,
+  "finished_utc": "2026-08-28T23:33:55Z",
+  "first_loaded_keys": [
+    "backbone.model.0.conv.unit0.adn.A.weight",
+    "backbone.model.0.conv.unit0.adn.N.bias",
+    "backbone.model.0.conv.unit0.adn.N.num_batches_tracked",
+    "backbone.model.0.conv.unit0.adn.N.running_mean",
+    "backbone.model.0.conv.unit0.adn.N.running_var",
+    "backbone.model.0.conv.unit0.adn.N.weight",
+    "backbone.model.0.conv.unit0.conv.weight",
+    "backbone.model.0.conv.unit1.adn.A.weight",
+    "backbone.model.0.conv.unit1.adn.N.bias",
+    "backbone.model.0.conv.unit1.adn.N.num_batches_tracked"
+  ],
+  "frozen_settings": {
+    "computed_target_shape_txyz": [
+      10,
+      330,
+      278,
+      164
+    ],
+    "crop_size": 128,
+    "default_scale_xyz": [
+      0.912,
+      0.912,
+      0.912
+    ],
+    "distance_mode": "iou",
+    "distance_threshold": 1e-06,
+    "expected_target_shape_txyz": [
+      10,
+      330,
+      278,
+      164
+    ],
+    "inference_batch_size": 12,
+    "iteration_method": "movie",
+    "min_weighted_probability": 0.15,
+    "overlap": 0.5,
+    "raw_disk_shape_tzyx": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "raw_internal_shape_txyz": [
+      10,
+      362,
+      305,
+      180
+    ],
+    "scale_file": "absent; deliberate nonexistent path triggers frozen default",
+    "threshold": 0.55
+  },
+  "inputs": {
+    "archived_probability": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2.tif",
+    "archived_probability_sha256": "4ed0abaa7fe463a55dc43b24ee90c79c6deca7e6a677050d4ee27a52a65b8e40",
+    "archived_stats": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+    "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/epoch_067.ckpt",
+    "checkpoint_sha256_from_verified_manifest": "2105e63a6f0b9f2385641b0723f8ecb72ca3f4b9f68f55a70585e43961b9f2f5",
+    "config": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/config.yaml",
+    "input_sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+    "input_tiff": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "label_dir": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label"
+  },
+  "loaded_network_key_count": 196,
+  "model": {
+    "class": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+    "parameter_bytes": 459479008,
+    "parameter_count": 114869752,
+    "state_tensor_count": 196,
+    "trainable_parameter_count": 114869752
+  },
+  "phase": "preflight",
+  "resolved_test_dataset": {
+    "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+    "crop_size": 128,
+    "default_scale": [
+      0.912,
+      0.912,
+      0.912
+    ],
+    "downsample_factors": [
+      1
+    ],
+    "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Gastruloid_241025\\test_input",
+    "input_channels": [
+      -1,
+      0,
+      1
+    ],
+    "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Gastruloid_241025\\trainingset\\movie2\\label",
+    "load_labels": true,
+    "mask_geom": "sphere",
+    "order_dim_img": "zyx",
+    "radius": 8,
+    "renorm": "min-max",
+    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\checkpoint_runs\\nuclei_segmentation\\__released_scales_json_is_missing__.json",
+    "sparse_folder": null,
+    "steps_per_epoch": 2000,
+    "target_scale": 1.0,
+    "time_axis_padding": 1,
+    "training": false,
+    "type_mask": "center"
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_name": "Quadro RTX 5000",
+    "imports": {
+      "infer_and_evaluate_segmentation": "dare3d/metrics/infer_measure.py",
+      "load_net_state_dict": "dare3d/models/finetune.py"
+    },
+    "python": "3.10.20",
+    "run_directory": "docs/reproducibility_audit/checkpoint_runs/nuclei_segmentation/log_reconstructed/best_epoch_067/batch_12",
+    "torch": "2.5.1+cu121"
+  },
+  "scientific_classification": "diagnostic fixed from archived pre-output training-log geometry; original scales.json provenance remains missing",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "started_utc": "2026-08-28T23:33:54Z",
+  "status": "complete",
+  "strict_checkpoint_load": true,
+  "total_elapsed_seconds": 1.735802500000318
+}

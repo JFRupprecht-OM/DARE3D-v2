@@ -1,0 +1,28 @@
+[
+  {
+    "case": "nuclei_gastruloid",
+    "independent_matches_tolerance_10": 121,
+    "independent_matches_tolerance_16": 124,
+    "pred_events_reconstructed": 125,
+    "saved_fn_unmatched_components": 21,
+    "saved_fp_unmatched_components": 1,
+    "saved_match_max_dt": 2,
+    "saved_match_max_spatial_distance": 15.811388300841896,
+    "saved_matches_over_10_voxels": 4,
+    "saved_tp_shared_ids": 124,
+    "true_events_reconstructed": 145
+  },
+  {
+    "case": "membrane_neural_tube",
+    "independent_matches_tolerance_10": 114,
+    "independent_matches_tolerance_16": 114,
+    "pred_events_reconstructed": 121,
+    "saved_fn_unmatched_components": 8,
+    "saved_fp_unmatched_components": 7,
+    "saved_match_max_dt": 1,
+    "saved_match_max_spatial_distance": 8.54400374531753,
+    "saved_matches_over_10_voxels": 0,
+    "saved_tp_shared_ids": 114,
+    "true_events_reconstructed": 122
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "accumulate_grad_batches": 2,
+  "architecture": {
+    "_target_": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+    "bias": false,
+    "channels": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024
+    ],
+    "downsample_factors": [
+      1
+    ],
+    "dropout": 0,
+    "in_channels": 3,
+    "norm": "batch",
+    "num_res_units": 3,
+    "out_channels": 1,
+    "output_names": [
+      "model.1.submodule.2",
+      "model.1.submodule.1.submodule.2"
+    ],
+    "spatial_dims": 3,
+    "strides": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "checkpoint_selection": {
+    "mode": "max",
+    "monitor": "val/iou",
+    "save_last": true,
+    "save_top_k": 1
+  },
+  "compatibility_deviation": "Physical batch 16 with two-step gradient accumulation preserves effective batch 32. BatchNorm statistics therefore use 16 rather than the archived physical batch 32. This was strictly required because the exact batch allocated 29.04 GB on a 16 GB GPU.",
+  "configured_epochs": 200,
+  "created_at": "2026-09-01T10:49:06.057167+02:00",
+  "effective_batch_size": 32,
+  "gpu": "Quadro RTX 5000",
+  "loss": {
+    "_target_": "monai.losses.GeneralizedDiceFocalLoss",
+    "include_background": true,
+    "reduction": "none",
+    "sigmoid": true,
+    "to_onehot_y": false
+  },
+  "optimizer": {
+    "_partial_": true,
+    "_target_": "torch.optim.AdamW",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "lr": 0.1,
+    "weight_decay": 0.0001
+  },
+  "physical_batch_size": 16,
+  "production_source_modified": false,
+  "scale_provenance": "manuscript main.tex:128,333-338; scales.json absent",
+  "scheduler": {
+    "_partial_": true,
+    "_target_": "torch.optim.lr_scheduler.OneCycleLR",
+    "epochs": 200,
+    "max_lr": 0.1,
+    "pct_start": 0.1,
+    "steps_per_epoch": 32
+  },
+  "seed": 12345,
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "source_scale_xyz_um": [
+    0.208,
+    0.208,
+    1.0
+  ],
+  "stage": "segmentation",
+  "target_scale_um": 1.0,
+  "test_movie_reserved_until_evaluation": "movie_M",
+  "train_movie": "movie_E",
+  "trainer": {
+    "accelerator": "gpu",
+    "check_val_every_n_epoch": 1,
+    "detect_anomaly": false,
+    "deterministic": false,
+    "devices": 1,
+    "log_every_n_steps": 5,
+    "max_epochs": 200,
+    "min_epochs": 10,
+    "num_sanity_val_steps": 2,
+    "precision": 32
+  },
+  "validation_movie": "movie_I2"
+}

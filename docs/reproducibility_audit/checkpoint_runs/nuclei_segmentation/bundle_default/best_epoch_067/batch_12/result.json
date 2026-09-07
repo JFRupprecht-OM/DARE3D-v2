@@ -1,0 +1,267 @@
+{
+  "arguments": {
+    "batch_size": 12,
+    "checkpoint": "best",
+    "preflight_only": false,
+    "scale_mode": "bundle_default"
+  },
+  "current_evaluator_components": [
+    {
+      "matched_components": 32,
+      "predicted_components": 37,
+      "true_components": 145
+    }
+  ],
+  "current_evaluator_stats": {
+    "fmeasure": 0.3516483516483516,
+    "fn": 113,
+    "fp": 5,
+    "min_weighted_prob": 0.15,
+    "precision": 0.8648648648648649,
+    "recall": 0.2206896551724138,
+    "threshold": 0.55,
+    "tp": 32
+  },
+  "dataset": {
+    "actual_target_shape_txyz": [
+      10,
+      224,
+      189,
+      360
+    ],
+    "groundtruth_mask_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ],
+    "movie_names": [
+      "movie2"
+    ],
+    "original_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ]
+  },
+  "elapsed_inference_and_evaluation_seconds": 105.97043759999997,
+  "finished_utc": "2026-08-28T23:45:21Z",
+  "frozen_settings": {
+    "computed_target_shape_txyz": [
+      10,
+      224,
+      189,
+      360
+    ],
+    "crop_size": 128,
+    "default_scale_xyz": [
+      0.621,
+      0.621,
+      2.0
+    ],
+    "distance_mode": "iou",
+    "distance_threshold": 1e-06,
+    "expected_target_shape_txyz": [
+      10,
+      224,
+      189,
+      360
+    ],
+    "inference_batch_size": 12,
+    "iteration_method": "movie",
+    "min_weighted_probability": 0.15,
+    "overlap": 0.5,
+    "raw_disk_shape_tzyx": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "raw_internal_shape_txyz": [
+      10,
+      362,
+      305,
+      180
+    ],
+    "scale_file": "absent; deliberate nonexistent path triggers frozen default",
+    "threshold": 0.55
+  },
+  "gpu": {
+    "peak_memory_allocated_bytes": 3454141952,
+    "peak_memory_reserved_bytes": 4620025856
+  },
+  "inputs": {
+    "archived_probability": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2.tif",
+    "archived_probability_sha256": "4ed0abaa7fe463a55dc43b24ee90c79c6deca7e6a677050d4ee27a52a65b8e40",
+    "archived_stats": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+    "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/epoch_067.ckpt",
+    "checkpoint_sha256_from_verified_manifest": "2105e63a6f0b9f2385641b0723f8ecb72ca3f4b9f68f55a70585e43961b9f2f5",
+    "config": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/config.yaml",
+    "input_sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+    "input_tiff": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "label_dir": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label"
+  },
+  "loaded_network_key_count": 196,
+  "model": {
+    "class": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+    "parameter_bytes": 459479008,
+    "parameter_count": 114869752,
+    "state_tensor_count": 196,
+    "trainable_parameter_count": 114869752
+  },
+  "phase": "full_inference_and_evaluation",
+  "probability_comparison": {
+    "archived_dtype": "float16",
+    "archived_shape": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "array_exact_match": false,
+    "binary_disagreement_count_at_0_55": 406701,
+    "binary_disagreement_fraction_at_0_55": 0.002046417896929626,
+    "exact_value_fraction": 0.2844590063299419,
+    "file_sha256_exact_match": false,
+    "generated_bytes": 397796494,
+    "generated_dtype": "float16",
+    "generated_path": "docs/reproducibility_audit/checkpoint_runs/nuclei_segmentation/bundle_default/best_epoch_067/batch_12/movie2.tif",
+    "generated_sha256": "3f463736b78f0aff35e74a7cfaf3407f341e1a3b0cdc7f00b3e927d2ebe1d4e8",
+    "generated_shape": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "mae": 0.0021122536063980053,
+    "max_abs": 1.0,
+    "pearson_correlation": 0.28658427798426284,
+    "per_frame": [
+      {
+        "binary_disagreement_at_0_55": 0,
+        "exact_fraction": 1.0,
+        "frame": 0,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "rmse": 0.0
+      },
+      {
+        "binary_disagreement_at_0_55": 0,
+        "exact_fraction": 1.0,
+        "frame": 1,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "rmse": 0.0
+      },
+      {
+        "binary_disagreement_at_0_55": 82466,
+        "exact_fraction": 0.10215157644738299,
+        "frame": 2,
+        "mae": 0.00425613674909867,
+        "max_abs": 1.0,
+        "rmse": 0.06058883930581241
+      },
+      {
+        "binary_disagreement_at_0_55": 60231,
+        "exact_fraction": 0.10587069407964254,
+        "frame": 3,
+        "mae": 0.003132470416489935,
+        "max_abs": 1.0,
+        "rmse": 0.05262158134457234
+      },
+      {
+        "binary_disagreement_at_0_55": 62764,
+        "exact_fraction": 0.10449108877013959,
+        "frame": 4,
+        "mae": 0.003273462829150623,
+        "max_abs": 1.0,
+        "rmse": 0.05275889734697085
+      },
+      {
+        "binary_disagreement_at_0_55": 49465,
+        "exact_fraction": 0.10562247783513973,
+        "frame": 5,
+        "mae": 0.002588556305216282,
+        "max_abs": 1.0,
+        "rmse": 0.04753028130589721
+      },
+      {
+        "binary_disagreement_at_0_55": 32381,
+        "exact_fraction": 0.1072280087351186,
+        "frame": 6,
+        "mae": 0.0016953261141113914,
+        "max_abs": 1.0,
+        "rmse": 0.0382203601233548
+      },
+      {
+        "binary_disagreement_at_0_55": 45455,
+        "exact_fraction": 0.10743632319938815,
+        "frame": 7,
+        "mae": 0.0023335712184697887,
+        "max_abs": 1.0,
+        "rmse": 0.0450989889599276
+      },
+      {
+        "binary_disagreement_at_0_55": 23554,
+        "exact_fraction": 0.10760931477623806,
+        "frame": 8,
+        "mae": 0.00122609621422314,
+        "max_abs": 1.0,
+        "rmse": 0.03284315761401529
+      },
+      {
+        "binary_disagreement_at_0_55": 50385,
+        "exact_fraction": 0.10418057945636969,
+        "frame": 9,
+        "mae": 0.002616916217220223,
+        "max_abs": 1.0,
+        "rmse": 0.047573997919605905
+      }
+    ],
+    "rmse": 0.04280109832141606,
+    "shape_match": true,
+    "value_count": 198738000
+  },
+  "released_all_metrics_exact": false,
+  "released_evaluator_stats": {
+    "fmeasure": 0.9185185185185186,
+    "fn": 21,
+    "fp": 1,
+    "min_weighted_prob": 0.15,
+    "precision": 0.992,
+    "recall": 0.8551724137931035,
+    "threshold": 0.5499999999999999,
+    "tp": 124
+  },
+  "released_metric_exact_agreement": {
+    "fmeasure": false,
+    "fn": false,
+    "fp": false,
+    "precision": false,
+    "recall": false,
+    "tp": false
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_name": "Quadro RTX 5000",
+    "imports": {
+      "infer_and_evaluate_segmentation": "dare3d/metrics/infer_measure.py",
+      "load_net_state_dict": "dare3d/models/finetune.py"
+    },
+    "python": "3.10.20",
+    "run_directory": "docs/reproducibility_audit/checkpoint_runs/nuclei_segmentation/bundle_default/best_epoch_067/batch_12",
+    "torch": "2.5.1+cu121"
+  },
+  "scientific_classification": "current documented missing-scale fallback from frozen config; contradicts archived training-log geometry",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "started_utc": "2026-08-28T23:43:09Z",
+  "status": "complete",
+  "strict_checkpoint_load": true,
+  "total_elapsed_seconds": 131.6717531000004
+}

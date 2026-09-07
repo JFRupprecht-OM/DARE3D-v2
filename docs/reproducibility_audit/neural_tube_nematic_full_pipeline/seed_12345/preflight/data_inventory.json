@@ -1,0 +1,281 @@
+{
+  "all_assertions_pass": true,
+  "assertions": {
+    "raw_split_image_hashes_are_distinct": true,
+    "test_frame_count_matches_manuscript": true,
+    "test_image_label_shapes_match": true,
+    "test_pair_count_matches_manuscript": true,
+    "train_frame_count_matches_manuscript": true,
+    "train_image_label_shapes_match": true,
+    "train_pair_count_matches_manuscript": true,
+    "validation_frame_count_matches_manuscript": true,
+    "validation_image_label_shapes_match": true,
+    "validation_pair_count_matches_manuscript": true
+  },
+  "created_at": "2026-09-01T10:11:39.183747+02:00",
+  "files": {
+    "DARE3d_data_190326/Neural_tube_160226/test_input/im/movie_M.tif": {
+      "bytes": 115361822,
+      "sha256": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/test_input/label/movie_M.tif": {
+      "bytes": 591568,
+      "sha256": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/im/movie_E.tif": {
+      "bytes": 272673122,
+      "sha256": "bf361c31a40ec129eb1e056ef56e6f05dd60709597d9e60e90657b9cc21a73cb"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/label/movie_E.tif": {
+      "bytes": 1402256,
+      "sha256": "c0d8b1109b058cfd85ced9a6c086c563649f7beb53b03f6e53bc9f8113572675"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/im/movie_I2.tif": {
+      "bytes": 220236022,
+      "sha256": "b669093406d537164f7487e4740a9e1f19d959031cb0ff86991785d7a6154062"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/label/movie_I2.tif": {
+      "bytes": 1129584,
+      "sha256": "99ad277d1ea28334b02d6824deddb9b76eeff0e0b449a2656e0bbb255546b4f5"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/.hydra/config.yaml": {
+      "bytes": 6891,
+      "sha256": "d3162883ceea023a4190f19e96514a6dc66d4e48cbb27a5215c833a399950255"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt": {
+      "bytes": 18652854,
+      "sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml": {
+      "bytes": 8104,
+      "sha256": "0c6aebaafad7cdc43254ec06261679f8f6bfee591bf842f2002b9768d5966761"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt": {
+      "bytes": 1378684724,
+      "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif": {
+      "bytes": 440439394,
+      "sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f"
+    },
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/stats.csv": {
+      "bytes": 1151,
+      "sha256": "a3aae738805c45e667df45158fa11110e1cafe414b0d33738dcfb6420dc81769"
+    }
+  },
+  "scale_provenance": {
+    "chosen_internal_xyz_um": [
+      0.208,
+      0.208,
+      1.0
+    ],
+    "limitation": "The original scales.json is absent, so exact historical byte-level scale provenance remains unavailable.",
+    "scales_json_present": false,
+    "source": "manuscript main.tex:128 gives 0.208 um in-plane and 1 um between z planes; main.tex:333-338 requires isotropic 1 um",
+    "target_um": 1.0,
+    "tiff_voxel_metadata_present": false
+  },
+  "scope": "new neural-tube raw data plus released comparators",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "splits": {
+    "test": {
+      "expected_complete_pairs": 104,
+      "expected_frames": 11,
+      "image": {
+        "axes": "TZYX",
+        "dtype": "uint8",
+        "imagej_metadata": {
+          "ImageJ": "1.11a",
+          "frames": 11,
+          "hyperstack": true,
+          "images": 110,
+          "loop": false,
+          "mode": "grayscale",
+          "slices": 10
+        },
+        "ome_metadata_present": false,
+        "pages": 110,
+        "path": "DARE3d_data_190326/Neural_tube_160226/test_input/im/movie_M.tif",
+        "shape_tzyx": [
+          11,
+          10,
+          1024,
+          1024
+        ],
+        "voxel_size_metadata_present": false
+      },
+      "label": {
+        "complete_pairs": 104,
+        "complete_pairs_per_frame": [
+          10,
+          14,
+          6,
+          11,
+          7,
+          11,
+          7,
+          8,
+          8,
+          10,
+          12
+        ],
+        "dtype": "uint32",
+        "global_unique_nonzero_labels": 208,
+        "maximum_label": 214,
+        "orphan_occurrences": [
+          {
+            "frame": 5,
+            "label": 195,
+            "missing_counterpart": 196
+          }
+        ],
+        "path": "DARE3d_data_190326/Neural_tube_160226/test_input/label/movie_M.tif",
+        "shape_tzyx": [
+          11,
+          10,
+          1024,
+          1024
+        ]
+      },
+      "manuscript_set": 3,
+      "movie": "movie_M"
+    },
+    "train": {
+      "expected_complete_pairs": 226,
+      "expected_frames": 26,
+      "image": {
+        "axes": "TZYX",
+        "dtype": "uint8",
+        "imagej_metadata": {
+          "ImageJ": "1.11a",
+          "frames": 26,
+          "hyperstack": true,
+          "images": 260,
+          "loop": false,
+          "mode": "grayscale",
+          "slices": 10
+        },
+        "ome_metadata_present": false,
+        "pages": 260,
+        "path": "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/im/movie_E.tif",
+        "shape_tzyx": [
+          26,
+          10,
+          1024,
+          1024
+        ],
+        "voxel_size_metadata_present": false
+      },
+      "label": {
+        "complete_pairs": 226,
+        "complete_pairs_per_frame": [
+          4,
+          17,
+          11,
+          9,
+          6,
+          3,
+          15,
+          10,
+          25,
+          9,
+          4,
+          11,
+          8,
+          9,
+          8,
+          6,
+          9,
+          2,
+          5,
+          8,
+          14,
+          4,
+          11,
+          11,
+          7,
+          0
+        ],
+        "dtype": "uint32",
+        "global_unique_nonzero_labels": 452,
+        "maximum_label": 452,
+        "orphan_occurrences": [],
+        "path": "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/label/movie_E.tif",
+        "shape_tzyx": [
+          26,
+          10,
+          1024,
+          1024
+        ]
+      },
+      "manuscript_set": 1,
+      "movie": "movie_E"
+    },
+    "validation": {
+      "expected_complete_pairs": 145,
+      "expected_frames": 21,
+      "image": {
+        "axes": "TZYX",
+        "dtype": "uint8",
+        "imagej_metadata": {
+          "ImageJ": "1.11a",
+          "frames": 21,
+          "hyperstack": true,
+          "images": 210,
+          "loop": false,
+          "mode": "grayscale",
+          "slices": 10
+        },
+        "ome_metadata_present": false,
+        "pages": 210,
+        "path": "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/im/movie_I2.tif",
+        "shape_tzyx": [
+          21,
+          10,
+          1024,
+          1024
+        ],
+        "voxel_size_metadata_present": false
+      },
+      "label": {
+        "complete_pairs": 145,
+        "complete_pairs_per_frame": [
+          10,
+          12,
+          5,
+          5,
+          6,
+          6,
+          6,
+          4,
+          6,
+          6,
+          4,
+          9,
+          5,
+          5,
+          6,
+          8,
+          6,
+          5,
+          8,
+          8,
+          15
+        ],
+        "dtype": "uint32",
+        "global_unique_nonzero_labels": 290,
+        "maximum_label": 304,
+        "orphan_occurrences": [],
+        "path": "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/label/movie_I2.tif",
+        "shape_tzyx": [
+          21,
+          10,
+          1024,
+          1024
+        ]
+      },
+      "manuscript_set": 2,
+      "movie": "movie_I2"
+    }
+  }
+}

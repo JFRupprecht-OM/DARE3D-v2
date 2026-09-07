@@ -1,0 +1,831 @@
+{
+  "all_assertions_pass": true,
+  "assertions": {
+    "all_corrected_summary_means_are_in_0_to_90": true,
+    "all_event_corrected_angles_are_finite": true,
+    "all_event_corrected_angles_are_in_0_to_90": true,
+    "center_distance_metrics_are_unchanged": true,
+    "controlled_has_156_events_per_model": true,
+    "network_key_counts_match": true,
+    "new_checkpoint_differs_from_original": true,
+    "original_corrected_reproduces_prior_audit_within_1e_minus_5_deg": true,
+    "original_current_reproduces_release_within_0_02_deg": true,
+    "tracked_source_tree_remains_clean": true
+  },
+  "checkpoints": {
+    "network_keys_loaded": {
+      "original": 63,
+      "retrained": 63
+    },
+    "original": {
+      "epoch": 98,
+      "global_step": 16533,
+      "lightning_version": "2.2.5",
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682"
+    },
+    "retrained": {
+      "epoch": 95,
+      "global_step": 16032,
+      "lightning_version": "2.6.5",
+      "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+      "sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8"
+    }
+  },
+  "completed_at": "2026-08-29T19:01:02.982307+02:00",
+  "controlled_unique_holdout": {
+    "by_model": {
+      "original_epoch_098": {
+        "absolute_length_error_voxels": {
+          "maximum": 6.8369245529174805,
+          "mean": 1.5653084516525269,
+          "median": 1.2097282409667969,
+          "minimum": 0.007989883422851562,
+          "n": 156,
+          "p05": 0.07014036178588867,
+          "p25": 0.6174094676971436,
+          "p75": 2.2992076873779297,
+          "p95": 4.239078044891357,
+          "rms": 2.070414142952665,
+          "sem": 0.10849863213024279,
+          "std_population": 1.3551474809646606
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.94314575195312,
+          "mean": 13.65534496307373,
+          "median": 11.142998695373535,
+          "minimum": 0.7132670879364014,
+          "n": 156,
+          "p05": 2.643202781677246,
+          "p25": 6.81019651889801,
+          "p75": 17.779966831207275,
+          "p95": 31.920166015625,
+          "rms": 17.59618917219324,
+          "sem": 0.8885214654964866,
+          "std_population": 11.09762954711914
+        },
+        "n": 156,
+        "predicted_quaternion_vector_norm": {
+          "maximum": 0.9999625086784363,
+          "mean": 0.6469104290008545,
+          "median": 0.6767160892486572,
+          "minimum": 0.19222858548164368,
+          "n": 156,
+          "p05": 0.25409355759620667,
+          "p25": 0.42597176879644394,
+          "p75": 0.8556860238313675,
+          "p95": 0.9712865799665451,
+          "rms": 0.6922482855975038,
+          "sem": 0.01972803898190997,
+          "std_population": 0.24640312790870667
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 178.6432647705078,
+          "mean": 25.729907989501953,
+          "median": 16.863261222839355,
+          "minimum": 2.3480641841888428,
+          "n": 156,
+          "p05": 4.691857099533081,
+          "p25": 10.865326642990112,
+          "p75": 27.195093631744385,
+          "p95": 74.8300552368164,
+          "rms": 40.50849654099988,
+          "sem": 2.505008196252721,
+          "std_population": 31.28754234313965
+        }
+      },
+      "retrained_nematic": {
+        "absolute_length_error_voxels": {
+          "maximum": 6.681300163269043,
+          "mean": 1.502277135848999,
+          "median": 1.2551660537719727,
+          "minimum": 0.0012674331665039062,
+          "n": 156,
+          "p05": 0.14487218856811523,
+          "p25": 0.6923544406890869,
+          "p75": 2.0280487537384033,
+          "p95": 3.767547845840454,
+          "rms": 1.9148224808756653,
+          "sem": 0.09506099210987981,
+          "std_population": 1.1873114109039307
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 45.090267181396484,
+          "mean": 10.892897605895996,
+          "median": 8.767526626586914,
+          "minimum": 0.1988101601600647,
+          "n": 156,
+          "p05": 2.4847097992897034,
+          "p25": 5.3943222761154175,
+          "p75": 13.490541696548462,
+          "p95": 26.08814811706543,
+          "rms": 13.40904778070993,
+          "sem": 0.6260752107585592,
+          "std_population": 7.819676876068115
+        },
+        "n": 156,
+        "predicted_quaternion_vector_norm": {
+          "maximum": 0.9999996423721313,
+          "mean": 0.9542210698127747,
+          "median": 0.9748840928077698,
+          "minimum": 0.8136926293373108,
+          "n": 156,
+          "p05": 0.8444392830133438,
+          "p25": 0.9300202429294586,
+          "p75": 0.9938896149396896,
+          "p95": 0.9998952597379684,
+          "rms": 0.9555730700426965,
+          "sem": 0.004068360117942371,
+          "std_population": 0.05081380158662796
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 179.95645141601562,
+          "mean": 96.78900909423828,
+          "median": 92.5026969909668,
+          "minimum": 5.537050247192383,
+          "n": 156,
+          "p05": 23.00177240371704,
+          "p25": 57.06477355957031,
+          "p75": 140.7490577697754,
+          "p95": 173.3898582458496,
+          "rms": 108.15674553128886,
+          "sem": 3.8645085549262017,
+          "std_population": 48.267696380615234
+        }
+      }
+    },
+    "paired_corrected_axis_effect": {
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed": 20260829,
+      "difference_definition": "retrained minus original; negative is improvement",
+      "fraction_equal": 0.0,
+      "fraction_retrained_lower": 0.5961538461538461,
+      "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+      "mean_difference": -2.7624487563585625,
+      "mean_difference_bootstrap_95_ci": [
+        -4.575515398153892,
+        -1.1621060150938158
+      ],
+      "median_difference": -1.3075387477874756,
+      "median_difference_bootstrap_95_ci": [
+        -3.0605541467666626,
+        -0.2478199005126953
+      ],
+      "n": 156,
+      "unit": "degrees"
+    },
+    "paired_length_effect": {
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed": 20260830,
+      "difference_definition": "retrained minus original; negative is improvement",
+      "fraction_equal": 0.0,
+      "fraction_retrained_lower": 0.5192307692307693,
+      "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+      "mean_difference": -0.06303104987511268,
+      "mean_difference_bootstrap_95_ci": [
+        -0.20499751430291396,
+        0.08163134501530572
+      ],
+      "median_difference": -0.12768316268920898,
+      "median_difference_bootstrap_95_ci": [
+        -0.2469959259033203,
+        0.14511346817016602
+      ],
+      "n": 156,
+      "unit": "voxels"
+    }
+  },
+  "frozen_center_counts": {
+    "matched_components": 124,
+    "predicted_components": 125,
+    "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "true_components": 145
+  },
+  "manuscript_frozen_centers": {
+    "by_model": {
+      "original_epoch_098": {
+        "all_groundtruth_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 7.6689522287644465,
+            "mean": 1.9435396194458008,
+            "median": 1.576566705379534,
+            "minimum": 0.021076362070223453,
+            "n": 140,
+            "p05": 0.15838796827742388,
+            "p25": 0.7039426580599253,
+            "p75": 2.626687711127722,
+            "p95": 4.899546511237934,
+            "rms": 2.504741189361807,
+            "sem": 0.13353389227297052,
+            "std_population": 1.5799943208694458
+          },
+          "center_distance_voxels": {
+            "maximum": 3.640054944640259,
+            "mean": 0.6222168803215027,
+            "median": 0.5,
+            "minimum": 0.0,
+            "n": 140,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 0.9122201273601884,
+            "rms": 0.7991841597328413,
+            "sem": 0.042387796406564274,
+            "std_population": 0.5015391707420349
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 83.29144612736282,
+            "mean": 14.893903732299805,
+            "median": 12.341823592377596,
+            "minimum": 1.1043897617156428,
+            "n": 140,
+            "p05": 2.487261972300119,
+            "p25": 7.369288532527495,
+            "p75": 18.241654432671876,
+            "p95": 36.167580100721224,
+            "rms": 19.573149614472847,
+            "sem": 1.0733120353051202,
+            "std_population": 12.699599266052246
+          },
+          "effective_n": 140,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.9991755059499945,
+            "mean": 0.6476691365242004,
+            "median": 0.6805779319959391,
+            "minimum": 0.08345206238373121,
+            "n": 140,
+            "p05": 0.2336227142482676,
+            "p25": 0.4606045467018678,
+            "p75": 0.8632159776884947,
+            "p95": 0.9750211210308177,
+            "rms": 0.6928186812166127,
+            "sem": 0.020791885861927106,
+            "std_population": 0.24601291120052338
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 178.12080256924315,
+            "mean": 25.307058334350586,
+            "median": 17.735306280140627,
+            "minimum": 2.2005733319620577,
+            "n": 140,
+            "p05": 6.071805595101099,
+            "p25": 11.019010280892864,
+            "p75": 28.11424295701995,
+            "p95": 70.4410944635604,
+            "rms": 37.75558696540058,
+            "sem": 2.367996524140038,
+            "std_population": 28.018512725830078
+          },
+          "reported_n": 145
+        },
+        "matched_groundtruth_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 7.6689522287644465,
+            "mean": 2.0181896686553955,
+            "median": 1.6607485412100118,
+            "minimum": 0.021076362070223453,
+            "n": 121,
+            "p05": 0.19979574766600017,
+            "p25": 0.7597868260578835,
+            "p75": 2.9122959540061153,
+            "p95": 5.101566001038208,
+            "rms": 2.560214123584348,
+            "sem": 0.14321015097878195,
+            "std_population": 1.5753116607666016
+          },
+          "center_distance_voxels": {
+            "maximum": 3.0,
+            "mean": 0.6364278197288513,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 121,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 1.5811388300841898,
+            "rms": 0.8235304969087927,
+            "sem": 0.04751356081529097,
+            "std_population": 0.5226491689682007
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 83.29144612736282,
+            "mean": 14.923012733459473,
+            "median": 12.1948831058034,
+            "minimum": 1.1043897617156428,
+            "n": 121,
+            "p05": 2.46025038430301,
+            "p25": 6.396254802671826,
+            "p75": 17.757216415923683,
+            "p95": 37.93495619820514,
+            "rms": 20.135356991546022,
+            "sem": 1.228908972306685,
+            "std_population": 13.517998695373535
+          },
+          "effective_n": 121,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.9991755059499945,
+            "mean": 0.6417457461357117,
+            "median": 0.6567649860078595,
+            "minimum": 0.08345206238373121,
+            "n": 121,
+            "p05": 0.2321395497437785,
+            "p25": 0.41309352208308164,
+            "p75": 0.8710099381982332,
+            "p95": 0.9763095917256253,
+            "rms": 0.6901947794888484,
+            "sem": 0.023093638094988735,
+            "std_population": 0.2540300190448761
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 178.12080256924315,
+            "mean": 26.31013298034668,
+            "median": 17.487572415615386,
+            "minimum": 2.2005733319620577,
+            "n": 121,
+            "p05": 5.869760626368304,
+            "p25": 10.607192383684508,
+            "p75": 28.30955557969683,
+            "p95": 77.100498481947,
+            "rms": 41.44245491330862,
+            "sem": 2.9108713323419746,
+            "std_population": 32.01958465576172
+          },
+          "reported_n": 124
+        },
+        "predicted_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 8.472541495422973,
+            "mean": 2.1514463424682617,
+            "median": 1.543847069923494,
+            "minimum": 0.00017026829344324312,
+            "n": 121,
+            "p05": 0.07849474053993966,
+            "p25": 0.5942457561851917,
+            "p75": 3.037878040112787,
+            "p95": 6.704273223876953,
+            "rms": 2.987541651749528,
+            "sem": 0.1884403878992254,
+            "std_population": 2.0728442668914795
+          },
+          "center_distance_voxels": {
+            "maximum": 15.660459763365825,
+            "mean": 3.668400526046753,
+            "median": 3.082207001484488,
+            "minimum": 0.5,
+            "n": 121,
+            "p05": 1.118033988749895,
+            "p25": 2.23606797749979,
+            "p75": 4.330127018922194,
+            "p95": 8.902246907382429,
+            "rms": 4.406337003126743,
+            "sem": 0.22191210226579147,
+            "std_population": 2.441033124923706
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 88.8746674730571,
+            "mean": 19.672212600708008,
+            "median": 10.105887711304277,
+            "minimum": 0.13906613631166403,
+            "n": 121,
+            "p05": 2.9814010311079286,
+            "p25": 6.499806608829162,
+            "p75": 21.942898493577342,
+            "p95": 76.65075830848015,
+            "rms": 29.355499043648575,
+            "sem": 1.980794906616211,
+            "std_population": 21.78874397277832
+          },
+          "effective_n": 121,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.9881117016593316,
+            "mean": 0.6435717344284058,
+            "median": 0.6801401443396851,
+            "minimum": 0.13460908465410693,
+            "n": 121,
+            "p05": 0.20561350548711785,
+            "p25": 0.44812240560029015,
+            "p75": 0.8740021640588014,
+            "p95": 0.9666372709193498,
+            "rms": 0.6912795504660112,
+            "sem": 0.022941329262473366,
+            "std_population": 0.25235462188720703
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 176.6679667422551,
+            "mean": 37.48207473754883,
+            "median": 15.202809759474693,
+            "minimum": 1.6205828741313097,
+            "n": 121,
+            "p05": 4.945021414701666,
+            "p25": 10.136796677964123,
+            "p75": 39.89963778494977,
+            "p95": 142.30190050299112,
+            "rms": 59.02409585096867,
+            "sem": 4.145033402876421,
+            "std_population": 45.595367431640625
+          },
+          "reported_n": 124
+        }
+      },
+      "retrained_nematic": {
+        "all_groundtruth_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 6.720723015172219,
+            "mean": 1.8957388401031494,
+            "median": 1.6273459117185922,
+            "minimum": 0.0324641201131346,
+            "n": 140,
+            "p05": 0.1686507632548655,
+            "p25": 0.7679648330836977,
+            "p75": 2.7105745762754707,
+            "p95": 4.483746762426888,
+            "rms": 2.3731301921844925,
+            "sem": 0.12065062682998212,
+            "std_population": 1.4275574684143066
+          },
+          "center_distance_voxels": {
+            "maximum": 3.640054944640259,
+            "mean": 0.6222168803215027,
+            "median": 0.5,
+            "minimum": 0.0,
+            "n": 140,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 0.9122201273601884,
+            "rms": 0.7991841597328413,
+            "sem": 0.042387796406564274,
+            "std_population": 0.5015391707420349
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.93952902829741,
+            "mean": 12.57498550415039,
+            "median": 9.40917764775771,
+            "minimum": 0.8752682581125346,
+            "n": 140,
+            "p05": 2.1331902966915335,
+            "p25": 5.56220305340089,
+            "p75": 16.90048072991676,
+            "p95": 29.255386968995595,
+            "rms": 16.790507040362886,
+            "sem": 0.9403300226123049,
+            "std_population": 11.126134872436523
+          },
+          "effective_n": 140,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.99999904201797,
+            "mean": 0.9491540193557739,
+            "median": 0.9692708049286901,
+            "minimum": 0.79700591764316,
+            "n": 140,
+            "p05": 0.8398358374814555,
+            "p25": 0.9267431779477117,
+            "p75": 0.9904001834536844,
+            "p95": 0.9997494667780054,
+            "rms": 0.9505960281105944,
+            "sem": 0.004423661176481601,
+            "std_population": 0.05234146490693092
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 179.6574492385995,
+            "mean": 95.92549896240234,
+            "median": 94.91216692248594,
+            "minimum": 3.6598455042167743,
+            "n": 140,
+            "p05": 21.54299592489321,
+            "p25": 62.239850794846674,
+            "p75": 135.56295565931504,
+            "p95": 171.06409851229088,
+            "rms": 106.75579088287641,
+            "sem": 3.959705530816398,
+            "std_population": 46.85186767578125
+          },
+          "reported_n": 145
+        },
+        "matched_groundtruth_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 6.720723015172219,
+            "mean": 1.9329966306686401,
+            "median": 1.6806201093440016,
+            "minimum": 0.03714046732214449,
+            "n": 121,
+            "p05": 0.19928287965627334,
+            "p25": 0.7793054764939313,
+            "p75": 2.7314801932008805,
+            "p95": 4.5985267584732945,
+            "rms": 2.4135143234957157,
+            "sem": 0.1313809481534091,
+            "std_population": 1.4451904296875
+          },
+          "center_distance_voxels": {
+            "maximum": 3.0,
+            "mean": 0.6364278197288513,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 121,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 1.5811388300841898,
+            "rms": 0.8235304969087927,
+            "sem": 0.04751356081529097,
+            "std_population": 0.5226491689682007
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 82.78856844626716,
+            "mean": 12.23646068572998,
+            "median": 9.196963066603201,
+            "minimum": 0.8752682581125346,
+            "n": 121,
+            "p05": 2.133912275791674,
+            "p25": 5.24847007849508,
+            "p75": 15.737004392548734,
+            "p95": 27.779641536228763,
+            "rms": 16.89222478170242,
+            "sem": 1.058676459572532,
+            "std_population": 11.645441055297852
+          },
+          "effective_n": 121,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.99999904201797,
+            "mean": 0.9539743065834045,
+            "median": 0.9730378665092113,
+            "minimum": 0.79700591764316,
+            "n": 121,
+            "p05": 0.8406859753679753,
+            "p25": 0.9336591592574913,
+            "p75": 0.9939662700838311,
+            "p95": 0.9997511465971486,
+            "rms": 0.9552926512917599,
+            "sem": 0.004560798745263706,
+            "std_population": 0.05016878619790077
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 179.6574492385995,
+            "mean": 98.2318115234375,
+            "median": 97.65327916188001,
+            "minimum": 6.121993384706381,
+            "n": 121,
+            "p05": 28.05882600188499,
+            "p25": 63.98761163434061,
+            "p75": 136.02215876344553,
+            "p95": 171.05209788179363,
+            "rms": 108.23102897918375,
+            "sem": 4.130582982843572,
+            "std_population": 45.4364128112793
+          },
+          "reported_n": 124
+        },
+        "predicted_centers": {
+          "absolute_length_error_voxels": {
+            "maximum": 9.193930625915527,
+            "mean": 2.1015334129333496,
+            "median": 1.3161253015215255,
+            "minimum": 0.008000981831029819,
+            "n": 121,
+            "p05": 0.13680811029091622,
+            "p25": 0.686687982883802,
+            "p75": 2.585542968318201,
+            "p95": 7.57158054568092,
+            "rms": 2.9932436366676587,
+            "sem": 0.1937678727236661,
+            "std_population": 2.131446599960327
+          },
+          "center_distance_voxels": {
+            "maximum": 15.660459763365825,
+            "mean": 3.668400526046753,
+            "median": 3.082207001484488,
+            "minimum": 0.5,
+            "n": 121,
+            "p05": 1.118033988749895,
+            "p25": 2.23606797749979,
+            "p75": 4.330127018922194,
+            "p95": 8.902246907382429,
+            "rms": 4.406337003126743,
+            "sem": 0.22191210226579147,
+            "std_population": 2.441033124923706
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.83285229068565,
+            "mean": 19.44739532470703,
+            "median": 9.460082131938996,
+            "minimum": 1.3356111088377365,
+            "n": 121,
+            "p05": 1.8819613536909443,
+            "p25": 4.989369081577482,
+            "p75": 19.435335018077062,
+            "p95": 79.48866270692824,
+            "rms": 30.458471582216596,
+            "sem": 2.131071610884233,
+            "std_population": 23.441787719726562
+          },
+          "effective_n": 121,
+          "predicted_quaternion_vector_norm": {
+            "maximum": 0.9999982703860572,
+            "mean": 0.9521057605743408,
+            "median": 0.9705895514524231,
+            "minimum": 0.7708735105772119,
+            "n": 121,
+            "p05": 0.8441404733262161,
+            "p25": 0.9237458762951124,
+            "p75": 0.9934252444038718,
+            "p95": 0.999765287899206,
+            "rms": 0.9535336116443224,
+            "sem": 0.004742079499092969,
+            "std_population": 0.05216287449002266
+          },
+          "production_quaternion_error_deg": {
+            "maximum": 179.87359099173173,
+            "mean": 106.65298461914062,
+            "median": 109.26676263045714,
+            "minimum": 9.048074453420261,
+            "n": 121,
+            "p05": 29.036514612581644,
+            "p25": 73.1506292160516,
+            "p75": 147.1796126123357,
+            "p95": 174.660047643157,
+            "rms": 116.11513399407049,
+            "sem": 4.1737736788663,
+            "std_population": 45.9115104675293
+          },
+          "reported_n": 124
+        }
+      }
+    },
+    "paired_effects": {
+      "all_groundtruth_centers": {
+        "corrected_axis": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260839,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5142857142857142,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -2.3189186240023574,
+          "mean_difference_bootstrap_95_ci": [
+            -4.406109157260838,
+            -0.45677430590993673
+          ],
+          "median_difference": -0.43458563924248494,
+          "median_difference_bootstrap_95_ci": [
+            -1.504035565454826,
+            0.7553959755921067
+          ],
+          "n": 140,
+          "unit": "degrees"
+        },
+        "length": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260849,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5357142857142857,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -0.047800577185919076,
+          "mean_difference_bootstrap_95_ci": [
+            -0.2094927212106947,
+            0.11874113776926544
+          ],
+          "median_difference": -0.09967470169067383,
+          "median_difference_bootstrap_95_ci": [
+            -0.27522993087768555,
+            0.10631236720695725
+          ],
+          "n": 140,
+          "unit": "voxels"
+        }
+      },
+      "matched_groundtruth_centers": {
+        "corrected_axis": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260840,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5619834710743802,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -2.686553035879717,
+          "mean_difference_bootstrap_95_ci": [
+            -4.765247907670539,
+            -0.8748982612347013
+          ],
+          "median_difference": -0.9726041888081358,
+          "median_difference_bootstrap_95_ci": [
+            -2.0619016018386667,
+            0.45313109128213824
+          ],
+          "n": 121,
+          "unit": "degrees"
+        },
+        "length": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260850,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5537190082644629,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -0.08519294753822199,
+          "mean_difference_bootstrap_95_ci": [
+            -0.26712155986990715,
+            0.09523534207625067
+          ],
+          "median_difference": -0.1703929901123047,
+          "median_difference_bootstrap_95_ci": [
+            -0.3316849473040975,
+            0.11575698852539062
+          ],
+          "n": 121,
+          "unit": "voxels"
+        }
+      },
+      "predicted_centers": {
+        "corrected_axis": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260841,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5371900826446281,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -0.22481817334434565,
+          "mean_difference_bootstrap_95_ci": [
+            -1.8091047865982077,
+            1.4052078802722865
+          ],
+          "median_difference": -0.7697678346750401,
+          "median_difference_bootstrap_95_ci": [
+            -1.5104375272516801,
+            1.1087901133626845
+          ],
+          "n": 121,
+          "unit": "degrees"
+        },
+        "length": {
+          "bootstrap_replicates": 10000,
+          "bootstrap_seed": 20260851,
+          "difference_definition": "retrained minus original; negative is improvement",
+          "fraction_equal": 0.0,
+          "fraction_retrained_lower": 0.5289256198347108,
+          "inference_note": "Descriptive paired bootstrap only: movie2 was also used for checkpoint selection, so this is not an untouched-test inference.",
+          "mean_difference": -0.04991280775709965,
+          "mean_difference_bootstrap_95_ci": [
+            -0.2075663169600362,
+            0.10610547035807048
+          ],
+          "median_difference": -0.05294609069824219,
+          "median_difference_bootstrap_95_ci": [
+            -0.1891641616821289,
+            0.11194610595703125
+          ],
+          "n": 121,
+          "unit": "voxels"
+        }
+      }
+    }
+  },
+  "non_angular_metrics": {
+    "center_distance": "Unchanged exactly because center predictions and matching are frozen.",
+    "detection": "Unchanged by construction: the regression-only experiment uses frozen segmentation centers/matches, so released TP=124, FP=1, FN=21, F1=0.9185185.",
+    "length": "Length head and loss are unchanged but shared features are jointly trained; paired length effects are reported above."
+  },
+  "outputs": {
+    "controlled_events_csv": "docs/reproducibility_audit/nematic_retraining/seed_12345/controlled_test_event_metrics.csv",
+    "distribution_csv": "docs/reproducibility_audit/nematic_retraining/seed_12345/angular_distribution.csv",
+    "evaluation_log": "docs/reproducibility_audit/nematic_retraining/seed_12345/evaluation.log",
+    "manuscript_events_csv": "docs/reproducibility_audit/nematic_retraining/seed_12345/manuscript_event_metrics.csv",
+    "predictions": "docs/reproducibility_audit/nematic_retraining/seed_12345/predictions",
+    "summary_csv": "docs/reproducibility_audit/nematic_retraining/seed_12345/evaluation_summary.csv"
+  },
+  "released_and_prior_audit_agreement": {
+    "maximum_original_corrected_vs_prior_audit_difference_deg": 1.9073486328125e-06,
+    "maximum_original_current_vs_released_aggregate_difference_deg": 0.01595306396484375,
+    "original_corrected_within_1e_minus_5_deg": true,
+    "original_current_within_0_02_deg": true
+  },
+  "scope": {
+    "controlled_holdout": "156 unique movie2 ground-truth crops under reconstructed archived training preprocessing",
+    "manuscript": "frozen released all-GT, matched-GT, and predicted-center sets under the prior raw-coordinate compatibility protocol",
+    "split_warning": "movie2 is both validation and test in the released protocol; the comparison is paired and controlled but not an untouched external generalization test"
+  },
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "status": "complete",
+  "training_state": {
+    "best_model_path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+    "best_model_score": 6.099830627441406,
+    "best_model_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+    "completed_at": "2026-08-29T16:22:14.308341+02:00",
+    "elapsed_seconds": 3338.196544999999,
+    "epochs_completed": 100,
+    "evaluation_command": "& 'C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2.0\\python.exe' 'docs/reproducibility_audit/nematic_retraining_evaluation.py'",
+    "fresh_initialization": true,
+    "global_step": 16700,
+    "initial_network_state_sha256": "dc15dcbc788b4e184e2e7c653259f87c5fdab4b17be9388d67728b0d136d743f",
+    "last_model_path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/last.ckpt",
+    "last_model_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+    "parameter_count": 5897940,
+    "run_log": "docs/reproducibility_audit/nematic_retraining/seed_12345/run.log",
+    "seed": 12345,
+    "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+    "status": "trained",
+    "tensorboard_directory": "docs/reproducibility_audit/nematic_retraining/seed_12345/training_logs/tensorboard/version_0",
+    "training_csv": "docs/reproducibility_audit/nematic_retraining/seed_12345/training_logs/csv/version_0/metrics.csv"
+  }
+}

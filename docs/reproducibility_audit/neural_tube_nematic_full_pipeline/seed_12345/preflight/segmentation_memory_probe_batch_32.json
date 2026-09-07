@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-09-01T10:29:18.282965+02:00",
+  "elapsed_seconds": 162.68131340000036,
+  "finished_at": "2026-09-01T10:32:24.169995+02:00",
+  "gradient_accumulation_for_effective_batch_32": 1,
+  "input_shape": [
+    32,
+    3,
+    128,
+    128,
+    128
+  ],
+  "loss": 0.959648609161377,
+  "optimizer_step_completed": true,
+  "peak_memory_allocated_bytes": 29042944512,
+  "peak_memory_reserved_bytes": 32356958208,
+  "physical_batch_size": 32,
+  "protocol_note": "One real augmented forward/backward/AdamW step using the archived model and loss.",
+  "status": "pass",
+  "target_shape": [
+    32,
+    1,
+    128,
+    128,
+    128
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "assertions": {
+    "profile_shapes_match": true,
+    "raw_midpoint_mapping_differs_by_at_most_one_per_axis": true,
+    "same_grid_center_crops_are_byte_identical": true,
+    "training_and_inference_full_movies_are_byte_identical": true
+  },
+  "completed_at": "2026-09-03T00:26:07.932960+02:00",
+  "outputs": {
+    "event_csv": "docs/reproducibility_audit/regression_preprocessing_fix_validation/crop_parity.csv",
+    "event_csv_sha256": "cd9e512ff6e45c397de7d0907257a57dc69c32838130223030a9f990762d2b79"
+  },
+  "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+  "profiles": {
+    "nematic_retrained_native_0208": {
+      "exact_raw_midpoint_crop_count": 49,
+      "exact_same_grid_crop_count": 123,
+      "expected_shape_xyz": [
+        212,
+        212,
+        10
+      ],
+      "full_processed_movie_byte_identical": true,
+      "mapped_center_offset_regression_voxels": {
+        "maximum": 1.7320508075688772,
+        "mean": 0.6775134902457444,
+        "median": 1.0,
+        "minimum": 0.0,
+        "n": 123,
+        "nominal_n": 123,
+        "p05": 0.0,
+        "p25": 0.0,
+        "p75": 1.0,
+        "p95": 1.4142135623730951,
+        "rms": 0.8880416016036984,
+        "sem": 0.051765053716689984,
+        "std_population": 0.5741022180011948
+      },
+      "maximum_raw_midpoint_crop_abs_difference": 0.5104926824569702,
+      "maximum_same_grid_crop_abs_difference": 0.0,
+      "observed_shape_xyz": [
+        212,
+        212,
+        10
+      ],
+      "preprocessing_manifest": {
+        "mode": "training_consistent",
+        "movies": [
+          {
+            "center_order": "MTXYZ",
+            "crop_size_xyz": [
+              32,
+              32,
+              32
+            ],
+            "declared_source_spacing_xyz": [
+              0.208,
+              0.208,
+              1.0
+            ],
+            "disk_order": "TZYX",
+            "input_channels": [
+              -1,
+              0,
+              1
+            ],
+            "internal_order": "TXYZ",
+            "mode": "training_consistent",
+            "movie_name": "movie_I2",
+            "normalization": "min-max",
+            "normalization_after_padding": true,
+            "padding_mode": "constant",
+            "padding_xyz": [
+              16,
+              16,
+              16
+            ],
+            "physical_crop_size_xyz": [
+              32.0,
+              32.0,
+              32.0
+            ],
+            "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+            "raw_shape_xyz": [
+              1024,
+              1024,
+              10
+            ],
+            "realized_shape_scale_factor_xyz": [
+              0.20703125,
+              0.20703125,
+              1.0
+            ],
+            "regression_shape_xyz": [
+              212,
+              212,
+              10
+            ],
+            "resize_clip": true,
+            "resize_library": "skimage.transform.resize",
+            "resize_mode": "reflect",
+            "resize_order": 1,
+            "resize_preserve_range": true,
+            "scale_factor_xyz": [
+              0.208,
+              0.208,
+              1.0
+            ],
+            "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+            "scale_source": "default_scale",
+            "schema_version": 1,
+            "source_spacing_xyz": [
+              0.208,
+              0.208,
+              1.0
+            ],
+            "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+            "target_spacing_xyz": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "schema_version": 1
+      },
+      "shape_matches_profile": true,
+      "training_crop_count": 123
+    },
+    "released_original_native_0621": {
+      "exact_raw_midpoint_crop_count": 62,
+      "exact_same_grid_crop_count": 123,
+      "expected_shape_xyz": [
+        635,
+        635,
+        20
+      ],
+      "full_processed_movie_byte_identical": true,
+      "mapped_center_offset_regression_voxels": {
+        "maximum": 1.4142135623730951,
+        "mean": 0.5329784486675125,
+        "median": 0.0,
+        "minimum": 0.0,
+        "n": 123,
+        "nominal_n": 123,
+        "p05": 0.0,
+        "p25": 0.0,
+        "p75": 1.0,
+        "p95": 1.4142135623730951,
+        "rms": 0.7650920556760059,
+        "sem": 0.0494933539855185,
+        "std_population": 0.548907849201037
+      },
+      "maximum_raw_midpoint_crop_abs_difference": 0.29941922426223755,
+      "maximum_same_grid_crop_abs_difference": 0.0,
+      "observed_shape_xyz": [
+        635,
+        635,
+        20
+      ],
+      "preprocessing_manifest": {
+        "mode": "training_consistent",
+        "movies": [
+          {
+            "center_order": "MTXYZ",
+            "crop_size_xyz": [
+              32,
+              32,
+              32
+            ],
+            "declared_source_spacing_xyz": [
+              0.621,
+              0.621,
+              2.0
+            ],
+            "disk_order": "TZYX",
+            "input_channels": [
+              -1,
+              0,
+              1
+            ],
+            "internal_order": "TXYZ",
+            "mode": "training_consistent",
+            "movie_name": "movie_I2",
+            "normalization": "min-max",
+            "normalization_after_padding": true,
+            "padding_mode": "constant",
+            "padding_xyz": [
+              16,
+              16,
+              16
+            ],
+            "physical_crop_size_xyz": [
+              32.0,
+              32.0,
+              32.0
+            ],
+            "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+            "raw_shape_xyz": [
+              1024,
+              1024,
+              10
+            ],
+            "realized_shape_scale_factor_xyz": [
+              0.6201171875,
+              0.6201171875,
+              2.0
+            ],
+            "regression_shape_xyz": [
+              635,
+              635,
+              20
+            ],
+            "resize_clip": true,
+            "resize_library": "skimage.transform.resize",
+            "resize_mode": "reflect",
+            "resize_order": 1,
+            "resize_preserve_range": true,
+            "scale_factor_xyz": [
+              0.621,
+              0.621,
+              2.0
+            ],
+            "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+            "scale_source": "default_scale",
+            "schema_version": 1,
+            "source_spacing_xyz": [
+              0.621,
+              0.621,
+              2.0
+            ],
+            "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+            "target_spacing_xyz": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "schema_version": 1
+      },
+      "shape_matches_profile": true,
+      "training_crop_count": 123
+    }
+  },
+  "status": "complete",
+  "validator_hash": "65a2b0afd7df7ce36c397fd28537c138428404664b07f9e8ea6a336d5813e16e"
+}

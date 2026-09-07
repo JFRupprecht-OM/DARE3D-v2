@@ -1,0 +1,18 @@
+{
+  "archive": {
+    "bytes": 7048412887,
+    "md5": "f8df147bb8249aad44b8ef1509d280dd",
+    "path": "DARE3d_data_190326.zip",
+    "sha256": "7eac84aa75d12cc8431d31d55b707823b4eaf986335207d3fa3f4fbb1fd64004"
+  },
+  "checks": {
+    "fail": 7,
+    "fail/undocumented workaround": 1,
+    "partial": 1,
+    "pass": 6,
+    "pass with post-status exception": 1
+  },
+  "classification": "Artifacts available but guide broken",
+  "conclusion": "Verified artifacts are obtainable after manual recovery, but the documented Windows workflow and neural layout do not work verbatim.",
+  "ledger": "evidence/acquisition_ledger.csv"
+}

@@ -1,0 +1,202 @@
+{
+  "checkpoint": {
+    "epoch": 57,
+    "global_step": 3654,
+    "lightning_version": "2.5.6",
+    "path": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+    "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d"
+  },
+  "completed_at": "2026-09-02T08:53:39.969982+02:00",
+  "matching_rules": {
+    "distance_mode": "iou",
+    "iteration_method": "movie",
+    "minimum_iou": 1e-06,
+    "production_object_filter_preserved": true,
+    "temporal_prediction_dilation": "plus/minus one frame"
+  },
+  "model": "original",
+  "original_checkpoint_frozen_threshold_metrics": {
+    "test": {
+      "fmeasure": 0.0,
+      "fn": 80,
+      "fp": 0,
+      "min_weighted_prob": 0.15,
+      "precision": 0,
+      "recall": 0.0,
+      "threshold": 0.55,
+      "tp": 0
+    },
+    "validation": {
+      "fmeasure": 0.0,
+      "fn": 122,
+      "fp": 0,
+      "min_weighted_prob": 0.15,
+      "precision": 0,
+      "recall": 0.0,
+      "threshold": 0.55,
+      "tp": 0
+    }
+  },
+  "released_movie_I2_comparator": {
+    "fmeasure": 0.9344262295081968,
+    "fn": 8,
+    "fp": 8,
+    "min_weighted_prob": 0.15,
+    "precision": 0.9344262295081968,
+    "recall": 0.9344262295081968,
+    "threshold": 0.5499999999999999,
+    "tp": 114
+  },
+  "role": "fixed_released_segmentation_for_both_regression_models",
+  "scoring_elapsed_seconds": 817.2378157999992,
+  "segmentation_retrained": false,
+  "selected_minimum_weighted_probability": 0.0,
+  "selected_probability_threshold": 0.1,
+  "status": "complete",
+  "test_inference": {
+    "checkpoint": {
+      "epoch": 57,
+      "global_step": 3654,
+      "lightning_version": "2.5.6",
+      "path": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+      "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d"
+    },
+    "completed_at": "2026-09-02T08:39:13.271645+02:00",
+    "dataset": {
+      "computed_target_shapes_txyz": [
+        [
+          11,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 576,
+      "mask_shapes_txyz": [
+        [
+          11,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "movie_names": [
+        "movie_M"
+      ],
+      "negative_sequence_count": 0,
+      "original_internal_shapes_txyz": [
+        [
+          11,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "positive_sequence_count": 0,
+      "processed_shapes_txyz": [
+        [
+          11,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "role": "test",
+      "sequence_count": 576,
+      "sparse_folder_exists": null,
+      "sparse_training": false,
+      "stage": "segmentation",
+      "time_axis_padding_effective": 0
+    },
+    "elapsed_seconds": 20.316204300004756,
+    "inference_batch_size": 12,
+    "loaded_network_keys": 196,
+    "model": "original",
+    "peak_memory_allocated_bytes": 2450595328,
+    "peak_memory_reserved_bytes": 3391094784,
+    "probability": {
+      "dtype": "float16",
+      "maximum": 0.0004372596740722656,
+      "minimum": 0.0,
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/segmentation/original/test/movie_M.tif",
+      "sha256": "5da38ea0de5f7bb62864c5c99c052b0c298677c84cd4db5275ee29bf3660c8f3",
+      "shape_tzyx": [
+        11,
+        10,
+        1024,
+        1024
+      ]
+    },
+    "split": "test",
+    "status": "complete",
+    "windows_stack_compatibility_only": true,
+    "windows_worker_stack_bytes": 67108864
+  },
+  "test_matching_info": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/segmentation/original/test_matching_info.json",
+  "test_metrics": {
+    "fmeasure": 0.0,
+    "fn": 80,
+    "fp": 0,
+    "min_weighted_prob": 0.0,
+    "precision": 0,
+    "recall": 0.0,
+    "threshold": 0.1,
+    "tp": 0
+  },
+  "threshold_grid": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/segmentation/original/validation_threshold_grid.csv",
+  "threshold_selection_split": "movie_I2 / manuscript set 2",
+  "untouched_test_split": "movie_M / manuscript bold set 3",
+  "validation_best_grid_row": {
+    "fmeasure": 0.0,
+    "fn": 122,
+    "fp": 0,
+    "min_weighted_prob": 0.0,
+    "minimum_weighted_probability": 0.0,
+    "model": "original",
+    "precision": 0,
+    "probability_threshold": 0.1,
+    "recall": 0.0,
+    "split": "validation",
+    "threshold": 0.1,
+    "tp": 0
+  },
+  "validation_inference": {
+    "checkpoint": {
+      "epoch": 57,
+      "global_step": 3654,
+      "lightning_version": "2.5.6",
+      "path": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+      "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d"
+    },
+    "completed_at": "2026-09-02T08:20:39.241511+02:00",
+    "inference_batch_size": 12,
+    "model": "original",
+    "probability": {
+      "dtype": "float16",
+      "maximum": 0.0103302001953125,
+      "minimum": 0.0,
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/preflight/released_checkpoint_validation_replay/movie_I2.tif",
+      "sha256": "40cf83a39073a75f5c7edcc8015dc7cabd7ace0ed52db45c6a6bf5c31122d72b",
+      "shape_tzyx": [
+        21,
+        10,
+        1024,
+        1024
+      ]
+    },
+    "reused_preflight_inference": true,
+    "source_replay_result": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/preflight/released_checkpoint_validation_replay/result.json",
+    "split": "validation",
+    "status": "complete"
+  },
+  "validation_metrics": {
+    "fmeasure": 0.0,
+    "fn": 122,
+    "fp": 0,
+    "min_weighted_prob": 0.0,
+    "precision": 0,
+    "recall": 0.0,
+    "threshold": 0.1,
+    "tp": 0
+  }
+}

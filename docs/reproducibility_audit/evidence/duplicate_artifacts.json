@@ -1,0 +1,18 @@
+[
+  {
+    "paths": [
+      "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/runs/01-01/tags.log",
+      "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/tags.log",
+      "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/tags.log",
+      "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/tags.log"
+    ],
+    "sha256": "0f617f996ad0703d3dca794d1561e9b744a3b46dc28ba7a8ab8be15255ad2f8c"
+  },
+  {
+    "paths": [
+      "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+      "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/movie2.tif"
+    ],
+    "sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81"
+  }
+]

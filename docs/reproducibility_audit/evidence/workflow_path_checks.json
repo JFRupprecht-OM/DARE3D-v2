@@ -1,0 +1,439 @@
+{
+  "scope": "Read-only path/configuration checks plus one minimal three-frame segmentation-only plugin API smoke run; no GUI, download, regression, evaluation, retraining, or released-file mutation.",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "import_origins": {
+    "widget": "napari_dare3d/_widget.py",
+    "api": "napari_dare3d/_api.py",
+    "predict": "dare3d/predict.py"
+  },
+  "widget_and_manifest": {
+    "import_method": "actual widget source with GUI-only modules stubbed; no GUI launched",
+    "manifest_commands": [
+      "dare3d.make_widget",
+      "dare3d.make_training_widget",
+      "dare3d.download_widget"
+    ],
+    "manifest_widgets": [
+      "dare3d.make_widget",
+      "dare3d.make_training_widget",
+      "dare3d.download_widget"
+    ],
+    "installed_manifest_entrypoints": [
+      {
+        "name": "dare3d",
+        "value": "napari_dare3d:napari.yaml"
+      }
+    ],
+    "import_from_no_data_cwd": {
+      "cwd_root_result": null,
+      "source_fallback_candidate": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3d_data_190326",
+      "source_fallback_exists": false,
+      "correct_repo_relative_candidate": "DARE3d_data_190326",
+      "correct_candidate_exists": true,
+      "bound_seg_default": ".",
+      "bound_reg_default": "."
+    },
+    "same_session_after_download_fixture": {
+      "helper_root": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\runtime_tmp\\widget_path_agqxu6xx\\DARE3d_data_190326",
+      "helper_seg": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\runtime_tmp\\widget_path_agqxu6xx\\DARE3d_data_190326\\Gastruloid_241025\\weights\\segmentation3d_exp10-b",
+      "helper_reg": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\runtime_tmp\\widget_path_agqxu6xx\\DARE3d_data_190326\\Gastruloid_241025\\weights\\regression3d_exp10-b",
+      "bound_seg_default": ".",
+      "bound_reg_default": ".",
+      "defaults_refresh": false
+    },
+    "from_repository_cwd": {
+      "root": "DARE3d_data_190326",
+      "seg_default": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b",
+      "reg_default": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b",
+      "image_default": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif"
+    },
+    "interpretation": "Auto-fill works when napari starts in the repository/data parent. The source-relative fallback is one parent too high, and defaults are bound when the widget module imports, so a download in the same session does not refresh already-bound model fields."
+  },
+  "model_path_resolution": {
+    "gastruloid_segmentation": {
+      "supplied": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b",
+      "resolved": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b",
+      "config_exists": true,
+      "last_checkpoint_exists": true,
+      "loaded_checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/last.ckpt",
+      "loaded_default_scale": [
+        0.621,
+        0.621,
+        2
+      ]
+    },
+    "gastruloid_regression": {
+      "supplied": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b",
+      "resolved": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b",
+      "config_exists": true,
+      "last_checkpoint_exists": true,
+      "loaded_checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/last.ckpt",
+      "loaded_default_scale": [
+        0.621,
+        0.621,
+        2
+      ]
+    },
+    "neural_segmentation": {
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og",
+      "resolved": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26",
+      "config_exists": true,
+      "last_checkpoint_exists": true,
+      "loaded_checkpoint": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "loaded_default_scale": [
+        0.621,
+        0.621,
+        2
+      ]
+    },
+    "neural_regression": {
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og",
+      "resolved": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26",
+      "config_exists": true,
+      "last_checkpoint_exists": true,
+      "loaded_checkpoint": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "loaded_default_scale": [
+        0.621,
+        0.621,
+        2
+      ]
+    }
+  },
+  "cli_config_checks": {
+    "gastruloid_segmentation_flat": {
+      "accepted": true,
+      "error_type": null,
+      "error": null,
+      "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/last.ckpt",
+      "supplied": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b"
+    },
+    "gastruloid_regression_flat": {
+      "accepted": true,
+      "error_type": null,
+      "error": null,
+      "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/last.ckpt",
+      "supplied": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b"
+    },
+    "neural_segmentation_top_level": {
+      "accepted": false,
+      "error_type": "ValueError",
+      "error": "Could not find hydra config file path: C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\segmentation3d_new_set_og\\.hydra\\config.yaml",
+      "checkpoint": null,
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og"
+    },
+    "neural_regression_top_level": {
+      "accepted": false,
+      "error_type": "ValueError",
+      "error": "Could not find hydra config file path: C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\regression3d_new_set_og\\.hydra\\config.yaml",
+      "checkpoint": null,
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og"
+    },
+    "neural_segmentation_resolved_run": {
+      "accepted": true,
+      "error_type": null,
+      "error": null,
+      "checkpoint": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/segmentation3d_new_set_og/runs/12-01-26"
+    },
+    "neural_regression_resolved_run": {
+      "accepted": true,
+      "error_type": null,
+      "error": null,
+      "checkpoint": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/checkpoints/last.ckpt",
+      "supplied": "DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26"
+    }
+  },
+  "prediction_notebook": {
+    "uses_get_path_to_demo_folder": true,
+    "package_demo_dir": "dare3d/demo_files",
+    "package_demo_dir_exists": false,
+    "verified_root_bundle": "DARE3d_data_190326",
+    "verified_root_bundle_exists": true,
+    "root_bundle_is_reused": false,
+    "effect": "Executing the demo cell calls the separate package-local first-run downloader and does not reuse the verified repository-root bundle."
+  },
+  "protocol_comparison": {
+    "plugin_and_predict_defaults": {
+      "checkpoint": "last.ckpt (hard-coded by infer_stack/_load_inference_cfg)",
+      "overlap": 0.25,
+      "threshold_operator": ">",
+      "threshold": 0.5,
+      "min_weighted_probability": 0.1,
+      "temporal_dilation_before_components": "absent",
+      "default_scale_override": null,
+      "effective_nuclei_scale_when_scales_json_absent": [
+        0.621,
+        0.621,
+        2.0
+      ]
+    },
+    "released_nuclei_evaluation": {
+      "identified_checkpoint": "epoch_067.ckpt",
+      "overlap": 0.5,
+      "threshold_operator": ">=",
+      "threshold": 0.55,
+      "min_weighted_probability": 0.15,
+      "temporal_dilation_before_components": "present (+/-1 frame)",
+      "training_log_reconstructed_scale": [
+        0.912,
+        0.912,
+        0.912
+      ],
+      "original_scale_file": "absent"
+    },
+    "static_source_checks": {
+      "plugin_uses_strict_greater_than": true,
+      "plugin_segment_omits_dilate_img": true
+    },
+    "interpretation": "The plugin/CLI are usable prediction interfaces, but their defaults do not instantiate the released quantitative-evaluation protocol and cannot be used as a manuscript-result reproduction command without undocumented overrides and the missing original scale provenance."
+  },
+  "headless_api_smoke": {
+    "scope": "first three frames, segmentation only, public plugin defaults",
+    "input": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "input_slice_t": [
+      0,
+      2
+    ],
+    "input_shape_tzyx": [
+      3,
+      180,
+      305,
+      362
+    ],
+    "model_dir": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b",
+    "checkpoint_selected": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/last.ckpt",
+    "stages": [
+      "segmentation",
+      "done"
+    ],
+    "detections": 13,
+    "detection_records": [
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          25.846509834168916,
+          155.72927111453913,
+          63.34014654839954
+        ],
+        "center_napari": [
+          2.0,
+          63.34014654839954,
+          155.72927111453913,
+          25.846509834168916
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          46.134662129314535,
+          200.59844433641226,
+          119.64171122994652
+        ],
+        "center_napari": [
+          2.0,
+          119.64171122994652,
+          200.59844433641226,
+          46.134662129314535
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          105.60852959898153,
+          110.84404837683005,
+          59.38096753660089
+        ],
+        "center_napari": [
+          2.0,
+          59.38096753660089,
+          110.84404837683005,
+          105.60852959898153
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          114.98592132505176,
+          151.14492753623188,
+          58.41283643892339
+        ],
+        "center_napari": [
+          2.0,
+          58.41283643892339,
+          151.14492753623188,
+          114.98592132505176
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          141.28372497824196,
+          214.77545691906005,
+          59.21888598781549
+        ],
+        "center_napari": [
+          2.0,
+          59.21888598781549,
+          214.77545691906005,
+          141.28372497824196
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          172.54354913833257,
+          225.6818816953889,
+          104.90172333488589
+        ],
+        "center_napari": [
+          2.0,
+          104.90172333488589,
+          225.6818816953889,
+          172.54354913833257
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          181.12537612838514,
+          94.0381143430291,
+          65.42026078234704
+        ],
+        "center_napari": [
+          2.0,
+          65.42026078234704,
+          94.0381143430291,
+          181.12537612838514
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          188.73801110550227,
+          166.10499747602222,
+          78.42099949520444
+        ],
+        "center_napari": [
+          2.0,
+          78.42099949520444,
+          166.10499747602222,
+          188.73801110550227
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          193.44030106055422,
+          215.60862127950736,
+          91.4659596305166
+        ],
+        "center_napari": [
+          2.0,
+          91.4659596305166,
+          215.60862127950736,
+          193.44030106055422
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          231.92084432717678,
+          198.18557607739666,
+          117.48900615655234
+        ],
+        "center_napari": [
+          2.0,
+          117.48900615655234,
+          198.18557607739666,
+          231.92084432717678
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          249.48658859085756,
+          197.74008311295808,
+          98.50056667925953
+        ],
+        "center_napari": [
+          2.0,
+          98.50056667925953,
+          197.74008311295808,
+          249.48658859085756
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          288.54896551724136,
+          109.22620689655173,
+          56.97563218390805
+        ],
+        "center_napari": [
+          2.0,
+          56.97563218390805,
+          109.22620689655173,
+          288.54896551724136
+        ]
+      },
+      {
+        "center_internal": [
+          0.0,
+          2.0,
+          318.607960199005,
+          187.4268656716418,
+          57.93830845771144
+        ],
+        "center_napari": [
+          2.0,
+          57.93830845771144,
+          187.4268656716418,
+          318.607960199005
+        ]
+      }
+    ],
+    "layer_count": 1,
+    "layer_summaries": [
+      {
+        "type": "points",
+        "name": "DARE3D centers",
+        "data_shape": [
+          13,
+          4
+        ]
+      }
+    ],
+    "elapsed_seconds": 14.437155100000382,
+    "peak_gpu_allocated_bytes": 1648347648
+  },
+  "assertions": {
+    "current_checkout_imports_used": true,
+    "manifest_has_three_commands_and_widgets": true,
+    "installed_napari_manifest_entrypoint_present": true,
+    "widget_autofill_works_from_repository_cwd": true,
+    "widget_source_relative_fallback_defect_reproduced": true,
+    "widget_defaults_do_not_refresh_after_same_session_download": true,
+    "gastruloid_documented_weight_paths_exist": true,
+    "neural_documented_weight_paths_are_absent": true,
+    "plugin_api_resolves_all_four_actual_model_roots": true,
+    "cli_accepts_flat_gastruloid_model_roots": true,
+    "cli_rejects_unresolved_neural_top_level_roots": true,
+    "cli_accepts_explicit_neural_run_directories": true,
+    "prediction_notebook_does_not_reuse_root_bundle": true,
+    "public_plugin_protocol_differs_from_released_protocol": true,
+    "headless_three_frame_api_smoke_completed": true
+  },
+  "elapsed_seconds": 27.661939300000085
+}

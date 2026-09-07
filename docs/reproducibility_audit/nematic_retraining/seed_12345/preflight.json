@@ -1,0 +1,121 @@
+{
+  "all_assertions_pass": true,
+  "assertions": {
+    "all_daughter_axes_are_defined": true,
+    "cuda_available": true,
+    "required_files_present": true,
+    "source_commit_frozen": true,
+    "synthetic_checks_pass": true,
+    "tracked_tree_clean": true,
+    "train_crop_count_matches_archived_log": true,
+    "train_epoch_sample_count_is_2000": true,
+    "validation_crop_count_matches_archived_log": true,
+    "validation_epoch_sample_count_is_2000": true
+  },
+  "created_at": "2026-08-29T15:24:15.705161+02:00",
+  "cuda": {
+    "available": true,
+    "device": "Quadro RTX 5000",
+    "memory_total": 17179541504
+  },
+  "dataset": {
+    "minimum_train_daughter_distance_voxels": 6.4031242374328485,
+    "minimum_validation_daughter_distance_voxels": 7.0710678118654755,
+    "train_loader_length": 2000,
+    "train_movie_names": [
+      "movie3",
+      "movie4"
+    ],
+    "train_original_internal_shapes": [
+      [
+        29,
+        424,
+        411,
+        85
+      ],
+      [
+        29,
+        405,
+        394,
+        152
+      ]
+    ],
+    "train_padded_preprocessed_shapes": [
+      [
+        29,
+        419,
+        407,
+        109
+      ],
+      [
+        29,
+        437,
+        426,
+        184
+      ]
+    ],
+    "train_unique_crops": 526,
+    "validation_loader_length": 2000,
+    "validation_movie_names": [
+      "movie2"
+    ],
+    "validation_original_internal_shapes": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ],
+    "validation_padded_preprocessed_shapes": [
+      [
+        10,
+        362,
+        310,
+        196
+      ]
+    ],
+    "validation_unique_crops": 156
+  },
+  "required_files": {
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/movie2.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/im/movie3.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/label/movie3.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/im/movie4.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/label/movie4.tif": true,
+    "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/config.yaml": true,
+    "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt": true,
+    "docs/reproducibility_audit/evidence/data_manifest_sha256.csv": true
+  },
+  "source_commit_expected": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "source_commit_observed": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "status": "pass",
+  "synthetic_loss_checks": {
+    "all_assertions_pass": true,
+    "assertions": {
+      "evaluation_identical_is_exact_zero": true,
+      "evaluation_opposite_is_exact_zero": true,
+      "evaluation_orthogonal_is_exact_90": true,
+      "random_batch_gradient_is_finite": true,
+      "training_loss_identical_is_zero": true,
+      "training_loss_opposite_is_zero": true,
+      "training_loss_orthogonal_is_90": true,
+      "training_loss_roll_invariant": true
+    },
+    "evaluation_metric_values": {
+      "identical_axes_deg": 0.0,
+      "opposite_axes_deg": 0.0,
+      "orthogonal_axes_deg": 90.0
+    },
+    "training_loss_values": {
+      "identical": 0.0,
+      "opposite": 0.0,
+      "orthogonal": 90.0,
+      "random_gradient_loss": 62.861148834228516,
+      "random_gradient_norm": 8.124542236328125,
+      "same_axis_different_rotation_angles": 0.0
+    }
+  },
+  "tracked_tree_clean": true
+}

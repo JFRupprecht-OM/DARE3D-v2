@@ -1,0 +1,188 @@
+{
+  "assertions": {
+    "best_all_21_values_are_within_0_02_of_archive": true,
+    "best_and_last_raw_predictions_are_not_interchangeable": true,
+    "best_is_closer_than_last_without_posthoc_checkpoint_search": true,
+    "best_reproduces_headline_28_degree_rounding": true,
+    "best_reproduces_headline_2_degree_sem_rounding": true,
+    "both_checkpoints_load_strictly": true,
+    "both_predeclared_runs_complete": true,
+    "both_reproduce_effective_counts_140_121_121": true,
+    "both_use_frozen_145_125_124_components": true
+  },
+  "best_headline_trace": {
+    "all_groundtruth_std_angle_error_deg": 28.018522262573242,
+    "manuscript_display": "28 degrees +/- 2 degrees",
+    "note": "This numerical trace does not validate the manuscript wording: the central value is a standard deviation, while the +/- term is that same SD divided by sqrt(n).",
+    "sd_over_sqrt_nominal_n_deg": 2.326811626088091
+  },
+  "best_vs_last_raw_prediction_comparison": {
+    "all_groundtruth_centers": {
+      "absolute_length_difference_voxels": {
+        "max": 1.635213851928711,
+        "mean": 0.4140045642852783,
+        "median": 0.29837989807128906
+      },
+      "n": 145,
+      "nematic_axis_difference_deg": {
+        "max": 79.34695354356694,
+        "mean": 5.5316979533357316,
+        "median": 3.7542591581840528
+      }
+    },
+    "matched_groundtruth_centers": {
+      "absolute_length_difference_voxels": {
+        "max": 1.635213851928711,
+        "mean": 0.41917550563812256,
+        "median": 0.29781007766723633
+      },
+      "n": 124,
+      "nematic_axis_difference_deg": {
+        "max": 79.34695354356694,
+        "mean": 5.562458318911677,
+        "median": 3.5475877226665284
+      }
+    },
+    "predicted_centers": {
+      "absolute_length_difference_voxels": {
+        "max": 1.5930862426757812,
+        "mean": 0.3945632576942444,
+        "median": 0.3536343574523926
+      },
+      "n": 124,
+      "nematic_axis_difference_deg": {
+        "max": 50.35204514146855,
+        "mean": 5.518962331032538,
+        "median": 3.0910418500286925
+      }
+    }
+  },
+  "conclusions": {
+    "aggregate_status": "The validation-selected checkpoint reproduces the archived regression summaries at manuscript headline precision but not bitwise or at full stored precision.",
+    "checkpoint_identity": "epoch_098.ckpt is strongly supported: all 21 archived aggregate regression values are within 0.02, whereas last.ckpt has a maximum discrepancy of 1.4716.",
+    "classification": "partially reproducible",
+    "remaining_limits": [
+      "Archived Gastruloid raw regression predictions are absent, preventing event-wise or bitwise historical-output comparison.",
+      "The historical source/software/hardware environment is absent.",
+      "The frozen centers inherit the current evaluator and released probability rather than a serialized historical center-pair object.",
+      "The released full-quaternion statistic is not the manuscript's scientifically natural nematic division-axis error."
+    ]
+  },
+  "released_reference_source": "docs/reproducibility_audit/evidence/provenance.json",
+  "runs": {
+    "best_epoch_098": {
+      "center_counts": {
+        "matched_components": 124,
+        "predicted_components": 125,
+        "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+        "true_components": 145
+      },
+      "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+      "effective_evaluated_counts": {
+        "all_groundtruth_centers": 140,
+        "matched_groundtruth_centers": 121,
+        "predicted_centers": 121
+      },
+      "elapsed_seconds": 55.693648100001155,
+      "exact_value_count": 7,
+      "generated_results": {
+        "regression_performance_on_all_groundtruth_centers": {
+          "mean_angle_error": 25.307039260864258,
+          "mean_distance_error": 0.6222168803215027,
+          "mean_length_error": 1.9435396194458008,
+          "n": 145,
+          "std_angle_error": 28.018522262573242,
+          "std_distance_error": 0.5015391707420349,
+          "std_length_error": 1.5799943208694458
+        },
+        "regression_performance_on_matched_groundtruth_centers": {
+          "mean_angle_error": 26.31011390686035,
+          "mean_distance_error": 0.6364278197288513,
+          "mean_length_error": 2.0181896686553955,
+          "n": 124,
+          "std_angle_error": 32.019596099853516,
+          "std_distance_error": 0.5226491689682007,
+          "std_length_error": 1.5753116607666016
+        },
+        "regression_performance_on_predicted_centers": {
+          "mean_angle_error": 37.48206329345703,
+          "mean_distance_error": 3.668400526046753,
+          "mean_length_error": 2.1514463424682617,
+          "n": 124,
+          "std_angle_error": 45.59537887573242,
+          "std_distance_error": 2.441033124923706,
+          "std_length_error": 2.0728442668914795
+        }
+      },
+      "maximum_absolute_difference_across_21_values": 0.015964508056640625,
+      "mean_absolute_difference_across_21_values": 0.0015670373326256161,
+      "peak_gpu_allocated_bytes": 707703808,
+      "result_json": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/result.json",
+      "rms_absolute_difference_across_21_values": 0.004497163920829049,
+      "status": "complete",
+      "strict_checkpoint_load": true,
+      "values_total": 21,
+      "values_within_0_001": 18,
+      "values_within_0_02": 21
+    },
+    "last_last": {
+      "center_counts": {
+        "matched_components": 124,
+        "predicted_components": 125,
+        "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+        "true_components": 145
+      },
+      "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/last.ckpt",
+      "checkpoint_sha256": "beb1eda1aa0fac08a25b36f9a68e5ec3852c379e3b3e3834ff72896939d9cf8b",
+      "effective_evaluated_counts": {
+        "all_groundtruth_centers": 140,
+        "matched_groundtruth_centers": 121,
+        "predicted_centers": 121
+      },
+      "elapsed_seconds": 54.94038580000051,
+      "exact_value_count": 7,
+      "generated_results": {
+        "regression_performance_on_all_groundtruth_centers": {
+          "mean_angle_error": 24.691797256469727,
+          "mean_distance_error": 0.6222168803215027,
+          "mean_length_error": 1.945826530456543,
+          "n": 145,
+          "std_angle_error": 28.13134765625,
+          "std_distance_error": 0.5015391707420349,
+          "std_length_error": 1.518802285194397
+        },
+        "regression_performance_on_matched_groundtruth_centers": {
+          "mean_angle_error": 25.73514747619629,
+          "mean_distance_error": 0.6364278197288513,
+          "mean_length_error": 2.010925769805908,
+          "n": 124,
+          "std_angle_error": 31.802370071411133,
+          "std_distance_error": 0.5226491689682007,
+          "std_length_error": 1.4851124286651611
+        },
+        "regression_performance_on_predicted_centers": {
+          "mean_angle_error": 38.66634750366211,
+          "mean_distance_error": 3.668400526046753,
+          "mean_length_error": 2.252091646194458,
+          "n": 124,
+          "std_angle_error": 47.050968170166016,
+          "std_distance_error": 2.441033124923706,
+          "std_length_error": 2.0234315395355225
+        }
+      },
+      "maximum_absolute_difference_across_21_values": 1.4715538024902344,
+      "mean_absolute_difference_across_21_values": 0.2142524974686759,
+      "peak_gpu_allocated_bytes": 707703808,
+      "result_json": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/result.json",
+      "rms_absolute_difference_across_21_values": 0.4572398841667568,
+      "status": "complete",
+      "strict_checkpoint_load": true,
+      "values_total": 21,
+      "values_within_0_001": 9,
+      "values_within_0_02": 11
+    }
+  },
+  "scope": "Current-checkout nuclei regression checkpoint inference on frozen centers reconstructed from the released segmentation probability; no segmentation rerun, display rendering, threshold tuning, or retraining.",
+  "selection_rule": "epoch_098.ckpt and last.ckpt were both declared before either regression run. Agreement was not used to select an unplanned checkpoint."
+}

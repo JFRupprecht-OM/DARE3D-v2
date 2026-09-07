@@ -1,0 +1,509 @@
+{
+  "all_assertions_pass": true,
+  "assertions": {
+    "all_regression_axes_defined": true,
+    "all_target_shapes_match_manuscript_scale": true,
+    "cuda_available": true,
+    "inventory_passes": true,
+    "nematic_synthetic_checks_pass": true,
+    "regression_epoch_has_2000_samples": true,
+    "regression_parameter_count_is_archived": true,
+    "required_files_present": true,
+    "segmentation_epoch_has_1000_samples": true,
+    "segmentation_parameter_count_is_archived": true,
+    "source_commit_frozen": true,
+    "splits_use_expected_movies": true,
+    "tracked_production_tree_clean": true
+  },
+  "created_at": "2026-09-01T10:12:56.533746+02:00",
+  "cuda": {
+    "available": true,
+    "cudnn": 90100,
+    "device": "Quadro RTX 5000",
+    "total_memory_bytes": 17179541504
+  },
+  "datasets": [
+    {
+      "computed_target_shapes_txyz": [
+        [
+          27,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 1000,
+      "mask_shapes_txyz": [
+        [
+          27,
+          212,
+          212,
+          128
+        ]
+      ],
+      "movie_names": [
+        "movie_E"
+      ],
+      "negative_sequence_count": 6,
+      "original_internal_shapes_txyz": [
+        [
+          27,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "positive_sequence_count": 94,
+      "processed_shapes_txyz": [
+        [
+          27,
+          212,
+          212,
+          128
+        ]
+      ],
+      "role": "train",
+      "sequence_count": 100,
+      "sparse_folder_exists": false,
+      "sparse_training": true,
+      "stage": "segmentation",
+      "time_axis_padding_effective": 1
+    },
+    {
+      "computed_target_shapes_txyz": [
+        [
+          21,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 76,
+      "mask_shapes_txyz": [
+        [
+          21,
+          212,
+          212,
+          128
+        ]
+      ],
+      "movie_names": [
+        "movie_I2"
+      ],
+      "negative_sequence_count": 3,
+      "original_internal_shapes_txyz": [
+        [
+          21,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "positive_sequence_count": 73,
+      "processed_shapes_txyz": [
+        [
+          21,
+          212,
+          212,
+          128
+        ]
+      ],
+      "role": "validation",
+      "sequence_count": 76,
+      "sparse_folder_exists": null,
+      "sparse_training": false,
+      "stage": "segmentation",
+      "time_axis_padding_effective": 0
+    },
+    {
+      "computed_target_shapes_txyz": [
+        [
+          11,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 36,
+      "mask_shapes_txyz": [
+        [
+          11,
+          212,
+          212,
+          128
+        ]
+      ],
+      "movie_names": [
+        "movie_M"
+      ],
+      "negative_sequence_count": 0,
+      "original_internal_shapes_txyz": [
+        [
+          11,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "positive_sequence_count": 36,
+      "processed_shapes_txyz": [
+        [
+          11,
+          212,
+          212,
+          128
+        ]
+      ],
+      "role": "test",
+      "sequence_count": 36,
+      "sparse_folder_exists": null,
+      "sparse_training": false,
+      "stage": "segmentation",
+      "time_axis_padding_effective": 0
+    },
+    {
+      "computed_target_shapes_txyz": [
+        [
+          27,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 2000,
+      "minimum_daughter_distance_processed_voxels": 4.47213595499958,
+      "movie_names": [
+        "movie_E"
+      ],
+      "original_internal_shapes_txyz": [
+        [
+          27,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "processed_shapes_txyz": [
+        [
+          27,
+          244,
+          244,
+          42
+        ]
+      ],
+      "role": "train",
+      "stage": "regression",
+      "time_axis_padding_effective": 1,
+      "unique_crop_count": 222,
+      "zero_length_axes": 0
+    },
+    {
+      "computed_target_shapes_txyz": [
+        [
+          21,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 2000,
+      "minimum_daughter_distance_processed_voxels": 4.47213595499958,
+      "movie_names": [
+        "movie_I2"
+      ],
+      "original_internal_shapes_txyz": [
+        [
+          21,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "processed_shapes_txyz": [
+        [
+          21,
+          244,
+          244,
+          42
+        ]
+      ],
+      "role": "validation",
+      "stage": "regression",
+      "time_axis_padding_effective": 0,
+      "unique_crop_count": 123,
+      "zero_length_axes": 0
+    },
+    {
+      "computed_target_shapes_txyz": [
+        [
+          11,
+          212,
+          212,
+          10
+        ]
+      ],
+      "length": 2000,
+      "minimum_daughter_distance_processed_voxels": 5.0,
+      "movie_names": [
+        "movie_M"
+      ],
+      "original_internal_shapes_txyz": [
+        [
+          11,
+          1024,
+          1024,
+          10
+        ]
+      ],
+      "processed_shapes_txyz": [
+        [
+          11,
+          244,
+          244,
+          42
+        ]
+      ],
+      "role": "test",
+      "stage": "regression",
+      "time_axis_padding_effective": 0,
+      "unique_crop_count": 80,
+      "zero_length_axes": 0
+    }
+  ],
+  "inventory_assertions_pass": true,
+  "models": {
+    "nematic_regression": {
+      "class": "dare3d.models.components.simple_regression_net.RegressionNet",
+      "parameter_bytes": 6421072,
+      "parameter_count": 1605268,
+      "state_tensor_count": 41,
+      "trainable_parameter_count": 1605268
+    },
+    "segmentation": {
+      "class": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+      "parameter_bytes": 459479008,
+      "parameter_count": 114869752,
+      "state_tensor_count": 196,
+      "trainable_parameter_count": 114869752
+    }
+  },
+  "required_files": {
+    "DARE3d_data_190326/Neural_tube_160226/test_input/im/movie_M.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/test_input/label/movie_M.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/im/movie_E.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie1/label/movie_E.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/im/movie_I2.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/trainingset/movie2/label/movie_I2.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/.hydra/config.yaml": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif": true,
+    "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/stats.csv": true,
+    "manuscript_280826version/main.tex": true
+  },
+  "resolved_dataset_configs": {
+    "regression": {
+      "test": {
+        "_target_": "dare3d.data.components.regress_3dataset.Regress3Dataset",
+        "angle_representation": "rotation_matrix_SVD",
+        "crop_size": 32,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\label",
+        "load_labels": true,
+        "order_dim_img": "zyx",
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "steps_per_epoch": 2000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": false
+      },
+      "train": {
+        "_target_": "dare3d.data.components.regress_3dataset.Regress3Dataset",
+        "angle_representation": "rotation_matrix_SVD",
+        "crop_size": 32,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie1\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie1\\label",
+        "load_labels": true,
+        "order_dim_img": "zyx",
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "steps_per_epoch": 2000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": true
+      },
+      "validation": {
+        "_target_": "dare3d.data.components.regress_3dataset.Regress3Dataset",
+        "angle_representation": "rotation_matrix_SVD",
+        "crop_size": 32,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\label",
+        "load_labels": true,
+        "order_dim_img": "zyx",
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "steps_per_epoch": 2000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": false
+      }
+    },
+    "segmentation": {
+      "test": {
+        "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+        "crop_size": 128,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "downsample_factors": [
+          1
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\test_input\\label",
+        "load_labels": true,
+        "mask_geom": "sphere",
+        "order_dim_img": "zyx",
+        "radius": 8,
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "sparse_folder": null,
+        "steps_per_epoch": 1000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": false,
+        "type_mask": "center"
+      },
+      "train": {
+        "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+        "crop_size": 128,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "downsample_factors": [
+          1
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie1\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie1\\label",
+        "load_labels": true,
+        "mask_geom": "sphere",
+        "order_dim_img": "zyx",
+        "radius": 8,
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "sparse_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie1\\weights",
+        "steps_per_epoch": 1000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": true,
+        "type_mask": "center"
+      },
+      "validation": {
+        "_target_": "dare3d.data.components.seg_3dataset.Segmentation3Dataset",
+        "crop_size": 128,
+        "default_scale": [
+          0.208,
+          0.208,
+          1.0
+        ],
+        "downsample_factors": [
+          1
+        ],
+        "im_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\im",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "label_folder": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\DARE3d_data_190326\\Neural_tube_160226\\trainingset\\movie2\\label",
+        "load_labels": true,
+        "mask_geom": "sphere",
+        "order_dim_img": "zyx",
+        "radius": 8,
+        "renorm": "min-max",
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+        "sparse_folder": null,
+        "steps_per_epoch": 1000,
+        "target_scale": 1.0,
+        "time_axis_padding": 1,
+        "training": false,
+        "type_mask": "center"
+      }
+    }
+  },
+  "source_commit_expected": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "source_commit_observed": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "status": "pass",
+  "synthetic_nematic_checks": {
+    "all_assertions_pass": true,
+    "assertions": {
+      "evaluation_identical_is_exact_zero": true,
+      "evaluation_opposite_is_exact_zero": true,
+      "evaluation_orthogonal_is_exact_90": true,
+      "random_batch_gradient_is_finite": true,
+      "training_loss_identical_is_zero": true,
+      "training_loss_opposite_is_zero": true,
+      "training_loss_orthogonal_is_90": true,
+      "training_loss_roll_invariant": true
+    },
+    "evaluation_metric_values": {
+      "identical_axes_deg": 0.0,
+      "opposite_axes_deg": 0.0,
+      "orthogonal_axes_deg": 90.0
+    },
+    "training_loss_values": {
+      "identical": 0.0,
+      "opposite": 0.0,
+      "orthogonal": 90.0,
+      "random_gradient_loss": 62.861148834228516,
+      "random_gradient_norm": 8.124542236328125,
+      "same_axis_different_rotation_angles": 0.0
+    }
+  },
+  "tracked_tree_clean": true
+}

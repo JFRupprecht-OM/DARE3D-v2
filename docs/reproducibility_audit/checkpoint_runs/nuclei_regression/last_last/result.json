@@ -1,0 +1,277 @@
+{
+  "aggregate_comparison": {
+    "all_values_within_1e_minus_3": false,
+    "all_values_within_1e_minus_5": false,
+    "all_values_within_1e_minus_6": false,
+    "by_mode": {
+      "all_groundtruth_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 0.6141490936279297,
+          "generated": 24.691797256469727,
+          "released": 25.305946350097656
+        },
+        "mean_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.6222168803215027,
+          "released": 0.6222168803215027
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.002093791961669922,
+          "generated": 1.945826530456543,
+          "released": 1.943732738494873
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 145.0,
+          "released": 145.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 0.11342048645019531,
+          "generated": 28.13134765625,
+          "released": 28.017927169799805
+        },
+        "std_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.5015391707420349,
+          "released": 0.5015391707420349
+        },
+        "std_length_error": {
+          "absolute_difference": 0.06133449077606201,
+          "generated": 1.518802285194397,
+          "released": 1.580136775970459
+        }
+      },
+      "matched_groundtruth_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 0.5741806030273438,
+          "generated": 25.73514747619629,
+          "released": 26.309328079223633
+        },
+        "mean_distance_error": {
+          "absolute_difference": 5.960464477539063e-08,
+          "generated": 0.6364278197288513,
+          "released": 0.6364277601242065
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.007397651672363281,
+          "generated": 2.010925769805908,
+          "released": 2.0183234214782715
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 124.0,
+          "released": 124.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 0.2177257537841797,
+          "generated": 31.802370071411133,
+          "released": 32.02009582519531
+        },
+        "std_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.5226491689682007,
+          "released": 0.5226491689682007
+        },
+        "std_length_error": {
+          "absolute_difference": 0.0903404951095581,
+          "generated": 1.4851124286651611,
+          "released": 1.5754529237747192
+        }
+      },
+      "predicted_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 1.1972160339355469,
+          "generated": 38.66634750366211,
+          "released": 37.46913146972656
+        },
+        "mean_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 3.668400526046753,
+          "released": 3.668400526046753
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.10034775733947754,
+          "generated": 2.252091646194458,
+          "released": 2.1517438888549805
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 124.0,
+          "released": 124.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 1.4715538024902344,
+          "generated": 47.050968170166016,
+          "released": 45.57941436767578
+        },
+        "std_distance_error": {
+          "absolute_difference": 2.384185791015625e-07,
+          "generated": 2.441033124923706,
+          "released": 2.441033363342285
+        },
+        "std_length_error": {
+          "absolute_difference": 0.04954218864440918,
+          "generated": 2.0234315395355225,
+          "released": 2.0729737281799316
+        }
+      }
+    },
+    "maximum_absolute_difference": 1.4715538024902344
+  },
+  "checkpoint_selection": "last",
+  "dataset": {
+    "effective_evaluated_counts": {
+      "all_groundtruth_centers": 140,
+      "matched_groundtruth_centers": 121,
+      "predicted_centers": 121
+    },
+    "movie_names": [
+      "movie2"
+    ],
+    "original_internal_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ],
+    "padded_internal_shapes_txyz": [
+      [
+        10,
+        394,
+        337,
+        212
+      ]
+    ]
+  },
+  "elapsed_seconds": 54.94038580000051,
+  "finished_utc": "2026-08-29T04:09:04.933080+00:00",
+  "frozen_protocol": {
+    "center_counts": {
+      "matched_components": 124,
+      "predicted_components": 125,
+      "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+      "true_components": 145
+    },
+    "center_source": "released nuclei probability replay under current evaluator",
+    "checkpoint_candidates_predeclared": [
+      "best",
+      "last"
+    ],
+    "dataset_init_preprocess": false,
+    "display_tiffs_written": false,
+    "normalization": "min-max",
+    "padding_then_normalization": true,
+    "scale_file_present": false,
+    "scale_note": "The current regression evaluation path does not resize when init(preprocess=False); it operates in raw anisotropic voxel coordinates.",
+    "spatial_resampling_during_evaluation": false
+  },
+  "generated_regression_results": {
+    "regression_performance_on_all_groundtruth_centers": {
+      "mean_angle_error": 24.691797256469727,
+      "mean_distance_error": 0.6222168803215027,
+      "mean_length_error": 1.945826530456543,
+      "n": 145,
+      "std_angle_error": 28.13134765625,
+      "std_distance_error": 0.5015391707420349,
+      "std_length_error": 1.518802285194397
+    },
+    "regression_performance_on_matched_groundtruth_centers": {
+      "mean_angle_error": 25.73514747619629,
+      "mean_distance_error": 0.6364278197288513,
+      "mean_length_error": 2.010925769805908,
+      "n": 124,
+      "std_angle_error": 31.802370071411133,
+      "std_distance_error": 0.5226491689682007,
+      "std_length_error": 1.4851124286651611
+    },
+    "regression_performance_on_predicted_centers": {
+      "mean_angle_error": 38.66634750366211,
+      "mean_distance_error": 3.668400526046753,
+      "mean_length_error": 2.252091646194458,
+      "n": 124,
+      "std_angle_error": 47.050968170166016,
+      "std_distance_error": 2.441033124923706,
+      "std_length_error": 2.0234315395355225
+    }
+  },
+  "inference_seconds_by_mode": {
+    "all_groundtruth_centers": 17.349269999998796,
+    "matched_groundtruth_centers": 14.580625600003259,
+    "predicted_centers": 14.75329700000293
+  },
+  "inputs": {
+    "center_table": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/last.ckpt",
+    "checkpoint_sha256_from_verified_manifest": "beb1eda1aa0fac08a25b36f9a68e5ec3852c379e3b3e3834ff72896939d9cf8b",
+    "config": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/config.yaml",
+    "image": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "image_sha256_from_verified_manifest": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+    "label_dir": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label"
+  },
+  "model": {
+    "class": "dare3d.models.components.simple_regression_net.RegressionNet",
+    "loaded_network_key_count": 63,
+    "parameter_count": 5897940,
+    "strict_checkpoint_load": true
+  },
+  "outputs": {
+    "event_errors_csv": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/event_errors.csv",
+    "raw_prediction_npz": [
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/all_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/matched_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/predicted_centers_raw_predictions.npz"
+    ],
+    "run_log": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/last_last/run.log"
+  },
+  "peak_gpu_allocated_bytes": 707703808,
+  "peak_gpu_reserved_bytes": 727711744,
+  "phase": "regression_checkpoint_inference_on_frozen_released_centers",
+  "released_regression_results": {
+    "regression_performance_on_all_groundtruth_centers": {
+      "mean_angle_error": 25.305946350097656,
+      "mean_distance_error": 0.6222168803215027,
+      "mean_length_error": 1.943732738494873,
+      "n": 145,
+      "std_angle_error": 28.017927169799805,
+      "std_distance_error": 0.5015391707420349,
+      "std_length_error": 1.580136775970459
+    },
+    "regression_performance_on_matched_groundtruth_centers": {
+      "mean_angle_error": 26.309328079223633,
+      "mean_distance_error": 0.6364277601242065,
+      "mean_length_error": 2.0183234214782715,
+      "n": 124,
+      "std_angle_error": 32.02009582519531,
+      "std_distance_error": 0.5226491689682007,
+      "std_length_error": 1.5754529237747192
+    },
+    "regression_performance_on_predicted_centers": {
+      "mean_angle_error": 37.46913146972656,
+      "mean_distance_error": 3.668400526046753,
+      "mean_length_error": 2.1517438888549805,
+      "n": 124,
+      "std_angle_error": 45.57941436767578,
+      "std_distance_error": 2.441033363342285,
+      "std_length_error": 2.0729737281799316
+    }
+  },
+  "runtime": {
+    "cuda": "12.1",
+    "cudnn": 90100,
+    "gpu": "Quadro RTX 5000",
+    "import_origins": {
+      "CenterList": "dare3d/metrics/infer_measure.py",
+      "evaluate_center_pair": "dare3d/metrics/infer_measure.py",
+      "load_net_state_dict": "dare3d/models/finetune.py",
+      "regression_inference": "dare3d/metrics/inference.py"
+    },
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.5.1+cu121"
+  },
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "started_utc": "2026-08-29T04:08:09.993551+00:00",
+  "status": "complete"
+}

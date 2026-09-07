@@ -1,0 +1,182 @@
+{
+  "created_at": "2026-09-01T10:34:01.309790+02:00",
+  "experiment": "full neural-tube segmentation and nematic-regression retraining",
+  "matching_and_evaluation": {
+    "distance_mode": "IoU",
+    "iteration_method": "movie",
+    "minimum_iou": 1e-06,
+    "temporal_prediction_dilation": "plus/minus one frame",
+    "test_policy": "choose thresholds on movie_I2 once, freeze them, then evaluate movie_M without tuning",
+    "validation_threshold_grid": {
+      "probability": [
+        0.1,
+        0.25,
+        0.4,
+        0.55,
+        0.7
+      ],
+      "weighted_probability": [
+        0,
+        0.15,
+        0.3,
+        0.45,
+        0.6,
+        0.75
+      ]
+    }
+  },
+  "production_source_modified": false,
+  "regression": {
+    "architecture": {
+      "_target_": "dare3d.models.components.simple_regression_net.RegressionNet",
+      "angle_vec_size": 9,
+      "im_size": 32,
+      "input_channels": [
+        -1,
+        0,
+        1
+      ],
+      "n_stages": 3,
+      "start_filters": 32
+    },
+    "batch_size": 32,
+    "checkpoint_selection": "minimum validation total loss; top 1 plus last",
+    "epochs": 200,
+    "evaluation_metric": "degrees(acos(clip(abs(unit axis dot unit axis),0,1)))",
+    "new_orientation_loss": "mean(90*(1-(u_pred dot u_true)^2)); sign and roll invariant",
+    "old_orientation_loss": "mean degrees(2*acos(abs(q_pred dot q_true))) with +/-0.9999 clip",
+    "optimizer": {
+      "_partial_": true,
+      "_target_": "torch.optim.AdamW",
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "lr": 0.001,
+      "weight_decay": 0.0001
+    },
+    "orientation_representation": "9D unconstrained matrix, symmetric SVD projection, normalized wxyz quaternion-vector division axis",
+    "released_config": "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+    "samples_per_epoch": 2000,
+    "scheduler": {
+      "_partial_": true,
+      "_target_": "torch.optim.lr_scheduler.OneCycleLR",
+      "epochs": 200,
+      "max_lr": 0.001,
+      "pct_start": 0.1,
+      "steps_per_epoch": 63
+    },
+    "unchanged_length_loss": "32*mean(abs(normalized predicted minus true length))"
+  },
+  "scale": {
+    "expected_target_xyz": [
+      212,
+      212,
+      10
+    ],
+    "internal_order": "X,Y,Z after production T,Z,Y,X reader swap",
+    "original_scales_json": "absent",
+    "provenance": "manuscript main.tex:128,333-338",
+    "source_xyz_um": [
+      0.208,
+      0.208,
+      1.0
+    ],
+    "target_xyz_um": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "seed": 12345,
+  "segmentation": {
+    "architecture": {
+      "_target_": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+      "bias": false,
+      "channels": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "downsample_factors": [
+        1
+      ],
+      "dropout": 0,
+      "in_channels": 3,
+      "norm": "batch",
+      "num_res_units": 3,
+      "out_channels": 1,
+      "output_names": [
+        "model.1.submodule.2",
+        "model.1.submodule.1.submodule.2"
+      ],
+      "spatial_dims": 3,
+      "strides": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "checkpoint_selection": "maximum validation IoU; top 1 plus last",
+    "configured_epochs": 200,
+    "criterion": {
+      "_target_": "monai.losses.GeneralizedDiceFocalLoss",
+      "include_background": true,
+      "reduction": "none",
+      "sigmoid": true,
+      "to_onehot_y": false
+    },
+    "effective_batch_size": 32,
+    "optimizer": {
+      "_partial_": true,
+      "_target_": "torch.optim.AdamW",
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "lr": 0.1,
+      "weight_decay": 0.0001
+    },
+    "released_config": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/.hydra/config.yaml",
+    "released_event_log": "ends after epoch 153 although max_epochs is 200; released best checkpoint is epoch 57",
+    "samples_per_epoch": 1000,
+    "scheduler": {
+      "_partial_": true,
+      "_target_": "torch.optim.lr_scheduler.OneCycleLR",
+      "epochs": 200,
+      "max_lr": 0.1,
+      "pct_start": 0.1,
+      "steps_per_epoch": 32
+    }
+  },
+  "software": {
+    "cuda": "12.1",
+    "cudnn": 90100,
+    "cudnn_benchmark": false,
+    "cudnn_enabled": true,
+    "lightning": "2.6.5",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.5.1+cu121"
+  },
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "split": {
+    "test": {
+      "manuscript_set": 3,
+      "movie": "movie_M"
+    },
+    "train": {
+      "manuscript_set": 1,
+      "movie": "movie_E"
+    },
+    "validation": {
+      "manuscript_set": 2,
+      "movie": "movie_I2"
+    }
+  }
+}

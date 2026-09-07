@@ -1,0 +1,147 @@
+{
+  "classification": "artifact-level current-evaluator replay exact",
+  "components": {
+    "first_predicted_component_weighted_probability": 1.5105197169236695,
+    "matched": 124,
+    "matched_iou_max": 0.430833422488499,
+    "matched_iou_min": 0.0009668374746205632,
+    "predicted_after_current_filter": 125,
+    "predicted_weighted_probability_max": 4.1418601601120875,
+    "predicted_weighted_probability_min": 0.17996933256817146,
+    "true": 145
+  },
+  "exact_count_agreement": true,
+  "exact_metric_agreement_1e_minus_15": true,
+  "frozen_parameters": {
+    "coordinate_space": "raw output voxels after pipeline unscaling",
+    "distance_mode": "iou",
+    "first_ground_truth_frames_zeroed": 2,
+    "iou_threshold": 1e-06,
+    "iteration_method": "movie",
+    "min_weighted_prob": 0.15,
+    "radius": 8,
+    "threshold": 0.5499999999999999
+  },
+  "independent_center_matching": [
+    {
+      "f1": 0.8962962962962963,
+      "fn": 24,
+      "fp": 4,
+      "matches_over_10_raw_voxels": 0,
+      "max_spatial_distance_raw_voxels": 9.821830688405994,
+      "max_temporal_centroid_distance_frames": 1.0,
+      "method": "global_maximum_dt1_tol10_raw_voxels",
+      "tp": 121
+    },
+    {
+      "f1": 0.8962962962962963,
+      "fn": 24,
+      "fp": 4,
+      "matches_over_10_raw_voxels": 0,
+      "max_spatial_distance_raw_voxels": 9.821830688405994,
+      "max_temporal_centroid_distance_frames": 1.0,
+      "method": "same_frame_priority_maximum_tol10_raw_voxels",
+      "tp": 121
+    },
+    {
+      "f1": 0.8962962962962963,
+      "fn": 24,
+      "fp": 4,
+      "matches_over_10_raw_voxels": 0,
+      "max_spatial_distance_raw_voxels": 9.219480158837607,
+      "max_temporal_centroid_distance_frames": 1.0,
+      "method": "global_greedy_dt1_tol10_raw_voxels",
+      "tp": 121
+    },
+    {
+      "f1": 0.8962962962962963,
+      "fn": 24,
+      "fp": 4,
+      "matches_over_10_raw_voxels": 0,
+      "max_spatial_distance_raw_voxels": 9.219480158837607,
+      "max_temporal_centroid_distance_frames": 1.0,
+      "method": "same_frame_priority_greedy_tol10_raw_voxels",
+      "tp": 121
+    },
+    {
+      "f1": 0.9185185185185185,
+      "fn": 21,
+      "fp": 1,
+      "matches_over_10_raw_voxels": 5,
+      "max_spatial_distance_raw_voxels": 15.506114089492371,
+      "max_temporal_centroid_distance_frames": 1.0,
+      "method": "global_maximum_dt1_tol16_raw_voxels",
+      "tp": 124
+    }
+  ],
+  "inputs": {
+    "annotation_label": {
+      "path": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif",
+      "raw_pairs": 226,
+      "sha256": "d079c16070a378026d404f2bf101d017aaae2d76fa836dfbb16e981e88c03456",
+      "three_frame_eligible_pairs": 156
+    },
+    "probability_tiff": {
+      "disk_shape_tzyx": [
+        10,
+        180,
+        305,
+        362
+      ],
+      "dtype": "float16",
+      "internal_shape_txyz": [
+        10,
+        362,
+        305,
+        180
+      ],
+      "max": 1.0,
+      "min": 0.0,
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2.tif",
+      "sha256": "4ed0abaa7fe463a55dc43b24ee90c79c6deca7e6a677050d4ee27a52a65b8e40"
+    },
+    "released_stats": {
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+      "sha256": "8495f7b1ca68a01191df40e73f2972f1d60bd7c136dcd7a525a8417a556c7878"
+    }
+  },
+  "interpretation_notes": [
+    "This replays a saved probability map, not checkpoint inference.",
+    "The production evaluator uses temporal dilation, 4D connected components, and greedy IoU matching.",
+    "Independent 10/16-voxel results use raw output coordinates because the missing scales.json prevents a verified physical-coordinate conversion.",
+    "The manuscript's stated 10-voxel rule is not equivalent to the frozen IoU evaluator."
+  ],
+  "outputs": [
+    "docs/reproducibility_audit/evidence/nuclei_saved_probability_replay.json",
+    "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "docs/reproducibility_audit/evidence/nuclei_independent_matches.csv",
+    "docs/reproducibility_audit/evidence/nuclei_saved_visualization_alignment.csv"
+  ],
+  "released_segmentation_results": {
+    "fmeasure": 0.9185185185185186,
+    "fn": 21,
+    "fp": 1,
+    "min_weighted_prob": 0.15,
+    "precision": 0.992,
+    "recall": 0.8551724137931035,
+    "threshold": 0.5499999999999999,
+    "tp": 124
+  },
+  "replayed_segmentation_results": {
+    "fmeasure": 0.9185185185185186,
+    "fn": 21,
+    "fp": 1,
+    "min_weighted_prob": 0.15,
+    "precision": 0.992,
+    "recall": 0.8551724137931035,
+    "threshold": 0.5499999999999999,
+    "tp": 124
+  },
+  "runtime_import_origin": "dare3d/metrics/object_level.py",
+  "saved_visualization_alignment": {
+    "pred_max_rendered_center_difference": 0.0,
+    "replay_match_rows": 124,
+    "saved_match_rows": 124,
+    "true_max_rendered_center_difference": 0.0
+  }
+}

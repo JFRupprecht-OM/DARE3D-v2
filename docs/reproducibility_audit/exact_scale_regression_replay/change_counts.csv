@@ -1,0 +1,9 @@
+dataset,model,mode,n,crop_centers_changed,predictions_changed,unchanged_predictions_bit_exact
+neural_movie_M,original,annotation_crops,80,30,30,50
+neural_movie_M,retrained,annotation_crops,80,30,30,50
+nuclei_movie2,original_epoch_098,all_groundtruth_centers,145,107,107,38
+nuclei_movie2,retrained_nematic_epoch_095,all_groundtruth_centers,145,107,107,38
+nuclei_movie2,original_epoch_098,matched_groundtruth_centers,124,90,90,34
+nuclei_movie2,retrained_nematic_epoch_095,matched_groundtruth_centers,124,90,90,34
+nuclei_movie2,original_epoch_098,predicted_centers,124,98,98,26
+nuclei_movie2,retrained_nematic_epoch_095,predicted_centers,124,98,98,26

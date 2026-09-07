@@ -1,0 +1,12 @@
+center,dataset,index,mode,reason
+"0.0,4.0,26.0,180.0,104.0",gastruloid_nuclei,49,all_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,99.0,188.0,49.0",gastruloid_nuclei,54,all_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,155.0,78.0,140.0",gastruloid_nuclei,60,all_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,281.0,84.0,118.0",gastruloid_nuclei,69,all_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,8.0,87.0,204.0,60.0",gastruloid_nuclei,105,all_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.5,281.0,84.0,118.0",gastruloid_nuclei,35,matched_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,99.0,188.5,49.0",gastruloid_nuclei,52,matched_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,26.0,179.5,104.5",gastruloid_nuclei,62,matched_groundtruth_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,282.0,83.0,121.0",gastruloid_nuclei,35,predicted_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,100.0,188.0,54.0",gastruloid_nuclei,52,predicted_centers,production gather_groundtruth_info found no label pair within per-axis atol=3
+"0.0,4.0,26.0,178.0,108.0",gastruloid_nuclei,62,predicted_centers,production gather_groundtruth_info found no label pair within per-axis atol=3

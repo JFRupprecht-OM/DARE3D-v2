@@ -1,0 +1,456 @@
+{
+  "angular_metric": "acos(abs(dot(unit predicted axis, unit true axis))) in degrees",
+  "assertions": {
+    "all_runs_complete": true,
+    "authoritative_table_values_exact": true,
+    "corrected_nematic_metric_used": true,
+    "expected_annotation_change_counts": true,
+    "movie2_changed_predictions_equal_changed_crops": true,
+    "movie_M_changed_predictions_equal_changed_crops": true,
+    "nuclei_manifest_uses_exact_table_scale": true,
+    "resampled_target_shapes_unchanged": true,
+    "unchanged_crops_have_bit_exact_predictions": true
+  },
+  "audit_script": {
+    "path": "docs/reproducibility_audit/exact_scale_regression_replay.py",
+    "sha256": "77fdc492418fa90670339e1579e5daa398cea9b6cfe2a750d46556521286587b",
+    "size_bytes": 32649
+  },
+  "change_counts": {
+    "annotations": {
+      "neural_movie_M": {
+        "all_crop_centers_changed": 47,
+        "all_endpoint_pairs": 104,
+        "all_endpoint_pairs_changed": 66,
+        "eligible_crop_centers_changed": 30,
+        "eligible_endpoint_pairs": 80,
+        "eligible_endpoint_pairs_changed": 47
+      },
+      "nuclei_movie2": {
+        "all_crop_centers_changed": 172,
+        "all_endpoint_pairs": 226,
+        "all_endpoint_pairs_changed": 211,
+        "eligible_crop_centers_changed": 126,
+        "eligible_endpoint_pairs": 156,
+        "eligible_endpoint_pairs_changed": 147
+      },
+      "nuclei_movie2_nominal_0912_diagnostic": {
+        "all_crop_centers_changed": 149,
+        "all_endpoint_pairs": 226,
+        "all_endpoint_pairs_changed": 194,
+        "eligible_crop_centers_changed": 111,
+        "eligible_endpoint_pairs": 156,
+        "eligible_endpoint_pairs_changed": 140
+      }
+    },
+    "neural_movie_M": {
+      "original": {
+        "changed_sample_indices": [
+          3,
+          7,
+          9,
+          10,
+          11,
+          15,
+          20,
+          21,
+          27,
+          30,
+          32,
+          33,
+          39,
+          41,
+          42,
+          44,
+          49,
+          50,
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          65,
+          68,
+          71,
+          72,
+          73,
+          75
+        ],
+        "n": 80,
+        "predictions_changed": 30
+      },
+      "retrained": {
+        "changed_sample_indices": [
+          3,
+          7,
+          9,
+          10,
+          11,
+          15,
+          20,
+          21,
+          27,
+          30,
+          32,
+          33,
+          39,
+          41,
+          42,
+          44,
+          49,
+          50,
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          65,
+          68,
+          71,
+          72,
+          73,
+          75
+        ],
+        "n": 80,
+        "predictions_changed": 30
+      }
+    },
+    "nuclei_frozen_center_modes": {
+      "all_groundtruth_centers": {
+        "crop_centers_changed": 107,
+        "max_crop_center_displacement_voxels": 1,
+        "n": 145,
+        "original_epoch_098_predictions_changed": 107,
+        "retrained_nematic_epoch_095_predictions_changed": 107
+      },
+      "matched_groundtruth_centers": {
+        "crop_centers_changed": 90,
+        "max_crop_center_displacement_voxels": 1,
+        "n": 124,
+        "original_epoch_098_predictions_changed": 90,
+        "retrained_nematic_epoch_095_predictions_changed": 90
+      },
+      "predicted_centers": {
+        "crop_centers_changed": 98,
+        "max_crop_center_displacement_voxels": 1,
+        "n": 124,
+        "original_epoch_098_predictions_changed": 98,
+        "retrained_nematic_epoch_095_predictions_changed": 98
+      }
+    }
+  },
+  "checkpoints": [
+    {
+      "path": "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt",
+      "sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+      "size_bytes": 18652854
+    },
+    {
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/regression_nematic_retrained/checkpoints/epoch_139.ckpt",
+      "sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b",
+      "size_bytes": 18652918
+    },
+    {
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+      "size_bytes": 70823146
+    },
+    {
+      "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+      "sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+      "size_bytes": 70822250
+    }
+  ],
+  "commands": {
+    "canonical_full_replay": "python docs/reproducibility_audit/exact_scale_regression_replay.py --phase all",
+    "report_only": "python docs/reproducibility_audit/exact_scale_regression_replay.py --phase report"
+  },
+  "completed_at": "2026-09-04T07:32:03.476962+02:00",
+  "datasets": [
+    {
+      "path": "DARE3d_data_190326/Neural_tube_160226/test_input/im/movie_M.tif",
+      "sha256": "91f0fd8cd0e14256b51da3247e521d51013c786f792c624c83598dbd827e8c88",
+      "size_bytes": 115361822
+    },
+    {
+      "path": "DARE3d_data_190326/Neural_tube_160226/test_input/label/movie_M.tif",
+      "sha256": "d239ac66a09aa1b22e96b4e69a20a1a758dced35d3d818d79c7b38623eacd6df",
+      "size_bytes": 591568
+    },
+    {
+      "path": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/movie2.tif",
+      "sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+      "size_bytes": 397774890
+    },
+    {
+      "path": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif",
+      "sha256": "d079c16070a378026d404f2bf101d017aaae2d76fa836dfbb16e981e88c03456",
+      "size_bytes": 4010499
+    }
+  ],
+  "exact_outputs": [
+    {
+      "path": "docs/reproducibility_audit/exact_scale_regression_replay/neural_movie_M_02076/controlled_regression_evaluation.json",
+      "sha256": "c53a98d6eefb7b4a543b1d41634c7a8807b8c904778f8b0a1ade91e126c59046",
+      "size_bytes": 6359
+    },
+    {
+      "path": "docs/reproducibility_audit/exact_scale_regression_replay/neural_movie_M_02076/event_metrics.csv",
+      "sha256": "dc21bbcad0400e117073736bcf6b80e19d4db01ad19567d86231ec5e9df9fd2a",
+      "size_bytes": 48018
+    },
+    {
+      "path": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/nuclei_result_raw.json",
+      "sha256": "4638147d426a4f9f1cc1dc41e02867572404a1028ade81ba698bd5ffd64031de",
+      "size_bytes": 59738
+    },
+    {
+      "path": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/event_metrics.csv",
+      "sha256": "a2898c21b47bad966c8f87a1cbb3cc43e35827ac585e4b4fd3c0687171844276",
+      "size_bytes": 459011
+    }
+  ],
+  "git_head": "c10e3686c9c2a92a91a27cef61decf25cf947fed",
+  "outputs": {
+    "change_csv": "docs/reproducibility_audit/exact_scale_regression_replay/change_counts.csv",
+    "change_csv_sha256": "17fa77076ad331458833d54ff4805e559cf900a71dfed06e506c09a0d44131f5",
+    "report": "docs/reproducibility_audit/exact_scale_regression_replay/EXACT_SCALE_REGRESSION_REPLAY.md",
+    "report_sha256": "51541405f82d8f42e10c982a501666c01cf0971bcafc421a27da3adac9773e3d",
+    "summary_csv": "docs/reproducibility_audit/exact_scale_regression_replay/angular_summary.csv",
+    "summary_csv_sha256": "7f54853c90807647eb689989fce66eda07f9cd84653c9dc264f961afc606e96b"
+  },
+  "paired_retrained_minus_original": {
+    "neural_movie_M": {
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed": 20260901,
+      "descriptive_only": true,
+      "fraction_retrained_lower": 0.925,
+      "mean_difference_bootstrap_95_ci_deg": [
+        -39.21842632749991,
+        -28.505126217040814
+      ],
+      "mean_difference_deg": -33.8949049331015,
+      "median_difference_deg": -32.407514572143555,
+      "n": 80
+    },
+    "nuclei_movie2": {
+      "all_groundtruth_centers": {
+        "bootstrap_replicates": 10000,
+        "bootstrap_seed": 20260839,
+        "descriptive_only": true,
+        "fraction_retrained_lower": 0.5785714285714286,
+        "mean_difference_bootstrap_95_ci_deg": [
+          -2.70819576137383,
+          -0.1931307069990923
+        ],
+        "mean_difference_deg": -1.417518392061044,
+        "median_difference_deg": -1.2817458464191696,
+        "n": 140
+      },
+      "matched_groundtruth_centers": {
+        "bootstrap_replicates": 10000,
+        "bootstrap_seed": 20260840,
+        "descriptive_only": true,
+        "fraction_retrained_lower": 0.5950413223140496,
+        "mean_difference_bootstrap_95_ci_deg": [
+          -3.033818878509654,
+          -0.26121314420930897
+        ],
+        "mean_difference_deg": -1.5681016150368154,
+        "median_difference_deg": -1.2839883104072616,
+        "n": 121
+      },
+      "predicted_centers": {
+        "bootstrap_replicates": 10000,
+        "bootstrap_seed": 20260841,
+        "descriptive_only": true,
+        "fraction_retrained_lower": 0.5867768595041323,
+        "mean_difference_bootstrap_95_ci_deg": [
+          -3.186504545240581,
+          0.790667660884206
+        ],
+        "mean_difference_deg": -1.217717059619415,
+        "median_difference_deg": -1.6065516982536718,
+        "n": 121
+      }
+    }
+  },
+  "preprocessing_mode": "training_consistent",
+  "prior_results": [
+    {
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/controlled_regression_test/controlled_regression_evaluation.json",
+      "sha256": "e6a16eaa49838a1a7467404419778d487d46dc61f4a357ed11de1cd808af2277",
+      "size_bytes": 6388
+    },
+    {
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/controlled_regression_test/event_metrics.csv",
+      "sha256": "127ff8dc21cd7c278a01d6ca31057c0a864d5d9c923426cd1f32c5e9f6dec235",
+      "size_bytes": 47808
+    },
+    {
+      "path": "docs/reproducibility_audit/regression_preprocessing_fix_validation/nuclei_result.json",
+      "sha256": "91e372508cea6aa6f686fdf8f1bb31155d8a495b960273c2d5e1443db146371a",
+      "size_bytes": 60881
+    }
+  ],
+  "protocol": {
+    "neural_movie_M": "Same 80 ordered, temporally eligible annotation-centered test crops as the prior controlled analysis; end-to-end predicted-center scoring remains unavailable because the frozen released segmentation produced zero detections.",
+    "nuclei_movie2": "Same frozen 145 all-GT, 124 matched-GT, and 124 detector-predicted center records. Predicted centers select crops only; matched annotation objects remain the targets."
+  },
+  "raw_adapter_note": "nuclei_result_raw.json is the direct output of the already-validated nuclei evaluation adapter and therefore retains its historical profile key training_consistent_log_reconstructed. Its embedded preprocessing manifest is exact 0.914; this consolidated result and report are authoritative for the exact-scale interpretation.",
+  "scale_table": {
+    "path": "data/3D/scales.json",
+    "sha256": "e206eb6502a5a5907bd919e647be24fc66dce6ea7a6fc1a357856b09fc4021fe",
+    "size_bytes": 5140
+  },
+  "scales_xyz": {
+    "movie2": [
+      0.914,
+      0.914,
+      0.914
+    ],
+    "movie_M": [
+      0.2076,
+      0.2076,
+      1.0
+    ]
+  },
+  "scientific_conclusion": {
+    "changed": false,
+    "reason": "Exact rounding changes event-level crops and predictions, but the neural retrained model retains a large independent-test advantage and the nuclei predicted-center paired interval still spans zero. The regression training/inference preprocessing mismatch and its correction are independent of this scale provenance refinement."
+  },
+  "scope": "inference-only exact-scale replay; no training or segmentation",
+  "software": {
+    "cuda_device": "Quadro RTX 5000",
+    "cuda_runtime": "12.1",
+    "numpy_version": "1.23.4",
+    "python_executable": "C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2.0\\python.exe",
+    "python_version": "3.10.20",
+    "torch_version": "2.5.1+cu121"
+  },
+  "status": "complete",
+  "summary": [
+    {
+      "dataset": "neural_movie_M",
+      "exact_mean_deg": 53.441627502441406,
+      "exact_median_deg": 53.67897033691406,
+      "exact_minus_prior_mean_deg": -0.3743133544921875,
+      "exact_minus_prior_median_deg": 0.24485015869140625,
+      "exact_minus_prior_sd_population_deg": -0.13936805725097656,
+      "exact_sd_population_deg": 22.763471603393555,
+      "mode": "annotation_crops",
+      "model": "original",
+      "n": 80,
+      "prior_mean_deg": 53.815940856933594,
+      "prior_median_deg": 53.434120178222656,
+      "prior_sd_population_deg": 22.90283966064453
+    },
+    {
+      "dataset": "neural_movie_M",
+      "exact_mean_deg": 19.546722412109375,
+      "exact_median_deg": 16.44617748260498,
+      "exact_minus_prior_mean_deg": 0.60125732421875,
+      "exact_minus_prior_median_deg": -0.6834297180175781,
+      "exact_minus_prior_sd_population_deg": 0.12514495849609375,
+      "exact_sd_population_deg": 11.77563762664795,
+      "mode": "annotation_crops",
+      "model": "retrained",
+      "n": 80,
+      "prior_mean_deg": 18.945465087890625,
+      "prior_median_deg": 17.12960720062256,
+      "prior_sd_population_deg": 11.650492668151855
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 11.893218490108906,
+      "exact_median_deg": 9.534827155910733,
+      "exact_minus_prior_mean_deg": -1.777495705769466,
+      "exact_minus_prior_median_deg": -1.4479170272421893,
+      "exact_minus_prior_sd_population_deg": -3.0655710711212354,
+      "exact_sd_population_deg": 8.378367313805061,
+      "mode": "all_groundtruth_centers",
+      "model": "original_epoch_098",
+      "n": 140,
+      "prior_mean_deg": 13.670714195878372,
+      "prior_median_deg": 10.982744183152922,
+      "prior_sd_population_deg": 11.443938384926296
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 11.587283518369698,
+      "exact_median_deg": 9.284822863427419,
+      "exact_minus_prior_mean_deg": -1.2536390667311732,
+      "exact_minus_prior_median_deg": -1.3921217727035877,
+      "exact_minus_prior_sd_population_deg": -1.5798295950347825,
+      "exact_sd_population_deg": 9.284184213883432,
+      "mode": "matched_groundtruth_centers",
+      "model": "original_epoch_098",
+      "n": 121,
+      "prior_mean_deg": 12.840922585100872,
+      "prior_median_deg": 10.676944636131006,
+      "prior_sd_population_deg": 10.864013808918214
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 20.133459719908565,
+      "exact_median_deg": 12.082413043030273,
+      "exact_minus_prior_mean_deg": 0.3933540339799606,
+      "exact_minus_prior_median_deg": 1.1052673877714074,
+      "exact_minus_prior_sd_population_deg": -0.1470516923987688,
+      "exact_sd_population_deg": 20.941172781476112,
+      "mode": "predicted_centers",
+      "model": "original_epoch_098",
+      "n": 121,
+      "prior_mean_deg": 19.740105685928604,
+      "prior_median_deg": 10.977145655258866,
+      "prior_sd_population_deg": 21.08822447387488
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 10.475700098047861,
+      "exact_median_deg": 8.192761721639833,
+      "exact_minus_prior_mean_deg": -1.260669542375215,
+      "exact_minus_prior_median_deg": -1.4654954547904282,
+      "exact_minus_prior_sd_population_deg": -1.8317939377980519,
+      "exact_sd_population_deg": 7.999416573554079,
+      "mode": "all_groundtruth_centers",
+      "model": "retrained_nematic_epoch_095",
+      "n": 140,
+      "prior_mean_deg": 11.736369640423076,
+      "prior_median_deg": 9.658257176430261,
+      "prior_sd_population_deg": 9.83121051135213
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 10.019181903332887,
+      "exact_median_deg": 7.981327821508419,
+      "exact_minus_prior_mean_deg": -0.9915049122524167,
+      "exact_minus_prior_median_deg": -1.3035129372681276,
+      "exact_minus_prior_sd_population_deg": -0.6155435907022531,
+      "exact_sd_population_deg": 7.214264538429882,
+      "mode": "matched_groundtruth_centers",
+      "model": "retrained_nematic_epoch_095",
+      "n": 121,
+      "prior_mean_deg": 11.010686815585304,
+      "prior_median_deg": 9.284840758776546,
+      "prior_sd_population_deg": 7.829808129132135
+    },
+    {
+      "dataset": "nuclei_movie2",
+      "exact_mean_deg": 18.915742660289155,
+      "exact_median_deg": 9.877305148852287,
+      "exact_minus_prior_mean_deg": -0.8904367766334538,
+      "exact_minus_prior_median_deg": -0.16084244845341011,
+      "exact_minus_prior_sd_population_deg": -1.651039333565592,
+      "exact_sd_population_deg": 21.451786033547776,
+      "mode": "predicted_centers",
+      "model": "retrained_nematic_epoch_095",
+      "n": 121,
+      "prior_mean_deg": 19.80617943692261,
+      "prior_median_deg": 10.038147597305697,
+      "prior_sd_population_deg": 23.10282536711337
+    }
+  ]
+}

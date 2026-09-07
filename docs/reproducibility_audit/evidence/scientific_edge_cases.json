@@ -1,0 +1,367 @@
+{
+  "assertions": {
+    "all_passed": true,
+    "count": 24
+  },
+  "audit_date": "2026-08-29",
+  "audit_script_sha256": "3bef40661712cfc30ffd5007234aa0e2d8a9e0c02a346e5c23baaba6479a4562",
+  "border_rendering": {
+    "center_x11_y11_z11_rendered_voxels": 125,
+    "center_x2_y6_z6_rendered_voxels": 0,
+    "center_x4_y4_z4_rendered_voxels": 512,
+    "interpretation": "Negative low-border slices can be empty, while high-border slices are clipped; displayed FP/FN counts can therefore be incomplete.",
+    "nominal_marker_voxels": 512,
+    "shape_txyz": [
+      1,
+      12,
+      12,
+      12
+    ]
+  },
+  "empty_movie_metrics": {
+    "both_empty": {
+      "fmeasure": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0
+    },
+    "interpretation": "A both-empty movie receives precision=recall=F1=0.",
+    "prediction_empty": {
+      "fmeasure": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0
+    },
+    "truth_empty": {
+      "fmeasure": 0.0,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0
+    }
+  },
+  "f1_aggregation": {
+    "difference_micro_minus_macro": 0.4263157894736842,
+    "movie_a": {
+      "fmeasure": 0.9473684210526316,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.9,
+      "tp": 9
+    },
+    "movie_b": {
+      "fmeasure": 0.0,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0
+    },
+    "production_style_pooled_micro": {
+      "fmeasure": 0.9,
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.9,
+      "recall": 0.9,
+      "tp": 9
+    },
+    "unweighted_macro_f1": 0.4736842105263158
+  },
+  "first_component_filtering": {
+    "component_values_in_iteration_order": [
+      1,
+      2
+    ],
+    "components_after": 1,
+    "components_before": 2,
+    "interpretation": "Both components are below the cutoff, but production code retains the first foreground component and removes the second.",
+    "minimum_weighted_probability": 0.02,
+    "remaining_coordinates": [
+      [
+        0,
+        1,
+        1,
+        0
+      ]
+    ],
+    "weighted_probabilities": [
+      0.010000000149011612,
+      0.010000000149011612
+    ]
+  },
+  "greedy_matching_counterexample": {
+    "distance_matrix": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        2.0,
+        100.0
+      ]
+    ],
+    "maximum_cardinality_count": 2,
+    "maximum_cardinality_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "production_greedy_pairs": [
+      [
+        0,
+        0
+      ]
+    ],
+    "production_match_count": 1,
+    "strict_max_distance": 50.0
+  },
+  "probability_threshold_equality": {
+    "evaluator_greater_equal_selected_voxels": 1,
+    "evaluator_metrics": {
+      "fmeasure": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 1
+    },
+    "predict_strict_greater_selected_voxels": 0,
+    "threshold": 0.5,
+    "value": 0.5
+  },
+  "production_source_sha256": {
+    "dare3d/data/components/angles3d.py": "d5fecf7bfd32a167511474ce9663a4a398f92f9ad4fff64cfd219200e5b50ec1",
+    "dare3d/losses/angle3d.py": "c7bdbf587f67028a7ee7730ee81ec09e603d8d91e0473426efbcc7bde08104a0",
+    "dare3d/metrics/object_level.py": "f0e64960660cf0c368aa09b367b3467840928ba4c18fe375503116b7db688e1b",
+    "dare3d/predict.py": "40189c9edaf8e118e62c32cc2beb63cdd718e194ead4286ae252bd11a4ed4eee"
+  },
+  "quaternion_vs_nematic": {
+    "identical_quaternion": {
+      "cause_of_nonzero_floor": "quaternion_error clips the dot product to at most 0.9999.",
+      "expected_exact_geometric_error_degrees": 0.0,
+      "quaternion_error_degrees": 1.62058287413131
+    },
+    "reversed_equivalent_axis": {
+      "nematic_axis_error_degrees": 0.0,
+      "quaternion_error_degrees": 119.99999999999997,
+      "rendered_unoriented_lines_equal": true
+    },
+    "same_rendered_axis_different_quaternion_angle": {
+      "nematic_axis_error_degrees": 0.0,
+      "quaternion_error_degrees": 59.999999999999986,
+      "rendered_unoriented_lines_equal": true
+    }
+  },
+  "runtime_import_origins": {
+    "angle3d_loss": "dare3d/losses/angle3d.py",
+    "angles3d": "dare3d/data/components/angles3d.py",
+    "object_level": "dare3d/metrics/object_level.py"
+  },
+  "scope": "Frozen, tiny synthetic cases against current production functions; no model, released artifact, or production source was modified.",
+  "strict_distance_boundary": {
+    "distance": 10.0,
+    "matches_at_equality": [],
+    "matches_just_inside": [
+      [
+        0,
+        0
+      ]
+    ],
+    "production_comparison": "distance < threshold",
+    "threshold": 10.0
+  },
+  "temporal_and_4d_component_merging": {
+    "conceptual_adjacent_same_location_true_events_labelled_components": 1,
+    "interpretation": "Temporal dilation merges two predictions two frames apart; 4D connected-component labeling also merges adjacent same-location ground-truth events.",
+    "matched_items": [
+      [
+        0,
+        0
+      ]
+    ],
+    "prediction_components_after_dilation": 1,
+    "prediction_components_before_dilation": 2,
+    "two_true_events_two_frames_apart_evaluation": {
+      "fmeasure": 0.6666666666666666,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.5,
+      "tp": 1
+    }
+  },
+  "temporal_window": {
+    "high_time_boundary_minus_one": {
+      "iou_matrix": [
+        [
+          0.5
+        ]
+      ],
+      "matched_items": [
+        [
+          0,
+          0
+        ]
+      ],
+      "metrics": {
+        "fmeasure": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+      },
+      "pred_frame": 4,
+      "true_frame": 3
+    },
+    "low_time_boundary_plus_one": {
+      "iou_matrix": [
+        [
+          0.5
+        ]
+      ],
+      "matched_items": [
+        [
+          0,
+          0
+        ]
+      ],
+      "metrics": {
+        "fmeasure": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+      },
+      "pred_frame": 0,
+      "true_frame": 1
+    },
+    "minus_one_frame": {
+      "iou_matrix": [
+        [
+          0.33333333333333326
+        ]
+      ],
+      "matched_items": [
+        [
+          0,
+          0
+        ]
+      ],
+      "metrics": {
+        "fmeasure": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+      },
+      "pred_frame": 2,
+      "true_frame": 1
+    },
+    "plus_one_frame": {
+      "iou_matrix": [
+        [
+          0.33333333333333326
+        ]
+      ],
+      "matched_items": [
+        [
+          0,
+          0
+        ]
+      ],
+      "metrics": {
+        "fmeasure": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+      },
+      "pred_frame": 2,
+      "true_frame": 3
+    },
+    "same_frame": {
+      "iou_matrix": [
+        [
+          0.33333333333333326
+        ]
+      ],
+      "matched_items": [
+        [
+          0,
+          0
+        ]
+      ],
+      "metrics": {
+        "fmeasure": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+      },
+      "pred_frame": 2,
+      "true_frame": 2
+    },
+    "two_frames_apart": {
+      "iou_matrix": [
+        [
+          0.0
+        ]
+      ],
+      "matched_items": [],
+      "metrics": {
+        "fmeasure": 0.0,
+        "fn": 1,
+        "fp": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0
+      },
+      "pred_frame": 2,
+      "true_frame": 4
+    }
+  },
+  "voxel_anisotropy": {
+    "illustrative_spacing_xyz": [
+      0.2,
+      0.2,
+      1.0
+    ],
+    "interpretation": "Anisotropic voxel spacing can materially change a 3D axis error; the released missing scales.json prevents the actual conversion.",
+    "physical_coordinate_angle_degrees": 45.00000000000001,
+    "predicted_vector_raw_xyz": [
+      10.0,
+      0.0,
+      0.0
+    ],
+    "raw_voxel_angle_degrees": 11.309932474020227,
+    "status": "illustrative diagnostic, not an inferred DARE3D scale",
+    "true_vector_raw_xyz": [
+      10.0,
+      0.0,
+      2.0
+    ]
+  },
+  "weighted_probability_equality": {
+    "cutoff": 0.2,
+    "manuscript_wording_comparison": "weighted_probability > cutoff",
+    "production_comparison": "weighted_probability < cutoff",
+    "second_component_retained": true,
+    "weighted_probability": 0.2
+  }
+}

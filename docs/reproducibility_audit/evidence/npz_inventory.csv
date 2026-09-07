@@ -1,0 +1,13 @@
+dtype,finite,key,max,min,path,shape
+int32,True,centers,1000.0,0.0,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz,122x5
+float32,True,lengths,20.516691207885742,17.070812225341797,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz,122x1
+float64,True,rotation_matrices,0.9971159771565172,-0.9993770720412408,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz,122x3x3
+float64,True,quaternions,0.9930321407477682,-0.6480164739295874,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/all_true_centers/raw_predictions.npz,122x4
+float64,True,centers,1000.0,0.0,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz,114x5
+float32,True,lengths,20.451093673706055,17.070812225341797,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz,114x1
+float64,True,rotation_matrices,0.9971159771565172,-0.9993770720412408,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz,114x3x3
+float64,True,quaternions,0.9930321407477682,-0.6480164739295874,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/matched_true_centers/raw_predictions.npz,114x4
+int32,True,centers,1004.0,0.0,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz,114x5
+float32,True,lengths,20.93231964111328,17.66629981994629,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz,114x1
+float64,True,rotation_matrices,0.9998162278943608,-0.9998600376841165,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz,114x3x3
+float64,True,quaternions,0.992751283811253,-0.6285011478902301,DARE3d_data_190326/Neural_tube_160226/regression3d_new_set_og/runs/12-01-26/pred_centers/raw_predictions.npz,114x4

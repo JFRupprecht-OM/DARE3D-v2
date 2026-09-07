@@ -1,0 +1,190 @@
+{
+  "architecture": {
+    "angle_activation": "identity",
+    "angle_output_size": 9,
+    "class": "dare3d.models.components.simple_regression_net.RegressionNet",
+    "crop_size": 32,
+    "expected_parameters": 5897940,
+    "input_channels": 3,
+    "length_activation": "sigmoid",
+    "stages": 5,
+    "start_filters": 16
+  },
+  "bootstrap_seed_for_later_evaluation": 20260829,
+  "created_at": "2026-08-29T15:24:13.175229+02:00",
+  "data_sources": {
+    "movie2": {
+      "effective_geometry_scale_xyz": [
+        0.9116022099447514,
+        0.9114754098360656,
+        0.9111111111111111
+      ],
+      "image": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/im/movie2.tif",
+      "image_sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+      "label": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label/movie2.tif",
+      "label_sha256": "d079c16070a378026d404f2bf101d017aaae2d76fa836dfbb16e981e88c03456",
+      "logged_target_shape_xyz": [
+        330,
+        278,
+        164
+      ],
+      "native_internal_shape_xyz": [
+        362,
+        305,
+        180
+      ]
+    },
+    "movie3": {
+      "effective_geometry_scale_xyz": [
+        0.9127358490566038,
+        0.9124087591240876,
+        0.9058823529411765
+      ],
+      "image": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/im/movie3.tif",
+      "image_sha256": "3c56bd2ed0866eb2749d2373d33bfac6de03850146cb0318cb519113295a4cee",
+      "label": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie3/label/movie3.tif",
+      "label_sha256": "ba6aa1d1db44b5b1133458287c0b5ccc7a83c616cb7a0a74e681b15b116c7db9",
+      "logged_target_shape_xyz": [
+        387,
+        375,
+        77
+      ],
+      "native_internal_shape_xyz": [
+        424,
+        411,
+        85
+      ]
+    },
+    "movie4": {
+      "effective_geometry_scale_xyz": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "image": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/im/movie4.tif",
+      "image_sha256": "cae0d6e069382519e13c19b478a78e0338073eb8ef9ed41274674a8aa2dfecf2",
+      "label": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie4/label/movie4.tif",
+      "label_sha256": "e48254fef509ad6321f2275e81022ad41ae5b2d746f506f834a7f74a939de9f4",
+      "logged_target_shape_xyz": [
+        405,
+        394,
+        152
+      ],
+      "native_internal_shape_xyz": [
+        405,
+        394,
+        152
+      ]
+    }
+  },
+  "experiment": "nuclei regression retraining with nematic axis loss",
+  "loss": {
+    "joint_loss": "nematic projector loss + unchanged length loss",
+    "length_loss_unchanged": "32*mean(abs(normalized_length_error))",
+    "new_evaluation": "degrees(acos(abs(u_pred dot u_true)))",
+    "new_training": "mean(90*(1-(u_pred dot u_true)^2))",
+    "new_training_name": "scaled nematic projector loss",
+    "new_training_range": "[0,90]",
+    "old": "mean degrees(2*acos(abs(q_pred dot q_true))) after clipping the quaternion dot to +/-0.9999",
+    "rationale": "The smooth training surrogate has exactly the nematic minima, is sign invariant and insensitive to quaternion rotation angle about the division axis, while avoiding acos endpoint gradient singularities. Evaluation uses the requested angle."
+  },
+  "missing_provenance": "The original scales.json and historical source/environment are absent. Exact logged target shapes are reconstructed; effective per-axis target/native ratios transform labels.",
+  "optimization": {
+    "accelerator": "single CUDA GPU",
+    "batch_size": 12,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_mode": "min",
+    "checkpoint_monitor": "val/loss",
+    "deterministic": false,
+    "fresh_initialization": true,
+    "learning_rate": 0.001,
+    "max_epochs": 100,
+    "min_epochs": 10,
+    "optimizer": "AdamW",
+    "precision": 32,
+    "save_last": true,
+    "save_top_k": 1,
+    "scheduler": "OneCycleLR",
+    "scheduler_epochs_parameter": 100,
+    "scheduler_max_lr": 0.001,
+    "scheduler_pct_start": 0.1,
+    "scheduler_step_interval": "epoch, preserving RegressionLitModule historical behavior",
+    "scheduler_steps_per_epoch_parameter": 167,
+    "weight_decay": 0.0001
+  },
+  "orientation_representation": {
+    "axis_extraction": "convert matrix to wxyz quaternion and normalize q[x,y,z]",
+    "ground_truth": "9D rotation matrix generated from the archived quaternion encoding of the annotated daughter bipoint",
+    "network_output": "9 unconstrained values",
+    "projection": "symmetric SVD orthogonalization to SO(3)",
+    "unchanged_architecture": true
+  },
+  "original_checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+  "original_checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+  "preprocessing": {
+    "augmentation": {
+      "3d_rotation_probability_when_pipeline_runs": 0.5,
+      "flip_probability_when_pipeline_runs": 0.5,
+      "rotation_ranges_radians_xyz": [
+        3.14,
+        3.14,
+        3.14
+      ],
+      "wrapper_probability": 0.5,
+      "zoom_probability_when_pipeline_runs": 0.5,
+      "zoom_range": [
+        0.9,
+        1.1
+      ]
+    },
+    "crop_size_xyz": [
+      32,
+      32,
+      32
+    ],
+    "input_frames": [
+      -1,
+      0,
+      1
+    ],
+    "normalization": "whole-movie min-max after resizing/crop indexing",
+    "reader_order": "zyx -> internal T,X,Y,Z",
+    "samples_per_train_epoch": 2000,
+    "samples_per_validation_epoch": 2000,
+    "train_division_crops_expected": 526,
+    "train_time_padding": 1,
+    "validation_division_crops_expected": 156,
+    "validation_repeats_crops_modulo_dataset_length": true,
+    "validation_test_time_padding": 0
+  },
+  "production_source_modified": false,
+  "released_config": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/config.yaml",
+  "released_config_sha256": "5a9ac69d8879d5d9b94bff9d73f36beb1526e44ded2060e674385aa2874e50a1",
+  "seed": 12345,
+  "software": {
+    "cuda": "12.1",
+    "cudnn": 90100,
+    "cudnn_benchmark": false,
+    "cudnn_enabled": true,
+    "lightning": "2.6.5",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.5.1+cu121"
+  },
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "split": {
+    "test": [
+      "movie2"
+    ],
+    "train": [
+      "movie3",
+      "movie4"
+    ],
+    "validation": [
+      "movie2"
+    ]
+  }
+}

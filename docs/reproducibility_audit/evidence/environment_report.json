@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-08-29T19:10:04.097509+02:00",
+  "checkpoint_recorded_lightning_versions": {
+    "membrane_regression": {
+      "best": "2.5.6",
+      "last": "2.5.6"
+    },
+    "membrane_segmentation": {
+      "best": "2.5.6",
+      "last": "2.5.6"
+    },
+    "nuclei_regression": {
+      "best": "2.2.5",
+      "last": "2.2.5"
+    },
+    "nuclei_segmentation": {
+      "best": "2.2.5",
+      "last": "2.2.5"
+    }
+  },
+  "core_packages": {
+    "dare3d": "0.0.1",
+    "hydra-core": "1.3.2",
+    "lightning": "2.6.5",
+    "monai": "1.3.0",
+    "numpy": "1.23.4",
+    "omegaconf": "2.3.1",
+    "pytorch-lightning": "2.6.5",
+    "scikit-image": "0.24.0",
+    "scipy": "1.13.1",
+    "tifffile": "2025.5.10",
+    "torch": "2.5.1+cu121"
+  },
+  "cuda": {
+    "available": true,
+    "cudnn": "90100",
+    "gpu_count": 1,
+    "gpus": [
+      "Quadro RTX 5000"
+    ],
+    "torch_cuda": "12.1"
+  },
+  "editable_installation_warning": "Editable dare3d points to an older checkout; audit scripts prepend and verify this checkout.",
+  "historical_environment_status": "absent",
+  "nvidia_smi": "Quadro RTX 5000, 16384 MiB, 581.95",
+  "package_inventory": "evidence/environment_packages.csv",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python_executable": "C:\\Users\\ruppr\\.conda\\envs\\dare3d-v2.0\\python.exe",
+  "python_version": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "training_deterministic": false
+}

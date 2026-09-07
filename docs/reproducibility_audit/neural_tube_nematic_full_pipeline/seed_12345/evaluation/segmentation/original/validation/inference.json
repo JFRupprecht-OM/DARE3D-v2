@@ -1,0 +1,29 @@
+{
+  "checkpoint": {
+    "epoch": 57,
+    "global_step": 3654,
+    "lightning_version": "2.5.6",
+    "path": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+    "sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d"
+  },
+  "completed_at": "2026-09-02T08:20:39.241511+02:00",
+  "inference_batch_size": 12,
+  "model": "original",
+  "probability": {
+    "dtype": "float16",
+    "maximum": 0.0103302001953125,
+    "minimum": 0.0,
+    "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/preflight/released_checkpoint_validation_replay/movie_I2.tif",
+    "sha256": "40cf83a39073a75f5c7edcc8015dc7cabd7ace0ed52db45c6a6bf5c31122d72b",
+    "shape_tzyx": [
+      21,
+      10,
+      1024,
+      1024
+    ]
+  },
+  "reused_preflight_inference": true,
+  "source_replay_result": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/preflight/released_checkpoint_validation_replay/result.json",
+  "split": "validation",
+  "status": "complete"
+}

@@ -1,0 +1,76 @@
+{
+  "accumulate_grad_batches": 1,
+  "architecture": {
+    "_target_": "dare3d.models.components.simple_regression_net.RegressionNet",
+    "angle_vec_size": 9,
+    "im_size": 32,
+    "input_channels": [
+      -1,
+      0,
+      1
+    ],
+    "n_stages": 3,
+    "start_filters": 32
+  },
+  "checkpoint_selection": {
+    "mode": "min",
+    "monitor": "val/loss",
+    "save_last": true,
+    "save_top_k": 1
+  },
+  "compatibility_deviation": null,
+  "configured_epochs": 200,
+  "created_at": "2026-09-01T22:29:01.752241+02:00",
+  "effective_batch_size": 32,
+  "gpu": "Quadro RTX 5000",
+  "loss": {
+    "evaluation_metric": "degrees(acos(clip(abs(unit predicted axis dot unit true axis), 0, 1)))",
+    "length": "32*mean(abs(normalized predicted - true length))",
+    "orientation": "mean(90*(1-(u_pred dot u_true)^2)); nematic-sign and division-axis-roll invariant"
+  },
+  "optimizer": {
+    "_partial_": true,
+    "_target_": "torch.optim.AdamW",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "lr": 0.001,
+    "weight_decay": 0.0001
+  },
+  "physical_batch_size": 32,
+  "production_source_modified": false,
+  "scale_provenance": "manuscript main.tex:128,333-338; scales.json absent",
+  "scheduler": {
+    "_partial_": true,
+    "_target_": "torch.optim.lr_scheduler.OneCycleLR",
+    "epochs": 200,
+    "max_lr": 0.001,
+    "pct_start": 0.1,
+    "steps_per_epoch": 63
+  },
+  "seed": 12345,
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "source_scale_xyz_um": [
+    0.208,
+    0.208,
+    1.0
+  ],
+  "stage": "regression",
+  "target_scale_um": 1.0,
+  "test_movie_reserved_until_evaluation": "movie_M",
+  "train_movie": "movie_E",
+  "trainer": {
+    "accelerator": "gpu",
+    "check_val_every_n_epoch": 1,
+    "detect_anomaly": false,
+    "deterministic": false,
+    "devices": 1,
+    "log_every_n_steps": 5,
+    "max_epochs": 200,
+    "min_epochs": 10,
+    "num_sanity_val_steps": 2,
+    "precision": 32
+  },
+  "validation_movie": "movie_I2"
+}

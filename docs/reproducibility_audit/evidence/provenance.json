@@ -1,0 +1,98 @@
+{
+  "audit_python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+  "git_head": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "git_status": "?? docs/DARE3D_REPRODUCIBILITY_AUDIT_PLAN.md\n?? docs/reproducibility_audit/audit_artifacts.py\n?? docs/reproducibility_audit/evidence/annotation_events.csv\n?? docs/reproducibility_audit/evidence/annotation_summary.json\n?? docs/reproducibility_audit/evidence/arithmetic_and_uncertainty.json\n?? docs/reproducibility_audit/evidence/data_manifest_sha256.csv\n?? docs/reproducibility_audit/evidence/duplicate_artifacts.json\n?? docs/reproducibility_audit/evidence/manuscript_manifest_sha256.csv\n?? docs/reproducibility_audit/evidence/npz_inventory.csv\n?? docs/reproducibility_audit/evidence/saved_detection_reconstruction.json\n?? docs/reproducibility_audit/evidence/saved_matches_membrane_neural_tube.csv\n?? docs/reproducibility_audit/evidence/saved_matches_nuclei_gastruloid.csv\n?? docs/reproducibility_audit/evidence/source_manifest_sha256.csv\n?? docs/reproducibility_audit/evidence/tiff_inventory.csv\n?? manuscript_280826version/Figure7_DARE010426.pdf\n?? manuscript_280826version/figures/3D_TPFNFP.pdf\n?? manuscript_280826version/figures/3D_TPFNFP.svg\n?? manuscript_280826version/figures/3D_TPFNFP.svg.pdf\n?? manuscript_280826version/figures/DARE3d_2.png\n?? manuscript_280826version/figures/DARE3d_nuclei.png\n?? manuscript_280826version/figures/Dare3d_1.png\n?? manuscript_280826version/figures/F1scoreFinal10.pdf\n?? manuscript_280826version/figures/Fig7_01042026_v1.pdf\n?? manuscript_280826version/figures/Figure7_DARE010426.pdf\n?? manuscript_280826version/figures/Figure7_DARE010426.svg\n?? manuscript_280826version/figures/Figure7_DARE010426_2.pdf\n?? manuscript_280826version/figures/FigureOverall3.pdf\n?? manuscript_280826version/figures/Totalexample3.pdf\n?? manuscript_280826version/figures/avian_neuraltube.pdf\n?? manuscript_280826version/figures/avian_neuraltube.png\n?? manuscript_280826version/figures/avian_neuraltube_2.pdf\n?? manuscript_280826version/figures/avian_neuraltube_new.pdf\n?? manuscript_280826version/figures/challenge_annotation_01042026_v1.pdf\n?? manuscript_280826version/figures/challenges_annotations.png\n?? manuscript_280826version/figures/challenges_annotations_old.png\n?? manuscript_280826version/figures/deletme.svg\n?? manuscript_280826version/figures/false_detections.png\n?? manuscript_280826version/figures/false_detections2.jp2\n?? manuscript_280826version/figures/false_detections2.jpg\n?? manuscript_280826version/figures/regression.png\n?? manuscript_280826version/figures/xy_xz_divisions.png\n?? manuscript_280826version/main.tex\n?? manuscript_280826version/refs.bib",
+  "numpy": "1.23.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "released_stats": {
+    "membrane_neural_tube": {
+      "regression_results": {
+        "regression_performance_on_all_groundtruth_centers": {
+          "mean_angle_error": 49.56606674194336,
+          "mean_distance_error": 0.6452796459197998,
+          "mean_length_error": 13.963602066040039,
+          "n": 122,
+          "std_angle_error": 27.10411262512207,
+          "std_distance_error": 0.34596192836761475,
+          "std_length_error": 3.3541419506073
+        },
+        "regression_performance_on_matched_groundtruth_centers": {
+          "mean_angle_error": 48.090576171875,
+          "mean_distance_error": 0.7178862690925598,
+          "mean_length_error": 14.069099426269531,
+          "n": 114,
+          "std_angle_error": 25.732301712036133,
+          "std_distance_error": 0.2639610469341278,
+          "std_length_error": 3.0467329025268555
+        },
+        "regression_performance_on_predicted_centers": {
+          "mean_angle_error": 51.3665657043457,
+          "mean_distance_error": 3.5872504711151123,
+          "mean_length_error": 14.074281692504883,
+          "n": 114,
+          "std_angle_error": 27.63318634033203,
+          "std_distance_error": 1.885632872581482,
+          "std_length_error": 3.2042531967163086
+        }
+      },
+      "segmentation_results": {
+        "fmeasure": 0.9344262295081968,
+        "fn": 8,
+        "fp": 8,
+        "min_weighted_prob": 0.15,
+        "precision": 0.9344262295081968,
+        "recall": 0.9344262295081968,
+        "threshold": 0.5499999999999999,
+        "tp": 114
+      }
+    },
+    "nuclei_gastruloid": {
+      "regression_results": {
+        "regression_performance_on_all_groundtruth_centers": {
+          "mean_angle_error": 25.305946350097656,
+          "mean_distance_error": 0.6222168803215027,
+          "mean_length_error": 1.943732738494873,
+          "n": 145,
+          "std_angle_error": 28.017927169799805,
+          "std_distance_error": 0.5015391707420349,
+          "std_length_error": 1.580136775970459
+        },
+        "regression_performance_on_matched_groundtruth_centers": {
+          "mean_angle_error": 26.309328079223633,
+          "mean_distance_error": 0.6364277601242065,
+          "mean_length_error": 2.0183234214782715,
+          "n": 124,
+          "std_angle_error": 32.02009582519531,
+          "std_distance_error": 0.5226491689682007,
+          "std_length_error": 1.5754529237747192
+        },
+        "regression_performance_on_predicted_centers": {
+          "mean_angle_error": 37.46913146972656,
+          "mean_distance_error": 3.668400526046753,
+          "mean_length_error": 2.1517438888549805,
+          "n": 124,
+          "std_angle_error": 45.57941436767578,
+          "std_distance_error": 2.441033363342285,
+          "std_length_error": 2.0729737281799316
+        }
+      },
+      "segmentation_results": {
+        "fmeasure": 0.9185185185185186,
+        "fn": 21,
+        "fp": 1,
+        "min_weighted_prob": 0.15,
+        "precision": 0.992,
+        "recall": 0.8551724137931035,
+        "threshold": 0.5499999999999999,
+        "tp": 124
+      }
+    }
+  },
+  "scipy": "1.13.1",
+  "zenodo_archive": {
+    "bytes": 7048412887,
+    "md5": "f8df147bb8249aad44b8ef1509d280dd",
+    "path": "DARE3d_data_190326.zip",
+    "sha256": "7eac84aa75d12cc8431d31d55b707823b4eaf986335207d3fa3f4fbb1fd64004"
+  }
+}

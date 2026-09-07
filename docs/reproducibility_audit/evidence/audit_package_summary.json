@@ -1,0 +1,80 @@
+{
+  "audit_date": "2026-08-29",
+  "blocked_core_tasks": [
+    "independent membrane checkpoint inference/matching",
+    "bitwise historical inference",
+    "four-model retraining with distinct untouched test data"
+  ],
+  "claim_counts": {
+    "currently not reproducible": 9,
+    "fully reproducible": 17,
+    "partially reproducible": 19
+  },
+  "fully_reproducible_subclaims": [
+    "DATA-NUC-SHAPE",
+    "DATA-NUC-FRAMES",
+    "DATA-NUC-ANNOTATIONS",
+    "DATA-NUC-LENGTH-MEAN",
+    "DATA-NUC-LENGTH-SEM",
+    "DERIVED-BASELINE-2D",
+    "DERIVED-BASELINE-3D",
+    "DERIVED-UNCERTAINTY-NUC",
+    "DERIVED-UNCERTAINTY-MEM",
+    "PROTOCOL-N-FRAMES",
+    "PROTOCOL-SEG-CROP",
+    "PROTOCOL-REG-CROP",
+    "PROTOCOL-RADIUS",
+    "PROTOCOL-SEG-ARCH",
+    "PROTOCOL-REG-SVD",
+    "PROTOCOL-F1",
+    "PROTOCOL-CI"
+  ],
+  "ledgers": {
+    "acquisition": "evidence/acquisition_ledger.csv",
+    "artifacts": "evidence/artifact_ledger.csv",
+    "claims": "evidence/claim_ledger.csv",
+    "commands": "evidence/command_ledger.csv",
+    "environment": "evidence/environment_ledger.csv",
+    "packages": "evidence/environment_packages.csv",
+    "tests": "evidence/test_ledger.csv"
+  },
+  "numerically_strong_partial_results": [
+    "Nuclei segmentation epoch_067 reproduces 124/1/21 and F1 .9185185 under log-reconstructed geometry.",
+    "Nuclei regression epoch_098 reproduces all 21 aggregates within .02.",
+    "Membrane probability reconstructs 122 predictions consistent with 114 TP + 8 FP; matching cannot be rerun.",
+    "Fixed-prediction nematic-axis means are 14.89 degrees for nuclei and 36.63 degrees for membrane in all-GT mode.",
+    "Fresh nuclei nematic-loss retraining lowers the corrected all-GT mean from 14.894 to 12.575 degrees; predicted-center improvement is not material."
+  ],
+  "overall_classification": "currently not reproducible",
+  "package_assertions": {
+    "45_unique_claims": true,
+    "all_claims_classified": true,
+    "archive_md5_published": true,
+    "artifact_ledger_complete": true,
+    "environment_inventory_nonempty": true,
+    "membrane_122_components": true,
+    "nematic_axis_comparison": true,
+    "nematic_retraining_evaluation": true,
+    "nematic_retraining_preflight": true,
+    "nuclei_reg_best_within_0_02": true,
+    "nuclei_saved_replay_exact": true,
+    "nuclei_seg_best_exact_objects": true,
+    "prior_suites_pass": true,
+    "source_commit_frozen": true
+  },
+  "prior_suite_assertions": {
+    "membrane_components": true,
+    "nematic_axis_metric": true,
+    "nematic_retraining_evaluation": true,
+    "nematic_retraining_preflight": true,
+    "nuclei_regression_checkpoint": true,
+    "nuclei_segmentation_checkpoint": true,
+    "regression_artifact_analysis": true,
+    "scientific_edge_cases": true,
+    "workflow_paths": true
+  },
+  "reason": "End-to-end reproduction/retraining is blocked by missing neural raw data/annotations, missing scales and historical source/environment, non-independent validation/test splits, and metric/protocol discrepancies.",
+  "report": "docs/reproducibility_audit/DARE3D_REPRODUCIBILITY_AUDIT_REPORT.md",
+  "scope": "Entire current DARE3D pipeline versus active manuscript claims",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123"
+}

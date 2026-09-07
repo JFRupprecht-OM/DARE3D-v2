@@ -1,0 +1,69 @@
+{
+  "annotation_events": 935,
+  "annotation_files": 17,
+  "data_files": 278,
+  "f1": {
+    "membrane_neural_tube": {
+      "delta_se": 0.016358159412559206,
+      "f1": 0.9344262295081968,
+      "fn": 8,
+      "fp": 8,
+      "logit_delta_95_ci": [
+        0.8941176865432374,
+        0.9600748436514666
+      ],
+      "normal_95_ci": [
+        0.9023648262062158,
+        0.9664876328101777
+      ],
+      "tp": 114
+    },
+    "nuclei_gastruloid": {
+      "delta_se": 0.01731414611497917,
+      "f1": 0.9185185185185185,
+      "fn": 21,
+      "fp": 1,
+      "logit_delta_95_ci": [
+        0.8774998528280741,
+        0.9466375024908354
+      ],
+      "normal_95_ci": [
+        0.8845834157100952,
+        0.9524536213269418
+      ],
+      "tp": 124
+    }
+  },
+  "manuscript_files": 29,
+  "npz_arrays": 12,
+  "saved_detection": [
+    {
+      "case": "nuclei_gastruloid",
+      "independent_matches_tolerance_10": 121,
+      "independent_matches_tolerance_16": 124,
+      "pred_events_reconstructed": 125,
+      "saved_fn_unmatched_components": 21,
+      "saved_fp_unmatched_components": 1,
+      "saved_match_max_dt": 2,
+      "saved_match_max_spatial_distance": 15.811388300841896,
+      "saved_matches_over_10_voxels": 4,
+      "saved_tp_shared_ids": 124,
+      "true_events_reconstructed": 145
+    },
+    {
+      "case": "membrane_neural_tube",
+      "independent_matches_tolerance_10": 114,
+      "independent_matches_tolerance_16": 114,
+      "pred_events_reconstructed": 121,
+      "saved_fn_unmatched_components": 8,
+      "saved_fp_unmatched_components": 7,
+      "saved_match_max_dt": 1,
+      "saved_match_max_spatial_distance": 8.54400374531753,
+      "saved_matches_over_10_voxels": 0,
+      "saved_tp_shared_ids": 114,
+      "true_events_reconstructed": 122
+    }
+  ],
+  "tiff_files": 230,
+  "tracked_source_files": 222
+}

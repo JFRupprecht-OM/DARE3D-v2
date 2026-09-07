@@ -1,0 +1,4318 @@
+{
+  "acceptance_assertions": {
+    "crop_parity.profile_shapes_match": true,
+    "crop_parity.raw_midpoint_mapping_differs_by_at_most_one_per_axis": true,
+    "crop_parity.same_grid_center_crops_are_byte_identical": true,
+    "crop_parity.training_and_inference_full_movies_are_byte_identical": true,
+    "neural_tube.all_centers_link_to_annotations": true,
+    "neural_tube.all_checkpoint_profiles_have_expected_shape": true,
+    "neural_tube.both_existing_checkpoints_loaded": true,
+    "neural_tube.center_counts_unchanged": true,
+    "neural_tube.corrected_path_recovers_retrained_improvement_over_legacy_raw": true,
+    "neural_tube.predicted_center_mode_reuses_matched_ground_truth_objects": true,
+    "neural_tube.retrained_improves_on_same_0208_grid_at_predicted_centers": true,
+    "nuclei.both_existing_checkpoints_loaded": true,
+    "nuclei.detector_center_counts_unchanged": true,
+    "nuclei.original_predicted_center_mean_angle_not_degraded_over_2_deg": true,
+    "nuclei.original_predicted_center_mean_length_error_not_degraded_over_1_voxel": true,
+    "nuclei.predicted_center_mode_reuses_matched_ground_truth_objects": true,
+    "nuclei.target_association_effective_counts_unchanged": true
+  },
+  "completed_at": "2026-09-03T06:54:47.476419+02:00",
+  "cuda": {
+    "available": true,
+    "device": "Quadro RTX 5000"
+  },
+  "outputs": {
+    "crop_parity": "docs/reproducibility_audit/regression_preprocessing_fix_validation/crop_parity.csv",
+    "neural_tube_events": "docs/reproducibility_audit/regression_preprocessing_fix_validation/neural_tube_event_metrics.csv",
+    "nuclei_events": "docs/reproducibility_audit/regression_preprocessing_fix_validation/nuclei_event_metrics.csv",
+    "report": "docs/reproducibility_audit/regression_preprocessing_fix_validation/REGRESSION_PREPROCESSING_FIX_VALIDATION.md",
+    "report_sha256": "91340de28bd3fcf35dceff619ef81a96580ded9acdb8c9218ef9f173f5827863"
+  },
+  "phases": {
+    "crop_parity": {
+      "assertions": {
+        "profile_shapes_match": true,
+        "raw_midpoint_mapping_differs_by_at_most_one_per_axis": true,
+        "same_grid_center_crops_are_byte_identical": true,
+        "training_and_inference_full_movies_are_byte_identical": true
+      },
+      "completed_at": "2026-09-03T00:26:07.932960+02:00",
+      "outputs": {
+        "event_csv": "docs/reproducibility_audit/regression_preprocessing_fix_validation/crop_parity.csv",
+        "event_csv_sha256": "cd9e512ff6e45c397de7d0907257a57dc69c32838130223030a9f990762d2b79"
+      },
+      "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+      "profiles": {
+        "nematic_retrained_native_0208": {
+          "exact_raw_midpoint_crop_count": 49,
+          "exact_same_grid_crop_count": 123,
+          "expected_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "full_processed_movie_byte_identical": true,
+          "mapped_center_offset_regression_voxels": {
+            "maximum": 1.7320508075688772,
+            "mean": 0.6775134902457444,
+            "median": 1.0,
+            "minimum": 0.0,
+            "n": 123,
+            "nominal_n": 123,
+            "p05": 0.0,
+            "p25": 0.0,
+            "p75": 1.0,
+            "p95": 1.4142135623730951,
+            "rms": 0.8880416016036984,
+            "sem": 0.051765053716689984,
+            "std_population": 0.5741022180011948
+          },
+          "maximum_raw_midpoint_crop_abs_difference": 0.5104926824569702,
+          "maximum_same_grid_crop_abs_difference": 0.0,
+          "observed_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "preprocessing_manifest": {
+            "mode": "training_consistent",
+            "movies": [
+              {
+                "center_order": "MTXYZ",
+                "crop_size_xyz": [
+                  32,
+                  32,
+                  32
+                ],
+                "declared_source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "disk_order": "TZYX",
+                "input_channels": [
+                  -1,
+                  0,
+                  1
+                ],
+                "internal_order": "TXYZ",
+                "mode": "training_consistent",
+                "movie_name": "movie_I2",
+                "normalization": "min-max",
+                "normalization_after_padding": true,
+                "padding_mode": "constant",
+                "padding_xyz": [
+                  16,
+                  16,
+                  16
+                ],
+                "physical_crop_size_xyz": [
+                  32.0,
+                  32.0,
+                  32.0
+                ],
+                "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                "raw_shape_xyz": [
+                  1024,
+                  1024,
+                  10
+                ],
+                "realized_shape_scale_factor_xyz": [
+                  0.20703125,
+                  0.20703125,
+                  1.0
+                ],
+                "regression_shape_xyz": [
+                  212,
+                  212,
+                  10
+                ],
+                "resize_clip": true,
+                "resize_library": "skimage.transform.resize",
+                "resize_mode": "reflect",
+                "resize_order": 1,
+                "resize_preserve_range": true,
+                "scale_factor_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                "scale_source": "default_scale",
+                "schema_version": 1,
+                "source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                "target_spacing_xyz": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "schema_version": 1
+          },
+          "shape_matches_profile": true,
+          "training_crop_count": 123
+        },
+        "released_original_native_0621": {
+          "exact_raw_midpoint_crop_count": 62,
+          "exact_same_grid_crop_count": 123,
+          "expected_shape_xyz": [
+            635,
+            635,
+            20
+          ],
+          "full_processed_movie_byte_identical": true,
+          "mapped_center_offset_regression_voxels": {
+            "maximum": 1.4142135623730951,
+            "mean": 0.5329784486675125,
+            "median": 0.0,
+            "minimum": 0.0,
+            "n": 123,
+            "nominal_n": 123,
+            "p05": 0.0,
+            "p25": 0.0,
+            "p75": 1.0,
+            "p95": 1.4142135623730951,
+            "rms": 0.7650920556760059,
+            "sem": 0.0494933539855185,
+            "std_population": 0.548907849201037
+          },
+          "maximum_raw_midpoint_crop_abs_difference": 0.29941922426223755,
+          "maximum_same_grid_crop_abs_difference": 0.0,
+          "observed_shape_xyz": [
+            635,
+            635,
+            20
+          ],
+          "preprocessing_manifest": {
+            "mode": "training_consistent",
+            "movies": [
+              {
+                "center_order": "MTXYZ",
+                "crop_size_xyz": [
+                  32,
+                  32,
+                  32
+                ],
+                "declared_source_spacing_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "disk_order": "TZYX",
+                "input_channels": [
+                  -1,
+                  0,
+                  1
+                ],
+                "internal_order": "TXYZ",
+                "mode": "training_consistent",
+                "movie_name": "movie_I2",
+                "normalization": "min-max",
+                "normalization_after_padding": true,
+                "padding_mode": "constant",
+                "padding_xyz": [
+                  16,
+                  16,
+                  16
+                ],
+                "physical_crop_size_xyz": [
+                  32.0,
+                  32.0,
+                  32.0
+                ],
+                "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                "raw_shape_xyz": [
+                  1024,
+                  1024,
+                  10
+                ],
+                "realized_shape_scale_factor_xyz": [
+                  0.6201171875,
+                  0.6201171875,
+                  2.0
+                ],
+                "regression_shape_xyz": [
+                  635,
+                  635,
+                  20
+                ],
+                "resize_clip": true,
+                "resize_library": "skimage.transform.resize",
+                "resize_mode": "reflect",
+                "resize_order": 1,
+                "resize_preserve_range": true,
+                "scale_factor_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                "scale_source": "default_scale",
+                "schema_version": 1,
+                "source_spacing_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                "target_spacing_xyz": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "schema_version": 1
+          },
+          "shape_matches_profile": true,
+          "training_crop_count": 123
+        }
+      },
+      "status": "complete",
+      "validator_hash": "65a2b0afd7df7ce36c397fd28537c138428404664b07f9e8ea6a336d5813e16e"
+    },
+    "neural_tube": {
+      "assertions": {
+        "all_centers_link_to_annotations": true,
+        "all_checkpoint_profiles_have_expected_shape": true,
+        "both_existing_checkpoints_loaded": true,
+        "center_counts_unchanged": true,
+        "corrected_path_recovers_retrained_improvement_over_legacy_raw": true,
+        "predicted_center_mode_reuses_matched_ground_truth_objects": true,
+        "retrained_improves_on_same_0208_grid_at_predicted_centers": true
+      },
+      "checkpoints": {
+        "original": {
+          "epoch": 147,
+          "global_step": 9324,
+          "path": "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt",
+          "sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b"
+        },
+        "retrained": {
+          "epoch": 139,
+          "global_step": 8820,
+          "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/regression_nematic_retrained/checkpoints/epoch_139.ckpt",
+          "sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b"
+        }
+      },
+      "comparisons": {
+        "retrained_corrected_path_vs_prior_legacy_raw_predicted_centers": {
+          "difference_deg": -31.5736841250895,
+          "legacy_raw_mean_deg": 45.921165466308594,
+          "training_consistent_mean_deg": 14.347481341219094
+        },
+        "same_0208_grid_predicted_centers": {
+          "original_mean_deg": 47.351361303840434,
+          "relative_change_percent": -69.6999601571002,
+          "retrained_mean_deg": 14.347481341219094,
+          "retrained_minus_original_mean_deg": -33.00387996262134
+        }
+      },
+      "completed_at": "2026-09-03T00:29:37.262340+02:00",
+      "inference": {
+        "nematic_retrained_native_0208": {
+          "all_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_nematic_retrained_native_0208_all_groundtruth_centers.npz",
+            "archive_sha256": "870ff59820a515af3452bd02ae7b7003d83e3f8c560916c22be3058f9e2acc62",
+            "completed_at": "2026-09-03T00:29:30.573031+02:00",
+            "elapsed_seconds": 3.37151170001016,
+            "identity": {
+              "centers_sha256": "37fca4d2b5238d2c5084b07126b9c8e2a553996a8fbe42492ca9418628472d74",
+              "checkpoint_sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 122,
+            "reused_this_run": false
+          },
+          "matched_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_nematic_retrained_native_0208_matched_groundtruth_centers.npz",
+            "archive_sha256": "367820f342b81b084073a8efd24dc4c07342d92a62855da208905ed43ef0a40b",
+            "completed_at": "2026-09-03T00:29:33.772587+02:00",
+            "elapsed_seconds": 3.10740180000721,
+            "identity": {
+              "centers_sha256": "40e73a23f866913ce44dde34ce2513973d5e371ae7b463697ef77fc43d07a854",
+              "checkpoint_sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          },
+          "predicted_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_nematic_retrained_native_0208_predicted_centers.npz",
+            "archive_sha256": "45f835e4bf44c081c3feec35cf0a20e9a6d7c0a0e2e005e6b444818577d0aaea",
+            "completed_at": "2026-09-03T00:29:36.879611+02:00",
+            "elapsed_seconds": 3.0152940999978455,
+            "identity": {
+              "centers_sha256": "326711c77fb41150bd1c10772784b4b7f78a2678f8cec30cce72a2c8f12f3298",
+              "checkpoint_sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          }
+        },
+        "released_original_common_0208": {
+          "all_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_common_0208_all_groundtruth_centers.npz",
+            "archive_sha256": "328b0c78bbcda0c45616884a768a95b5c92485cd8ff3be8af0dd691ec7a05870",
+            "completed_at": "2026-09-03T00:28:55.039350+02:00",
+            "elapsed_seconds": 3.359940299997106,
+            "identity": {
+              "centers_sha256": "37fca4d2b5238d2c5084b07126b9c8e2a553996a8fbe42492ca9418628472d74",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 122,
+            "reused_this_run": false
+          },
+          "matched_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_common_0208_matched_groundtruth_centers.npz",
+            "archive_sha256": "9552ca26aef2f0c000cf813612cc7e3e01d4e52588e65873ca42d4ff0585f21c",
+            "completed_at": "2026-09-03T00:28:58.089007+02:00",
+            "elapsed_seconds": 2.962881399987964,
+            "identity": {
+              "centers_sha256": "40e73a23f866913ce44dde34ce2513973d5e371ae7b463697ef77fc43d07a854",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          },
+          "predicted_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_common_0208_predicted_centers.npz",
+            "archive_sha256": "c93db3d5e7ba5e65bc331541c73131a8ed5cbe2ba09d47e229c9749fd695221d",
+            "completed_at": "2026-09-03T00:29:01.168803+02:00",
+            "elapsed_seconds": 2.9971414000028744,
+            "identity": {
+              "centers_sha256": "326711c77fb41150bd1c10772784b4b7f78a2678f8cec30cce72a2c8f12f3298",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.20703125,
+                      0.20703125,
+                      1.0
+                    ],
+                    "regression_shape_xyz": [
+                      212,
+                      212,
+                      10
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.208,
+                      0.208,
+                      1.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          }
+        },
+        "released_original_native_0621": {
+          "all_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_native_0621_all_groundtruth_centers.npz",
+            "archive_sha256": "7d8f0f34f6641bc48f2383c4d8786eb0587c4a96f5fab965d2b9996da12a9002",
+            "completed_at": "2026-09-03T00:27:49.170012+02:00",
+            "elapsed_seconds": 16.712009700000635,
+            "identity": {
+              "centers_sha256": "37fca4d2b5238d2c5084b07126b9c8e2a553996a8fbe42492ca9418628472d74",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.6201171875,
+                      0.6201171875,
+                      2.0
+                    ],
+                    "regression_shape_xyz": [
+                      635,
+                      635,
+                      20
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 122,
+            "reused_this_run": false
+          },
+          "matched_groundtruth_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_native_0621_matched_groundtruth_centers.npz",
+            "archive_sha256": "288a3caf4c9d3ada1dd187e9f1ca626805d02e776e1ec1a51f1926a946a500bd",
+            "completed_at": "2026-09-03T00:28:08.011231+02:00",
+            "elapsed_seconds": 18.74957360001281,
+            "identity": {
+              "centers_sha256": "40e73a23f866913ce44dde34ce2513973d5e371ae7b463697ef77fc43d07a854",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.6201171875,
+                      0.6201171875,
+                      2.0
+                    ],
+                    "regression_shape_xyz": [
+                      635,
+                      635,
+                      20
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          },
+          "predicted_centers": {
+            "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/neural_released_original_native_0621_predicted_centers.npz",
+            "archive_sha256": "8d3ea9c5f3ef359b6d37a1ed89610ec0498add6e652f3a5fd9decaa6d5aee24a",
+            "completed_at": "2026-09-03T00:28:25.238267+02:00",
+            "elapsed_seconds": 17.14256320000277,
+            "identity": {
+              "centers_sha256": "326711c77fb41150bd1c10772784b4b7f78a2678f8cec30cce72a2c8f12f3298",
+              "checkpoint_sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b",
+              "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+              "preprocessing_manifest": {
+                "mode": "training_consistent",
+                "movies": [
+                  {
+                    "center_order": "MTXYZ",
+                    "crop_size_xyz": [
+                      32,
+                      32,
+                      32
+                    ],
+                    "declared_source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "disk_order": "TZYX",
+                    "input_channels": [
+                      -1,
+                      0,
+                      1
+                    ],
+                    "internal_order": "TXYZ",
+                    "mode": "training_consistent",
+                    "movie_name": "movie_I2",
+                    "normalization": "min-max",
+                    "normalization_after_padding": true,
+                    "padding_mode": "constant",
+                    "padding_xyz": [
+                      16,
+                      16,
+                      16
+                    ],
+                    "physical_crop_size_xyz": [
+                      32.0,
+                      32.0,
+                      32.0
+                    ],
+                    "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                    "raw_shape_xyz": [
+                      1024,
+                      1024,
+                      10
+                    ],
+                    "realized_shape_scale_factor_xyz": [
+                      0.6201171875,
+                      0.6201171875,
+                      2.0
+                    ],
+                    "regression_shape_xyz": [
+                      635,
+                      635,
+                      20
+                    ],
+                    "resize_clip": true,
+                    "resize_library": "skimage.transform.resize",
+                    "resize_mode": "reflect",
+                    "resize_order": 1,
+                    "resize_preserve_range": true,
+                    "scale_factor_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                    "scale_source": "default_scale",
+                    "schema_version": 1,
+                    "source_spacing_xyz": [
+                      0.621,
+                      0.621,
+                      2.0
+                    ],
+                    "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                    "target_spacing_xyz": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "schema_version": 1
+              },
+              "schema_version": 1
+            },
+            "n": 114,
+            "reused_this_run": false
+          }
+        }
+      },
+      "outputs": {
+        "event_csv": "docs/reproducibility_audit/regression_preprocessing_fix_validation/neural_tube_event_metrics.csv",
+        "event_csv_sha256": "960f180323fa2661e013ab238a370885908a82cf5fe068a5e38825aaccfc3aa7"
+      },
+      "pipeline_hash": "87a44935aae6e3b2987012f02791c8fde9988e9e352c9aa97c9edd0f48a3de6f",
+      "prior_legacy_raw_reference": {
+        "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/released_movie_I2_center_replay/result.json",
+        "summary": {
+          "original": {
+            "all_groundtruth_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 21.597286144536575,
+                "mean": 13.964146614074707,
+                "median": 13.94070482057785,
+                "minimum": 1.6040872902434273,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 9.193613784422851,
+                "p25": 12.033478180985963,
+                "p75": 16.076783667247856,
+                "p95": 19.829370910199483,
+                "rms": 14.361327334199169,
+                "sem": 0.30367056407608956,
+                "std_population": 3.3541510105133057
+              },
+              "center_distance_voxels": {
+                "maximum": 2.29128784747792,
+                "mean": 0.6452796459197998,
+                "median": 0.7071067811865476,
+                "minimum": 0.0,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 0.0,
+                "p25": 0.5,
+                "p75": 0.8000116008108471,
+                "p95": 1.219409327259503,
+                "rms": 0.7321717169133553,
+                "sem": 0.031321921287070356,
+                "std_population": 0.34596192836761475
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 88.959391321323,
+                "mean": 36.67953872680664,
+                "median": 32.839515771398126,
+                "minimum": 5.4669648716718475,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 9.815738480890497,
+                "p25": 18.96194662125677,
+                "p75": 46.281974829401285,
+                "p95": 83.95117662861816,
+                "rms": 42.844618222765945,
+                "sem": 2.004652349776693,
+                "std_population": 22.142108917236328
+              },
+              "n": 122,
+              "production_quaternion_error_deg": {
+                "maximum": 166.78723934335437,
+                "mean": 49.563133239746094,
+                "median": 40.43417058650783,
+                "minimum": 12.775222547969843,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 19.93548088126041,
+                "p25": 33.931845070504494,
+                "p75": 60.38923819593191,
+                "p95": 102.4695350253399,
+                "rms": 56.49164372385714,
+                "sem": 2.454173394419268,
+                "std_population": 27.10723114013672
+              },
+              "undefined_corrected_axis_count": 0
+            },
+            "matched_groundtruth_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 21.597286144536575,
+                "mean": 14.069661140441895,
+                "median": 13.94070482057785,
+                "minimum": 5.58040178116314,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 9.408275201118274,
+                "p25": 12.194756270580715,
+                "p75": 16.056587529161757,
+                "p95": 19.814550408775435,
+                "rms": 14.39577221691281,
+                "sem": 0.2853573924371488,
+                "std_population": 3.046783208847046
+              },
+              "center_distance_voxels": {
+                "maximum": 1.6689734109559275,
+                "mean": 0.7178862690925598,
+                "median": 0.6136671051054622,
+                "minimum": 0.14784633294528504,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 0.35215366705471496,
+                "p25": 0.534296028880866,
+                "p75": 0.7899444317292723,
+                "p95": 1.2529039370034436,
+                "rms": 0.764876536404707,
+                "sem": 0.02472221713687537,
+                "std_population": 0.2639610469341278
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 88.959391321323,
+                "mean": 35.52560043334961,
+                "median": 30.12255101433651,
+                "minimum": 5.4669648716718475,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 9.663597960678832,
+                "p25": 18.937263735580984,
+                "p75": 46.18807812753847,
+                "p95": 83.15117638229133,
+                "rms": 41.51872183176772,
+                "sem": 2.0125392461777207,
+                "std_population": 21.488039016723633
+              },
+              "n": 114,
+              "production_quaternion_error_deg": {
+                "maximum": 166.78723934335437,
+                "mean": 48.087181091308594,
+                "median": 40.35589481490809,
+                "minimum": 12.775222547969843,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 19.66153385317458,
+                "p25": 33.52937496470881,
+                "p75": 56.09676385353352,
+                "p95": 100.08486232492787,
+                "rms": 54.54063946899024,
+                "sem": 2.4103300819260256,
+                "std_population": 25.73528289794922
+              },
+              "undefined_corrected_axis_count": 0
+            },
+            "predicted_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 22.055789867681106,
+                "mean": 14.074657440185547,
+                "median": 13.984934716265755,
+                "minimum": 4.604255083165093,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 8.93348635570401,
+                "p25": 12.239471261257382,
+                "p75": 16.01673818124389,
+                "p95": 20.20567582802093,
+                "rms": 14.434759592932762,
+                "sem": 0.30009218680901545,
+                "std_population": 3.2041077613830566
+              },
+              "center_distance_voxels": {
+                "maximum": 8.200609733428363,
+                "mean": 3.5872504711151123,
+                "median": 3.24037034920393,
+                "minimum": 0.0,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 1.118033988749895,
+                "p25": 2.0764946954965335,
+                "p75": 4.834295520810437,
+                "p95": 7.272068805188863,
+                "rms": 4.052650663708032,
+                "sem": 0.17660569943118481,
+                "std_population": 1.885632872581482
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 89.40428545150905,
+                "mean": 36.076576232910156,
+                "median": 32.15343055247611,
+                "minimum": 5.072896586852547,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 11.588864364394494,
+                "p25": 19.817699047146924,
+                "p75": 47.405696658355545,
+                "p95": 77.04200844290008,
+                "rms": 41.251739590952184,
+                "sem": 1.873609111462293,
+                "std_population": 20.004671096801758
+              },
+              "n": 114,
+              "production_quaternion_error_deg": {
+                "maximum": 178.28966932168427,
+                "mean": 51.362239837646484,
+                "median": 44.522585509037,
+                "minimum": 10.32866267262634,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 20.90039962603399,
+                "p25": 33.36597081363027,
+                "p75": 60.912350653573085,
+                "p95": 110.450067111212,
+                "rms": 58.32419648616069,
+                "sem": 2.588151658073193,
+                "std_population": 27.63389778137207
+              },
+              "undefined_corrected_axis_count": 0
+            }
+          },
+          "retrained": {
+            "all_groundtruth_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 33.90057327859572,
+                "mean": 26.552997589111328,
+                "median": 26.79058297540324,
+                "minimum": 10.660249295755108,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 20.732116656443065,
+                "p25": 24.574643756050676,
+                "p75": 28.520130707160213,
+                "p95": 32.75821653491567,
+                "rms": 26.790996849242134,
+                "sem": 0.3225895446434571,
+                "std_population": 3.5631179809570312
+              },
+              "center_distance_voxels": {
+                "maximum": 2.29128784747792,
+                "mean": 0.6452796459197998,
+                "median": 0.7071067811865476,
+                "minimum": 0.0,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 0.0,
+                "p25": 0.5,
+                "p75": 0.8000116008108471,
+                "p95": 1.219409327259503,
+                "rms": 0.7321717169133553,
+                "sem": 0.031321921287070356,
+                "std_population": 0.34596192836761475
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 88.94625774761096,
+                "mean": 43.93864059448242,
+                "median": 43.00415172760826,
+                "minimum": 3.2708883005960425,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 8.495664792133597,
+                "p25": 20.347884681499757,
+                "p75": 64.5340744103296,
+                "p95": 80.50337747977031,
+                "rms": 50.48876950537909,
+                "sem": 2.25161475516356,
+                "std_population": 24.869897842407227
+              },
+              "n": 122,
+              "production_quaternion_error_deg": {
+                "maximum": 179.67969298714632,
+                "mean": 130.60235595703125,
+                "median": 146.97130567777654,
+                "minimum": 27.719583333404543,
+                "n": 122,
+                "nominal_n": 122,
+                "p05": 38.64953300823523,
+                "p25": 100.63419133150413,
+                "p75": 170.60992120930285,
+                "p95": 177.65121663244557,
+                "rms": 138.9069024111434,
+                "sem": 4.283163727018852,
+                "std_population": 47.30908966064453
+              },
+              "undefined_corrected_axis_count": 0
+            },
+            "matched_groundtruth_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 33.90057327859572,
+                "mean": 26.6978702545166,
+                "median": 26.79058297540324,
+                "minimum": 16.841579797825737,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 21.68671106571018,
+                "p25": 24.841101188244394,
+                "p75": 28.520130707160213,
+                "p95": 32.57313114112102,
+                "rms": 26.883966120457984,
+                "sem": 0.29575111135796683,
+                "std_population": 3.1577577590942383
+              },
+              "center_distance_voxels": {
+                "maximum": 1.6689734109559275,
+                "mean": 0.7178862690925598,
+                "median": 0.6136671051054622,
+                "minimum": 0.14784633294528504,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 0.35215366705471496,
+                "p25": 0.534296028880866,
+                "p75": 0.7899444317292723,
+                "p95": 1.2529039370034436,
+                "rms": 0.764876536404707,
+                "sem": 0.02472221713687537,
+                "std_population": 0.2639610469341278
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 88.94625774761096,
+                "mean": 44.553653717041016,
+                "median": 43.00415172760826,
+                "minimum": 3.2708883005960425,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 8.664304338621056,
+                "p25": 20.347884681499757,
+                "p75": 67.10642431249886,
+                "p95": 82.71793918644818,
+                "rms": 51.09647159073662,
+                "sem": 2.3430020797050215,
+                "std_population": 25.016416549682617
+              },
+              "n": 114,
+              "production_quaternion_error_deg": {
+                "maximum": 179.67969298714632,
+                "mean": 130.21717834472656,
+                "median": 146.97130567777654,
+                "minimum": 27.719583333404543,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 38.67666338110321,
+                "p25": 98.0218756633402,
+                "p75": 170.7639345254339,
+                "p95": 177.7958624123011,
+                "rms": 138.63259818070028,
+                "sem": 4.454924947875257,
+                "std_population": 47.565582275390625
+              },
+              "undefined_corrected_axis_count": 0
+            },
+            "predicted_centers": {
+              "absolute_length_error_voxels": {
+                "maximum": 34.75010434750899,
+                "mean": 26.75083351135254,
+                "median": 26.808184744113145,
+                "minimum": 16.694637182316704,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 21.57166254532431,
+                "p25": 25.105355406899065,
+                "p75": 28.587896736317617,
+                "p95": 32.26725364026974,
+                "rms": 26.934642473533945,
+                "sem": 0.2942119528510798,
+                "std_population": 3.141324043273926
+              },
+              "center_distance_voxels": {
+                "maximum": 8.200609733428363,
+                "mean": 3.5872504711151123,
+                "median": 3.24037034920393,
+                "minimum": 0.0,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 1.118033988749895,
+                "p25": 2.0764946954965335,
+                "p75": 4.834295520810437,
+                "p95": 7.272068805188863,
+                "rms": 4.052650663708032,
+                "sem": 0.17660569943118481,
+                "std_population": 1.885632872581482
+              },
+              "corrected_nematic_axis_error_deg": {
+                "maximum": 89.83411954599347,
+                "mean": 45.921165466308594,
+                "median": 43.48051408737231,
+                "minimum": 1.7621589840064666,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 7.288824279043561,
+                "p25": 25.607857249217062,
+                "p75": 65.55147540676492,
+                "p95": 85.41089533653917,
+                "rms": 51.903599427635456,
+                "sem": 2.265745469005109,
+                "std_population": 24.19154167175293
+              },
+              "n": 114,
+              "production_quaternion_error_deg": {
+                "maximum": 179.86340830606704,
+                "mean": 130.701171875,
+                "median": 148.81710903309283,
+                "minimum": 14.772025531468367,
+                "n": 114,
+                "nominal_n": 114,
+                "p05": 40.360935559425066,
+                "p25": 101.8270484881117,
+                "p75": 170.92444295202998,
+                "p95": 178.61423170534042,
+                "rms": 139.15722040990698,
+                "sem": 4.4740315213737025,
+                "std_population": 47.76958465576172
+              },
+              "undefined_corrected_axis_count": 0
+            }
+          }
+        }
+      },
+      "profiles": {
+        "nematic_retrained_native_0208": {
+          "expected_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "id": "nematic_retrained_native_0208",
+          "loaded_network_keys": 41,
+          "model": "retrained",
+          "observed_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "preprocessing_manifest": {
+            "mode": "training_consistent",
+            "movies": [
+              {
+                "center_order": "MTXYZ",
+                "crop_size_xyz": [
+                  32,
+                  32,
+                  32
+                ],
+                "declared_source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "disk_order": "TZYX",
+                "input_channels": [
+                  -1,
+                  0,
+                  1
+                ],
+                "internal_order": "TXYZ",
+                "mode": "training_consistent",
+                "movie_name": "movie_I2",
+                "normalization": "min-max",
+                "normalization_after_padding": true,
+                "padding_mode": "constant",
+                "padding_xyz": [
+                  16,
+                  16,
+                  16
+                ],
+                "physical_crop_size_xyz": [
+                  32.0,
+                  32.0,
+                  32.0
+                ],
+                "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                "raw_shape_xyz": [
+                  1024,
+                  1024,
+                  10
+                ],
+                "realized_shape_scale_factor_xyz": [
+                  0.20703125,
+                  0.20703125,
+                  1.0
+                ],
+                "regression_shape_xyz": [
+                  212,
+                  212,
+                  10
+                ],
+                "resize_clip": true,
+                "resize_library": "skimage.transform.resize",
+                "resize_mode": "reflect",
+                "resize_order": 1,
+                "resize_preserve_range": true,
+                "scale_factor_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                "scale_source": "default_scale",
+                "schema_version": 1,
+                "source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                "target_spacing_xyz": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "schema_version": 1
+          },
+          "provenance": "saved retraining experiment configuration",
+          "shape_matches_profile": true,
+          "source_spacing_xyz_um": [
+            0.208,
+            0.208,
+            1.0
+          ]
+        },
+        "released_original_common_0208": {
+          "expected_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "id": "released_original_common_0208",
+          "loaded_network_keys": 41,
+          "model": "original",
+          "observed_shape_xyz": [
+            212,
+            212,
+            10
+          ],
+          "preprocessing_manifest": {
+            "mode": "training_consistent",
+            "movies": [
+              {
+                "center_order": "MTXYZ",
+                "crop_size_xyz": [
+                  32,
+                  32,
+                  32
+                ],
+                "declared_source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "disk_order": "TZYX",
+                "input_channels": [
+                  -1,
+                  0,
+                  1
+                ],
+                "internal_order": "TXYZ",
+                "mode": "training_consistent",
+                "movie_name": "movie_I2",
+                "normalization": "min-max",
+                "normalization_after_padding": true,
+                "padding_mode": "constant",
+                "padding_xyz": [
+                  16,
+                  16,
+                  16
+                ],
+                "physical_crop_size_xyz": [
+                  32.0,
+                  32.0,
+                  32.0
+                ],
+                "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                "raw_shape_xyz": [
+                  1024,
+                  1024,
+                  10
+                ],
+                "realized_shape_scale_factor_xyz": [
+                  0.20703125,
+                  0.20703125,
+                  1.0
+                ],
+                "regression_shape_xyz": [
+                  212,
+                  212,
+                  10
+                ],
+                "resize_clip": true,
+                "resize_library": "skimage.transform.resize",
+                "resize_mode": "reflect",
+                "resize_order": 1,
+                "resize_preserve_range": true,
+                "scale_factor_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                "scale_source": "default_scale",
+                "schema_version": 1,
+                "source_spacing_xyz": [
+                  0.208,
+                  0.208,
+                  1.0
+                ],
+                "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                "target_spacing_xyz": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "schema_version": 1
+          },
+          "provenance": "common-grid diagnostic using manuscript calibration",
+          "shape_matches_profile": true,
+          "source_spacing_xyz_um": [
+            0.208,
+            0.208,
+            1.0
+          ]
+        },
+        "released_original_native_0621": {
+          "expected_shape_xyz": [
+            635,
+            635,
+            20
+          ],
+          "id": "released_original_native_0621",
+          "loaded_network_keys": 41,
+          "model": "original",
+          "observed_shape_xyz": [
+            635,
+            635,
+            20
+          ],
+          "preprocessing_manifest": {
+            "mode": "training_consistent",
+            "movies": [
+              {
+                "center_order": "MTXYZ",
+                "crop_size_xyz": [
+                  32,
+                  32,
+                  32
+                ],
+                "declared_source_spacing_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "disk_order": "TZYX",
+                "input_channels": [
+                  -1,
+                  0,
+                  1
+                ],
+                "internal_order": "TXYZ",
+                "mode": "training_consistent",
+                "movie_name": "movie_I2",
+                "normalization": "min-max",
+                "normalization_after_padding": true,
+                "padding_mode": "constant",
+                "padding_xyz": [
+                  16,
+                  16,
+                  16
+                ],
+                "physical_crop_size_xyz": [
+                  32.0,
+                  32.0,
+                  32.0
+                ],
+                "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                "raw_shape_xyz": [
+                  1024,
+                  1024,
+                  10
+                ],
+                "realized_shape_scale_factor_xyz": [
+                  0.6201171875,
+                  0.6201171875,
+                  2.0
+                ],
+                "regression_shape_xyz": [
+                  635,
+                  635,
+                  20
+                ],
+                "resize_clip": true,
+                "resize_library": "skimage.transform.resize",
+                "resize_mode": "reflect",
+                "resize_order": 1,
+                "resize_preserve_range": true,
+                "scale_factor_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\neural_tube_nematic_full_pipeline\\seed_12345\\preflight\\__released_scales_json_is_missing__.json",
+                "scale_source": "default_scale",
+                "schema_version": 1,
+                "source_spacing_xyz": [
+                  0.621,
+                  0.621,
+                  2.0
+                ],
+                "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                "target_spacing_xyz": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ],
+            "schema_version": 1
+          },
+          "provenance": "released regression .hydra/config.yaml",
+          "shape_matches_profile": true,
+          "source_spacing_xyz_um": [
+            0.621,
+            0.621,
+            2.0
+          ]
+        }
+      },
+      "scientific_role": "historical validation/reported set, not independent test",
+      "scope": "movie_I2 frozen released center sets; segmentation was not rerun",
+      "status": "complete",
+      "summary": {
+        "nematic_retrained_native_0208|retrained|all_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 2.375323699649032,
+            "mean": 0.6377428743433304,
+            "median": 0.4809208568972161,
+            "minimum": 0.010410785675048828,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.05796765329338354,
+            "p25": 0.2447619300050814,
+            "p75": 0.9085900134922011,
+            "p95": 1.757650044279159,
+            "rms": 0.8288141492464609,
+            "sem": 0.04792556730771079,
+            "std_population": 0.529355192867173
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 2.375323699649032,
+            "mean": 0.6377428743433303,
+            "median": 0.48092085689721653,
+            "minimum": 0.010410785675048828,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.05796765329338354,
+            "p25": 0.2447619300050805,
+            "p75": 0.9085900134922009,
+            "p95": 1.757650044279159,
+            "rms": 0.8288141492464608,
+            "sem": 0.04792556730771078,
+            "std_population": 0.5293551928671729
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 2.29128784747792,
+            "mean": 0.645279606721259,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.8000116008108471,
+            "p95": 1.219409327259503,
+            "rms": 0.7321717169133553,
+            "sem": 0.03132192080525063,
+            "std_population": 0.34596192304574197
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 46.101518847677994,
+            "mean": 14.202218311301653,
+            "median": 12.444753868508684,
+            "minimum": 1.57645439554372,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 4.728551808341373,
+            "p25": 8.331638765286147,
+            "p75": 18.39089341181997,
+            "p95": 27.63419995261618,
+            "rms": 16.20316391143143,
+            "sem": 0.7061760089129892,
+            "std_population": 7.799968960120414
+          },
+          "effective_n": 122,
+          "group": {
+            "mode": "all_groundtruth_centers",
+            "model": "retrained",
+            "profile": "nematic_retrained_native_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 179.75898234378616,
+            "mean": 111.31660762383089,
+            "median": 131.32585393844948,
+            "minimum": 13.339527056454514,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 29.681232944816273,
+            "p25": 55.886188311434644,
+            "p75": 163.9484971770658,
+            "p95": 175.4998016106545,
+            "rms": 124.0349164232487,
+            "sem": 4.953284519870618,
+            "std_population": 54.71081574281604
+          },
+          "reported_n": 122
+        },
+        "nematic_retrained_native_0208|retrained|matched_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 2.375323699649032,
+            "mean": 0.6012366750038833,
+            "median": 0.46029531905253673,
+            "minimum": 0.010410785675048828,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.05738551391134559,
+            "p25": 0.2447619300050814,
+            "p75": 0.8569047946990185,
+            "p95": 1.6579942253798539,
+            "rms": 0.7739258615045534,
+            "sem": 0.04564121134590319,
+            "std_population": 0.4873147850577077
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 2.375323699649032,
+            "mean": 0.6012366750038833,
+            "median": 0.4602953190525363,
+            "minimum": 0.010410785675048828,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.05738551391134559,
+            "p25": 0.2447619300050805,
+            "p75": 0.856904794699018,
+            "p95": 1.657994225379853,
+            "rms": 0.7739258615045534,
+            "sem": 0.04564121134590319,
+            "std_population": 0.4873147850577077
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 1.6689734109559275,
+            "mean": 0.7178862628801108,
+            "median": 0.6136671051054622,
+            "minimum": 0.14784633294528504,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.35215366705471496,
+            "p25": 0.534296028880866,
+            "p75": 0.7899444317292723,
+            "p95": 1.2529039370034436,
+            "rms": 0.764876536404707,
+            "sem": 0.02472221628742431,
+            "std_population": 0.26396103786447234
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 46.101518847677994,
+            "mean": 14.2764151161204,
+            "median": 12.602138733029278,
+            "minimum": 1.57645439554372,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 4.773626030732768,
+            "p25": 8.609793659552773,
+            "p75": 18.8557961577628,
+            "p95": 27.59697090147194,
+            "rms": 16.157951301924953,
+            "sem": 0.7087384499358221,
+            "std_population": 7.567255890188148
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "matched_groundtruth_centers",
+            "model": "retrained",
+            "profile": "nematic_retrained_native_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 179.75898234378616,
+            "mean": 112.01150000201908,
+            "median": 133.53370300569946,
+            "minimum": 13.339527056454514,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 29.645788894214526,
+            "p25": 56.7031737420324,
+            "p75": 163.28983333973764,
+            "p95": 175.7610067650091,
+            "rms": 124.46813010764393,
+            "sem": 5.083288133067141,
+            "std_population": 54.27466517438001
+          },
+          "reported_n": 114
+        },
+        "nematic_retrained_native_0208|retrained|predicted_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 2.053121745054982,
+            "mean": 0.6487782428085875,
+            "median": 0.4669363498687744,
+            "minimum": 0.015842577671487668,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.07342773612535258,
+            "p25": 0.23667862102933723,
+            "p75": 0.9217888783237305,
+            "p95": 1.7221835250569126,
+            "rms": 0.8382215498709338,
+            "sem": 0.04970987391117777,
+            "std_population": 0.5307562136482548
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 2.053121745054982,
+            "mean": 0.6487782428085875,
+            "median": 0.4669363498687744,
+            "minimum": 0.015842577671488556,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.07342773612535232,
+            "p25": 0.23667862102933768,
+            "p75": 0.9217888783237314,
+            "p95": 1.7221835250569124,
+            "rms": 0.8382215498709338,
+            "sem": 0.04970987391117775,
+            "std_population": 0.5307562136482546
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 8.200609733428363,
+            "mean": 3.5872505157950187,
+            "median": 3.24037034920393,
+            "minimum": 0.0,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 1.118033988749895,
+            "p25": 2.0764946954965335,
+            "p75": 4.834295520810437,
+            "p95": 7.272068805188863,
+            "rms": 4.052650663708032,
+            "sem": 0.17660569468331094,
+            "std_population": 1.8856328218880611
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 42.52235363345874,
+            "mean": 14.347481341219094,
+            "median": 12.820840423501162,
+            "minimum": 2.4477990020386935,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 4.030692388241906,
+            "p25": 10.026999476322224,
+            "p75": 19.107860009339085,
+            "p95": 25.671443397697786,
+            "rms": 16.009063081566964,
+            "sem": 0.6651729752145613,
+            "std_population": 7.102103907502355
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "predicted_centers",
+            "model": "retrained",
+            "profile": "nematic_retrained_native_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 179.70955095361148,
+            "mean": 111.91950911860063,
+            "median": 131.0540503074534,
+            "minimum": 20.970452167970276,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 30.01208073342351,
+            "p25": 58.19542261678052,
+            "p75": 163.08702209989914,
+            "p95": 176.11277479864654,
+            "rms": 124.38616330760473,
+            "sem": 5.08346226558168,
+            "std_population": 54.27652440086398
+          },
+          "reported_n": 114
+        },
+        "released_original_common_0208|original|all_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 13.149440354204526,
+            "mean": 10.614733604155306,
+            "median": 10.558239572421606,
+            "minimum": 8.490667343139648,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 9.354625653538342,
+            "p25": 10.143915215194443,
+            "p75": 10.974870051796932,
+            "p95": 12.016343663641301,
+            "rms": 10.646437729144996,
+            "sem": 0.07433127187469096,
+            "std_population": 0.8210157327226594
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 13.149440354204522,
+            "mean": 10.614733604155306,
+            "median": 10.558239572421606,
+            "minimum": 8.490667343139648,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 9.354625653538342,
+            "p25": 10.143915215194443,
+            "p75": 10.974870051796932,
+            "p95": 12.016343663641301,
+            "rms": 10.646437729144996,
+            "sem": 0.07433127187469092,
+            "std_population": 0.821015732722659
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 2.29128784747792,
+            "mean": 0.645279606721259,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.8000116008108471,
+            "p95": 1.219409327259503,
+            "rms": 0.7321717169133553,
+            "sem": 0.03132192080525063,
+            "std_population": 0.34596192304574197
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.87544271939873,
+            "mean": 47.79953878054379,
+            "median": 46.37266415794539,
+            "minimum": 1.6314452722877233,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 10.637754828936066,
+            "p25": 27.699833077208826,
+            "p75": 69.10126790126998,
+            "p95": 83.75472431699718,
+            "rms": 53.763076828225884,
+            "sem": 2.2281222749598397,
+            "std_population": 24.61041491736801
+          },
+          "effective_n": 122,
+          "group": {
+            "mode": "all_groundtruth_centers",
+            "model": "original",
+            "profile": "released_original_common_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 179.6446422870151,
+            "mean": 77.26009579025019,
+            "median": 75.21135398055388,
+            "minimum": 20.807800799778153,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 29.501901259389633,
+            "p25": 53.09038991223011,
+            "p75": 97.1323898922883,
+            "p95": 130.0119774881276,
+            "rms": 83.55674531036516,
+            "sem": 2.8809824220086684,
+            "std_population": 31.821490935256286
+          },
+          "reported_n": 122
+        },
+        "released_original_common_0208|original|matched_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 12.853469550078175,
+            "mean": 10.589099607721062,
+            "median": 10.558239572421606,
+            "minimum": 8.490667343139648,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.32842836603731,
+            "p25": 10.143915215194443,
+            "p75": 10.964097107237706,
+            "p95": 11.98276613087617,
+            "rms": 10.617393114960612,
+            "sem": 0.07254799109595228,
+            "std_population": 0.7746005779591533
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 12.853469550078175,
+            "mean": 10.589099607721062,
+            "median": 10.558239572421606,
+            "minimum": 8.490667343139648,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.32842836603731,
+            "p25": 10.143915215194443,
+            "p75": 10.964097107237706,
+            "p95": 11.98276613087617,
+            "rms": 10.617393114960612,
+            "sem": 0.07254799109595225,
+            "std_population": 0.7746005779591529
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 1.6689734109559275,
+            "mean": 0.7178862628801108,
+            "median": 0.6136671051054622,
+            "minimum": 0.14784633294528504,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.35215366705471496,
+            "p25": 0.534296028880866,
+            "p75": 0.7899444317292723,
+            "p95": 1.2529039370034436,
+            "rms": 0.764876536404707,
+            "sem": 0.02472221628742431,
+            "std_population": 0.26396103786447234
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.87544271939873,
+            "mean": 47.78564469336149,
+            "median": 46.37266415794539,
+            "minimum": 1.6314452722877233,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 11.332590884569283,
+            "p25": 26.914189143440268,
+            "p75": 69.81214597472116,
+            "p95": 83.68802866215188,
+            "rms": 53.83624203111389,
+            "sem": 2.3224176703865216,
+            "std_population": 24.796635200617153
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "matched_groundtruth_centers",
+            "model": "original",
+            "profile": "released_original_common_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 179.6446422870151,
+            "mean": 76.89003435954251,
+            "median": 73.71332386790041,
+            "minimum": 20.807800799778153,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 28.91999786201707,
+            "p25": 53.09038991223011,
+            "p75": 96.40972722627633,
+            "p95": 130.41687732076596,
+            "rms": 83.26545551651469,
+            "sem": 2.9927671560840823,
+            "std_population": 31.954009115618952
+          },
+          "reported_n": 114
+        },
+        "released_original_common_0208|original|predicted_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 13.163060843413136,
+            "mean": 10.680951193510792,
+            "median": 10.640238078782392,
+            "minimum": 8.490667343139648,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.223140435738872,
+            "p25": 10.215970007664719,
+            "p75": 11.142060846603673,
+            "p95": 11.961329653871777,
+            "rms": 10.711789463557961,
+            "sem": 0.0760721675728093,
+            "std_population": 0.8122284859765236
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 13.163060843413136,
+            "mean": 10.680951193510792,
+            "median": 10.64023807878239,
+            "minimum": 8.490667343139648,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.223140435738872,
+            "p25": 10.215970007664719,
+            "p75": 11.142060846603673,
+            "p95": 11.961329653871777,
+            "rms": 10.711789463557961,
+            "sem": 0.07607216757280927,
+            "std_population": 0.8122284859765233
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 8.200609733428363,
+            "mean": 3.5872505157950187,
+            "median": 3.24037034920393,
+            "minimum": 0.0,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 1.118033988749895,
+            "p25": 2.0764946954965335,
+            "p75": 4.834295520810437,
+            "p95": 7.272068805188863,
+            "rms": 4.052650663708032,
+            "sem": 0.17660569468331094,
+            "std_population": 1.8856328218880611
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 88.98401017443415,
+            "mean": 47.351361303840434,
+            "median": 46.87715488745561,
+            "minimum": 2.0017205773835687,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.651911877927601,
+            "p25": 26.307020734399618,
+            "p75": 68.13624070571102,
+            "p95": 85.8870748401452,
+            "rms": 53.35025797128873,
+            "sem": 2.3019797129675594,
+            "std_population": 24.57841752994321
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "predicted_centers",
+            "model": "original",
+            "profile": "released_original_common_0208"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 174.27128791027357,
+            "mean": 76.7438101154351,
+            "median": 72.16709544731779,
+            "minimum": 17.223488645455074,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 30.37796362556881,
+            "p25": 53.53280515144311,
+            "p75": 98.4403285380693,
+            "p95": 133.2476452702156,
+            "rms": 83.1121341875889,
+            "sem": 2.9883024257193043,
+            "std_population": 31.90633884014
+          },
+          "reported_n": 114
+        },
+        "released_original_native_0621|original|all_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 7.001517903828098,
+            "mean": 1.6151452143897564,
+            "median": 1.4145892591241527,
+            "minimum": 0.001983533493596923,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.1711505105779331,
+            "p25": 0.8138860537991599,
+            "p75": 2.2352623840909676,
+            "p95": 3.3155773798779102,
+            "rms": 1.9916714308798589,
+            "sem": 0.1055066241808546,
+            "std_population": 1.1653587537822383
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 7.0015179038281,
+            "mean": 1.6151452143897564,
+            "median": 1.414589259124151,
+            "minimum": 0.0019835334936004756,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.17115051057793293,
+            "p25": 0.8138860537991626,
+            "p75": 2.2352623840909676,
+            "p95": 3.315577379877907,
+            "rms": 1.991671430879859,
+            "sem": 0.10550662418085464,
+            "std_population": 1.1653587537822387
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 2.29128784747792,
+            "mean": 0.645279606721259,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.8000116008108471,
+            "p95": 1.219409327259503,
+            "rms": 0.7321717169133553,
+            "sem": 0.03132192080525063,
+            "std_population": 0.34596192304574197
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 73.54290855436568,
+            "mean": 19.245394521873994,
+            "median": 16.27126660369226,
+            "minimum": 1.0301341708452953,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 3.996188627586994,
+            "p25": 10.208258904014494,
+            "p75": 24.354878615576972,
+            "p95": 47.38407156326273,
+            "rms": 23.62904763826594,
+            "sem": 1.2411875658735916,
+            "std_population": 13.709364755117715
+          },
+          "effective_n": 122,
+          "group": {
+            "mode": "all_groundtruth_centers",
+            "model": "original",
+            "profile": "released_original_native_0621"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 166.6907540752254,
+            "mean": 29.252236579077593,
+            "median": 23.11566545768332,
+            "minimum": 2.057136871751699,
+            "n": 122,
+            "nominal_n": 122,
+            "p05": 7.814228598459074,
+            "p25": 15.741292422275277,
+            "p75": 32.56433156753679,
+            "p95": 62.357585478088176,
+            "rms": 38.49391446750638,
+            "sem": 2.265363044319523,
+            "std_population": 25.021752659503516
+          },
+          "reported_n": 122
+        },
+        "released_original_native_0621|original|matched_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 4.694588562318074,
+            "mean": 1.5474483746562657,
+            "median": 1.4380368229305738,
+            "minimum": 0.001983533493596923,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.09016351336316522,
+            "p25": 0.747151491807764,
+            "p75": 2.2352623840909676,
+            "p95": 3.1884130852139347,
+            "rms": 1.8534885087672064,
+            "sem": 0.09555117944803299,
+            "std_population": 1.0202074200405342
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 4.694588562318078,
+            "mean": 1.5474483746562655,
+            "median": 1.438036822930572,
+            "minimum": 0.0019835334936004756,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.09016351336316522,
+            "p25": 0.747151491807764,
+            "p75": 2.2352623840909676,
+            "p95": 3.188413085213936,
+            "rms": 1.8534885087672064,
+            "sem": 0.09555117944803306,
+            "std_population": 1.0202074200405349
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 1.6689734109559275,
+            "mean": 0.7178862628801108,
+            "median": 0.6136671051054622,
+            "minimum": 0.14784633294528504,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.35215366705471496,
+            "p25": 0.534296028880866,
+            "p75": 0.7899444317292723,
+            "p95": 1.2529039370034436,
+            "rms": 0.764876536404707,
+            "sem": 0.02472221628742431,
+            "std_population": 0.26396103786447234
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 69.38831388552506,
+            "mean": 19.169026540407856,
+            "median": 16.651668691758644,
+            "minimum": 0.9422914067387089,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 4.208630174786871,
+            "p25": 9.907861676883787,
+            "p75": 23.150852418147817,
+            "p95": 43.05576560324967,
+            "rms": 23.550685070118014,
+            "sem": 1.2813890104821302,
+            "std_population": 13.681490736210673
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "matched_groundtruth_centers",
+            "model": "original",
+            "profile": "released_original_native_0621"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 166.6907540752254,
+            "mean": 29.47239670059808,
+            "median": 23.727269055554018,
+            "minimum": 1.8131631240157442,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 8.613711908316517,
+            "p25": 15.375505244209469,
+            "p75": 32.814869766090894,
+            "p95": 74.98657584972801,
+            "rms": 38.73320583278402,
+            "sem": 2.3538677890837185,
+            "std_population": 25.1324305789828
+          },
+          "reported_n": 114
+        },
+        "released_original_native_0621|original|predicted_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 5.316790812664198,
+            "mean": 1.5360122980438964,
+            "median": 1.2671670422097723,
+            "minimum": 0.00844998777567696,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.1453011683131761,
+            "p25": 0.6964013210571327,
+            "p75": 2.3165889778719793,
+            "p95": 3.96043175526496,
+            "rms": 1.928142124083907,
+            "sem": 0.10915939861668847,
+            "std_population": 1.1655034409750613
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 5.316790812664195,
+            "mean": 1.5360122980438964,
+            "median": 1.2671670422097723,
+            "minimum": 0.00844998777567696,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 0.1453011683131761,
+            "p25": 0.6964013210571327,
+            "p75": 2.316588977871981,
+            "p95": 3.960431755264961,
+            "rms": 1.9281421240839067,
+            "sem": 0.10915939861668847,
+            "std_population": 1.1655034409750613
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 8.200609733428363,
+            "mean": 3.5872505157950187,
+            "median": 3.24037034920393,
+            "minimum": 0.0,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 1.118033988749895,
+            "p25": 2.0764946954965335,
+            "p75": 4.834295520810437,
+            "p95": 7.272068805188863,
+            "rms": 4.052650663708032,
+            "sem": 0.17660569468331094,
+            "std_population": 1.8856328218880611
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 88.36495901456709,
+            "mean": 19.293443371580594,
+            "median": 15.233581778019497,
+            "minimum": 1.0486281907853994,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 4.978589617515516,
+            "p25": 9.940836857974777,
+            "p75": 26.15147742756473,
+            "p95": 44.21266368144585,
+            "rms": 24.17544703607598,
+            "sem": 1.3643817514535166,
+            "std_population": 14.567610725912733
+          },
+          "effective_n": 114,
+          "group": {
+            "mode": "predicted_centers",
+            "model": "original",
+            "profile": "released_original_native_0621"
+          },
+          "missing_target_n": 0,
+          "production_quaternion_error_deg": {
+            "maximum": 168.35105029977956,
+            "mean": 27.80552845679432,
+            "median": 24.253136024909157,
+            "minimum": 3.5367103580590764,
+            "n": 114,
+            "nominal_n": 114,
+            "p05": 9.841049650611941,
+            "p25": 15.90133857729607,
+            "p75": 32.38562633940854,
+            "p95": 53.89596979359939,
+            "rms": 35.39787382503385,
+            "sem": 2.0516618394019157,
+            "std_population": 21.905754006000752
+          },
+          "reported_n": 114
+        }
+      },
+      "validator_hash": "65a2b0afd7df7ce36c397fd28537c138428404664b07f9e8ea6a336d5813e16e"
+    },
+    "nuclei": {
+      "assertions": {
+        "both_existing_checkpoints_loaded": true,
+        "detector_center_counts_unchanged": true,
+        "original_predicted_center_mean_angle_not_degraded_over_2_deg": true,
+        "original_predicted_center_mean_length_error_not_degraded_over_1_voxel": true,
+        "predicted_center_mode_reuses_matched_ground_truth_objects": true,
+        "target_association_effective_counts_unchanged": true
+      },
+      "center_summary": {
+        "matched_components": 124,
+        "predicted_components": 125,
+        "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+        "true_components": 145
+      },
+      "checkpoints": {
+        "original_epoch_098": {
+          "epoch": 98,
+          "global_step": 16533,
+          "path": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+          "sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682"
+        },
+        "retrained_nematic_epoch_095": {
+          "epoch": 95,
+          "global_step": 16032,
+          "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+          "sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8"
+        }
+      },
+      "completed_at": "2026-09-03T06:54:07.589370+02:00",
+      "current_summary": {
+        "training_consistent_log_reconstructed|original_epoch_098|all_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 6.9375843128948045,
+            "mean": 1.5865479041447124,
+            "median": 1.1842855612781662,
+            "minimum": 0.00040088046374009423,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.12359684218273213,
+            "p25": 0.6903176752157099,
+            "p75": 2.194164185758183,
+            "p95": 3.9834951492510853,
+            "rms": 2.047721128759251,
+            "sem": 0.10941492353882865,
+            "std_population": 1.2946148342349089
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 6.937584312894803,
+            "mean": 1.5865479041447124,
+            "median": 1.184285561278168,
+            "minimum": 0.0004008804637418706,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.12359684218273204,
+            "p25": 0.6903176752157099,
+            "p75": 2.1941641857581837,
+            "p95": 3.9834951492510853,
+            "rms": 2.047721128759251,
+            "sem": 0.10941492353882866,
+            "std_population": 1.294614834234909
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 3.640054944640259,
+            "mean": 0.6222168552251046,
+            "median": 0.5,
+            "minimum": 0.0,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 0.9122201273601884,
+            "rms": 0.7991841597328413,
+            "sem": 0.042387793580031356,
+            "std_population": 0.5015391372980464
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 76.4094597590371,
+            "mean": 13.670714195878372,
+            "median": 10.982744183152922,
+            "minimum": 0.7137091636431437,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 2.7368217607068805,
+            "p25": 7.2716935966470615,
+            "p75": 15.42143819848364,
+            "p95": 36.01385153453087,
+            "rms": 17.828408576857885,
+            "sem": 0.9671893216871448,
+            "std_population": 11.443938384926296
+          },
+          "effective_n": 140,
+          "group": {
+            "mode": "all_groundtruth_centers",
+            "model": "original_epoch_098",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 5,
+          "production_quaternion_error_deg": {
+            "maximum": 178.6432752924701,
+            "mean": 26.147615925147353,
+            "median": 16.985415350347473,
+            "minimum": 2.3482030897772947,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 4.613243318346463,
+            "p25": 10.37606295837745,
+            "p75": 27.09020215215866,
+            "p95": 86.35552903511471,
+            "rms": 41.43832866014126,
+            "sem": 2.716927444713007,
+            "std_population": 32.14711905563024
+          },
+          "reported_n": 145
+        },
+        "training_consistent_log_reconstructed|original_epoch_098|matched_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 6.9375843128948045,
+            "mean": 1.5932066738667383,
+            "median": 1.2201224286082226,
+            "minimum": 0.00040088046374009423,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.10695461939000417,
+            "p25": 0.701572455063058,
+            "p75": 2.28198827220198,
+            "p95": 3.691837742962374,
+            "rms": 2.0457618832824145,
+            "sem": 0.1166627610402509,
+            "std_population": 1.28329037144276
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 6.937584312894803,
+            "mean": 1.5932066738667383,
+            "median": 1.2201224286082244,
+            "minimum": 0.0004008804637418706,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.10695461939000239,
+            "p25": 0.701572455063058,
+            "p75": 2.28198827220198,
+            "p95": 3.691837742962374,
+            "rms": 2.045761883282415,
+            "sem": 0.1166627610402509,
+            "std_population": 1.28329037144276
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 3.122498999199199,
+            "mean": 0.6315467261505103,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 1.224744871391589,
+            "rms": 0.8134331894624218,
+            "sem": 0.04660563283158912,
+            "std_population": 0.5126619611474803
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 76.4094597590371,
+            "mean": 12.840922585100872,
+            "median": 10.676944636131006,
+            "minimum": 0.7137091636431437,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 2.4549355961718766,
+            "p25": 6.88753317101503,
+            "p75": 14.964851403194064,
+            "p95": 31.63751902648443,
+            "rms": 16.820109657101504,
+            "sem": 0.987637618992565,
+            "std_population": 10.864013808918214
+          },
+          "effective_n": 121,
+          "group": {
+            "mode": "matched_groundtruth_centers",
+            "model": "original_epoch_098",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 3,
+          "production_quaternion_error_deg": {
+            "maximum": 178.6432752924701,
+            "mean": 25.963795784241643,
+            "median": 16.000078651419614,
+            "minimum": 2.3482030897772947,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 4.115343247008056,
+            "p25": 9.890370592938316,
+            "p75": 26.66998170198582,
+            "p95": 93.04218233624303,
+            "rms": 42.92449608450309,
+            "sem": 3.1074339983984562,
+            "std_population": 34.18177398238302
+          },
+          "reported_n": 124
+        },
+        "training_consistent_log_reconstructed|original_epoch_098|predicted_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 7.756533620934817,
+            "mean": 1.7405507900901602,
+            "median": 1.214996087746938,
+            "minimum": 0.004995683320185407,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.06185575116959008,
+            "p25": 0.5238589461870387,
+            "p75": 2.403173268759719,
+            "p95": 5.792159470060334,
+            "rms": 2.440502321365079,
+            "sem": 0.15551924564553368,
+            "std_population": 1.7107117021008706
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 7.7565336209348175,
+            "mean": 1.7405507900901604,
+            "median": 1.2149960877469397,
+            "minimum": 0.004995683320187183,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.06185575116959008,
+            "p25": 0.5238589461870387,
+            "p75": 2.403173268759719,
+            "p95": 5.79215947006033,
+            "rms": 2.4405023213650794,
+            "sem": 0.1555192456455337,
+            "std_population": 1.7107117021008709
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 15.660459763365825,
+            "mean": 3.6919484531883473,
+            "median": 3.082207001484488,
+            "minimum": 0.5,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 1.224744871391589,
+            "p25": 2.23606797749979,
+            "p75": 4.358898943540674,
+            "p95": 8.366600265340756,
+            "rms": 4.408680861907421,
+            "sem": 0.2190509877085855,
+            "std_population": 2.4095608647944404
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.34401994027829,
+            "mean": 19.740105685928604,
+            "median": 10.977145655258866,
+            "minimum": 0.37836005664679184,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 2.571346584381874,
+            "p25": 6.7591083038333535,
+            "p75": 21.83373377744796,
+            "p95": 68.35955048662169,
+            "rms": 28.88572283935727,
+            "sem": 1.9171113158068074,
+            "std_population": 21.08822447387488
+          },
+          "effective_n": 121,
+          "group": {
+            "mode": "predicted_centers",
+            "model": "original_epoch_098",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 3,
+          "production_quaternion_error_deg": {
+            "maximum": 177.58270016185952,
+            "mean": 39.61651284731064,
+            "median": 16.37112076200914,
+            "minimum": 1.6205828741313097,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 4.118438160159377,
+            "p25": 10.096328499660196,
+            "p75": 37.8917459817515,
+            "p95": 155.78047068564535,
+            "rms": 62.83162434982448,
+            "sem": 4.4334798080886735,
+            "std_population": 48.768277888975405
+          },
+          "reported_n": 124
+        },
+        "training_consistent_log_reconstructed|retrained_nematic_epoch_095|all_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 6.109483154752716,
+            "mean": 1.3857080763365954,
+            "median": 1.049727172043431,
+            "minimum": 0.018310510024832638,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.14932580945707682,
+            "p25": 0.5778313961714652,
+            "p75": 1.7865584694929861,
+            "p95": 3.8849879556377855,
+            "rms": 1.8000996540685223,
+            "sem": 0.09710715332460419,
+            "std_population": 1.1489873331560911
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 6.109483154752713,
+            "mean": 1.3857080763365957,
+            "median": 1.0497271720434318,
+            "minimum": 0.018310510024832638,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.1493258094570769,
+            "p25": 0.5778313961714652,
+            "p75": 1.7865584694929875,
+            "p95": 3.8849879556377855,
+            "rms": 1.8000996540685223,
+            "sem": 0.09710715332460418,
+            "std_population": 1.148987333156091
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 3.640054944640259,
+            "mean": 0.6222168552251046,
+            "median": 0.5,
+            "minimum": 0.0,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 0.9122201273601884,
+            "rms": 0.7991841597328413,
+            "sem": 0.042387793580031356,
+            "std_population": 0.5015391372980464
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 71.5059416532928,
+            "mean": 11.736369640423076,
+            "median": 9.658257176430261,
+            "minimum": 1.0220579182665923,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 2.3376219278751984,
+            "p25": 5.127164105587859,
+            "p75": 14.835379753187507,
+            "p95": 27.148810708820225,
+            "rms": 15.309966441999965,
+            "sem": 0.8308889392800969,
+            "std_population": 9.83121051135213
+          },
+          "effective_n": 140,
+          "group": {
+            "mode": "all_groundtruth_centers",
+            "model": "retrained_nematic_epoch_095",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 5,
+          "production_quaternion_error_deg": {
+            "maximum": 179.9564419930562,
+            "mean": 97.30460682373898,
+            "median": 95.4593274484067,
+            "minimum": 2.2774761964130033,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": 24.004187757733067,
+            "p25": 55.386351840669754,
+            "p75": 141.51204360697284,
+            "p95": 174.67822976108926,
+            "rms": 108.74239223149712,
+            "sem": 4.1028921498885,
+            "std_population": 48.546074600386945
+          },
+          "reported_n": 145
+        },
+        "training_consistent_log_reconstructed|retrained_nematic_epoch_095|matched_groundtruth_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 6.109483154752716,
+            "mean": 1.3936787875357328,
+            "median": 1.1417757090949738,
+            "minimum": 0.018310510024832638,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.17986966899353796,
+            "p25": 0.5932216594677104,
+            "p75": 1.7662489106266364,
+            "p95": 3.7585288082873944,
+            "rms": 1.7966277830937527,
+            "sem": 0.10307386536027587,
+            "std_population": 1.1338125189630346
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 6.109483154752713,
+            "mean": 1.393678787535733,
+            "median": 1.1417757090949738,
+            "minimum": 0.018310510024832638,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.17986966899353796,
+            "p25": 0.5932216594677122,
+            "p75": 1.7662489106266346,
+            "p95": 3.758528808287391,
+            "rms": 1.7966277830937527,
+            "sem": 0.10307386536027585,
+            "std_population": 1.1338125189630344
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 3.122498999199199,
+            "mean": 0.6315467261505103,
+            "median": 0.7071067811865476,
+            "minimum": 0.0,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.0,
+            "p25": 0.5,
+            "p75": 0.7071067811865476,
+            "p95": 1.224744871391589,
+            "rms": 0.8134331894624218,
+            "sem": 0.04660563283158912,
+            "std_population": 0.5126619611474803
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 39.39844680466587,
+            "mean": 11.010686815585304,
+            "median": 9.284840758776546,
+            "minimum": 1.0220579182665923,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 2.1735504329928492,
+            "p25": 4.991518048198016,
+            "p75": 14.788260755128865,
+            "p95": 25.991486934751457,
+            "rms": 13.510777900991773,
+            "sem": 0.7118007390120122,
+            "std_population": 7.829808129132135
+          },
+          "effective_n": 121,
+          "group": {
+            "mode": "matched_groundtruth_centers",
+            "model": "retrained_nematic_epoch_095",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 3,
+          "production_quaternion_error_deg": {
+            "maximum": 179.9564419930562,
+            "mean": 98.52257348662621,
+            "median": 93.82471075243942,
+            "minimum": 2.2774761964130033,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 28.99938678867082,
+            "p25": 61.85391162681805,
+            "p75": 139.2500412143991,
+            "p95": 175.4935867894165,
+            "rms": 109.02140389348385,
+            "sem": 4.243584385128495,
+            "std_population": 46.67942823641344
+          },
+          "reported_n": 124
+        },
+        "training_consistent_log_reconstructed|retrained_nematic_epoch_095|predicted_centers": {
+          "absolute_length_error_physical_um": {
+            "maximum": 7.912411687951416,
+            "mean": 1.7106137705444384,
+            "median": 1.0764063506007542,
+            "minimum": 0.009566616304356401,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.11011345795098748,
+            "p25": 0.6351700889862801,
+            "p75": 1.8611035323828382,
+            "p95": 6.159668443246044,
+            "rms": 2.4625605277742504,
+            "sem": 0.16104013361942246,
+            "std_population": 1.7714414698136471
+          },
+          "absolute_length_error_regression_voxels": {
+            "maximum": 7.912411687951419,
+            "mean": 1.7106137705444386,
+            "median": 1.0764063506007542,
+            "minimum": 0.009566616304354625,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 0.11011345795098748,
+            "p25": 0.6351700889862801,
+            "p75": 1.8611035323828382,
+            "p95": 6.159668443246044,
+            "rms": 2.462560527774251,
+            "sem": 0.1610401336194225,
+            "std_population": 1.7714414698136474
+          },
+          "center_distance_raw_voxels": {
+            "maximum": 15.660459763365825,
+            "mean": 3.6919484531883473,
+            "median": 3.082207001484488,
+            "minimum": 0.5,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 1.224744871391589,
+            "p25": 2.23606797749979,
+            "p75": 4.358898943540674,
+            "p95": 8.366600265340756,
+            "rms": 4.408680861907421,
+            "sem": 0.2190509877085855,
+            "std_population": 2.4095608647944404
+          },
+          "corrected_nematic_axis_error_deg": {
+            "maximum": 89.99893699696077,
+            "mean": 19.80617943692261,
+            "median": 10.038147597305697,
+            "minimum": 1.2516699286822752,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 2.51978375733754,
+            "p25": 5.358517500610767,
+            "p75": 20.561760525364367,
+            "p95": 81.64328051860718,
+            "rms": 30.430663545688798,
+            "sem": 2.100256851555761,
+            "std_population": 23.10282536711337
+          },
+          "effective_n": 121,
+          "group": {
+            "mode": "predicted_centers",
+            "model": "retrained_nematic_epoch_095",
+            "profile": "training_consistent_log_reconstructed"
+          },
+          "missing_target_n": 3,
+          "production_quaternion_error_deg": {
+            "maximum": 178.95229013061072,
+            "mean": 107.50148015304026,
+            "median": 110.48547467288606,
+            "minimum": 7.906129879127075,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": 21.167253985159775,
+            "p25": 66.44257668894689,
+            "p75": 153.61722483832162,
+            "p95": 172.94918386875796,
+            "rms": 117.98952965448983,
+            "sem": 4.4209875799149465,
+            "std_population": 48.63086337906441
+          },
+          "reported_n": 124
+        }
+      },
+      "geometry_caveat": "Target shape is reconstructed from the archived training log because historical scales.json is absent; it is not independently verified calibration.",
+      "inference": {
+        "original_epoch_098": {
+          "loaded_network_keys": 63,
+          "modes": {
+            "all_groundtruth_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_all_groundtruth_centers.npz",
+              "archive_sha256": "ef32f5dc3da08ebb2f534ff8c37fb72a3847f5b23c01bafd6f163f8ea180f993",
+              "completed_at": "2026-09-03T06:53:04.768057+02:00",
+              "elapsed_seconds": 14.996945400009281,
+              "identity": {
+                "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+                "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 145,
+              "reused_this_run": false
+            },
+            "matched_groundtruth_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_matched_groundtruth_centers.npz",
+              "archive_sha256": "4daec22256a1e7979ab8893bcd4606fb1601770ccc072f284a8e89b72171868e",
+              "completed_at": "2026-09-03T06:53:16.659883+02:00",
+              "elapsed_seconds": 11.72764620000089,
+              "identity": {
+                "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+                "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 124,
+              "reused_this_run": false
+            },
+            "predicted_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_predicted_centers.npz",
+              "archive_sha256": "9f3db434e5a7f5f2b1230f4e578bf7371a2e3575bedfed8e96cc404902a68e3d",
+              "completed_at": "2026-09-03T06:53:28.718405+02:00",
+              "elapsed_seconds": 11.894382999991649,
+              "identity": {
+                "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+                "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 124,
+              "reused_this_run": false
+            }
+          }
+        },
+        "retrained_nematic_epoch_095": {
+          "loaded_network_keys": 63,
+          "modes": {
+            "all_groundtruth_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_all_groundtruth_centers.npz",
+              "archive_sha256": "06c9e0fe62ba4bc62e98c335f3f0cb4b48a157f5160543650934413d711f4c86",
+              "completed_at": "2026-09-03T06:53:43.217625+02:00",
+              "elapsed_seconds": 13.831775099999504,
+              "identity": {
+                "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+                "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 145,
+              "reused_this_run": false
+            },
+            "matched_groundtruth_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_matched_groundtruth_centers.npz",
+              "archive_sha256": "b023127f013c7d2db24f8ac05f528bc204ee0f04d5e24e6a49e8437ef224e503",
+              "completed_at": "2026-09-03T06:53:55.274503+02:00",
+              "elapsed_seconds": 11.891205799998716,
+              "identity": {
+                "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+                "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 124,
+              "reused_this_run": false
+            },
+            "predicted_centers": {
+              "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_predicted_centers.npz",
+              "archive_sha256": "a4f74ab77004f7d8bba4911039dc2a49770225647771602d85c57a4a275fa9f8",
+              "completed_at": "2026-09-03T06:54:07.301661+02:00",
+              "elapsed_seconds": 11.845397999990382,
+              "identity": {
+                "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+                "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+                "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+                "preprocessing_manifest": {
+                  "mode": "training_consistent",
+                  "movies": [
+                    {
+                      "center_order": "MTXYZ",
+                      "crop_size_xyz": [
+                        32,
+                        32,
+                        32
+                      ],
+                      "declared_source_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "disk_order": "TZYX",
+                      "input_channels": [
+                        -1,
+                        0,
+                        1
+                      ],
+                      "internal_order": "TXYZ",
+                      "mode": "training_consistent",
+                      "movie_name": "movie2",
+                      "normalization": "min-max",
+                      "normalization_after_padding": true,
+                      "padding_mode": "constant",
+                      "padding_xyz": [
+                        16,
+                        16,
+                        16
+                      ],
+                      "physical_crop_size_xyz": [
+                        32.0,
+                        32.0,
+                        32.0
+                      ],
+                      "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                      "raw_shape_xyz": [
+                        362,
+                        305,
+                        180
+                      ],
+                      "realized_shape_scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "regression_shape_xyz": [
+                        330,
+                        278,
+                        164
+                      ],
+                      "resize_clip": true,
+                      "resize_library": "skimage.transform.resize",
+                      "resize_mode": "reflect",
+                      "resize_order": 1,
+                      "resize_preserve_range": true,
+                      "scale_factor_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                      "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                      "schema_version": 1,
+                      "source_spacing_xyz": [
+                        0.9116022099447514,
+                        0.9114754098360656,
+                        0.9111111111111111
+                      ],
+                      "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                      "target_spacing_xyz": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    }
+                  ],
+                  "schema_version": 1
+                },
+                "schema_version": 1
+              },
+              "n": 124,
+              "reused_this_run": false
+            }
+          }
+        }
+      },
+      "legacy_raw_reference": {
+        "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/manuscript_event_metrics.csv",
+        "sha256": "32cf06ebd005553befc346f524288e72b6b55d1248f831be7f427375e19970e0",
+        "summary": {
+          "original_epoch_098|all_groundtruth_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 7.6689522287644465,
+              "mean": 1.9435396262700106,
+              "median": 1.576566705379534,
+              "minimum": 0.021076362070223453,
+              "n": 140,
+              "nominal_n": 140,
+              "p05": 0.15838796827742388,
+              "p25": 0.7039426580599253,
+              "p75": 2.626687711127722,
+              "p95": 4.899546511237934,
+              "rms": 2.504741189361807,
+              "sem": 0.1335338947555966,
+              "std_population": 1.579994350244274
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 83.29144612736282,
+              "mean": 14.893903456664543,
+              "median": 12.341823592377596,
+              "minimum": 1.1043897617156428,
+              "n": 140,
+              "nominal_n": 140,
+              "p05": 2.487261972300119,
+              "p25": 7.369288532527495,
+              "p75": 18.241654432671876,
+              "p95": 36.167580100721224,
+              "rms": 19.573149614472847,
+              "sem": 1.0733120490668608,
+              "std_population": 12.699599428883358
+            },
+            "effective_n": 140,
+            "reported_n": 145
+          },
+          "original_epoch_098|matched_groundtruth_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 7.6689522287644465,
+              "mean": 2.018189652666655,
+              "median": 1.6607485412100118,
+              "minimum": 0.021076362070223453,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 0.19979574766600017,
+              "p25": 0.7597868260578835,
+              "p75": 2.9122959540061153,
+              "p95": 5.101566001038208,
+              "rms": 2.560214123584348,
+              "sem": 0.14321015259239597,
+              "std_population": 1.5753116785163557
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 83.29144612736282,
+              "mean": 14.92301375419237,
+              "median": 12.1948831058034,
+              "minimum": 1.1043897617156428,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 2.46025038430301,
+              "p25": 6.396254802671826,
+              "p75": 17.757216415923683,
+              "p95": 37.93495619820514,
+              "rms": 20.135356991546022,
+              "sem": 1.2289088813204658,
+              "std_population": 13.517997694525125
+            },
+            "effective_n": 121,
+            "reported_n": 124
+          },
+          "original_epoch_098|predicted_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 8.472541495422973,
+              "mean": 2.1514463265338404,
+              "median": 1.543847069923494,
+              "minimum": 0.00017026829344324312,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 0.07849474053993966,
+              "p25": 0.5942457561851917,
+              "p75": 3.037878040112787,
+              "p95": 6.704273223876953,
+              "rms": 2.987541651749528,
+              "sem": 0.18844039820999112,
+              "std_population": 2.072844380309902
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 88.8746674730571,
+              "mean": 19.672211701565043,
+              "median": 10.105887711304277,
+              "minimum": 0.13906613631166403,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 2.9814010311079286,
+              "p25": 6.499806608829162,
+              "p75": 21.942898493577342,
+              "p95": 76.65075830848015,
+              "rms": 29.355499043648575,
+              "sem": 1.9807950045800018,
+              "std_population": 21.78874505038002
+            },
+            "effective_n": 121,
+            "reported_n": 124
+          },
+          "retrained_nematic|all_groundtruth_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 6.720723015172219,
+              "mean": 1.895739049084092,
+              "median": 1.6273459117185922,
+              "minimum": 0.0324641201131346,
+              "n": 140,
+              "nominal_n": 140,
+              "p05": 0.1686507632548655,
+              "p25": 0.7679648330836977,
+              "p75": 2.7105745762754707,
+              "p95": 4.483746762426888,
+              "rms": 2.3731301921844925,
+              "sem": 0.12065062804985277,
+              "std_population": 1.4275574828480109
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 89.93952902829741,
+              "mean": 12.574984832662185,
+              "median": 9.40917764775771,
+              "minimum": 0.8752682581125346,
+              "n": 140,
+              "nominal_n": 140,
+              "p05": 2.1331902966915335,
+              "p25": 5.56220305340089,
+              "p75": 16.90048072991676,
+              "p95": 29.255386968995595,
+              "rms": 16.790507040362886,
+              "sem": 0.9403300451391357,
+              "std_population": 11.12613513897758
+            },
+            "effective_n": 140,
+            "reported_n": 145
+          },
+          "retrained_nematic|matched_groundtruth_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 6.720723015172219,
+              "mean": 1.9329967051284331,
+              "median": 1.6806201093440016,
+              "minimum": 0.03714046732214449,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 0.19928287965627334,
+              "p25": 0.7793054764939313,
+              "p75": 2.7314801932008805,
+              "p95": 4.5985267584732945,
+              "rms": 2.4135143234957157,
+              "sem": 0.13138094027842476,
+              "std_population": 1.4451903430626722
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 82.78856844626716,
+              "mean": 12.236460718312655,
+              "median": 9.196963066603201,
+              "minimum": 0.8752682581125346,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 2.133912275791674,
+              "p25": 5.24847007849508,
+              "p75": 15.737004392548734,
+              "p95": 27.779641536228763,
+              "rms": 16.89222478170242,
+              "sem": 1.0586764197299245,
+              "std_population": 11.64544061702917
+            },
+            "effective_n": 121,
+            "reported_n": 124
+          },
+          "retrained_nematic|predicted_centers": {
+            "absolute_length_error_regression_voxels": {
+              "maximum": 9.193930625915527,
+              "mean": 2.1015335187767406,
+              "median": 1.3161253015215255,
+              "minimum": 0.008000981831029819,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 0.13680811029091622,
+              "p25": 0.686687982883802,
+              "p75": 2.585542968318201,
+              "p95": 7.57158054568092,
+              "rms": 2.9932436366676587,
+              "sem": 0.19376786695350978,
+              "std_population": 2.1314465364886077
+            },
+            "corrected_nematic_axis_error_deg": {
+              "maximum": 89.83285229068565,
+              "mean": 19.447393528220697,
+              "median": 9.460082131938996,
+              "minimum": 1.3356111088377365,
+              "n": 121,
+              "nominal_n": 121,
+              "p05": 1.8819613536909443,
+              "p25": 4.989369081577482,
+              "p75": 19.435335018077062,
+              "p95": 79.48866270692824,
+              "rms": 30.458471582216596,
+              "sem": 2.131071542216053,
+              "std_population": 23.441786964376583
+            },
+            "effective_n": 121,
+            "reported_n": 124
+          }
+        }
+      },
+      "outputs": {
+        "event_csv": "docs/reproducibility_audit/regression_preprocessing_fix_validation/nuclei_event_metrics.csv",
+        "event_csv_sha256": "43a3528de3db16c8c6403523ee78d98c85384f9b253174643f676e3dca4e953e"
+      },
+      "paired_differences": {
+        "original_epoch_098|all_groundtruth_centers": {
+          "legacy_model_label": "original_epoch_098",
+          "n": 140,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 58.652243343113426,
+            "mean": -1.2231892607861725,
+            "median": -0.606378756915734,
+            "minimum": -53.58297782701164,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": -11.775423008150984,
+            "p25": -3.899016519558341,
+            "p75": 2.420248853479703,
+            "p95": 8.001045759252177,
+            "rms": 10.073887414904322,
+            "sem": 0.8450993841828184,
+            "std_population": 9.999350762947815
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 2.075351437475847,
+            "mean": -0.3569917221252986,
+            "median": -0.45900888263844397,
+            "minimum": -2.685491303177219,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": -1.6950109936317548,
+            "p25": -0.9410086330513763,
+            "p75": 0.23512952592534075,
+            "p95": 1.2190706333710457,
+            "rms": 0.9498708614266332,
+            "sem": 0.07439333513356977,
+            "std_population": 0.880233811962133
+          }
+        },
+        "original_epoch_098|matched_groundtruth_centers": {
+          "legacy_model_label": "original_epoch_098",
+          "n": 121,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 58.652243343113426,
+            "mean": -2.0820911690914996,
+            "median": -0.6415645781110424,
+            "minimum": -60.9503120140259,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -12.357651943973798,
+            "p25": -4.330794413744884,
+            "p75": 2.4052247762176293,
+            "p95": 7.961783083677688,
+            "rms": 12.746915829972718,
+            "sem": 1.1432473667815268,
+            "std_population": 12.575721034596796
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 2.8757141203875207,
+            "mean": -0.4249829787999168,
+            "median": -0.4725717614755691,
+            "minimum": -3.829081878003924,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -1.7111449044852343,
+            "p25": -0.8969188953490921,
+            "p75": 0.10610402680743469,
+            "p95": 1.0915623805084138,
+            "rms": 0.9953060740674756,
+            "sem": 0.08181937619360356,
+            "std_population": 0.9000131381296391
+          }
+        },
+        "original_epoch_098|predicted_centers": {
+          "legacy_model_label": "original_epoch_098",
+          "n": 121,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 43.6113539466585,
+            "mean": 0.06789398436356192,
+            "median": 0.15259391044561355,
+            "minimum": -53.14916450106907,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -13.517869513913885,
+            "p25": -2.6301566647908947,
+            "p75": 2.9155796195805657,
+            "p95": 12.011965827129735,
+            "rms": 10.1998645800824,
+            "sem": 0.9272398740120633,
+            "std_population": 10.199638614132697
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 2.192924702136132,
+            "mean": -0.4108955364436797,
+            "median": -0.4232797534044792,
+            "minimum": -3.3879207223032406,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -1.8442317710489995,
+            "p25": -1.0563990113720116,
+            "p75": 0.20885891982371696,
+            "p95": 1.205368972350474,
+            "rms": 1.0721559449767815,
+            "sem": 0.0900267741845741,
+            "std_population": 0.990294516030315
+          }
+        },
+        "retrained_nematic_epoch_095|all_groundtruth_centers": {
+          "legacy_model_label": "retrained_nematic",
+          "n": 140,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 24.391573616107735,
+            "mean": -0.8386151922391113,
+            "median": -0.4730558413163244,
+            "minimum": -87.41204809275352,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": -8.376524319600149,
+            "p25": -3.08206476179299,
+            "p75": 2.380658400864071,
+            "p95": 6.906872306522983,
+            "rms": 9.345165903850878,
+            "sem": 0.7866241175784148,
+            "std_population": 9.30746207780847
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 1.492383448657499,
+            "mean": -0.5100309727474963,
+            "median": -0.530858331265688,
+            "minimum": -2.5360487347008167,
+            "n": 140,
+            "nominal_n": 140,
+            "p05": -1.7177162983122491,
+            "p25": -0.9701232429070088,
+            "p75": 0.011981404831471476,
+            "p95": 0.7170624130636328,
+            "rms": 0.8925356417101462,
+            "sem": 0.061903627782060516,
+            "std_population": 0.7324536016439439
+          }
+        },
+        "retrained_nematic_epoch_095|matched_groundtruth_centers": {
+          "legacy_model_label": "retrained_nematic",
+          "n": 121,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 24.391573616107735,
+            "mean": -1.225773902727351,
+            "median": -0.6774586309777035,
+            "minimum": -54.2372438331373,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -8.625763486889905,
+            "p25": -3.0257661700395246,
+            "p75": 2.1837618593381585,
+            "p95": 6.078868224073588,
+            "rms": 8.432391669729306,
+            "sem": 0.7584385199352632,
+            "std_population": 8.342823719287896
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 2.474821862697091,
+            "mean": -0.5393179175926999,
+            "median": -0.538060298188789,
+            "minimum": -4.452307090101092,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -1.7812580547233736,
+            "p25": -0.9842189828569747,
+            "p75": 0.018420353307631032,
+            "p95": 0.7230958938598633,
+            "rms": 1.021239091867582,
+            "sem": 0.07883791650401598,
+            "std_population": 0.8672170815441758
+          }
+        },
+        "retrained_nematic_epoch_095|predicted_centers": {
+          "legacy_model_label": "retrained_nematic",
+          "n": 121,
+          "negative_difference_is_improvement": true,
+          "training_consistent_minus_legacy_angle_deg": {
+            "maximum": 44.160110510764255,
+            "mean": 0.3587859087019165,
+            "median": 0.30018913924446267,
+            "minimum": -49.62481605397693,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -6.742596079509791,
+            "p25": -2.1450432435454,
+            "p75": 2.9631788439703275,
+            "p95": 8.37173081021565,
+            "rms": 8.019371752380694,
+            "sem": 0.7283037917059126,
+            "std_population": 8.01134170876504
+          },
+          "training_consistent_minus_legacy_length_error_voxels": {
+            "maximum": 2.310996827601876,
+            "mean": -0.3909197482323023,
+            "median": -0.40010084131167645,
+            "minimum": -2.6282510580429417,
+            "n": 121,
+            "nominal_n": 121,
+            "p05": -1.765923144921846,
+            "p25": -0.9754286688378926,
+            "p75": 0.2408317091480079,
+            "p95": 0.8299781877084502,
+            "rms": 0.9542752653724813,
+            "sem": 0.07913911971304903,
+            "std_population": 0.8705303168435393
+          }
+        }
+      },
+      "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+      "preprocessing_manifest": {
+        "mode": "training_consistent",
+        "movies": [
+          {
+            "center_order": "MTXYZ",
+            "crop_size_xyz": [
+              32,
+              32,
+              32
+            ],
+            "declared_source_spacing_xyz": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "disk_order": "TZYX",
+            "input_channels": [
+              -1,
+              0,
+              1
+            ],
+            "internal_order": "TXYZ",
+            "mode": "training_consistent",
+            "movie_name": "movie2",
+            "normalization": "min-max",
+            "normalization_after_padding": true,
+            "padding_mode": "constant",
+            "padding_xyz": [
+              16,
+              16,
+              16
+            ],
+            "physical_crop_size_xyz": [
+              32.0,
+              32.0,
+              32.0
+            ],
+            "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+            "raw_shape_xyz": [
+              362,
+              305,
+              180
+            ],
+            "realized_shape_scale_factor_xyz": [
+              0.9116022099447514,
+              0.9114754098360656,
+              0.9111111111111111
+            ],
+            "regression_shape_xyz": [
+              330,
+              278,
+              164
+            ],
+            "resize_clip": true,
+            "resize_library": "skimage.transform.resize",
+            "resize_mode": "reflect",
+            "resize_order": 1,
+            "resize_preserve_range": true,
+            "scale_factor_xyz": [
+              0.9116022099447514,
+              0.9114754098360656,
+              0.9111111111111111
+            ],
+            "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+            "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+            "schema_version": 1,
+            "source_spacing_xyz": [
+              0.9116022099447514,
+              0.9114754098360656,
+              0.9111111111111111
+            ],
+            "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+            "target_spacing_xyz": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "schema_version": 1
+      },
+      "scope": "nuclei movie2 frozen centers; segmentation and matching were not rerun",
+      "status": "complete",
+      "target_effective_counts": {
+        "all_groundtruth_centers": 140,
+        "matched_groundtruth_centers": 121,
+        "predicted_centers": 121
+      },
+      "validator_hash": "4a41829ac47037916d9542e3b4a18c342e056df3d2d350ae29e203b1599a6698"
+    }
+  },
+  "pipeline_files": {
+    "dare3d/data/components/abstract_celldataset.py": "e2230604903e9fc73842af7b7281bb2fbdd270dc97adc67c8ad83504b5555e8d",
+    "dare3d/data/components/regress_3dataset.py": "d38aa7f2b5efedbb47dc9a41393dd01159be03909d737f196843bd1a35025db3",
+    "dare3d/data/components/regression_geometry.py": "30d85dc0b2f27d53de09c975ea9146b2955be0f6ed078933a6299920debb4de1",
+    "dare3d/metrics/infer_measure.py": "4148076f68603996c20690f6905640c9cb02f29d5e57de7fa9b1709b4e069e5b",
+    "dare3d/metrics/inference.py": "b6dca9b381f8eb4817823ef23cdd9a1e6c914aa8982dc13cb258a15c23fe9ed9"
+  },
+  "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+  "purpose": "no-retraining validation of training-consistent regression inference",
+  "status": "complete",
+  "validator_hash": "4a41829ac47037916d9542e3b4a18c342e056df3d2d350ae29e203b1599a6698"
+}

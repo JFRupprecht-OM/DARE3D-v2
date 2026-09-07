@@ -1,0 +1,17 @@
+check_id,workflow,check,status,observed,evidence,impact
+ACQ-01,manual/CLI,Zenodo record and named archive resolve,pass,DARE3d_data_190326.zip obtained,evidence/provenance.json,Artifact publicly obtainable.
+ACQ-02,CLI,download/extraction complete,pass with post-status exception,278 files extracted before final print,SESSION_HANDOFF.md:159-164; evidence/data_manifest_sha256.csv,Data usable despite exception symptom.
+ACQ-03,integrity,published MD5,pass,f8df147bb8249aad44b8ef1509d280dd,evidence/provenance.json,Archive identity verified.
+ACQ-04,integrity,independent SHA-256,pass,7eac84aa75d12cc8431d31d55b707823b4eaf986335207d3fa3f4fbb1fd64004,evidence/provenance.json,Audit fingerprint.
+ACQ-05,CLI,Windows completion message,fail,Unicode arrow causes cp1252 UnicodeEncodeError after extraction,SESSION_HANDOFF.md:159-164,Command appears to fail on native Windows.
+ACQ-06,CLI,resume partial download,fail,.part opened with wb and truncated,source audit; SESSION_HANDOFF.md,Advertised resume absent.
+ACQ-07,CLI,validate existing archive,fail,trusted by size without checksum,source audit; SESSION_HANDOFF.md,Same-size corruption may pass.
+ACQ-08,CLI,--help behavior,fail,parsed as destination,SESSION_HANDOFF.md,No conventional CLI help.
+ACQ-09,layout,both case roots,pass,Gastruloid_241025 and Neural_tube_160226 exist,evidence/data_manifest_sha256.csv,Both cases represented.
+ACQ-10,README,Gastruloid weights paths,pass,config/checkpoint at documented roots,evidence/workflow_path_checks.json,Plugin and CLI usable.
+ACQ-11,README,neural weights paths,fail,documented weights/ layout absent,evidence/workflow_path_checks.json,Guide path unusable verbatim.
+ACQ-12,plugin,actual four model roots,pass,flat Gastruloid and dated neural roots resolve,evidence/workflow_path_checks.json,Models locatable manually.
+ACQ-13,CLI,neural top-level root,fail/undocumented workaround,top-level rejected; runs/12-01-26 accepted,evidence/workflow_path_checks.json,Explicit undocumented path needed.
+ACQ-14,widget,auto-fill after download,partial,works from data parent; fallback one parent high; same-session defaults stale,evidence/workflow_path_checks.json,Behavior depends on context/restart.
+ACQ-15,notebook,reuse verified root bundle,fail,separate package-local demo downloader,evidence/workflow_path_checks.json,Duplicate path outside verified workflow.
+ACQ-16,metadata,DOI description,fail,plugin README calls data DOI a software release,SESSION_HANDOFF.md,Misleading provenance wording.

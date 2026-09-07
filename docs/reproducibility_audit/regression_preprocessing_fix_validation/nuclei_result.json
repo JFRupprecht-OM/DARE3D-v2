@@ -1,0 +1,1642 @@
+{
+  "assertions": {
+    "both_existing_checkpoints_loaded": true,
+    "detector_center_counts_unchanged": true,
+    "original_predicted_center_mean_angle_not_degraded_over_2_deg": true,
+    "original_predicted_center_mean_length_error_not_degraded_over_1_voxel": true,
+    "predicted_center_mode_reuses_matched_ground_truth_objects": true,
+    "target_association_effective_counts_unchanged": true
+  },
+  "center_summary": {
+    "matched_components": 124,
+    "predicted_components": 125,
+    "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "true_components": 145
+  },
+  "checkpoints": {
+    "original_epoch_098": {
+      "epoch": 98,
+      "global_step": 16533,
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682"
+    },
+    "retrained_nematic_epoch_095": {
+      "epoch": 95,
+      "global_step": 16032,
+      "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+      "sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8"
+    }
+  },
+  "completed_at": "2026-09-03T06:54:07.589370+02:00",
+  "current_summary": {
+    "training_consistent_log_reconstructed|original_epoch_098|all_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 6.9375843128948045,
+        "mean": 1.5865479041447124,
+        "median": 1.1842855612781662,
+        "minimum": 0.00040088046374009423,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.12359684218273213,
+        "p25": 0.6903176752157099,
+        "p75": 2.194164185758183,
+        "p95": 3.9834951492510853,
+        "rms": 2.047721128759251,
+        "sem": 0.10941492353882865,
+        "std_population": 1.2946148342349089
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 6.937584312894803,
+        "mean": 1.5865479041447124,
+        "median": 1.184285561278168,
+        "minimum": 0.0004008804637418706,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.12359684218273204,
+        "p25": 0.6903176752157099,
+        "p75": 2.1941641857581837,
+        "p95": 3.9834951492510853,
+        "rms": 2.047721128759251,
+        "sem": 0.10941492353882866,
+        "std_population": 1.294614834234909
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.640054944640259,
+        "mean": 0.6222168552251046,
+        "median": 0.5,
+        "minimum": 0.0,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 0.9122201273601884,
+        "rms": 0.7991841597328413,
+        "sem": 0.042387793580031356,
+        "std_population": 0.5015391372980464
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 76.4094597590371,
+        "mean": 13.670714195878372,
+        "median": 10.982744183152922,
+        "minimum": 0.7137091636431437,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 2.7368217607068805,
+        "p25": 7.2716935966470615,
+        "p75": 15.42143819848364,
+        "p95": 36.01385153453087,
+        "rms": 17.828408576857885,
+        "sem": 0.9671893216871448,
+        "std_population": 11.443938384926296
+      },
+      "effective_n": 140,
+      "group": {
+        "mode": "all_groundtruth_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 5,
+      "production_quaternion_error_deg": {
+        "maximum": 178.6432752924701,
+        "mean": 26.147615925147353,
+        "median": 16.985415350347473,
+        "minimum": 2.3482030897772947,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 4.613243318346463,
+        "p25": 10.37606295837745,
+        "p75": 27.09020215215866,
+        "p95": 86.35552903511471,
+        "rms": 41.43832866014126,
+        "sem": 2.716927444713007,
+        "std_population": 32.14711905563024
+      },
+      "reported_n": 145
+    },
+    "training_consistent_log_reconstructed|original_epoch_098|matched_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 6.9375843128948045,
+        "mean": 1.5932066738667383,
+        "median": 1.2201224286082226,
+        "minimum": 0.00040088046374009423,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.10695461939000417,
+        "p25": 0.701572455063058,
+        "p75": 2.28198827220198,
+        "p95": 3.691837742962374,
+        "rms": 2.0457618832824145,
+        "sem": 0.1166627610402509,
+        "std_population": 1.28329037144276
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 6.937584312894803,
+        "mean": 1.5932066738667383,
+        "median": 1.2201224286082244,
+        "minimum": 0.0004008804637418706,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.10695461939000239,
+        "p25": 0.701572455063058,
+        "p75": 2.28198827220198,
+        "p95": 3.691837742962374,
+        "rms": 2.045761883282415,
+        "sem": 0.1166627610402509,
+        "std_population": 1.28329037144276
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.122498999199199,
+        "mean": 0.6315467261505103,
+        "median": 0.7071067811865476,
+        "minimum": 0.0,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 1.224744871391589,
+        "rms": 0.8134331894624218,
+        "sem": 0.04660563283158912,
+        "std_population": 0.5126619611474803
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 76.4094597590371,
+        "mean": 12.840922585100872,
+        "median": 10.676944636131006,
+        "minimum": 0.7137091636431437,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.4549355961718766,
+        "p25": 6.88753317101503,
+        "p75": 14.964851403194064,
+        "p95": 31.63751902648443,
+        "rms": 16.820109657101504,
+        "sem": 0.987637618992565,
+        "std_population": 10.864013808918214
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "matched_groundtruth_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 178.6432752924701,
+        "mean": 25.963795784241643,
+        "median": 16.000078651419614,
+        "minimum": 2.3482030897772947,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 4.115343247008056,
+        "p25": 9.890370592938316,
+        "p75": 26.66998170198582,
+        "p95": 93.04218233624303,
+        "rms": 42.92449608450309,
+        "sem": 3.1074339983984562,
+        "std_population": 34.18177398238302
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|original_epoch_098|predicted_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 7.756533620934817,
+        "mean": 1.7405507900901602,
+        "median": 1.214996087746938,
+        "minimum": 0.004995683320185407,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.06185575116959008,
+        "p25": 0.5238589461870387,
+        "p75": 2.403173268759719,
+        "p95": 5.792159470060334,
+        "rms": 2.440502321365079,
+        "sem": 0.15551924564553368,
+        "std_population": 1.7107117021008706
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 7.7565336209348175,
+        "mean": 1.7405507900901604,
+        "median": 1.2149960877469397,
+        "minimum": 0.004995683320187183,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.06185575116959008,
+        "p25": 0.5238589461870387,
+        "p75": 2.403173268759719,
+        "p95": 5.79215947006033,
+        "rms": 2.4405023213650794,
+        "sem": 0.1555192456455337,
+        "std_population": 1.7107117021008709
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 15.660459763365825,
+        "mean": 3.6919484531883473,
+        "median": 3.082207001484488,
+        "minimum": 0.5,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 1.224744871391589,
+        "p25": 2.23606797749979,
+        "p75": 4.358898943540674,
+        "p95": 8.366600265340756,
+        "rms": 4.408680861907421,
+        "sem": 0.2190509877085855,
+        "std_population": 2.4095608647944404
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 89.34401994027829,
+        "mean": 19.740105685928604,
+        "median": 10.977145655258866,
+        "minimum": 0.37836005664679184,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.571346584381874,
+        "p25": 6.7591083038333535,
+        "p75": 21.83373377744796,
+        "p95": 68.35955048662169,
+        "rms": 28.88572283935727,
+        "sem": 1.9171113158068074,
+        "std_population": 21.08822447387488
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "predicted_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 177.58270016185952,
+        "mean": 39.61651284731064,
+        "median": 16.37112076200914,
+        "minimum": 1.6205828741313097,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 4.118438160159377,
+        "p25": 10.096328499660196,
+        "p75": 37.8917459817515,
+        "p95": 155.78047068564535,
+        "rms": 62.83162434982448,
+        "sem": 4.4334798080886735,
+        "std_population": 48.768277888975405
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|all_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 6.109483154752716,
+        "mean": 1.3857080763365954,
+        "median": 1.049727172043431,
+        "minimum": 0.018310510024832638,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.14932580945707682,
+        "p25": 0.5778313961714652,
+        "p75": 1.7865584694929861,
+        "p95": 3.8849879556377855,
+        "rms": 1.8000996540685223,
+        "sem": 0.09710715332460419,
+        "std_population": 1.1489873331560911
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 6.109483154752713,
+        "mean": 1.3857080763365957,
+        "median": 1.0497271720434318,
+        "minimum": 0.018310510024832638,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.1493258094570769,
+        "p25": 0.5778313961714652,
+        "p75": 1.7865584694929875,
+        "p95": 3.8849879556377855,
+        "rms": 1.8000996540685223,
+        "sem": 0.09710715332460418,
+        "std_population": 1.148987333156091
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.640054944640259,
+        "mean": 0.6222168552251046,
+        "median": 0.5,
+        "minimum": 0.0,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 0.9122201273601884,
+        "rms": 0.7991841597328413,
+        "sem": 0.042387793580031356,
+        "std_population": 0.5015391372980464
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 71.5059416532928,
+        "mean": 11.736369640423076,
+        "median": 9.658257176430261,
+        "minimum": 1.0220579182665923,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 2.3376219278751984,
+        "p25": 5.127164105587859,
+        "p75": 14.835379753187507,
+        "p95": 27.148810708820225,
+        "rms": 15.309966441999965,
+        "sem": 0.8308889392800969,
+        "std_population": 9.83121051135213
+      },
+      "effective_n": 140,
+      "group": {
+        "mode": "all_groundtruth_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 5,
+      "production_quaternion_error_deg": {
+        "maximum": 179.9564419930562,
+        "mean": 97.30460682373898,
+        "median": 95.4593274484067,
+        "minimum": 2.2774761964130033,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 24.004187757733067,
+        "p25": 55.386351840669754,
+        "p75": 141.51204360697284,
+        "p95": 174.67822976108926,
+        "rms": 108.74239223149712,
+        "sem": 4.1028921498885,
+        "std_population": 48.546074600386945
+      },
+      "reported_n": 145
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|matched_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 6.109483154752716,
+        "mean": 1.3936787875357328,
+        "median": 1.1417757090949738,
+        "minimum": 0.018310510024832638,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.17986966899353796,
+        "p25": 0.5932216594677104,
+        "p75": 1.7662489106266364,
+        "p95": 3.7585288082873944,
+        "rms": 1.7966277830937527,
+        "sem": 0.10307386536027587,
+        "std_population": 1.1338125189630346
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 6.109483154752713,
+        "mean": 1.393678787535733,
+        "median": 1.1417757090949738,
+        "minimum": 0.018310510024832638,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.17986966899353796,
+        "p25": 0.5932216594677122,
+        "p75": 1.7662489106266346,
+        "p95": 3.758528808287391,
+        "rms": 1.7966277830937527,
+        "sem": 0.10307386536027585,
+        "std_population": 1.1338125189630344
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.122498999199199,
+        "mean": 0.6315467261505103,
+        "median": 0.7071067811865476,
+        "minimum": 0.0,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 1.224744871391589,
+        "rms": 0.8134331894624218,
+        "sem": 0.04660563283158912,
+        "std_population": 0.5126619611474803
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 39.39844680466587,
+        "mean": 11.010686815585304,
+        "median": 9.284840758776546,
+        "minimum": 1.0220579182665923,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.1735504329928492,
+        "p25": 4.991518048198016,
+        "p75": 14.788260755128865,
+        "p95": 25.991486934751457,
+        "rms": 13.510777900991773,
+        "sem": 0.7118007390120122,
+        "std_population": 7.829808129132135
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "matched_groundtruth_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 179.9564419930562,
+        "mean": 98.52257348662621,
+        "median": 93.82471075243942,
+        "minimum": 2.2774761964130033,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 28.99938678867082,
+        "p25": 61.85391162681805,
+        "p75": 139.2500412143991,
+        "p95": 175.4935867894165,
+        "rms": 109.02140389348385,
+        "sem": 4.243584385128495,
+        "std_population": 46.67942823641344
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|predicted_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 7.912411687951416,
+        "mean": 1.7106137705444384,
+        "median": 1.0764063506007542,
+        "minimum": 0.009566616304356401,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.11011345795098748,
+        "p25": 0.6351700889862801,
+        "p75": 1.8611035323828382,
+        "p95": 6.159668443246044,
+        "rms": 2.4625605277742504,
+        "sem": 0.16104013361942246,
+        "std_population": 1.7714414698136471
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 7.912411687951419,
+        "mean": 1.7106137705444386,
+        "median": 1.0764063506007542,
+        "minimum": 0.009566616304354625,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.11011345795098748,
+        "p25": 0.6351700889862801,
+        "p75": 1.8611035323828382,
+        "p95": 6.159668443246044,
+        "rms": 2.462560527774251,
+        "sem": 0.1610401336194225,
+        "std_population": 1.7714414698136474
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 15.660459763365825,
+        "mean": 3.6919484531883473,
+        "median": 3.082207001484488,
+        "minimum": 0.5,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 1.224744871391589,
+        "p25": 2.23606797749979,
+        "p75": 4.358898943540674,
+        "p95": 8.366600265340756,
+        "rms": 4.408680861907421,
+        "sem": 0.2190509877085855,
+        "std_population": 2.4095608647944404
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 89.99893699696077,
+        "mean": 19.80617943692261,
+        "median": 10.038147597305697,
+        "minimum": 1.2516699286822752,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.51978375733754,
+        "p25": 5.358517500610767,
+        "p75": 20.561760525364367,
+        "p95": 81.64328051860718,
+        "rms": 30.430663545688798,
+        "sem": 2.100256851555761,
+        "std_population": 23.10282536711337
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "predicted_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 178.95229013061072,
+        "mean": 107.50148015304026,
+        "median": 110.48547467288606,
+        "minimum": 7.906129879127075,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 21.167253985159775,
+        "p25": 66.44257668894689,
+        "p75": 153.61722483832162,
+        "p95": 172.94918386875796,
+        "rms": 117.98952965448983,
+        "sem": 4.4209875799149465,
+        "std_population": 48.63086337906441
+      },
+      "reported_n": 124
+    }
+  },
+  "geometry_caveat": "Target shape is reconstructed from the archived training log because historical scales.json is absent; it is not independently verified calibration.",
+  "inference": {
+    "original_epoch_098": {
+      "loaded_network_keys": 63,
+      "modes": {
+        "all_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_all_groundtruth_centers.npz",
+          "archive_sha256": "ef32f5dc3da08ebb2f534ff8c37fb72a3847f5b23c01bafd6f163f8ea180f993",
+          "completed_at": "2026-09-03T06:53:04.768057+02:00",
+          "elapsed_seconds": 14.996945400009281,
+          "identity": {
+            "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 145,
+          "reused_this_run": false
+        },
+        "matched_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_matched_groundtruth_centers.npz",
+          "archive_sha256": "4daec22256a1e7979ab8893bcd4606fb1601770ccc072f284a8e89b72171868e",
+          "completed_at": "2026-09-03T06:53:16.659883+02:00",
+          "elapsed_seconds": 11.72764620000089,
+          "identity": {
+            "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        },
+        "predicted_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_original_epoch_098_predicted_centers.npz",
+          "archive_sha256": "9f3db434e5a7f5f2b1230f4e578bf7371a2e3575bedfed8e96cc404902a68e3d",
+          "completed_at": "2026-09-03T06:53:28.718405+02:00",
+          "elapsed_seconds": 11.894382999991649,
+          "identity": {
+            "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        }
+      }
+    },
+    "retrained_nematic_epoch_095": {
+      "loaded_network_keys": 63,
+      "modes": {
+        "all_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_all_groundtruth_centers.npz",
+          "archive_sha256": "06c9e0fe62ba4bc62e98c335f3f0cb4b48a157f5160543650934413d711f4c86",
+          "completed_at": "2026-09-03T06:53:43.217625+02:00",
+          "elapsed_seconds": 13.831775099999504,
+          "identity": {
+            "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 145,
+          "reused_this_run": false
+        },
+        "matched_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_matched_groundtruth_centers.npz",
+          "archive_sha256": "b023127f013c7d2db24f8ac05f528bc204ee0f04d5e24e6a49e8437ef224e503",
+          "completed_at": "2026-09-03T06:53:55.274503+02:00",
+          "elapsed_seconds": 11.891205799998716,
+          "identity": {
+            "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        },
+        "predicted_centers": {
+          "archive": "docs/reproducibility_audit/regression_preprocessing_fix_validation/predictions/nuclei_retrained_nematic_epoch_095_predicted_centers.npz",
+          "archive_sha256": "a4f74ab77004f7d8bba4911039dc2a49770225647771602d85c57a4a275fa9f8",
+          "completed_at": "2026-09-03T06:54:07.301661+02:00",
+          "elapsed_seconds": 11.845397999990382,
+          "identity": {
+            "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+                  "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        }
+      }
+    }
+  },
+  "legacy_raw_reference": {
+    "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/manuscript_event_metrics.csv",
+    "sha256": "32cf06ebd005553befc346f524288e72b6b55d1248f831be7f427375e19970e0",
+    "summary": {
+      "original_epoch_098|all_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 7.6689522287644465,
+          "mean": 1.9435396262700106,
+          "median": 1.576566705379534,
+          "minimum": 0.021076362070223453,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 0.15838796827742388,
+          "p25": 0.7039426580599253,
+          "p75": 2.626687711127722,
+          "p95": 4.899546511237934,
+          "rms": 2.504741189361807,
+          "sem": 0.1335338947555966,
+          "std_population": 1.579994350244274
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 83.29144612736282,
+          "mean": 14.893903456664543,
+          "median": 12.341823592377596,
+          "minimum": 1.1043897617156428,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 2.487261972300119,
+          "p25": 7.369288532527495,
+          "p75": 18.241654432671876,
+          "p95": 36.167580100721224,
+          "rms": 19.573149614472847,
+          "sem": 1.0733120490668608,
+          "std_population": 12.699599428883358
+        },
+        "effective_n": 140,
+        "reported_n": 145
+      },
+      "original_epoch_098|matched_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 7.6689522287644465,
+          "mean": 2.018189652666655,
+          "median": 1.6607485412100118,
+          "minimum": 0.021076362070223453,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.19979574766600017,
+          "p25": 0.7597868260578835,
+          "p75": 2.9122959540061153,
+          "p95": 5.101566001038208,
+          "rms": 2.560214123584348,
+          "sem": 0.14321015259239597,
+          "std_population": 1.5753116785163557
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 83.29144612736282,
+          "mean": 14.92301375419237,
+          "median": 12.1948831058034,
+          "minimum": 1.1043897617156428,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.46025038430301,
+          "p25": 6.396254802671826,
+          "p75": 17.757216415923683,
+          "p95": 37.93495619820514,
+          "rms": 20.135356991546022,
+          "sem": 1.2289088813204658,
+          "std_population": 13.517997694525125
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "original_epoch_098|predicted_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 8.472541495422973,
+          "mean": 2.1514463265338404,
+          "median": 1.543847069923494,
+          "minimum": 0.00017026829344324312,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.07849474053993966,
+          "p25": 0.5942457561851917,
+          "p75": 3.037878040112787,
+          "p95": 6.704273223876953,
+          "rms": 2.987541651749528,
+          "sem": 0.18844039820999112,
+          "std_population": 2.072844380309902
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 88.8746674730571,
+          "mean": 19.672211701565043,
+          "median": 10.105887711304277,
+          "minimum": 0.13906613631166403,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.9814010311079286,
+          "p25": 6.499806608829162,
+          "p75": 21.942898493577342,
+          "p95": 76.65075830848015,
+          "rms": 29.355499043648575,
+          "sem": 1.9807950045800018,
+          "std_population": 21.78874505038002
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "retrained_nematic|all_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 6.720723015172219,
+          "mean": 1.895739049084092,
+          "median": 1.6273459117185922,
+          "minimum": 0.0324641201131346,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 0.1686507632548655,
+          "p25": 0.7679648330836977,
+          "p75": 2.7105745762754707,
+          "p95": 4.483746762426888,
+          "rms": 2.3731301921844925,
+          "sem": 0.12065062804985277,
+          "std_population": 1.4275574828480109
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.93952902829741,
+          "mean": 12.574984832662185,
+          "median": 9.40917764775771,
+          "minimum": 0.8752682581125346,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 2.1331902966915335,
+          "p25": 5.56220305340089,
+          "p75": 16.90048072991676,
+          "p95": 29.255386968995595,
+          "rms": 16.790507040362886,
+          "sem": 0.9403300451391357,
+          "std_population": 11.12613513897758
+        },
+        "effective_n": 140,
+        "reported_n": 145
+      },
+      "retrained_nematic|matched_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 6.720723015172219,
+          "mean": 1.9329967051284331,
+          "median": 1.6806201093440016,
+          "minimum": 0.03714046732214449,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.19928287965627334,
+          "p25": 0.7793054764939313,
+          "p75": 2.7314801932008805,
+          "p95": 4.5985267584732945,
+          "rms": 2.4135143234957157,
+          "sem": 0.13138094027842476,
+          "std_population": 1.4451903430626722
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 82.78856844626716,
+          "mean": 12.236460718312655,
+          "median": 9.196963066603201,
+          "minimum": 0.8752682581125346,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.133912275791674,
+          "p25": 5.24847007849508,
+          "p75": 15.737004392548734,
+          "p95": 27.779641536228763,
+          "rms": 16.89222478170242,
+          "sem": 1.0586764197299245,
+          "std_population": 11.64544061702917
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "retrained_nematic|predicted_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 9.193930625915527,
+          "mean": 2.1015335187767406,
+          "median": 1.3161253015215255,
+          "minimum": 0.008000981831029819,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.13680811029091622,
+          "p25": 0.686687982883802,
+          "p75": 2.585542968318201,
+          "p95": 7.57158054568092,
+          "rms": 2.9932436366676587,
+          "sem": 0.19376786695350978,
+          "std_population": 2.1314465364886077
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.83285229068565,
+          "mean": 19.447393528220697,
+          "median": 9.460082131938996,
+          "minimum": 1.3356111088377365,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 1.8819613536909443,
+          "p25": 4.989369081577482,
+          "p75": 19.435335018077062,
+          "p95": 79.48866270692824,
+          "rms": 30.458471582216596,
+          "sem": 2.131071542216053,
+          "std_population": 23.441786964376583
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      }
+    }
+  },
+  "outputs": {
+    "event_csv": "docs/reproducibility_audit/regression_preprocessing_fix_validation/nuclei_event_metrics.csv",
+    "event_csv_sha256": "43a3528de3db16c8c6403523ee78d98c85384f9b253174643f676e3dca4e953e"
+  },
+  "paired_differences": {
+    "original_epoch_098|all_groundtruth_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 140,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 58.652243343113426,
+        "mean": -1.2231892607861725,
+        "median": -0.606378756915734,
+        "minimum": -53.58297782701164,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -11.775423008150984,
+        "p25": -3.899016519558341,
+        "p75": 2.420248853479703,
+        "p95": 8.001045759252177,
+        "rms": 10.073887414904322,
+        "sem": 0.8450993841828184,
+        "std_population": 9.999350762947815
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.075351437475847,
+        "mean": -0.3569917221252986,
+        "median": -0.45900888263844397,
+        "minimum": -2.685491303177219,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -1.6950109936317548,
+        "p25": -0.9410086330513763,
+        "p75": 0.23512952592534075,
+        "p95": 1.2190706333710457,
+        "rms": 0.9498708614266332,
+        "sem": 0.07439333513356977,
+        "std_population": 0.880233811962133
+      }
+    },
+    "original_epoch_098|matched_groundtruth_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 58.652243343113426,
+        "mean": -2.0820911690914996,
+        "median": -0.6415645781110424,
+        "minimum": -60.9503120140259,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -12.357651943973798,
+        "p25": -4.330794413744884,
+        "p75": 2.4052247762176293,
+        "p95": 7.961783083677688,
+        "rms": 12.746915829972718,
+        "sem": 1.1432473667815268,
+        "std_population": 12.575721034596796
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.8757141203875207,
+        "mean": -0.4249829787999168,
+        "median": -0.4725717614755691,
+        "minimum": -3.829081878003924,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.7111449044852343,
+        "p25": -0.8969188953490921,
+        "p75": 0.10610402680743469,
+        "p95": 1.0915623805084138,
+        "rms": 0.9953060740674756,
+        "sem": 0.08181937619360356,
+        "std_population": 0.9000131381296391
+      }
+    },
+    "original_epoch_098|predicted_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 43.6113539466585,
+        "mean": 0.06789398436356192,
+        "median": 0.15259391044561355,
+        "minimum": -53.14916450106907,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -13.517869513913885,
+        "p25": -2.6301566647908947,
+        "p75": 2.9155796195805657,
+        "p95": 12.011965827129735,
+        "rms": 10.1998645800824,
+        "sem": 0.9272398740120633,
+        "std_population": 10.199638614132697
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.192924702136132,
+        "mean": -0.4108955364436797,
+        "median": -0.4232797534044792,
+        "minimum": -3.3879207223032406,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.8442317710489995,
+        "p25": -1.0563990113720116,
+        "p75": 0.20885891982371696,
+        "p95": 1.205368972350474,
+        "rms": 1.0721559449767815,
+        "sem": 0.0900267741845741,
+        "std_population": 0.990294516030315
+      }
+    },
+    "retrained_nematic_epoch_095|all_groundtruth_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 140,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 24.391573616107735,
+        "mean": -0.8386151922391113,
+        "median": -0.4730558413163244,
+        "minimum": -87.41204809275352,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -8.376524319600149,
+        "p25": -3.08206476179299,
+        "p75": 2.380658400864071,
+        "p95": 6.906872306522983,
+        "rms": 9.345165903850878,
+        "sem": 0.7866241175784148,
+        "std_population": 9.30746207780847
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.492383448657499,
+        "mean": -0.5100309727474963,
+        "median": -0.530858331265688,
+        "minimum": -2.5360487347008167,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -1.7177162983122491,
+        "p25": -0.9701232429070088,
+        "p75": 0.011981404831471476,
+        "p95": 0.7170624130636328,
+        "rms": 0.8925356417101462,
+        "sem": 0.061903627782060516,
+        "std_population": 0.7324536016439439
+      }
+    },
+    "retrained_nematic_epoch_095|matched_groundtruth_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 24.391573616107735,
+        "mean": -1.225773902727351,
+        "median": -0.6774586309777035,
+        "minimum": -54.2372438331373,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -8.625763486889905,
+        "p25": -3.0257661700395246,
+        "p75": 2.1837618593381585,
+        "p95": 6.078868224073588,
+        "rms": 8.432391669729306,
+        "sem": 0.7584385199352632,
+        "std_population": 8.342823719287896
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.474821862697091,
+        "mean": -0.5393179175926999,
+        "median": -0.538060298188789,
+        "minimum": -4.452307090101092,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.7812580547233736,
+        "p25": -0.9842189828569747,
+        "p75": 0.018420353307631032,
+        "p95": 0.7230958938598633,
+        "rms": 1.021239091867582,
+        "sem": 0.07883791650401598,
+        "std_population": 0.8672170815441758
+      }
+    },
+    "retrained_nematic_epoch_095|predicted_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 44.160110510764255,
+        "mean": 0.3587859087019165,
+        "median": 0.30018913924446267,
+        "minimum": -49.62481605397693,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -6.742596079509791,
+        "p25": -2.1450432435454,
+        "p75": 2.9631788439703275,
+        "p95": 8.37173081021565,
+        "rms": 8.019371752380694,
+        "sem": 0.7283037917059126,
+        "std_population": 8.01134170876504
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.310996827601876,
+        "mean": -0.3909197482323023,
+        "median": -0.40010084131167645,
+        "minimum": -2.6282510580429417,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.765923144921846,
+        "p25": -0.9754286688378926,
+        "p75": 0.2408317091480079,
+        "p95": 0.8299781877084502,
+        "rms": 0.9542752653724813,
+        "sem": 0.07913911971304903,
+        "std_population": 0.8705303168435393
+      }
+    }
+  },
+  "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+  "preprocessing_manifest": {
+    "mode": "training_consistent",
+    "movies": [
+      {
+        "center_order": "MTXYZ",
+        "crop_size_xyz": [
+          32,
+          32,
+          32
+        ],
+        "declared_source_spacing_xyz": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "disk_order": "TZYX",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "internal_order": "TXYZ",
+        "mode": "training_consistent",
+        "movie_name": "movie2",
+        "normalization": "min-max",
+        "normalization_after_padding": true,
+        "padding_mode": "constant",
+        "padding_xyz": [
+          16,
+          16,
+          16
+        ],
+        "physical_crop_size_xyz": [
+          32.0,
+          32.0,
+          32.0
+        ],
+        "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+        "raw_shape_xyz": [
+          362,
+          305,
+          180
+        ],
+        "realized_shape_scale_factor_xyz": [
+          0.9116022099447514,
+          0.9114754098360656,
+          0.9111111111111111
+        ],
+        "regression_shape_xyz": [
+          330,
+          278,
+          164
+        ],
+        "resize_clip": true,
+        "resize_library": "skimage.transform.resize",
+        "resize_mode": "reflect",
+        "resize_order": 1,
+        "resize_preserve_range": true,
+        "scale_factor_xyz": [
+          0.9116022099447514,
+          0.9114754098360656,
+          0.9111111111111111
+        ],
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\docs\\reproducibility_audit\\nematic_retraining\\seed_12345\\__original_scales_json_is_missing__.json",
+        "scale_source": "dataset.get_movie_scale override:nematic_retraining_experiment.FrozenMultiMovieRegress3Dataset;declared=default_scale",
+        "schema_version": 1,
+        "source_spacing_xyz": [
+          0.9116022099447514,
+          0.9114754098360656,
+          0.9111111111111111
+        ],
+        "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+        "target_spacing_xyz": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "schema_version": 1
+  },
+  "scope": "nuclei movie2 frozen centers; segmentation and matching were not rerun",
+  "status": "complete",
+  "target_effective_counts": {
+    "all_groundtruth_centers": 140,
+    "matched_groundtruth_centers": 121,
+    "predicted_centers": 121
+  },
+  "validator_hash": "4a41829ac47037916d9542e3b4a18c342e056df3d2d350ae29e203b1599a6698"
+}

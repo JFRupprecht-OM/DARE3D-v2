@@ -1,0 +1,1642 @@
+{
+  "assertions": {
+    "both_existing_checkpoints_loaded": true,
+    "detector_center_counts_unchanged": true,
+    "original_predicted_center_mean_angle_not_degraded_over_2_deg": true,
+    "original_predicted_center_mean_length_error_not_degraded_over_1_voxel": true,
+    "predicted_center_mode_reuses_matched_ground_truth_objects": true,
+    "target_association_effective_counts_unchanged": true
+  },
+  "center_summary": {
+    "matched_components": 124,
+    "predicted_components": 125,
+    "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "true_components": 145
+  },
+  "checkpoints": {
+    "original_epoch_098": {
+      "epoch": 98,
+      "global_step": 16533,
+      "path": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+      "sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682"
+    },
+    "retrained_nematic_epoch_095": {
+      "epoch": 95,
+      "global_step": 16032,
+      "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/checkpoints/epoch_095.ckpt",
+      "sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8"
+    }
+  },
+  "completed_at": "2026-09-03T20:53:18.882310+02:00",
+  "current_summary": {
+    "training_consistent_log_reconstructed|original_epoch_098|all_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 5.906571411072942,
+        "mean": 1.573244700340489,
+        "median": 1.236125513137452,
+        "minimum": 0.02520810283745334,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.1981484856138634,
+        "p25": 0.692890505387604,
+        "p75": 2.2258513552363595,
+        "p95": 3.918390607582697,
+        "rms": 1.9875438889034083,
+        "sem": 0.1026516934370039,
+        "std_population": 1.2145912164871966
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 5.906571411072942,
+        "mean": 1.573244700340489,
+        "median": 1.236125513137452,
+        "minimum": 0.02520810283745334,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.19814848561386011,
+        "p25": 0.6928905053876049,
+        "p75": 2.225851355236358,
+        "p95": 3.918390607582697,
+        "rms": 1.9875438889034083,
+        "sem": 0.10265169343700391,
+        "std_population": 1.2145912164871968
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.640054944640259,
+        "mean": 0.6222168552251046,
+        "median": 0.5,
+        "minimum": 0.0,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 0.9122201273601884,
+        "rms": 0.7991841597328413,
+        "sem": 0.042387793580031356,
+        "std_population": 0.5015391372980464
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 48.24047554954616,
+        "mean": 11.893218490108906,
+        "median": 9.534827155910733,
+        "minimum": 1.6872367492405242,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 3.1519701968181293,
+        "p25": 6.214427095679013,
+        "p75": 14.778024486514024,
+        "p95": 27.861693351356163,
+        "rms": 14.548047460003193,
+        "sem": 0.708101278294068,
+        "std_population": 8.378367313805061
+      },
+      "effective_n": 140,
+      "group": {
+        "mode": "all_groundtruth_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 5,
+      "production_quaternion_error_deg": {
+        "maximum": 158.4929060451737,
+        "mean": 19.353616292090294,
+        "median": 14.965422503302587,
+        "minimum": 2.674650935952198,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 5.109059710764781,
+        "p25": 9.874656670684818,
+        "p75": 22.70839156518164,
+        "p95": 47.2795653460428,
+        "rms": 26.255943334021783,
+        "sem": 1.4995525446371851,
+        "std_population": 17.74294498604727
+      },
+      "reported_n": 145
+    },
+    "training_consistent_log_reconstructed|original_epoch_098|matched_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 5.906571411072942,
+        "mean": 1.5905164035601678,
+        "median": 1.2669221361224672,
+        "minimum": 0.02520810283745334,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.20329841426624995,
+        "p25": 0.7232525961504948,
+        "p75": 2.221567334153251,
+        "p95": 3.8949276614429227,
+        "rms": 1.9848933621211826,
+        "sem": 0.10795083166813027,
+        "std_population": 1.187459148349433
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 5.906571411072942,
+        "mean": 1.5905164035601673,
+        "median": 1.2669221361224619,
+        "minimum": 0.02520810283745334,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.2032984142662464,
+        "p25": 0.7232525961504948,
+        "p75": 2.2215673341532494,
+        "p95": 3.8949276614429245,
+        "rms": 1.9848933621211822,
+        "sem": 0.10795083166813027,
+        "std_population": 1.187459148349433
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.122498999199199,
+        "mean": 0.6315467261505103,
+        "median": 0.7071067811865476,
+        "minimum": 0.0,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 1.224744871391589,
+        "rms": 0.8134331894624218,
+        "sem": 0.04660563283158912,
+        "std_population": 0.5126619611474803
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 70.50593238742265,
+        "mean": 11.587283518369698,
+        "median": 9.284822863427419,
+        "minimum": 1.6872367492405242,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.931640349418899,
+        "p25": 5.7667514108434865,
+        "p75": 14.404021082057335,
+        "p95": 27.662668880460114,
+        "rms": 14.847936417307437,
+        "sem": 0.8440167467166756,
+        "std_population": 9.284184213883432
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "matched_groundtruth_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 158.4929060451737,
+        "mean": 19.249064558954796,
+        "median": 14.620852391754307,
+        "minimum": 2.674650935952198,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 5.013896606107682,
+        "p25": 9.757736035791858,
+        "p75": 22.696224231470545,
+        "p95": 43.38662697375891,
+        "rms": 28.00752926439536,
+        "sem": 1.8494922445956476,
+        "std_population": 20.344414690552124
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|original_epoch_098|predicted_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 8.431978834561328,
+        "mean": 1.8750381716474147,
+        "median": 1.4245200243222573,
+        "minimum": 0.005642299047618593,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.14849015971110902,
+        "p25": 0.6671536290353206,
+        "p75": 2.3639317841648726,
+        "p95": 5.618278024253941,
+        "rms": 2.5411425019752216,
+        "sem": 0.155920012079992,
+        "std_population": 1.7151201328799122
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 8.431978834561328,
+        "mean": 1.8750381716474147,
+        "median": 1.424520024322259,
+        "minimum": 0.005642299047618593,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.14849015971110724,
+        "p25": 0.6671536290353188,
+        "p75": 2.363931784164871,
+        "p95": 5.618278024253941,
+        "rms": 2.541142501975221,
+        "sem": 0.15592001207999204,
+        "std_population": 1.7151201328799124
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 15.660459763365825,
+        "mean": 3.6919484531883473,
+        "median": 3.082207001484488,
+        "minimum": 0.5,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 1.224744871391589,
+        "p25": 2.23606797749979,
+        "p75": 4.358898943540674,
+        "p95": 8.366600265340756,
+        "rms": 4.408680861907421,
+        "sem": 0.2190509877085855,
+        "std_population": 2.4095608647944404
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 85.64718135059127,
+        "mean": 20.133459719908565,
+        "median": 12.082413043030273,
+        "minimum": 0.5974264074193003,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 3.138776076901458,
+        "p25": 6.7708747950056525,
+        "p75": 21.924541040006506,
+        "p95": 73.23279895914108,
+        "rms": 29.049766225510606,
+        "sem": 1.903742980134192,
+        "std_population": 20.941172781476112
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "predicted_centers",
+        "model": "original_epoch_098",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 177.22890314544904,
+        "mean": 35.830372815520455,
+        "median": 15.663352829266627,
+        "minimum": 1.6205828741313097,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 5.206940144476264,
+        "p25": 11.563233268532544,
+        "p75": 38.001722828643615,
+        "p95": 153.07307990072326,
+        "rms": 56.298374578040374,
+        "sem": 3.9476861766115032,
+        "std_population": 43.424547942726534
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|all_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 5.160584310299026,
+        "mean": 1.4263563115489302,
+        "median": 1.173255421364983,
+        "minimum": 0.007476996924767221,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.08968646888159153,
+        "p25": 0.650952539422105,
+        "p75": 1.9782860977636543,
+        "p95": 3.497715147070016,
+        "rms": 1.7750384102016958,
+        "sem": 0.08929361800086814,
+        "std_population": 1.056536336429512
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 5.160584310299026,
+        "mean": 1.4263563115489302,
+        "median": 1.173255421364983,
+        "minimum": 0.007476996924767221,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.08968646888159144,
+        "p25": 0.6509525394221063,
+        "p75": 1.9782860977636538,
+        "p95": 3.497715147070016,
+        "rms": 1.775038410201696,
+        "sem": 0.08929361800086819,
+        "std_population": 1.0565363364295124
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.640054944640259,
+        "mean": 0.6222168552251046,
+        "median": 0.5,
+        "minimum": 0.0,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 0.9122201273601884,
+        "rms": 0.7991841597328413,
+        "sem": 0.042387793580031356,
+        "std_population": 0.5015391372980464
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 52.76460846312058,
+        "mean": 10.475700098047861,
+        "median": 8.192761721639833,
+        "minimum": 1.2808855327808928,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 2.2474483086059744,
+        "p25": 5.209913163737371,
+        "p75": 13.89005585517603,
+        "p95": 26.002593701743958,
+        "rms": 13.180704004774997,
+        "sem": 0.6760740952485041,
+        "std_population": 7.999416573554079
+      },
+      "effective_n": 140,
+      "group": {
+        "mode": "all_groundtruth_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 5,
+      "production_quaternion_error_deg": {
+        "maximum": 179.91634020167476,
+        "mean": 96.36291780400185,
+        "median": 97.96248928385828,
+        "minimum": 5.53718367871079,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": 22.777353663289652,
+        "p25": 56.53976794431814,
+        "p75": 142.88146842745098,
+        "p95": 173.61329271570142,
+        "rms": 108.06478166825175,
+        "sem": 4.133646875949082,
+        "std_population": 48.909969426550504
+      },
+      "reported_n": 145
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|matched_groundtruth_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 5.160584310299026,
+        "mean": 1.4480318451392917,
+        "median": 1.2572901861773484,
+        "minimum": 0.007476996924767221,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.09058474096455882,
+        "p25": 0.7043433275449154,
+        "p75": 2.000407704375972,
+        "p95": 3.2151533050712384,
+        "rms": 1.7677652391631584,
+        "sem": 0.09218189511634217,
+        "std_population": 1.0140008462797638
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 5.160584310299026,
+        "mean": 1.4480318451392917,
+        "median": 1.2572901861773502,
+        "minimum": 0.007476996924767221,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.09058474096455882,
+        "p25": 0.7043433275449154,
+        "p75": 2.00040770437597,
+        "p95": 3.215153305071242,
+        "rms": 1.7677652391631584,
+        "sem": 0.09218189511634219,
+        "std_population": 1.014000846279764
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 3.122498999199199,
+        "mean": 0.6315467261505103,
+        "median": 0.7071067811865476,
+        "minimum": 0.0,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.0,
+        "p25": 0.5,
+        "p75": 0.7071067811865476,
+        "p95": 1.224744871391589,
+        "rms": 0.8134331894624218,
+        "sem": 0.04660563283158912,
+        "std_population": 0.5126619611474803
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 39.39844680466587,
+        "mean": 10.019181903332887,
+        "median": 7.981327821508419,
+        "minimum": 1.2808855327808928,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.2235041288418707,
+        "p25": 5.23008078659715,
+        "p75": 13.129443799723004,
+        "p95": 25.4167413132934,
+        "rms": 12.346239056592095,
+        "sem": 0.655842230766353,
+        "std_population": 7.214264538429882
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "matched_groundtruth_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 179.91634020167476,
+        "mean": 98.01964954897348,
+        "median": 100.15255986357127,
+        "minimum": 5.53718367871079,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 23.69847004983351,
+        "p25": 60.797413363790824,
+        "p75": 142.74777584819364,
+        "p95": 173.5762955761973,
+        "rms": 108.78317497297483,
+        "sem": 4.289066880638388,
+        "std_population": 47.17973568702227
+      },
+      "reported_n": 124
+    },
+    "training_consistent_log_reconstructed|retrained_nematic_epoch_095|predicted_centers": {
+      "absolute_length_error_physical_um": {
+        "maximum": 7.914975164513918,
+        "mean": 1.7882487973896395,
+        "median": 1.0993642946799724,
+        "minimum": 0.03778392244443829,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.10101642951358336,
+        "p25": 0.5552092989032289,
+        "p75": 2.508132701093242,
+        "p95": 5.884253362423049,
+        "rms": 2.5559467878821676,
+        "sem": 0.16601877373476182,
+        "std_population": 1.82620651108238
+      },
+      "absolute_length_error_regression_voxels": {
+        "maximum": 7.914975164513919,
+        "mean": 1.788248797389639,
+        "median": 1.0993642946799724,
+        "minimum": 0.037783922444440066,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 0.10101642951358158,
+        "p25": 0.5552092989032236,
+        "p75": 2.5081327010932384,
+        "p95": 5.884253362423049,
+        "rms": 2.555946787882167,
+        "sem": 0.1660187737347618,
+        "std_population": 1.8262065110823797
+      },
+      "center_distance_raw_voxels": {
+        "maximum": 15.660459763365825,
+        "mean": 3.6919484531883473,
+        "median": 3.082207001484488,
+        "minimum": 0.5,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 1.224744871391589,
+        "p25": 2.23606797749979,
+        "p75": 4.358898943540674,
+        "p95": 8.366600265340756,
+        "rms": 4.408680861907421,
+        "sem": 0.2190509877085855,
+        "std_population": 2.4095608647944404
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 89.67554485388388,
+        "mean": 18.915742660289155,
+        "median": 9.877305148852287,
+        "minimum": 1.0299787503937812,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 2.1509001412018836,
+        "p25": 5.5649919561770025,
+        "p75": 22.822479520204833,
+        "p95": 66.61372296854438,
+        "rms": 28.60042734679673,
+        "sem": 1.9501623666861614,
+        "std_population": 21.451786033547776
+      },
+      "effective_n": 121,
+      "group": {
+        "mode": "predicted_centers",
+        "model": "retrained_nematic_epoch_095",
+        "profile": "training_consistent_log_reconstructed"
+      },
+      "missing_target_n": 3,
+      "production_quaternion_error_deg": {
+        "maximum": 177.8177010269871,
+        "mean": 106.09134483180601,
+        "median": 108.22512212722216,
+        "minimum": 4.548313159922512,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": 24.89179736607852,
+        "p25": 66.4501051618851,
+        "p75": 152.2073227141832,
+        "p95": 171.98355494063927,
+        "rms": 116.31815037861668,
+        "sem": 4.335647605531343,
+        "std_population": 47.69212366084478
+      },
+      "reported_n": 124
+    }
+  },
+  "geometry_caveat": "Target shape is reconstructed from the archived training log because historical scales.json is absent; it is not independently verified calibration.",
+  "inference": {
+    "original_epoch_098": {
+      "loaded_network_keys": 63,
+      "modes": {
+        "all_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_original_epoch_098_all_groundtruth_centers.npz",
+          "archive_sha256": "d0e7e42c5c2cf9aca318013d4d409b7570b211efcf020d9b23d2c9ef3d3f4bd6",
+          "completed_at": "2026-09-03T20:52:19.029434+02:00",
+          "elapsed_seconds": 13.223491199999444,
+          "identity": {
+            "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 145,
+          "reused_this_run": false
+        },
+        "matched_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_original_epoch_098_matched_groundtruth_centers.npz",
+          "archive_sha256": "f6602bbe467160786c43be15589da921479515acec5089addea30a967115003c",
+          "completed_at": "2026-09-03T20:52:30.479038+02:00",
+          "elapsed_seconds": 11.266955299999609,
+          "identity": {
+            "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        },
+        "predicted_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_original_epoch_098_predicted_centers.npz",
+          "archive_sha256": "db6a733deb16b027a2111aec89d6fffc168d1a136ee25d2080d2b5fbeb64efe5",
+          "completed_at": "2026-09-03T20:52:41.799039+02:00",
+          "elapsed_seconds": 11.157512000000679,
+          "identity": {
+            "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+            "checkpoint_sha256": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        }
+      }
+    },
+    "retrained_nematic_epoch_095": {
+      "loaded_network_keys": 63,
+      "modes": {
+        "all_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_retrained_nematic_epoch_095_all_groundtruth_centers.npz",
+          "archive_sha256": "0cb9204e47aa51f595548f83d26e1dea3ac91b1bf2934688950de49673e7e260",
+          "completed_at": "2026-09-03T20:52:55.925314+02:00",
+          "elapsed_seconds": 13.462237499999901,
+          "identity": {
+            "centers_sha256": "cce358e75ea7c5fa6dd644cad1f98e19512c1544d681328e6a49bc4535e57562",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 145,
+          "reused_this_run": false
+        },
+        "matched_groundtruth_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_retrained_nematic_epoch_095_matched_groundtruth_centers.npz",
+          "archive_sha256": "eae4633a8b193157ac56f0953721c288a1e0ab03773551874e05778d3225f1df",
+          "completed_at": "2026-09-03T20:53:07.322729+02:00",
+          "elapsed_seconds": 11.216011599999547,
+          "identity": {
+            "centers_sha256": "8ceaa2dcd97ef8ad359a393cb1e165ca7ddbfce392ec9fc502663e26b11d00ef",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        },
+        "predicted_centers": {
+          "archive": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/predictions/nuclei_retrained_nematic_epoch_095_predicted_centers.npz",
+          "archive_sha256": "e259aabc7e9c2d05f24047c3fe6db967ffc9798222f8b959983cc4e266664e91",
+          "completed_at": "2026-09-03T20:53:18.651553+02:00",
+          "elapsed_seconds": 11.171356900000319,
+          "identity": {
+            "centers_sha256": "4f8a6b3a2cb1e6390437b3f008b21e0cf60dd840babb70fec6aa7610f590a0bc",
+            "checkpoint_sha256": "e3bc5a3ff81497d36606ee4ca57c83395eef5f02b0ffd3cf5f117d0bb1f51ec8",
+            "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+            "preprocessing_manifest": {
+              "mode": "training_consistent",
+              "movies": [
+                {
+                  "center_order": "MTXYZ",
+                  "crop_size_xyz": [
+                    32,
+                    32,
+                    32
+                  ],
+                  "declared_source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "disk_order": "TZYX",
+                  "input_channels": [
+                    -1,
+                    0,
+                    1
+                  ],
+                  "internal_order": "TXYZ",
+                  "mode": "training_consistent",
+                  "movie_name": "movie2",
+                  "normalization": "min-max",
+                  "normalization_after_padding": true,
+                  "padding_mode": "constant",
+                  "padding_xyz": [
+                    16,
+                    16,
+                    16
+                  ],
+                  "physical_crop_size_xyz": [
+                    32.0,
+                    32.0,
+                    32.0
+                  ],
+                  "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+                  "raw_shape_xyz": [
+                    362,
+                    305,
+                    180
+                  ],
+                  "realized_shape_scale_factor_xyz": [
+                    0.9116022099447514,
+                    0.9114754098360656,
+                    0.9111111111111111
+                  ],
+                  "regression_shape_xyz": [
+                    330,
+                    278,
+                    164
+                  ],
+                  "resize_clip": true,
+                  "resize_library": "skimage.transform.resize",
+                  "resize_mode": "reflect",
+                  "resize_order": 1,
+                  "resize_preserve_range": true,
+                  "scale_factor_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+                  "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+                  "schema_version": 1,
+                  "source_spacing_xyz": [
+                    0.914,
+                    0.914,
+                    0.914
+                  ],
+                  "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+                  "target_spacing_xyz": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ],
+              "schema_version": 1
+            },
+            "schema_version": 1
+          },
+          "n": 124,
+          "reused_this_run": false
+        }
+      }
+    }
+  },
+  "legacy_raw_reference": {
+    "path": "docs/reproducibility_audit/nematic_retraining/seed_12345/manuscript_event_metrics.csv",
+    "sha256": "32cf06ebd005553befc346f524288e72b6b55d1248f831be7f427375e19970e0",
+    "summary": {
+      "original_epoch_098|all_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 7.6689522287644465,
+          "mean": 1.9435396262700106,
+          "median": 1.576566705379534,
+          "minimum": 0.021076362070223453,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 0.15838796827742388,
+          "p25": 0.7039426580599253,
+          "p75": 2.626687711127722,
+          "p95": 4.899546511237934,
+          "rms": 2.504741189361807,
+          "sem": 0.1335338947555966,
+          "std_population": 1.579994350244274
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 83.29144612736282,
+          "mean": 14.893903456664543,
+          "median": 12.341823592377596,
+          "minimum": 1.1043897617156428,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 2.487261972300119,
+          "p25": 7.369288532527495,
+          "p75": 18.241654432671876,
+          "p95": 36.167580100721224,
+          "rms": 19.573149614472847,
+          "sem": 1.0733120490668608,
+          "std_population": 12.699599428883358
+        },
+        "effective_n": 140,
+        "reported_n": 145
+      },
+      "original_epoch_098|matched_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 7.6689522287644465,
+          "mean": 2.018189652666655,
+          "median": 1.6607485412100118,
+          "minimum": 0.021076362070223453,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.19979574766600017,
+          "p25": 0.7597868260578835,
+          "p75": 2.9122959540061153,
+          "p95": 5.101566001038208,
+          "rms": 2.560214123584348,
+          "sem": 0.14321015259239597,
+          "std_population": 1.5753116785163557
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 83.29144612736282,
+          "mean": 14.92301375419237,
+          "median": 12.1948831058034,
+          "minimum": 1.1043897617156428,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.46025038430301,
+          "p25": 6.396254802671826,
+          "p75": 17.757216415923683,
+          "p95": 37.93495619820514,
+          "rms": 20.135356991546022,
+          "sem": 1.2289088813204658,
+          "std_population": 13.517997694525125
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "original_epoch_098|predicted_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 8.472541495422973,
+          "mean": 2.1514463265338404,
+          "median": 1.543847069923494,
+          "minimum": 0.00017026829344324312,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.07849474053993966,
+          "p25": 0.5942457561851917,
+          "p75": 3.037878040112787,
+          "p95": 6.704273223876953,
+          "rms": 2.987541651749528,
+          "sem": 0.18844039820999112,
+          "std_population": 2.072844380309902
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 88.8746674730571,
+          "mean": 19.672211701565043,
+          "median": 10.105887711304277,
+          "minimum": 0.13906613631166403,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.9814010311079286,
+          "p25": 6.499806608829162,
+          "p75": 21.942898493577342,
+          "p95": 76.65075830848015,
+          "rms": 29.355499043648575,
+          "sem": 1.9807950045800018,
+          "std_population": 21.78874505038002
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "retrained_nematic|all_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 6.720723015172219,
+          "mean": 1.895739049084092,
+          "median": 1.6273459117185922,
+          "minimum": 0.0324641201131346,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 0.1686507632548655,
+          "p25": 0.7679648330836977,
+          "p75": 2.7105745762754707,
+          "p95": 4.483746762426888,
+          "rms": 2.3731301921844925,
+          "sem": 0.12065062804985277,
+          "std_population": 1.4275574828480109
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.93952902829741,
+          "mean": 12.574984832662185,
+          "median": 9.40917764775771,
+          "minimum": 0.8752682581125346,
+          "n": 140,
+          "nominal_n": 140,
+          "p05": 2.1331902966915335,
+          "p25": 5.56220305340089,
+          "p75": 16.90048072991676,
+          "p95": 29.255386968995595,
+          "rms": 16.790507040362886,
+          "sem": 0.9403300451391357,
+          "std_population": 11.12613513897758
+        },
+        "effective_n": 140,
+        "reported_n": 145
+      },
+      "retrained_nematic|matched_groundtruth_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 6.720723015172219,
+          "mean": 1.9329967051284331,
+          "median": 1.6806201093440016,
+          "minimum": 0.03714046732214449,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.19928287965627334,
+          "p25": 0.7793054764939313,
+          "p75": 2.7314801932008805,
+          "p95": 4.5985267584732945,
+          "rms": 2.4135143234957157,
+          "sem": 0.13138094027842476,
+          "std_population": 1.4451903430626722
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 82.78856844626716,
+          "mean": 12.236460718312655,
+          "median": 9.196963066603201,
+          "minimum": 0.8752682581125346,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 2.133912275791674,
+          "p25": 5.24847007849508,
+          "p75": 15.737004392548734,
+          "p95": 27.779641536228763,
+          "rms": 16.89222478170242,
+          "sem": 1.0586764197299245,
+          "std_population": 11.64544061702917
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      },
+      "retrained_nematic|predicted_centers": {
+        "absolute_length_error_regression_voxels": {
+          "maximum": 9.193930625915527,
+          "mean": 2.1015335187767406,
+          "median": 1.3161253015215255,
+          "minimum": 0.008000981831029819,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 0.13680811029091622,
+          "p25": 0.686687982883802,
+          "p75": 2.585542968318201,
+          "p95": 7.57158054568092,
+          "rms": 2.9932436366676587,
+          "sem": 0.19376786695350978,
+          "std_population": 2.1314465364886077
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.83285229068565,
+          "mean": 19.447393528220697,
+          "median": 9.460082131938996,
+          "minimum": 1.3356111088377365,
+          "n": 121,
+          "nominal_n": 121,
+          "p05": 1.8819613536909443,
+          "p25": 4.989369081577482,
+          "p75": 19.435335018077062,
+          "p95": 79.48866270692824,
+          "rms": 30.458471582216596,
+          "sem": 2.131071542216053,
+          "std_population": 23.441786964376583
+        },
+        "effective_n": 121,
+        "reported_n": 124
+      }
+    }
+  },
+  "outputs": {
+    "event_csv": "docs/reproducibility_audit/exact_scale_regression_replay/nuclei_movie2_0914/event_metrics.csv",
+    "event_csv_sha256": "a2898c21b47bad966c8f87a1cbb3cc43e35827ac585e4b4fd3c0687171844276"
+  },
+  "paired_differences": {
+    "original_epoch_098|all_groundtruth_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 140,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 14.187762290580576,
+        "mean": -3.000684966555638,
+        "median": -0.9376949440358446,
+        "minimum": -72.47572501630569,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -13.289832959761618,
+        "p25": -4.295822248789055,
+        "p75": 1.339751744651406,
+        "p95": 7.440908982889732,
+        "rms": 10.432362148813985,
+        "sem": 0.8444358629772294,
+        "std_population": 9.99149987416773
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.8968994232728829,
+        "mean": -0.37029492592952196,
+        "median": -0.3314293298102031,
+        "minimum": -2.7214435847391307,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -1.8738054017892478,
+        "p25": -0.9596996045585007,
+        "p75": 0.2986032018916358,
+        "p95": 0.9914281442696641,
+        "rms": 0.9954571635938727,
+        "sem": 0.0780941113739976,
+        "std_population": 0.924021986957674
+      }
+    },
+    "original_epoch_098|matched_groundtruth_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 25.246601491599513,
+        "mean": -3.3357302358226706,
+        "median": -0.8314948272040823,
+        "minimum": -72.47572501630569,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -15.144060521623555,
+        "p25": -4.530605695830488,
+        "p75": 1.7188435904289445,
+        "p95": 7.793209635757361,
+        "rms": 13.000603733812875,
+        "sem": 1.1423066457990858,
+        "std_population": 12.565373103789943
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.6969264128251815,
+        "mean": -0.42767324910648746,
+        "median": -0.39928926549636046,
+        "minimum": -3.6538177098450735,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.8796499428307705,
+        "p25": -1.0617420341277288,
+        "p75": 0.2739302444058822,
+        "p95": 0.944754994022599,
+        "rms": 1.0401531120673821,
+        "sem": 0.08619668497308021,
+        "std_population": 0.9481635347038823
+      }
+    },
+    "original_epoch_098|predicted_centers": {
+      "legacy_model_label": "original_epoch_098",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 44.63038354622947,
+        "mean": 0.4612480183435263,
+        "median": 0.46427181181866306,
+        "minimum": -46.35168959834658,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -12.331128307070124,
+        "p25": -3.2274861224658338,
+        "p75": 3.0563954006752567,
+        "p95": 13.634667228915484,
+        "rms": 9.746800740501518,
+        "sem": 0.8850800726750129,
+        "std_population": 9.735880799425141
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.7605923143840112,
+        "mean": -0.27640815488642556,
+        "median": -0.14198162541150694,
+        "minimum": -3.0901115033099202,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -1.873276202214388,
+        "p25": -0.8334157912795117,
+        "p75": 0.28445710301666693,
+        "p95": 1.3774483820810186,
+        "rms": 0.9857274785002487,
+        "sem": 0.08601639252682264,
+        "std_population": 0.946180317795049
+      }
+    },
+    "retrained_nematic_epoch_095|all_groundtruth_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 140,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 17.636301341919502,
+        "mean": -2.0992847346143244,
+        "median": -1.111738080852764,
+        "minimum": -84.29750422323592,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -10.093864702594386,
+        "p25": -3.7271571270148796,
+        "p75": 1.0467802147512806,
+        "p95": 5.097196609920431,
+        "rms": 8.93198447676705,
+        "sem": 0.7337445560577938,
+        "std_population": 8.681782668105834
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.6784228844584739,
+        "mean": -0.46938273753516163,
+        "median": -0.4923688810858664,
+        "minimum": -2.5272049458416355,
+        "n": 140,
+        "nominal_n": 140,
+        "p05": -1.9370859253537343,
+        "p25": -1.0868853284158457,
+        "p75": 0.19796580163012045,
+        "p95": 0.8594855235408544,
+        "rms": 1.018886459616301,
+        "sem": 0.07642968118723052,
+        "std_population": 0.904328183401047
+      }
+    },
+    "retrained_nematic_epoch_095|matched_groundtruth_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 17.636301341919502,
+        "mean": -2.217278814979769,
+        "median": -1.0810639447415218,
+        "minimum": -67.10655924176122,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -11.05596116897761,
+        "p25": -3.5888611437406333,
+        "p75": 1.0329528272989918,
+        "p95": 4.700856121022568,
+        "rms": 8.970130270103144,
+        "sem": 0.7901611495814987,
+        "std_population": 8.691772645396487
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 1.6784228844584739,
+        "mean": -0.4849648599891415,
+        "median": -0.46481707828107943,
+        "minimum": -4.2770429219422414,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -2.076740720865118,
+        "p25": -1.082285080734776,
+        "p75": 0.18956560524016375,
+        "p95": 0.8520136216188661,
+        "rms": 1.0957224522863644,
+        "sem": 0.08932329511249211,
+        "std_population": 0.9825562462374132
+      }
+    },
+    "retrained_nematic_epoch_095|predicted_centers": {
+      "legacy_model_label": "retrained_nematic",
+      "n": 121,
+      "negative_difference_is_improvement": true,
+      "training_consistent_minus_legacy_angle_deg": {
+        "maximum": 42.342473829871466,
+        "mean": -0.5316508679315429,
+        "median": 0.41333872333887633,
+        "minimum": -49.62481605397693,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -11.819167044545523,
+        "p25": -2.6864363471908668,
+        "p75": 3.014683399709087,
+        "p95": 8.37173081021565,
+        "rms": 9.344565779421227,
+        "sem": 0.8481299650941246,
+        "std_population": 9.329429616035371
+      },
+      "training_consistent_minus_legacy_length_error_voxels": {
+        "maximum": 2.7240751711344995,
+        "mean": -0.31328472138710134,
+        "median": -0.29378422113315317,
+        "minimum": -2.8732383343646077,
+        "n": 121,
+        "nominal_n": 121,
+        "p05": -2.052023948600489,
+        "p25": -0.8757293965119111,
+        "p75": 0.26595625051422367,
+        "p95": 1.31388441629168,
+        "rms": 1.0079100375266434,
+        "sem": 0.0870895486272733,
+        "std_population": 0.9579850349000063
+      }
+    }
+  },
+  "pipeline_hash": "34600c50c7268c85f4cb86fba264d4fb40fe0658cca834922ca6ae79d0b6272b",
+  "preprocessing_manifest": {
+    "mode": "training_consistent",
+    "movies": [
+      {
+        "center_order": "MTXYZ",
+        "crop_size_xyz": [
+          32,
+          32,
+          32
+        ],
+        "declared_source_spacing_xyz": [
+          0.914,
+          0.914,
+          0.914
+        ],
+        "disk_order": "TZYX",
+        "input_channels": [
+          -1,
+          0,
+          1
+        ],
+        "internal_order": "TXYZ",
+        "mode": "training_consistent",
+        "movie_name": "movie2",
+        "normalization": "min-max",
+        "normalization_after_padding": true,
+        "padding_mode": "constant",
+        "padding_xyz": [
+          16,
+          16,
+          16
+        ],
+        "physical_crop_size_xyz": [
+          32.0,
+          32.0,
+          32.0
+        ],
+        "point_transform_rule": "round(raw_coordinate * scale_factor + 1e-9)",
+        "raw_shape_xyz": [
+          362,
+          305,
+          180
+        ],
+        "realized_shape_scale_factor_xyz": [
+          0.9116022099447514,
+          0.9114754098360656,
+          0.9111111111111111
+        ],
+        "regression_shape_xyz": [
+          330,
+          278,
+          164
+        ],
+        "resize_clip": true,
+        "resize_library": "skimage.transform.resize",
+        "resize_mode": "reflect",
+        "resize_order": 1,
+        "resize_preserve_range": true,
+        "scale_factor_xyz": [
+          0.914,
+          0.914,
+          0.914
+        ],
+        "scale_file": "C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json",
+        "scale_source": "scale_file:C:\\Users\\ruppr\\Documents\\Codexsession\\DARE3D_280826\\data\\3D\\scales.json:movie2",
+        "schema_version": 1,
+        "source_spacing_xyz": [
+          0.914,
+          0.914,
+          0.914
+        ],
+        "target_shape_rule": "floor(raw_shape * source_spacing / target_spacing)",
+        "target_spacing_xyz": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "schema_version": 1
+  },
+  "scope": "nuclei movie2 frozen centers; segmentation and matching were not rerun",
+  "status": "complete",
+  "target_effective_counts": {
+    "all_groundtruth_centers": 140,
+    "matched_groundtruth_centers": 121,
+    "predicted_centers": 121
+  },
+  "validator_hash": "4a41829ac47037916d9542e3b4a18c342e056df3d2d350ae29e203b1599a6698"
+}

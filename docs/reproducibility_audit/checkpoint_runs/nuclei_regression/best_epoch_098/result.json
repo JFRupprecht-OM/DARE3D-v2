@@ -1,0 +1,277 @@
+{
+  "aggregate_comparison": {
+    "all_values_within_1e_minus_3": false,
+    "all_values_within_1e_minus_5": false,
+    "all_values_within_1e_minus_6": false,
+    "by_mode": {
+      "all_groundtruth_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 0.0010929107666015625,
+          "generated": 25.307039260864258,
+          "released": 25.305946350097656
+        },
+        "mean_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.6222168803215027,
+          "released": 0.6222168803215027
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.00019311904907226562,
+          "generated": 1.9435396194458008,
+          "released": 1.943732738494873
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 145.0,
+          "released": 145.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 0.0005950927734375,
+          "generated": 28.018522262573242,
+          "released": 28.017927169799805
+        },
+        "std_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.5015391707420349,
+          "released": 0.5015391707420349
+        },
+        "std_length_error": {
+          "absolute_difference": 0.0001424551010131836,
+          "generated": 1.5799943208694458,
+          "released": 1.580136775970459
+        }
+      },
+      "matched_groundtruth_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 0.00078582763671875,
+          "generated": 26.31011390686035,
+          "released": 26.309328079223633
+        },
+        "mean_distance_error": {
+          "absolute_difference": 5.960464477539063e-08,
+          "generated": 0.6364278197288513,
+          "released": 0.6364277601242065
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.00013375282287597656,
+          "generated": 2.0181896686553955,
+          "released": 2.0183234214782715
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 124.0,
+          "released": 124.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 0.000499725341796875,
+          "generated": 32.019596099853516,
+          "released": 32.02009582519531
+        },
+        "std_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 0.5226491689682007,
+          "released": 0.5226491689682007
+        },
+        "std_length_error": {
+          "absolute_difference": 0.00014126300811767578,
+          "generated": 1.5753116607666016,
+          "released": 1.5754529237747192
+        }
+      },
+      "predicted_centers": {
+        "mean_angle_error": {
+          "absolute_difference": 0.01293182373046875,
+          "generated": 37.48206329345703,
+          "released": 37.46913146972656
+        },
+        "mean_distance_error": {
+          "absolute_difference": 0.0,
+          "generated": 3.668400526046753,
+          "released": 3.668400526046753
+        },
+        "mean_length_error": {
+          "absolute_difference": 0.00029754638671875,
+          "generated": 2.1514463424682617,
+          "released": 2.1517438888549805
+        },
+        "n": {
+          "absolute_difference": 0.0,
+          "generated": 124.0,
+          "released": 124.0
+        },
+        "std_angle_error": {
+          "absolute_difference": 0.015964508056640625,
+          "generated": 45.59537887573242,
+          "released": 45.57941436767578
+        },
+        "std_distance_error": {
+          "absolute_difference": 2.384185791015625e-07,
+          "generated": 2.441033124923706,
+          "released": 2.441033363342285
+        },
+        "std_length_error": {
+          "absolute_difference": 0.00012946128845214844,
+          "generated": 2.0728442668914795,
+          "released": 2.0729737281799316
+        }
+      }
+    },
+    "maximum_absolute_difference": 0.015964508056640625
+  },
+  "checkpoint_selection": "best",
+  "dataset": {
+    "effective_evaluated_counts": {
+      "all_groundtruth_centers": 140,
+      "matched_groundtruth_centers": 121,
+      "predicted_centers": 121
+    },
+    "movie_names": [
+      "movie2"
+    ],
+    "original_internal_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ],
+    "padded_internal_shapes_txyz": [
+      [
+        10,
+        394,
+        337,
+        212
+      ]
+    ]
+  },
+  "elapsed_seconds": 55.693648100001155,
+  "finished_utc": "2026-08-29T04:07:39.572826+00:00",
+  "frozen_protocol": {
+    "center_counts": {
+      "matched_components": 124,
+      "predicted_components": 125,
+      "source": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+      "true_components": 145
+    },
+    "center_source": "released nuclei probability replay under current evaluator",
+    "checkpoint_candidates_predeclared": [
+      "best",
+      "last"
+    ],
+    "dataset_init_preprocess": false,
+    "display_tiffs_written": false,
+    "normalization": "min-max",
+    "padding_then_normalization": true,
+    "scale_file_present": false,
+    "scale_note": "The current regression evaluation path does not resize when init(preprocess=False); it operates in raw anisotropic voxel coordinates.",
+    "spatial_resampling_during_evaluation": false
+  },
+  "generated_regression_results": {
+    "regression_performance_on_all_groundtruth_centers": {
+      "mean_angle_error": 25.307039260864258,
+      "mean_distance_error": 0.6222168803215027,
+      "mean_length_error": 1.9435396194458008,
+      "n": 145,
+      "std_angle_error": 28.018522262573242,
+      "std_distance_error": 0.5015391707420349,
+      "std_length_error": 1.5799943208694458
+    },
+    "regression_performance_on_matched_groundtruth_centers": {
+      "mean_angle_error": 26.31011390686035,
+      "mean_distance_error": 0.6364278197288513,
+      "mean_length_error": 2.0181896686553955,
+      "n": 124,
+      "std_angle_error": 32.019596099853516,
+      "std_distance_error": 0.5226491689682007,
+      "std_length_error": 1.5753116607666016
+    },
+    "regression_performance_on_predicted_centers": {
+      "mean_angle_error": 37.48206329345703,
+      "mean_distance_error": 3.668400526046753,
+      "mean_length_error": 2.1514463424682617,
+      "n": 124,
+      "std_angle_error": 45.59537887573242,
+      "std_distance_error": 2.441033124923706,
+      "std_length_error": 2.0728442668914795
+    }
+  },
+  "inference_seconds_by_mode": {
+    "all_groundtruth_centers": 17.54952940000294,
+    "matched_groundtruth_centers": 14.836146400000871,
+    "predicted_centers": 14.799206000003323
+  },
+  "inputs": {
+    "center_table": "docs/reproducibility_audit/evidence/nuclei_current_evaluator_objects.csv",
+    "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/checkpoints/epoch_098.ckpt",
+    "checkpoint_sha256_from_verified_manifest": "3c453af4af568456cfb8c6b362e8f60c953f246d194cd060229faf5d84044682",
+    "config": "DARE3d_data_190326/Gastruloid_241025/weights/regression3d_exp10-b/.hydra/config.yaml",
+    "image": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "image_sha256_from_verified_manifest": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+    "label_dir": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label"
+  },
+  "model": {
+    "class": "dare3d.models.components.simple_regression_net.RegressionNet",
+    "loaded_network_key_count": 63,
+    "parameter_count": 5897940,
+    "strict_checkpoint_load": true
+  },
+  "outputs": {
+    "event_errors_csv": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/event_errors.csv",
+    "raw_prediction_npz": [
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/all_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/matched_groundtruth_centers_raw_predictions.npz",
+      "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/predicted_centers_raw_predictions.npz"
+    ],
+    "run_log": "docs/reproducibility_audit/checkpoint_runs/nuclei_regression/best_epoch_098/run.log"
+  },
+  "peak_gpu_allocated_bytes": 707703808,
+  "peak_gpu_reserved_bytes": 727711744,
+  "phase": "regression_checkpoint_inference_on_frozen_released_centers",
+  "released_regression_results": {
+    "regression_performance_on_all_groundtruth_centers": {
+      "mean_angle_error": 25.305946350097656,
+      "mean_distance_error": 0.6222168803215027,
+      "mean_length_error": 1.943732738494873,
+      "n": 145,
+      "std_angle_error": 28.017927169799805,
+      "std_distance_error": 0.5015391707420349,
+      "std_length_error": 1.580136775970459
+    },
+    "regression_performance_on_matched_groundtruth_centers": {
+      "mean_angle_error": 26.309328079223633,
+      "mean_distance_error": 0.6364277601242065,
+      "mean_length_error": 2.0183234214782715,
+      "n": 124,
+      "std_angle_error": 32.02009582519531,
+      "std_distance_error": 0.5226491689682007,
+      "std_length_error": 1.5754529237747192
+    },
+    "regression_performance_on_predicted_centers": {
+      "mean_angle_error": 37.46913146972656,
+      "mean_distance_error": 3.668400526046753,
+      "mean_length_error": 2.1517438888549805,
+      "n": 124,
+      "std_angle_error": 45.57941436767578,
+      "std_distance_error": 2.441033363342285,
+      "std_length_error": 2.0729737281799316
+    }
+  },
+  "runtime": {
+    "cuda": "12.1",
+    "cudnn": 90100,
+    "gpu": "Quadro RTX 5000",
+    "import_origins": {
+      "CenterList": "dare3d/metrics/infer_measure.py",
+      "evaluate_center_pair": "dare3d/metrics/infer_measure.py",
+      "load_net_state_dict": "dare3d/models/finetune.py",
+      "regression_inference": "dare3d/metrics/inference.py"
+    },
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.5.1+cu121"
+  },
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "started_utc": "2026-08-29T04:06:43.876558+00:00",
+  "status": "complete"
+}

@@ -1,0 +1,135 @@
+{
+  "all_released_metrics_exact": false,
+  "checkpoint": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/checkpoints/epoch_057.ckpt",
+  "checkpoint_sha256": "8261c70f41c7f0f5184559e98f3c69ad336e5e46edba5bb57e5edbf9b0568f7d",
+  "components": [
+    {
+      "matched": 0,
+      "predicted": 0,
+      "true": 0
+    }
+  ],
+  "created_at": "2026-09-01T10:14:58.429592+02:00",
+  "current_metrics": {
+    "fmeasure": 0.0,
+    "fn": 122,
+    "fp": 0,
+    "min_weighted_prob": 0.15,
+    "precision": 0,
+    "recall": 0.0,
+    "threshold": 0.55,
+    "tp": 0
+  },
+  "dataset": {
+    "computed_target_shapes_txyz": [
+      [
+        21,
+        212,
+        212,
+        10
+      ]
+    ],
+    "length": 1216,
+    "mask_shapes_txyz": [
+      [
+        21,
+        1024,
+        1024,
+        10
+      ]
+    ],
+    "movie_names": [
+      "movie_I2"
+    ],
+    "negative_sequence_count": 0,
+    "original_internal_shapes_txyz": [
+      [
+        21,
+        1024,
+        1024,
+        10
+      ]
+    ],
+    "positive_sequence_count": 0,
+    "processed_shapes_txyz": [
+      [
+        21,
+        1024,
+        1024,
+        10
+      ]
+    ],
+    "role": "validation",
+    "sequence_count": 1216,
+    "sparse_folder_exists": null,
+    "sparse_training": false,
+    "stage": "segmentation",
+    "time_axis_padding_effective": 0
+  },
+  "distance_mode": "iou",
+  "elapsed_seconds": 31.155667500000163,
+  "finished_at": "2026-09-01T10:28:05.730912+02:00",
+  "inference_batch_size": 12,
+  "interpretation": "This is a predeclared geometry validation against the released movie_I2 output, not threshold tuning.",
+  "iteration_method": "movie",
+  "loaded_network_keys": 196,
+  "metric_exact_agreement": {
+    "fmeasure": false,
+    "fn": false,
+    "fp": false,
+    "precision": false,
+    "recall": false,
+    "tp": false
+  },
+  "minimum_iou": 1e-06,
+  "minimum_weighted_probability": 0.15,
+  "peak_memory_allocated_bytes": 462724608,
+  "peak_memory_reserved_bytes": 484442112,
+  "probability_comparison": {
+    "binary_disagreement_count_at_0_55": 250707,
+    "binary_disagreement_fraction_at_0_55": 0.0011385372706821987,
+    "exact_value_fraction": 0.9961194719587053,
+    "generated": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/preflight/released_checkpoint_validation_replay/movie_I2.tif",
+    "generated_dtype": "float16",
+    "generated_sha256": "40cf83a39073a75f5c7edcc8015dc7cabd7ace0ed52db45c6a6bf5c31122d72b",
+    "generated_shape": [
+      21,
+      10,
+      1024,
+      1024
+    ],
+    "mae": 0.0011486289459090434,
+    "maximum_absolute_difference": 1.0,
+    "released": "DARE3d_data_190326/Neural_tube_160226/weights/segmentation3d_new_set_og/runs/12-01-26/movie_I2.tif",
+    "released_dtype": "float16",
+    "released_sha256": "8a54807c1ee1748e55038939aead7750ec696d9c08e9f44357076e6d4855546f",
+    "released_shape": [
+      21,
+      10,
+      1024,
+      1024
+    ],
+    "rmse": 0.0330248087144283,
+    "shape_match": true,
+    "value_count": 220200960
+  },
+  "released_metrics": {
+    "fmeasure": 0.9344262295081968,
+    "fn": 8,
+    "fp": 8,
+    "min_weighted_prob": 0.15,
+    "precision": 0.9344262295081968,
+    "recall": 0.9344262295081968,
+    "threshold": 0.5499999999999999,
+    "tp": 114
+  },
+  "resumed_after_wrapper_failure": true,
+  "reused_saved_probability_without_reinference": true,
+  "scale_xyz_um": [
+    0.208,
+    0.208,
+    1.0
+  ],
+  "status": "complete",
+  "threshold": 0.55
+}

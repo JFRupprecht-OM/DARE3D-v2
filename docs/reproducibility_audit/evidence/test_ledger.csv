@@ -1,0 +1,18 @@
+test_id,scope,command_or_check,outcome,counts_or_result,evidence,interpretation
+TEST-01,hardware,CUDA/cuDNN smoke,pass,Quadro RTX 5000; cuDNN9.1,SESSION_HANDOFF.md:263-274,GPU environment works.
+TEST-02,production unit,tests/test_geometry.py,pass,all passed,SESSION_HANDOFF.md:263-274,Geometry helpers pass.
+TEST-03,production unit,tests/test_train_commands.py,pass,all passed,SESSION_HANDOFF.md:263-274,Command construction passes.
+TEST-04,checkpoint load,focused loading,pass,5 passed,SESSION_HANDOFF.md:263-274,Released state dicts load.
+TEST-05,config/eval,focused selection,partial/fail,"5 passed, 1 failed, 2 errors",SESSION_HANDOFF.md:263-274,Stale Hydra fixtures.
+TEST-06,production suite,pytest -k 'not slow',blocked at collection,missing pkg_resources,SESSION_HANDOFF.md:263-274,Full suite not executable.
+TEST-07,scientific,scientific_edge_cases.py,pass,24/24,evidence/scientific_edge_cases.json,Metric/matching defects frozen.
+TEST-08,regression artifacts,regression_artifact_analysis.py,pass,19/19,evidence/regression_artifact_analysis.json,743 rows and aggregates.
+TEST-09,nuclei segmentation,checkpoint summary,pass,9/9,evidence/nuclei_checkpoint_compatibility_summary.json,Best/last/fallback frozen.
+TEST-10,membrane components,FP investigation,pass,12/12,evidence/membrane_fp_investigation.json,Hidden FP/filter exception.
+TEST-11,workflow,workflow_path_checks.py,pass,15/15 + GPU smoke,evidence/workflow_path_checks.json,Path runs; protocol differs.
+TEST-12,nuclei regression,checkpoint summary,pass,9/9,evidence/nuclei_regression_checkpoint_compatibility_summary.json,epoch098 compatibility.
+TEST-13,full retraining,four models + seeds,not run / blocked,missing data/scales/split/environment,evidence/artifact_ledger.csv,Required for full-pipeline status.
+TEST-14,membrane checkpoints,inference/matching,not run / blocked,raw images/labels absent,evidence/artifact_ledger.csv,Checkpoint identity unproved.
+TEST-15,angular metric,nematic_axis_metric_comparison.py,pass,14/14 assertions; 732 evaluated pairs,evidence/nematic_axis_metric_comparison.json,Fixed-prediction counterfactual with synthetic cases.
+TEST-16,nematic retraining preflight,nematic_retraining_experiment.py preflight --initialize-data,pass,10/10,nematic_retraining/seed_12345/preflight.json,"Data, invariance, gradient, CUDA, crop-count, and integrity checks."
+TEST-17,paired nematic retraining,nematic_retraining_evaluation.py,pass,10/10; 156 controlled pairs,nematic_retraining/seed_12345/evaluation.json,Moderate GT-center gain; predicted-center interval spans zero.

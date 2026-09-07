@@ -1,0 +1,18 @@
+component,current_value,historical_or_checkpoint_value,status,evidence,reproducibility_impact
+source commit,fe2b14d732359f2bdaf8b197574ad818899ce123,historical snapshot absent,current frozen,evidence/source_manifest_sha256.csv,Compatibility is not historical reproduction.
+OS,Windows-10-10.0.26200-SP0,not recorded,current only,evidence/environment_report.json,Bitwise portability unknown.
+Python,3.10.20,not recorded,current only,evidence/environment_report.json,Historical interpreter unknown.
+PyTorch,2.5.1+cu121,not recorded,current only,evidence/environment_report.json,Current compatibility only.
+CUDA,12.1,not recorded,current only,evidence/environment_report.json,GPU numerical variance possible.
+cuDNN,90100,not recorded,current only,evidence/environment_report.json,Kernel provenance absent.
+GPU/driver,"Quadro RTX 5000, 16384 MiB, 581.95",not recorded,current only,evidence/environment_report.json,Exact hardware unavailable.
+MONAI,1.3.0,not recorded,current only,evidence/environment_report.json,Transforms version-sensitive.
+Lightning,2.6.5,2.2.5 nuclei; 2.5.6 membrane,mismatch documented,evidence/checkpoint_metadata.json,Strict loads pass where tested.
+NumPy,1.23.4,not recorded,current only,evidence/environment_report.json,Arithmetic frozen.
+SciPy,1.13.1,not recorded,current only,evidence/environment_report.json,Components/statistics version-sensitive.
+scikit-image,0.24.0,not recorded,current only,evidence/environment_report.json,Historical component behavior unpinned.
+tifffile,2025.5.10,not recorded,current only,evidence/environment_report.json,Artifact reads hash-frozen.
+Hydra/OmegaConf,1.3.2 / 2.3.1,not recorded,stale tests,evidence/test_ledger.csv,Some tests fail on fixtures.
+determinism,false in all four configs,false,known,evidence/checkpoint_metadata.json,Seed variance required for retraining.
+dare3d install,0.0.1,historical package absent,editable path mismatch mitigated,evidence/environment_report.json,Unpinned imports can hit old checkout.
+package inventory,269 distributions,not recorded,current only,evidence/environment_packages.csv,"Session recovery, not history."

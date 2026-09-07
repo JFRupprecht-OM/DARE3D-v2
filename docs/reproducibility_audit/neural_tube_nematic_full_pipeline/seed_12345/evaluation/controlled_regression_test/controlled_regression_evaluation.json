@@ -1,0 +1,198 @@
+{
+  "checkpoints": {
+    "original": {
+      "epoch": 147,
+      "global_step": 9324,
+      "lightning_version": "2.5.6",
+      "path": "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt",
+      "sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b"
+    },
+    "retrained": {
+      "epoch": 139,
+      "global_step": 8820,
+      "lightning_version": "2.6.5",
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/regression_nematic_retrained/checkpoints/epoch_139.ckpt",
+      "sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b"
+    }
+  },
+  "completed_at": "2026-09-02T08:57:17.306216+02:00",
+  "dataset": {
+    "computed_target_shapes_txyz": [
+      [
+        11,
+        212,
+        212,
+        10
+      ]
+    ],
+    "length": 2000,
+    "minimum_daughter_distance_processed_voxels": 5.0,
+    "movie_names": [
+      "movie_M"
+    ],
+    "original_internal_shapes_txyz": [
+      [
+        11,
+        1024,
+        1024,
+        10
+      ]
+    ],
+    "processed_shapes_txyz": [
+      [
+        11,
+        244,
+        244,
+        42
+      ]
+    ],
+    "role": "test",
+    "stage": "regression",
+    "time_axis_padding_effective": 0,
+    "unique_crop_count": 80,
+    "zero_length_axes": 0
+  },
+  "elapsed_seconds": 2.0613006000057794,
+  "event_metrics": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/controlled_regression_test/event_metrics.csv",
+  "loaded_network_keys": {
+    "original": 41,
+    "retrained": 41
+  },
+  "scope": "80 unique movie_M test crops after unchanged t>1 filter",
+  "status": "complete",
+  "summary": {
+    "by_model": {
+      "original": {
+        "absolute_length_error_voxels": {
+          "maximum": 12.144599914550781,
+          "mean": 10.230631828308105,
+          "median": 10.251708984375,
+          "minimum": 6.878717422485352,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 8.554090356826782,
+          "p25": 9.635657787322998,
+          "p75": 10.692887306213379,
+          "p95": 11.886250400543213,
+          "rms": 10.27925895672243,
+          "sem": 0.11165465835314785,
+          "std_population": 0.9986696243286133
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 87.85882568359375,
+          "mean": 53.815940856933594,
+          "median": 53.434120178222656,
+          "minimum": 5.429211139678955,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 12.820226192474365,
+          "p25": 35.22689247131348,
+          "p75": 73.90065956115723,
+          "p95": 85.75194396972657,
+          "rms": 58.48671038000396,
+          "sem": 2.5606153179489692,
+          "std_population": 22.90283966064453
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 172.6456298828125,
+          "mean": 82.46493530273438,
+          "median": 70.7930908203125,
+          "minimum": 18.052215576171875,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 25.822940254211424,
+          "p25": 52.064209938049316,
+          "p75": 119.04740905761719,
+          "p95": 160.37479248046873,
+          "rms": 92.77357051734045,
+          "sem": 4.7519340430525165,
+          "std_population": 42.50259017944336
+        },
+        "sample_count": 80,
+        "undefined_corrected_axis_count": 0
+      },
+      "retrained": {
+        "absolute_length_error_voxels": {
+          "maximum": 3.28273344039917,
+          "mean": 0.8358930349349976,
+          "median": 0.7320849895477295,
+          "minimum": 0.04259920120239258,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 0.08200371265411377,
+          "p25": 0.2490401268005371,
+          "p75": 1.1327179670333862,
+          "p95": 2.404913783073425,
+          "rms": 1.094450907100242,
+          "sem": 0.07898620177130841,
+          "std_population": 0.7064740657806396
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 53.19316101074219,
+          "mean": 18.945465087890625,
+          "median": 17.12960720062256,
+          "minimum": 0.9683364033699036,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 4.4619765996932985,
+          "p25": 8.704925298690796,
+          "p75": 25.65925121307373,
+          "p95": 40.24514503479003,
+          "rms": 22.241057652965473,
+          "sem": 1.3025646788675223,
+          "std_population": 11.650492668151855
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 179.4817657470703,
+          "mean": 120.28153991699219,
+          "median": 144.47632598876953,
+          "minimum": 7.369228839874268,
+          "n": 80,
+          "nominal_n": 80,
+          "p05": 33.61423282623291,
+          "p25": 62.975247383117676,
+          "p75": 163.56388473510742,
+          "p95": 176.17822036743163,
+          "rms": 131.34060795531735,
+          "sem": 5.897779417289927,
+          "std_population": 52.7513427734375
+        },
+        "sample_count": 80,
+        "undefined_corrected_axis_count": 0
+      }
+    },
+    "paired_retrained_minus_original": {
+      "absolute_length_error_voxels": {
+        "maximum": -6.489229679107666,
+        "mean": -9.39473819732666,
+        "median": -9.464656114578247,
+        "minimum": -11.795184135437012,
+        "n": 80,
+        "nominal_n": 80,
+        "p05": -11.08211362361908,
+        "p25": -10.051239371299744,
+        "p75": -8.895939469337463,
+        "p95": -7.1384639024734495,
+        "rms": 9.459933339439115,
+        "sem": 0.12395693893385568,
+        "std_population": 1.1087045669555664
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 10.638940334320068,
+        "mean": -34.8704719543457,
+        "median": -31.533777236938477,
+        "minimum": -80.99892377853394,
+        "n": 80,
+        "nominal_n": 80,
+        "p05": -70.828644156456,
+        "p25": -54.26460123062134,
+        "p75": -18.316414833068848,
+        "p95": 5.773269176483153,
+        "rms": 42.239226245099495,
+        "sem": 2.665056967297053,
+        "std_population": 23.836994171142578
+      },
+      "negative_difference_is_improvement": true
+    }
+  }
+}

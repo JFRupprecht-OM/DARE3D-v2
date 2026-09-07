@@ -1,0 +1,208 @@
+{
+  "assertions": {
+    "all_corrected_axes_defined": true,
+    "expected_unique_crop_count": true,
+    "source_commit_unchanged": true,
+    "tracked_tree_clean": true
+  },
+  "checkpoints": {
+    "original": {
+      "epoch": 147,
+      "global_step": 9324,
+      "lightning_version": "2.5.6",
+      "path": "DARE3d_data_190326/Neural_tube_160226/weights/regression3d_new_set_og/runs/12-01-26/checkpoints/epoch_147.ckpt",
+      "sha256": "1457585655bc4e11404e10022e87d2049e8408d201f676b5c7c1546290483a6b"
+    },
+    "retrained": {
+      "epoch": 139,
+      "global_step": 8820,
+      "lightning_version": "2.6.5",
+      "path": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/regression_nematic_retrained/checkpoints/epoch_139.ckpt",
+      "sha256": "192c2bec48e8c6dc9b78740254a55082b89416e3b986bf243edf60586530483b"
+    }
+  },
+  "completed_at": "2026-09-02T13:25:58.040245+02:00",
+  "dataset": {
+    "computed_target_shapes_txyz": [
+      [
+        21,
+        212,
+        212,
+        10
+      ]
+    ],
+    "length": 2000,
+    "minimum_daughter_distance_processed_voxels": 4.47213595499958,
+    "movie_names": [
+      "movie_I2"
+    ],
+    "original_internal_shapes_txyz": [
+      [
+        21,
+        1024,
+        1024,
+        10
+      ]
+    ],
+    "processed_shapes_txyz": [
+      [
+        21,
+        244,
+        244,
+        42
+      ]
+    ],
+    "role": "validation",
+    "stage": "regression",
+    "time_axis_padding_effective": 0,
+    "unique_crop_count": 123,
+    "zero_length_axes": 0
+  },
+  "elapsed_seconds": 3.6725410999933956,
+  "loaded_network_keys": {
+    "original": 41,
+    "retrained": 41
+  },
+  "outputs": {
+    "event_metrics": "docs/reproducibility_audit/neural_tube_nematic_full_pipeline/seed_12345/evaluation/training_consistent_movie_I2_regression/event_metrics.csv",
+    "event_metrics_sha256": "703ca59b6fe18917ee628683c408756b95d5c1ae440c7a02a7dd75a0927dd382"
+  },
+  "scientific_role": "validation/input-domain diagnostic, not independent test and not the raw-coordinate production-center path",
+  "scope": "movie_I2 annotated regression crops after the same spatial resampling used by training",
+  "status": "complete",
+  "summary": {
+    "by_model": {
+      "original": {
+        "absolute_length_error_voxels": {
+          "maximum": 13.14944076538086,
+          "mean": 10.766366958618164,
+          "median": 10.671035766601562,
+          "minimum": 8.811484336853027,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 9.449854850769043,
+          "p25": 10.27919340133667,
+          "p75": 11.237677574157715,
+          "p95": 12.19933500289917,
+          "rms": 10.798795695606666,
+          "sem": 0.07540386513981265,
+          "std_population": 0.8362693190574646
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 89.64543151855469,
+          "mean": 47.41377258300781,
+          "median": 44.70755386352539,
+          "minimum": 1.6317086219787598,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 9.673171710968019,
+          "p25": 26.10542106628418,
+          "p75": 67.81206512451172,
+          "p95": 86.31169815063477,
+          "rms": 53.50841914517308,
+          "sem": 2.236222487584517,
+          "std_population": 24.800907135009766
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 179.6446533203125,
+          "mean": 76.43087768554688,
+          "median": 75.05348205566406,
+          "minimum": 16.330781936645508,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 29.64833335876465,
+          "p25": 50.91598129272461,
+          "p75": 97.2186393737793,
+          "p95": 128.8401870727539,
+          "rms": 82.80820369697848,
+          "sem": 2.8733694228785356,
+          "std_population": 31.86720848083496
+        },
+        "sample_count": 123,
+        "undefined_corrected_axis_count": 0
+      },
+      "retrained": {
+        "absolute_length_error_voxels": {
+          "maximum": 2.3753228187561035,
+          "mean": 0.6569945216178894,
+          "median": 0.5458612442016602,
+          "minimum": 0.001255035400390625,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 0.04121417999267578,
+          "p25": 0.2871365547180176,
+          "p75": 0.931084394454956,
+          "p95": 1.7012419223785384,
+          "rms": 0.8336394242266467,
+          "sem": 0.04626830455689318,
+          "std_population": 0.5131403207778931
+        },
+        "corrected_nematic_axis_error_deg": {
+          "maximum": 48.81424331665039,
+          "mean": 14.25120735168457,
+          "median": 12.670012474060059,
+          "minimum": 1.560096263885498,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 5.220520401000977,
+          "p25": 8.764781951904297,
+          "p75": 18.494157791137695,
+          "p95": 27.508786964416498,
+          "rms": 16.239051492946388,
+          "sem": 0.7019712083196037,
+          "std_population": 7.7852373123168945
+        },
+        "production_quaternion_error_deg": {
+          "maximum": 179.82577514648438,
+          "mean": 111.62362670898438,
+          "median": 129.12481689453125,
+          "minimum": 20.12674331665039,
+          "n": 123,
+          "nominal_n": 123,
+          "p05": 29.72822856903076,
+          "p25": 56.27967071533203,
+          "p75": 161.34439086914062,
+          "p95": 176.71318969726562,
+          "rms": 124.2411982500091,
+          "sem": 4.918889491287809,
+          "std_population": 54.553123474121094
+        },
+        "sample_count": 123,
+        "undefined_corrected_axis_count": 0
+      }
+    },
+    "paired_retrained_minus_original": {
+      "absolute_length_error_voxels": {
+        "maximum": -6.756345272064209,
+        "mean": -10.10937213897705,
+        "median": -10.25671100616455,
+        "minimum": -12.156546115875244,
+        "n": 123,
+        "nominal_n": 123,
+        "p05": -11.739516544342042,
+        "p25": -10.81698226928711,
+        "p75": -9.538218259811401,
+        "p95": -8.080223608016968,
+        "rms": 10.167571034061528,
+        "sem": 0.09795066328850652,
+        "std_population": 1.0863254070281982
+      },
+      "corrected_nematic_axis_error_deg": {
+        "maximum": 34.65424919128418,
+        "mean": -33.162567138671875,
+        "median": -33.1313591003418,
+        "minimum": -83.19799518585205,
+        "n": 123,
+        "nominal_n": 123,
+        "p05": -75.53337163925171,
+        "p25": -52.463937759399414,
+        "p75": -12.375048637390137,
+        "p95": 6.0052949428558335,
+        "rms": 42.20568434371182,
+        "sem": 2.353968825229919,
+        "std_population": 26.10677719116211
+      },
+      "negative_difference_is_improvement": true
+    }
+  }
+}

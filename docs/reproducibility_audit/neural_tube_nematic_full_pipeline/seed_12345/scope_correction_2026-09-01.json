@@ -1,0 +1,49 @@
+{
+  "status": "scope_corrected",
+  "recorded_at": "2026-09-01T19:04:47.0025996+02:00",
+  "reason": "The user clarified that only orientation regression should be retrained to isolate the nematic orientation formulation.",
+  "scientific_decision": {
+    "segmentation_retraining_required": false,
+    "segmentation_for_both_regression_models": "released neural-tube segmentation model",
+    "regression_retraining_required": true,
+    "controlled_comparison": "original and nematic regression on identical ground-truth-center crops",
+    "end_to_end_comparison": "original and nematic regression using identical released-segmentation detections and matching"
+  },
+  "nuclei_experiment_precedent": {
+    "segmentation_retrained": false,
+    "regression_retrained": true,
+    "detection_and_centers_held_fixed": true
+  },
+  "superseded_segmentation_run": {
+    "pid": 4652,
+    "started_at": "2026-09-01T10:48:47.186962+02:00",
+    "process_stop_verified": true,
+    "last_completed_epoch": 32,
+    "stopped_during_logged_epoch": 33,
+    "durable_global_step": 1056,
+    "last_observed_csv_training_step": 1079,
+    "best_epoch": 25,
+    "best_validation_iou": 0.42710795998573303,
+    "checkpoint_bytes": 1378684788,
+    "best_checkpoint_sha256": "eb1486766f99bf6a8bc335241b3858f4c8a52aeb0ad65865a9df274373272eb4",
+    "last_checkpoint_sha256": "eb1486766f99bf6a8bc335241b3858f4c8a52aeb0ad65865a9df274373272eb4",
+    "will_be_used_in_final_comparison": false,
+    "outputs_deleted": false
+  },
+  "stopped_supervisor": {
+    "pid": 32276,
+    "process_stop_verified": true,
+    "reason": "The original supervisor encoded the superseded segmentation-first sequence."
+  },
+  "historical_neural_tube_reference": {
+    "released_segmentation_best_epoch": 57,
+    "released_regression_best_epoch": 147
+  },
+  "preservation": {
+    "partial_checkpoints": "preserved",
+    "training_csv_and_tensorboard": "preserved",
+    "stdout_stderr_and_training_log": "preserved",
+    "production_code_or_models_modified": false
+  },
+  "next_step": "Launch corrected nematic regression from scratch, then evaluate both regression models behind one fixed released segmentation path."
+}

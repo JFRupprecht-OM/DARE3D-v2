@@ -1,0 +1,267 @@
+{
+  "arguments": {
+    "batch_size": 12,
+    "checkpoint": "last",
+    "preflight_only": false,
+    "scale_mode": "log_reconstructed"
+  },
+  "current_evaluator_components": [
+    {
+      "matched_components": 123,
+      "predicted_components": 127,
+      "true_components": 145
+    }
+  ],
+  "current_evaluator_stats": {
+    "fmeasure": 0.9044117647058824,
+    "fn": 22,
+    "fp": 4,
+    "min_weighted_prob": 0.15,
+    "precision": 0.968503937007874,
+    "recall": 0.8482758620689655,
+    "threshold": 0.55,
+    "tp": 123
+  },
+  "dataset": {
+    "actual_target_shape_txyz": [
+      10,
+      330,
+      278,
+      164
+    ],
+    "groundtruth_mask_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ],
+    "movie_names": [
+      "movie2"
+    ],
+    "original_shapes_txyz": [
+      [
+        10,
+        362,
+        305,
+        180
+      ]
+    ]
+  },
+  "elapsed_inference_and_evaluation_seconds": 114.18501630000083,
+  "finished_utc": "2026-08-28T23:40:01Z",
+  "frozen_settings": {
+    "computed_target_shape_txyz": [
+      10,
+      330,
+      278,
+      164
+    ],
+    "crop_size": 128,
+    "default_scale_xyz": [
+      0.912,
+      0.912,
+      0.912
+    ],
+    "distance_mode": "iou",
+    "distance_threshold": 1e-06,
+    "expected_target_shape_txyz": [
+      10,
+      330,
+      278,
+      164
+    ],
+    "inference_batch_size": 12,
+    "iteration_method": "movie",
+    "min_weighted_probability": 0.15,
+    "overlap": 0.5,
+    "raw_disk_shape_tzyx": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "raw_internal_shape_txyz": [
+      10,
+      362,
+      305,
+      180
+    ],
+    "scale_file": "absent; deliberate nonexistent path triggers frozen default",
+    "threshold": 0.55
+  },
+  "gpu": {
+    "peak_memory_allocated_bytes": 3449447936,
+    "peak_memory_reserved_bytes": 4617928704
+  },
+  "inputs": {
+    "archived_probability": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/movie2.tif",
+    "archived_probability_sha256": "4ed0abaa7fe463a55dc43b24ee90c79c6deca7e6a677050d4ee27a52a65b8e40",
+    "archived_stats": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/runs/01-01/stats.csv",
+    "checkpoint": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/checkpoints/last.ckpt",
+    "checkpoint_sha256_from_verified_manifest": "9c81814c7bec9f62fa8d138252672c18bc266bc841aa898be0ee50192b6a9306",
+    "config": "DARE3d_data_190326/Gastruloid_241025/weights/segmentation3d_exp10-b/.hydra/config.yaml",
+    "input_sha256": "b57ef33081e627a9305389b3dff796d9ca8e718e7ead2c4eaee7940733681f81",
+    "input_tiff": "DARE3d_data_190326/Gastruloid_241025/test_input/movie2.tif",
+    "label_dir": "DARE3d_data_190326/Gastruloid_241025/trainingset/movie2/label"
+  },
+  "loaded_network_key_count": 196,
+  "model": {
+    "class": "dare3d.models.components.multiscale_unet.MultiScaleUNet",
+    "parameter_bytes": 459479008,
+    "parameter_count": 114869752,
+    "state_tensor_count": 196,
+    "trainable_parameter_count": 114869752
+  },
+  "phase": "full_inference_and_evaluation",
+  "probability_comparison": {
+    "archived_dtype": "float16",
+    "archived_shape": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "array_exact_match": false,
+    "binary_disagreement_count_at_0_55": 82668,
+    "binary_disagreement_fraction_at_0_55": 0.00041596473749358454,
+    "exact_value_fraction": 0.2851554911491511,
+    "file_sha256_exact_match": false,
+    "generated_bytes": 397796494,
+    "generated_dtype": "float16",
+    "generated_path": "docs/reproducibility_audit/checkpoint_runs/nuclei_segmentation/log_reconstructed/last_last/batch_12/movie2.tif",
+    "generated_sha256": "3a3b4e31a94f310db4ff3c5eeb34aa005d972f5cc0ea5a685f9dc0629582075a",
+    "generated_shape": [
+      10,
+      180,
+      305,
+      362
+    ],
+    "mae": 0.00043335537093539065,
+    "max_abs": 0.9999884366989136,
+    "pearson_correlation": 0.9474705997206703,
+    "per_frame": [
+      {
+        "binary_disagreement_at_0_55": 0,
+        "exact_fraction": 1.0,
+        "frame": 0,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "rmse": 0.0
+      },
+      {
+        "binary_disagreement_at_0_55": 0,
+        "exact_fraction": 1.0,
+        "frame": 1,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "rmse": 0.0
+      },
+      {
+        "binary_disagreement_at_0_55": 14448,
+        "exact_fraction": 0.10594496271472995,
+        "frame": 2,
+        "mae": 0.0007335812454799758,
+        "max_abs": 0.9996778964996338,
+        "rmse": 0.018228915791799864
+      },
+      {
+        "binary_disagreement_at_0_55": 14605,
+        "exact_fraction": 0.10553598204671477,
+        "frame": 3,
+        "mae": 0.000794768121424656,
+        "max_abs": 0.9999868273735046,
+        "rmse": 0.02063382351802824
+      },
+      {
+        "binary_disagreement_at_0_55": 12451,
+        "exact_fraction": 0.1046308204772112,
+        "frame": 4,
+        "mae": 0.0006378592978929185,
+        "max_abs": 0.9976949691772461,
+        "rmse": 0.016610206603901122
+      },
+      {
+        "binary_disagreement_at_0_55": 15801,
+        "exact_fraction": 0.10738575410842416,
+        "frame": 5,
+        "mae": 0.0008106853895897147,
+        "max_abs": 0.9999884366989136,
+        "rmse": 0.02183534607456966
+      },
+      {
+        "binary_disagreement_at_0_55": 8273,
+        "exact_fraction": 0.10503451780736447,
+        "frame": 6,
+        "mae": 0.0004290148361058717,
+        "max_abs": 0.9987826347351074,
+        "rmse": 0.014284133045474653
+      },
+      {
+        "binary_disagreement_at_0_55": 7103,
+        "exact_fraction": 0.10867559299177812,
+        "frame": 7,
+        "mae": 0.0003735056302999224,
+        "max_abs": 0.9924526214599609,
+        "rmse": 0.011873299094790268
+      },
+      {
+        "binary_disagreement_at_0_55": 2874,
+        "exact_fraction": 0.10817191478227617,
+        "frame": 8,
+        "mae": 0.00016792916733872446,
+        "max_abs": 0.9597930908203125,
+        "rmse": 0.007713679099636667
+      },
+      {
+        "binary_disagreement_at_0_55": 7113,
+        "exact_fraction": 0.10617536656301262,
+        "frame": 9,
+        "mae": 0.00038621002122212324,
+        "max_abs": 0.989288330078125,
+        "rmse": 0.012215700727781198
+      }
+    ],
+    "rmse": 0.014368247016655249,
+    "shape_match": true,
+    "value_count": 198738000
+  },
+  "released_all_metrics_exact": false,
+  "released_evaluator_stats": {
+    "fmeasure": 0.9185185185185186,
+    "fn": 21,
+    "fp": 1,
+    "min_weighted_prob": 0.15,
+    "precision": 0.992,
+    "recall": 0.8551724137931035,
+    "threshold": 0.5499999999999999,
+    "tp": 124
+  },
+  "released_metric_exact_agreement": {
+    "fmeasure": false,
+    "fn": false,
+    "fp": false,
+    "precision": false,
+    "recall": false,
+    "tp": false
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_name": "Quadro RTX 5000",
+    "imports": {
+      "infer_and_evaluate_segmentation": "dare3d/metrics/infer_measure.py",
+      "load_net_state_dict": "dare3d/models/finetune.py"
+    },
+    "python": "3.10.20",
+    "run_directory": "docs/reproducibility_audit/checkpoint_runs/nuclei_segmentation/log_reconstructed/last_last/batch_12",
+    "torch": "2.5.1+cu121"
+  },
+  "scientific_classification": "diagnostic fixed from archived pre-output training-log geometry; original scales.json provenance remains missing",
+  "source_commit": "fe2b14d732359f2bdaf8b197574ad818899ce123",
+  "started_utc": "2026-08-28T23:37:41Z",
+  "status": "complete",
+  "strict_checkpoint_load": true,
+  "total_elapsed_seconds": 140.1017251000003
+}
