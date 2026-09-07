@@ -1,6 +1,6 @@
 <div align="center">
 
-# DARE3D — Division Axis and Region Estimation in 3D time-lapse images
+# DARE3D-v2 — Division Axis and Region Estimation in 3D time-lapse images
 
 <a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a>
 <a href="https://pytorchlightning.ai/"><img alt="Lightning" src="https://img.shields.io/badge/-Lightning-792ee5?logo=pytorchlightning&logoColor=white"></a>
