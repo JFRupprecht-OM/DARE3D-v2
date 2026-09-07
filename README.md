@@ -79,7 +79,7 @@ Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (
 (both segmentation and regression), just slower — fine for small movies.
 
 ```bash
-git clone https://github.com/qazi05/DARE3d
+git clone https://github.com/JFRupprecht-OM/DARE3D-v2
 cd DARE3d
 
 # 1) conda environment
