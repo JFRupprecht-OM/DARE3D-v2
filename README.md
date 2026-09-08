@@ -80,7 +80,7 @@ Per-package internals are documented in [`dare3d/README.md`](dare3d/README.md) (
 
 ```bash
 git clone https://github.com/JFRupprecht-OM/DARE3D-v2
-cd DARE3d
+cd DARE3D-v2
 
 # 1) conda environment
 conda create -n dare3d-v2 python=3.10 -y
