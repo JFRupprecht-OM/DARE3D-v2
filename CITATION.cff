@@ -6,7 +6,7 @@ type: software
 repository-code: "https://github.com/qazi05/DARE3d"
 license: MIT
 version: "0.0.1"
-doi: "10.5281/zenodo.19113351"
+doi: "10.5281/zenodo.22639669"
 authors:
   - family-names: Karpinski
     given-names: Romain
@@ -34,8 +34,11 @@ authors:
     affiliation: "Aix Marseille Univ, Inserm U1067, CNRS, LAI (UMR 7333), Turing Centre for Living Systems, Marseille, France"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.19113351"
-    description: "Software and data release (Zenodo)"
+    value: "10.5281/zenodo.22639669"
+    description: "Data and pretrained models: DARE3d-v2 bundle DARE3dv2_Zenodo_040926 (Zenodo record 22639669)"
+  - type: doi
+    value: "10.5281/zenodo.22639668"
+    description: "Zenodo concept DOI (resolves to the latest version of the data and models)"
   - type: doi
     value: "10.1101/2024.02.05.578987"
     description: "Method paper (bioRxiv preprint)"

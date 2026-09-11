@@ -13,7 +13,7 @@ dare3d/
 ├── eval.py              # Hydra entry — evaluate trained models on a val set
 ├── predict.py           # Hydra entry — run inference (segmentation [+ regression]) on a movie
 ├── train_eval.py        # CLI wrapper — segmentation → regression → eval in one command
-├── demo.py              # get_path_to_demo_folder() — locate the bundled demo data
+├── demo.py              # get_path_to_demo_folder() — locate (or download) the v2 Zenodo bundle
 │
 ├── data/                            # dataset + datamodule layer
 │   ├── dare_datamodule.py           #   LightningDataModule (train/val/test wiring)

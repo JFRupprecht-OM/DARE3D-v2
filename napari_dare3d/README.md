@@ -42,7 +42,9 @@ The editable install registers the plugin via its `napari.manifest` entry point,
    checkpoint fields pre-fill.
 2. Open **Plugins → DARE3D → DARE3D inference**. Select an open image layer or load a `.tif`/`.tiff`
    movie, confirm the segmentation (and optional regression) checkpoints, then **Run DARE3D**.
-3. **Plugins → DARE3D → DARE3D download data** fetches the demo data/models bundle from Zenodo.
+3. **Plugins → DARE3D → DARE3D download data** downloads, verifies and unpacks the
+   `DARE3dv2_Zenodo_040926` data/models bundle from Zenodo record 22639669 (same code as the
+   `dare3d-download` command; 10.2 GB download, 24 GB unpacked).
 4. **Plugins → DARE3D → DARE3D retraining & fine-tuning (beta)** drives training/fine-tuning as a
    subprocess. Retraining and fine-tuning are also available as notebooks under `notebooks/`, the
    recommended path for both.
@@ -124,7 +126,7 @@ set **default_scale x,y,z** or calibrate the Image layer before running.
 | `_api.py` | **Headless** inference API (`infer_stack`, `to_layer_data`); imports no napari. Replicates `dare3d.predict` without the Hydra CLI, and owns the 3D coordinate conventions (below). |
 | `_train_widget.py` | **Training** widget (`magic_factory`). Streams `dare3d/train.py` / `eval.py` output live; has its own **Stop** button. |
 | `_train.py` | Subprocess driver for training. Import-light (defers `import dare3d`); adds portability fixes the raw scripts lack (`sys.executable`, a local SQLite MLflow store, absolute data overrides). |
-| `_data.py` | Zenodo downloader for the demo data/models bundle (`DARE3d_data_190326`, record 19113351). |
+| `_data.py` | Zenodo downloader for the v2 data/models bundle (`DARE3dv2_Zenodo_040926.zip`, record 22639669): resumable download, MD5 verification, staged unpacking. Also the `dare3d-download` CLI. |
 | `_io.py` | Standalone stdlib helper `iter_tifs` (case-insensitive `.tif`/`.tiff` discovery). Dependency-free, so importing it does not pull in torch. |
 | `napari.yaml` | Plugin manifest (contributes the inference, training, and data-download widgets). |
 
@@ -178,10 +180,11 @@ Three distinct references — please cite the ones relevant to your use:
 
 - **Method paper (preprint).** Karpinski *et al.*, *bioRxiv*, 2026 — DOI
   [`10.1101/2024.02.05.578987`](https://doi.org/10.1101/2024.02.05.578987). BibTeX below.
-- **Data & pretrained models.** Zenodo record **19113351** (`DARE3d_data_190326.zip`):
-  <https://zenodo.org/records/19113351>.
-- **Software release.** DOI [`10.5281/zenodo.19113351`](https://doi.org/10.5281/zenodo.19113351)
-  (code archive, v2 — same Zenodo record as the data bundle).
+- **Data & pretrained models.** Zenodo record **22639669** (`DARE3dv2_Zenodo_040926.zip`,
+  <https://zenodo.org/records/22639669>) — DOI
+  [`10.5281/zenodo.22639669`](https://doi.org/10.5281/zenodo.22639669); concept DOI (all versions)
+  [`10.5281/zenodo.22639668`](https://doi.org/10.5281/zenodo.22639668).
+- **Software.** This GitHub repository (<https://github.com/JFRupprecht-OM/DARE3D-v2>).
 
 A machine-readable [`CITATION.cff`](../CITATION.cff) is provided at the repository root.
 

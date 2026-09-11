@@ -63,6 +63,8 @@ setup(
             "train_command = dare3d.train:main",
             "eval_command = dare3d.eval:main",
             "predict_command = dare3d.predict:main",
+            # download + verify + unpack the Zenodo data/models bundle (record 22639669)
+            "dare3d-download = napari_dare3d._data:main",
         ],
         "napari.manifest": [
             "dare3d = napari_dare3d:napari.yaml",

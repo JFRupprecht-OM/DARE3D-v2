@@ -22,8 +22,11 @@ dare3d/output
 __pycache__
 
 # --- Merged project: large data, models & training outputs (kept locally, not in VCS) ---
-# Zenodo dataset bundle (record 17456474) and the top-level training data dir.
+# Zenodo v2 data/models bundle (record 22639669, fetched by `dare3d-download`) plus the
+# downloader's .zip/.part/.tmp/.provenance.json artefacts, legacy bundles, and the
+# top-level training data dir.
 # NB: root-anchored so the dare3d/data/ source package stays tracked.
+/DARE3dv2_Zenodo_040926*
 /DARE3d_data_160226/
 DARE3d_data_*/
 *.zip

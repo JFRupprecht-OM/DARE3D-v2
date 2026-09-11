@@ -120,6 +120,38 @@ checkpoint is sufficient; the matching saved `.hydra/config.yaml` directory is r
 The widget does not infer that `last.ckpt` is the best model. API callers may still supply model
 directories to retain backward compatibility.
 
+### Download data & pretrained models
+
+The bundle is published on Zenodo as record [22639669](https://zenodo.org/records/22639669)
+(DOI [10.5281/zenodo.22639669](https://doi.org/10.5281/zenodo.22639669)): a single archive,
+`DARE3dv2_Zenodo_040926.zip` (10.2 GB), which unpacks to 24 GB. One command downloads it,
+verifies its MD5 checksum and unpacks it at the repository root:
+
+```bash
+# after `pip install -e .` (the install registers the command)
+dare3d-download
+
+# same thing without re-installing
+python -m napari_dare3d._data
+
+# options
+dare3d-download --dry-run                       # offline: report what would happen + free space
+dare3d-download --dest D:/data --keep-archive   # unpack elsewhere; keep the verified .zip
+dare3d-download --help
+```
+
+About 34 GB of free space is needed while unpacking; the archive is deleted afterwards unless
+`--keep-archive` is given. The command is safe to re-run: an existing `DARE3dv2_Zenodo_040926/`
+folder is never touched, and an interrupted download or extraction resumes where it stopped.
+A `DARE3dv2_Zenodo_040926.provenance.json` sidecar records the Zenodo record, DOI, archive size
+and checksum of what was installed. The napari **DARE3D download data** widget runs the same
+code. If you unpack somewhere else with `--dest`, launch napari from that directory so the
+release presets find the bundle.
+
+**Manual alternative:** download `DARE3dv2_Zenodo_040926.zip` from the Zenodo record, place it
+at the repository root and run `dare3d-download` again (it verifies and unpacks the local
+archive instead of downloading), or simply unzip it there by hand.
+
 ## Data format
 
 - **Input movies** are TIFF stacks in disk/napari order `(T, Z, Y, X)` (a bare `(Z, Y, X)` volume is
@@ -346,8 +378,10 @@ make clean                  # remove build artefacts and caches
 - **CUDA out of memory:** lower `data.batch_size`, or `trainer=cpu` for segmentation-only.
 - **`ImportError` / plugin not listed in napari:** re-run `pip install -e .` (refreshes the editable
   install and its `napari.manifest` entry point).
-- **Demo data won't download:** grab the Zenodo bundle manually
-  ([record 19113351](https://zenodo.org/records/19113351)) and unzip it at the repo root.
+- **Download problems:** `dare3d-download` resumes an interrupted download when re-run. If it keeps
+  failing, fetch `DARE3dv2_Zenodo_040926.zip` from Zenodo
+  ([record 22639669](https://zenodo.org/records/22639669)), place it at the repo root and re-run
+  `dare3d-download` (it verifies and unpacks the local archive), or unzip it there by hand.
 - DARE3D provided models were trained on Linux/HPC.
 
 ## Related projects

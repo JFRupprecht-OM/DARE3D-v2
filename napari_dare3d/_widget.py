@@ -15,6 +15,7 @@ from magicgui.widgets import ProgressBar
 from napari.qt.threading import thread_worker
 from napari.utils import notifications
 
+from napari_dare3d import _data
 from napari_dare3d._release_models import (
     DATASET_CHOICES,
     DEFAULT_DATASET,
@@ -561,37 +562,31 @@ def dare3d_widget(
     call_button="Download DARE3D data (Zenodo)",
     dest={
         "widget_type": "FileEdit", "mode": "d", "label": "Download into",
-        "tooltip": "Folder for the legacy DARE3d_data_190326 demo bundle "
-                   "(Zenodo record 19113351, ~7 GB).",
+        "tooltip": "Folder that will contain DARE3dv2_Zenodo_040926/ (Zenodo record "
+                   "22639669: 10.2 GB download, 24 GB unpacked, about 34 GB free needed; "
+                   "the archive is removed after verification). Default: the repository root.",
     },
     pbar={"label": "progress", "visible": False, "min": 0, "max": 0},
 )
-def dare3d_download_widget(dest: Path = Path.cwd(), pbar: ProgressBar = None):
-    """Download the DARE3D demo data + pretrained models from Zenodo (~7 GB) and unzip.
+def dare3d_download_widget(dest: Path = _data.default_dest(), pbar: ProgressBar = None):
+    """Download, verify and unpack the DARE3D v2 data + pretrained models from Zenodo.
 
-    Saves the legacy ``DARE3d_data_190326`` bundle into the chosen folder. Verified
-    release presets come from ``DARE3dv2_Zenodo_040926``. The download runs in a
-    worker thread (napari stays responsive); percent progress prints to the terminal.
+    Fetches ``DARE3dv2_Zenodo_040926.zip`` (record 22639669, 10.2 GB), checks its MD5
+    and unpacks ``DARE3dv2_Zenodo_040926/`` (24 GB) into the chosen folder -- the same
+    behaviour as the ``dare3d-download`` command: an existing bundle is left untouched
+    and an interrupted download resumes. The download runs in a worker thread (napari
+    stays responsive); percent progress prints to the terminal.
     """
-    from napari_dare3d import _data
-
-    state = {"pct": -5}
-
-    def _progress(done, total):
-        if total:
-            pct = int(100 * done / total)
-            if pct >= state["pct"] + 5:
-                state["pct"] = pct
-                print(f"[DARE3D] download {pct}%  ({done / 1e9:.2f}/{total / 1e9:.2f} GB)")
+    def _log(msg):
+        print(f"[DARE3D] {msg}")
 
     @thread_worker
     def _run():
-        return _data.download(dest, progress_cb=_progress,
-                              log=lambda m: print(f"[DARE3D] {m}"))
+        return _data.download(dest, progress_cb=_data.percent_logger(_log), log=_log)
 
     def _on_done(path):
         pbar.max, pbar.value = 1, 1
-        pbar.label = f"downloaded → {Path(path).name}"
+        pbar.label = f"ready: {Path(path).name}"
         notifications.show_info(f"DARE3D data ready: {path}")
 
     def _on_error(exc):
@@ -603,7 +598,7 @@ def dare3d_download_widget(dest: Path = Path.cwd(), pbar: ProgressBar = None):
     worker.returned.connect(_on_done)
     worker.errored.connect(_on_error)
     pbar.max, pbar.value = 0, 0
-    pbar.label = "downloading… (see terminal for %)"
+    pbar.label = "downloading... (see terminal for %)"
     pbar.visible = True
     worker.start()
-    notifications.show_info("DARE3D: download started — progress in the terminal.")
+    notifications.show_info("DARE3D: download started - progress in the terminal.")
