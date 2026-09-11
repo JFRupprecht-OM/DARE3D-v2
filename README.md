@@ -402,3 +402,6 @@ make clean                  # remove build artefacts and caches
 
 MIT — see [LICENSE](LICENSE). This work was granted access to the HPC resources of IDRIS under the
 allocation AD010314339 made by GENCI.
+
+The napari plugin (`napari_dare3d/`) was generated with Claude (Anthropic) via Claude Code, under
+the direction of the authors, who reviewed and validated the resulting code.

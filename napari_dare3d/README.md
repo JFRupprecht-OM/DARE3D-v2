@@ -210,3 +210,6 @@ MIT — see [`LICENSE`](../LICENSE).
 Funded by the Agence Nationale de la Recherche (ANR-16-CONV-0001, ANR-22-CE30-0021) and the Fondation
 pour la Recherche Médicale (FDT202404018538). This work was granted access to the HPC resources of
 IDRIS under the allocation AD010314339 made by GENCI.
+
+This plugin was generated with Claude (Anthropic) via Claude Code, under the direction of the
+authors, who reviewed and validated the resulting code.
